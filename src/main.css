@@ -1,0 +1,22 @@
+/* remove margin coming from default */
+body {
+  margin: 0;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.imageWrapper {
+  width: 100%;
+}
+
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
