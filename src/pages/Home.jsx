@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
+import '../styles/Home.css';
 
 const Home = () => {
   return (
@@ -8,6 +10,7 @@ const Home = () => {
       <p>
         <Link to="/contact">Contact Us</Link>{' '}
       </p>
+      <Header />
     </>
   );
 };
