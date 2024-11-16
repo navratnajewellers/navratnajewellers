@@ -1,3 +1,11 @@
+.header-container {
+  position: absolute;
+  z-index: 1000;
+  top: -137px;
+  left: 0;
+  width: 100vw;
+}
+
 .header-primary {
   display: flex;
   justify-content: center;
@@ -9,11 +17,12 @@
 
 /* Navratna Logo */
 .nav-logo {
-  border: solid 1px red;
+  /* border: solid 1px red; */
   flex-basis: 15%;
   display: flex;
   justify-content: center;
   margin-right: 20px;
+  margin-left: 5px;
 }
 
 .nav-logo .imageWrapper {
@@ -21,26 +30,86 @@
   width: 90%;
 }
 
-.div2 {
-  border: solid 1px blue;
+.search-box {
+  /* border: solid 1px blue; */
   flex-basis: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
 }
 
 .search-product {
-  width: 300px;
+  width: 90% !important;
+  height: 70% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.div3 {
-  border: solid 1px rosybrown;
-  width: 100px;
+.search-product input,
+button {
+  height: 100% !important;
 }
 
-.div4 {
-  border: solid 1px black;
+.header-store {
+  /* border: solid 1px rosybrown; */
   width: 100px;
+  flex-direction: column;
 }
 
-.div5 {
-  border: solid 1px black;
-  width: 100px;
+.header-icons {
+  width: 25px;
+  height: 25px;
+}
+
+.header-store h4 {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.header-text-container {
+  margin: 0;
+  padding: 0;
+  margin-top: -8px;
+}
+
+/* carousel */
+.carousel {
+  border: solid 1px red;
+  margin-top: 130px;
+}
+
+/* home page products */
+
+.shop-by-category {
+  margin-top: 50px;
+}
+
+.home-products-container {
+  /* border: solid 1px black; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+.home-products {
+  border: solid 1px rgb(185, 185, 185);
+  width: 150px;
+  margin-right: 30px;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.home-product-name {
+  padding: 20px 0;
+}
+
+.home-product-name a {
+  font-family: cursive;
+  text-decoration: none !important;
 }

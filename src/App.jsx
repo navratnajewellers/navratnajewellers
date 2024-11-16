@@ -4,6 +4,7 @@ import Contact from './pages/Contact';
 import PageNotFound from './pages/PageNotFound';
 import ViteDefaultPage from './pages/ViteDefaultPage';
 import TestConnection from './pages/TestConnection';
+import 'rsuite/dist/rsuite.min.css';
 
 function App() {
   return (
