@@ -2,7 +2,9 @@ import { Carousel, Divider } from 'rsuite';
 import Header from '../components/Header';
 import '../styles/Home.css';
 import { GiJewelCrown } from '@react-icons/all-files/gi/GiJewelCrown';
-import HomeProducts from '../components/HomeProducts';
+import HomeProducts from '../components/home/HomeProducts';
+import HomeConnectUs from '../components/home/HomeConnectUs';
+import Footer from '../components/Footer';
 
 const Home = () => {
   return (
@@ -45,14 +47,19 @@ const Home = () => {
           <HomeProducts />
         </div>
       </div>
-      <div className="shop-by-gender">
+      <div className="home-connect-us margin-b60">
         <div>
-          <h1 className="textCenter">Shop By Gender</h1>
+          <h1 className="textCenter">Connect with Us</h1>
         </div>
         <Divider>
           <GiJewelCrown />
         </Divider>
-        <div></div>
+        <div>
+          <HomeConnectUs />
+        </div>
+      </div>
+      <div>
+        <Footer />
       </div>
     </>
   );

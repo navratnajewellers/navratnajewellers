@@ -1,10 +1,16 @@
 import { Button } from 'rsuite';
 
 const TestConnection = () => {
-  const handleClick = () => {
-    fetch('http://127.0.0.1/testing/testing_login.php')
-      .then(response => response.json())
-      .then(body => console.log(body));
+  const handleClick = async () => {
+    // fetch('http://127.0.0.1/testing/testing_login.php')
+    //   .then(response => response.json())
+    //   .then(body => console.log(body));
+
+    const response = await fetch('http://127.0.0.1/testing/testing_login.php');
+
+    const body = response.json();
+
+    console.log(body);
   };
 
   return (
