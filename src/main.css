@@ -33,6 +33,10 @@ body {
   align-items: center;
 }
 
+.dis-block {
+  display: block;
+}
+
 .pos-fixed {
   position: fixed;
 }
@@ -64,4 +68,18 @@ body {
 
 .padding-l10 {
   padding-left: 10px;
+}
+
+.modal-custom-header {
+  position: relative;
+}
+
+.modal-custom-header h4 {
+  padding-bottom: 2px;
+  text-align: center;
+  font-family: cursive;
+}
+
+.modal-custom-header button {
+  top: 2px !important;
 }
