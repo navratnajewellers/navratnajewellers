@@ -9,6 +9,8 @@ import TestLogin from './pages/TestLogin';
 import GoldCoinPage from './pages/coins/GoldCoinPage';
 import SilverCoinsPage from './pages/coins/SilverCoinsPage';
 import VerifyLogin from './pages/VerifyLogin';
+import Cart from './pages/Cart';
+import GoldRate from './pages/GoldRate';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/gold-coin/:gramQt" element={<GoldCoinPage />} />
         <Route path="/silver-coin/:gramQt" element={<SilverCoinsPage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/gold-rate" element={<GoldRate />} />
         <Route path="/vitepage" element={<ViteDefaultPage />} />
         <Route path="/test-connection" element={<TestConnection />} />
         <Route path="/test-connection/test-login" element={<TestLogin />} />

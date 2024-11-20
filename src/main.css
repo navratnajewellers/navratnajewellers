@@ -37,6 +37,14 @@ body {
   display: block;
 }
 
+.dis-none {
+  display: none;
+}
+
+.dis-none-imp {
+  display: none !important;
+}
+
 .pos-fixed {
   position: fixed;
 }

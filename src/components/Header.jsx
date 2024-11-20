@@ -4,10 +4,12 @@ import {
   Form,
   Input,
   InputGroup,
+  Message,
   Modal,
   Nav,
   Navbar,
   Popover,
+  useToaster,
   Whisper,
 } from 'rsuite';
 import SearchIcon from '@rsuite/icons/Search';
@@ -17,10 +19,17 @@ import { IoIosHeartEmpty } from '@react-icons/all-files/io/IoIosHeartEmpty';
 import { IoCartOutline } from '@react-icons/all-files/io5/IoCartOutline';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
 
 const Header = () => {
+  const toaster = useToaster();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUp] = useState(false);
+  const [message, setMessage] = useState('');
+  const [userData, setUserData] = useState({
+    id: '',
+    username: '',
+  });
 
   const [signupFormValue, setSignupFormValue] = useState({
     name: '',
@@ -33,11 +42,24 @@ const Header = () => {
     password: '',
   });
 
-  console.log({
-    name: signupFormValue.name,
-    email: signupFormValue.email,
-    password: signupFormValue.password,
-  });
+  // uncomment to see the login and sign form data
+  // console.log({
+  //   signupName: signupFormValue.name,
+  //   signupEmail: signupFormValue.email,
+  //   signupPassword: signupFormValue.password,
+  //   loginEmail: loginFormValue.email,
+  //   loginPassword: loginFormValue.password,
+  // });
+
+  // for display notification message
+  const displayMessage = (type, message) => {
+    toaster.push(
+      <Message showIcon type={type} closable>
+        <strong>{type}!</strong> {message}
+      </Message>,
+      { placement: 'topCenter', duration: 2000 }
+    );
+  };
 
   // for the account login and sign in
   const renderMenu = ({ onClose, left, top, className }, ref) => {
@@ -52,6 +74,13 @@ const Header = () => {
         console.log('sign up modal is open');
         setIsSignUp(true);
       }
+      if (eventKey === 4) {
+        console.log('Logout Successfully');
+        setUserData({
+          id: '',
+          username: '',
+        });
+      }
     };
     return (
       <Popover
@@ -61,8 +90,30 @@ const Header = () => {
         full
       >
         <Dropdown.Menu onSelect={handleSelect}>
-          <Dropdown.Item eventKey={1}>Log In</Dropdown.Item>
-          <Dropdown.Item eventKey={2}>Sign Up</Dropdown.Item>
+          <Dropdown.Item
+            eventKey={1}
+            className={userData.id === '' ? '' : 'dis-none-imp'}
+          >
+            Log In
+          </Dropdown.Item>
+          <Dropdown.Item
+            eventKey={2}
+            className={userData.id === '' ? '' : 'dis-none-imp'}
+          >
+            Sign Up
+          </Dropdown.Item>
+          <Dropdown.Item
+            eventKey={3}
+            className={userData.id === '' ? 'dis-none-imp' : ''}
+          >
+            Dashboard
+          </Dropdown.Item>
+          <Dropdown.Item
+            eventKey={4}
+            className={userData.id === '' ? 'dis-none-imp' : ''}
+          >
+            Logout
+          </Dropdown.Item>
         </Dropdown.Menu>
       </Popover>
     );
@@ -85,15 +136,87 @@ const Header = () => {
     });
   };
 
+  const handleLogin = async e => {
+    setMessage('');
+
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        'http://127.0.0.1/testing/verify_email_login.php',
+        {
+          email: loginFormValue.email,
+          password: loginFormValue.password,
+        }
+      );
+      setMessage(response.data.message);
+
+      displayMessage('info', response.data.message);
+
+      // console.log({
+      //   message: response.data.message,
+      //   id: response.data.id,
+      //   username: response.data.username,
+      // });
+
+      if (response.data.message === 'Login successful') {
+        setUserData({
+          id: response.data.id,
+          username: response.data.username,
+        });
+
+        handleLoginClose();
+      }
+    } catch (error) {
+      setMessage('An error occurred during login.');
+      displayMessage('error', 'An error occurred during login.');
+      console.log(error);
+    }
+  };
+
+  const handleSignUp = async e => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        'http://127.0.0.1/testing/new_register.php',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: signupFormValue.name,
+            password: signupFormValue.password,
+            email: signupFormValue.email,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      setMessage(data.message);
+
+      displayMessage('info', data, message);
+
+      handleSignUpClose();
+    } catch (error) {
+      setMessage('An error occurred during signup.');
+      displayMessage('error', 'An error occurred during signup.');
+      console.log(error);
+    }
+  };
+
+  console.log(message, userData);
+
   return (
     <div className="header-main">
       <div className="header-primary">
         <div className="nav-logo">
-          <a href="/" className="dis-block">
+          <Link to="/" className="dis-block">
             <div className="imageWrapper">
               <img src="/nav-jew-logo.jpg"></img>
             </div>
-          </a>
+          </Link>
         </div>
         <div className="search-box">
           <InputGroup inside className="search-product">
@@ -123,11 +246,13 @@ const Header = () => {
           <div className="header-text-container cursorPointer">
             {/* <h4 className="textCenter">Account</h4> */}
             <Whisper placement="bottom" trigger="click" speaker={renderMenu}>
-              <h4 className="textCenter">Account</h4>
+              <h4 className="textCenter">
+                {userData.username === '' ? 'Account' : `${userData.username}`}
+              </h4>
             </Whisper>
           </div>
         </div>
-        <div className="header-store dis-flex">
+        <div className="header-store dis-flex dis-none">
           <div className="dis-flex">
             <IoIosHeartEmpty className="header-icons" />
           </div>
@@ -143,7 +268,7 @@ const Header = () => {
           </div>
           <div className="header-text-container cursorPointer">
             <h4 className="textCenter">
-              <Link to="/user/cart">Cart</Link>
+              <Link to="/cart">Cart</Link>
             </h4>
           </div>
         </div>
@@ -220,10 +345,13 @@ const Header = () => {
             </Nav.Item>
             <Nav.Menu title="About">
               <Nav.Item>Navratna Jewellers</Nav.Item>
-              <Nav.Item>Team</Nav.Item>
               <Nav.Menu title="Contact">
-                <Nav.Item>Via email</Nav.Item>
-                <Nav.Item>Via telephone</Nav.Item>
+                <Nav.Item>
+                  <a href="mailto:navratnajewellers0@gmail.com">Email</a>
+                </Nav.Item>
+                <Nav.Item>
+                  <a href="tel:+91 7004220367">Telephone</a>
+                </Nav.Item>
               </Nav.Menu>
             </Nav.Menu>
           </Nav>
@@ -261,7 +389,7 @@ const Header = () => {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={handleSignUpClose} appearance="primary">
+            <Button onClick={handleSignUp} appearance="primary">
               Confirm
             </Button>
             <Button onClick={handleSignUpClose} appearance="subtle">
@@ -293,7 +421,7 @@ const Header = () => {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={handleLoginClose} appearance="primary">
+            <Button onClick={handleLogin} appearance="primary">
               Confirm
             </Button>
             <Button onClick={handleLoginClose} appearance="subtle">
