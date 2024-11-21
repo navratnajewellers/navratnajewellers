@@ -1,3 +1,6 @@
+@import './styles/gold-price.css';
+@import './styles/GoldCoin.css';
+
 /* remove margin coming from default */
 body {
   margin: 0;
@@ -65,6 +68,14 @@ body {
   margin-top: 100px;
 }
 
+.margin-t50 {
+  margin-top: 50px;
+}
+
+.margin-b50 {
+  margin-bottom: 50px;
+}
+
 .text-cursive {
   font-family: cursive;
 }
@@ -90,4 +101,33 @@ body {
 
 .modal-custom-header button {
   top: 2px !important;
+}
+
+/* Google Fraunces font */
+
+.fraunces-font {
+  font-family: 'Fraunces', serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings:
+    'SOFT' 0,
+    'WONK' 0;
+}
+
+.main-color {
+  color: palevioletred;
+}
+
+.color-green {
+  color: rgb(55, 193, 55);
+}
+
+.color-blue {
+  color: #1675e0;
+}
+
+.loader-default-container {
+  width: 100%;
+  height: 300px;
 }

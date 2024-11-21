@@ -1,0 +1,30 @@
+/* .grid-gold-image,
+.grid-gold-content {
+  height: 400px;
+} */
+
+.gold-grid {
+  display: flex;
+}
+
+.grid-gold-image {
+  border: solid 1px red;
+  height: 520px;
+}
+
+.grid-gold-content {
+  border: solid 1px blue;
+  height: 520px;
+  overflow: scroll;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.grid-gold-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* .demoo {
+  position: sticky;
+} */

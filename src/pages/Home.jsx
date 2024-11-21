@@ -13,7 +13,7 @@ const Home = () => {
         <Header />
       </div>
       <div className="carousel">
-        <Carousel autoplay className="custom-slider">
+        <Carousel autoplay shape="bar" className="custom-slider">
           <a href="" className="dis-block">
             <img
               className="height-width-100"
@@ -53,23 +53,27 @@ const Home = () => {
       </div>
       <div className="shop-by-category">
         <div>
-          <h1 className="textCenter">Shop By Category</h1>
+          <h2 className="textCenter fraunces-font main-color">
+            Shop By Category
+          </h2>
         </div>
         <Divider>
           <GiJewelCrown />
         </Divider>
-        <div>
+        <div className="margin-t50">
           <HomeProducts />
         </div>
       </div>
       <div className="home-connect-us margin-b60">
         <div>
-          <h1 className="textCenter">Connect with Us</h1>
+          <h2 className="textCenter fraunces-font main-color">
+            Connect with Us
+          </h2>
         </div>
         <Divider>
           <GiJewelCrown />
         </Divider>
-        <div>
+        <div className="margin-t50">
           <HomeConnectUs />
         </div>
       </div>
