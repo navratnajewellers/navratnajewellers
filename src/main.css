@@ -52,12 +52,40 @@ body {
   position: fixed;
 }
 
+.pos-rel {
+  position: relative;
+}
+
+.pos-abs {
+  position: absolute;
+}
+
 .z-10 {
   z-index: 10;
 }
 
 .margin-t10 {
   margin-top: 10px;
+}
+
+.margin-b10 {
+  margin-bottom: 10px;
+}
+
+.margin-t20 {
+  margin-top: 20px;
+}
+
+.margin-b20 {
+  margin-bottom: 20px;
+}
+
+.margin-t30 {
+  margin-top: 30px;
+}
+
+.margin-b30 {
+  margin-bottom: 30px;
 }
 
 .margin-b60 {

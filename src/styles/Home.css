@@ -116,17 +116,38 @@ button {
   overflow: hidden;
 }
 
-.home-product-name {
-  padding: 20px 0;
+.home-products:hover {
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.home-product-name a {
+.home-product-name {
+  padding: 16px 0;
+  bottom: 0;
+  width: 100%;
+  background-color: whitesmoke;
+  color: #000000;
+  transition: bottom 0.2s linear;
+}
+
+.home-product-name span {
   font-family: cursive;
   text-decoration: none !important;
 }
 
+.home-product-name span:hover {
+  font-weight: 600;
+}
+
 .home-products .imageWrapper {
-  height: 300px;
+  height: 350px;
+}
+
+.home-products:hover .home-product-name {
+  bottom: 40%;
+  background-color: black;
+  color: #ffffff;
 }
 
 /* home page connect us */

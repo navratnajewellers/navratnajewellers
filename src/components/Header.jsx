@@ -164,6 +164,11 @@ const Header = () => {
           username: response.data.username,
         });
 
+        // sessionStorage.setItem('data', {
+        //   id: response.data.id,
+        //   username: response.data.username,
+        // });
+
         handleLoginClose();
       }
     } catch (error) {

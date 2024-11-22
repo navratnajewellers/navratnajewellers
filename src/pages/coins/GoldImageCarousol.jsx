@@ -1,7 +1,11 @@
 const GoldImageCarousol = () => {
   return (
     <>
-      <div id="demo" className="carousel slide" data-bs-ride="carousel">
+      <div
+        id="demo"
+        className="carousel slide product-carousel"
+        data-bs-ride="carousel"
+      >
         <div className="carousel-indicators dis-none">
           <button
             type="button"
@@ -49,7 +53,7 @@ const GoldImageCarousol = () => {
         </div>
 
         <button
-          className="carousel-control-prev"
+          className="carousel-control-prev product-carousel-button"
           type="button"
           data-bs-target="#demo"
           data-bs-slide="prev"
@@ -57,7 +61,7 @@ const GoldImageCarousol = () => {
           <span className="carousel-control-prev-icon"></span>
         </button>
         <button
-          className="carousel-control-next"
+          className="carousel-control-next product-carousel-button"
           type="button"
           data-bs-target="#demo"
           data-bs-slide="next"

@@ -3,17 +3,27 @@
   height: 400px;
 } */
 
+.breadcrumb-container {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  padding-left: 50px;
+}
+
+.product-carousel-button:hover {
+  background-color: rgb(239, 239, 239);
+}
+
 .gold-grid {
   display: flex;
 }
 
 .grid-gold-image {
-  border: solid 1px red;
+  /* border: solid 1px red; */
   height: 520px;
 }
 
 .grid-gold-content {
-  border: solid 1px blue;
+  /* border: solid 1px blue; */
   height: 520px;
   overflow: scroll;
 
@@ -25,6 +35,88 @@
   display: none;
 }
 
-/* .demoo {
-  position: sticky;
-} */
+.table-grand-total {
+  height: 60px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.price-break-table {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.price-break-table th,
+.price-break-table td {
+  padding: 15px 0;
+}
+
+/* product styling */
+
+.product-carousel-container {
+  padding: 10px 20px;
+}
+
+.product-carousel {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.product-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.product-price {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.quantity-cart-container {
+  /* border: solid 1px aqua; */
+
+  margin-bottom: 40px;
+}
+
+.add-to-card {
+  margin-left: 30px;
+  background-color: rgb(255, 159, 191) !important;
+  font-size: 15px !important;
+  padding: 10px 16px !important;
+  color: #000000 !important;
+}
+
+.add-to-card:hover {
+  background-color: rgb(255, 122, 167) !important;
+  color: #ffffff !important;
+}
+
+.product-details {
+  margin-top: 30px;
+}
+
+.product-heading {
+  margin-bottom: 40px;
+}
+
+.quantity-cart-container .rs-btn-close {
+  top: 0 !important;
+}
+
+/* Assurance image and text */
+
+.assurance-item-container {
+  justify-content: space-evenly !important;
+  align-items: flex-start !important;
+  padding: 20px 15px;
+}
+
+.assurance-item .imageWrapper {
+  width: 150px;
+  height: 110px;
+}
+
+.assurance-item {
+  flex-direction: column;
+  width: 240px;
+}
