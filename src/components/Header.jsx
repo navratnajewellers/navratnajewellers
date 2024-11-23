@@ -20,16 +20,19 @@ import { IoCartOutline } from '@react-icons/all-files/io5/IoCartOutline';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import { useProfile } from '../context/profile.context';
+import CryptoJS from 'crypto-js';
 
 const Header = () => {
   const toaster = useToaster();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUp] = useState(false);
   const [message, setMessage] = useState('');
-  const [userData, setUserData] = useState({
-    id: '',
-    username: '',
-  });
+  // const [userData, setUserData] = useState({
+  //   id: '',
+  //   username: '',
+  // });
+  const { userData, setUserData } = useProfile();
 
   const [signupFormValue, setSignupFormValue] = useState({
     name: '',
@@ -41,6 +44,8 @@ const Header = () => {
     email: '',
     password: '',
   });
+
+  // console.log({ userData, setUserData });
 
   // uncomment to see the login and sign form data
   // console.log({
@@ -61,6 +66,36 @@ const Header = () => {
     );
   };
 
+  // generate hashed session id for user
+  const generateSessionId = username => {
+    const timestamp = new Date().toISOString();
+    const rawString = `${username}_${timestamp}`;
+    const hashedSessionId = CryptoJS.SHA256(rawString).toString();
+    return hashedSessionId;
+  };
+
+  //update session id for login user
+
+  const updateSessionId = async (id, sessionId) => {
+    try {
+      const response = await axios.post(
+        'http://127.0.0.1/testing/update_session.php',
+        {
+          id: id,
+          sessionId: sessionId,
+        }
+      );
+      // setMessage(response.data.message);
+
+      // displayMessage('info', response.data.message);
+      console.log(response.data.message);
+    } catch (error) {
+      setMessage('Session update failed.');
+      displayMessage('error', 'Session update failed.');
+      console.log(error);
+    }
+  };
+
   // for the account login and sign in
   const renderMenu = ({ onClose, left, top, className }, ref) => {
     const handleSelect = eventKey => {
@@ -79,7 +114,9 @@ const Header = () => {
         setUserData({
           id: '',
           username: '',
+          sessionId: '',
         });
+        sessionStorage.removeItem('sessionId');
       }
     };
     return (
@@ -152,22 +189,25 @@ const Header = () => {
 
       displayMessage('info', response.data.message);
 
-      // console.log({
-      //   message: response.data.message,
-      //   id: response.data.id,
-      //   username: response.data.username,
-      // });
+      //check database message for successful login
 
       if (response.data.message === 'Login successful') {
+        console.log(response.data);
+
+        const sessionId = generateSessionId(response.data.username);
+        console.log(sessionId);
+
         setUserData({
           id: response.data.id,
           username: response.data.username,
+          sessionId: sessionId,
         });
 
-        // sessionStorage.setItem('data', {
-        //   id: response.data.id,
-        //   username: response.data.username,
-        // });
+        updateSessionId(response.data.id, sessionId);
+
+        sessionStorage.setItem('sessionId', sessionId);
+        const storedSessionId = sessionStorage.getItem('sessionId');
+        console.log('stored session id', storedSessionId);
 
         handleLoginClose();
       }
@@ -212,6 +252,8 @@ const Header = () => {
   };
 
   console.log(message, userData);
+
+  // console.log(sessionStorage.getItem('sessionId'));
 
   return (
     <div className="header-main">

@@ -11,24 +11,30 @@ import SilverCoinsPage from './pages/coins/SilverCoinsPage';
 import VerifyLogin from './pages/VerifyLogin';
 import Cart from './pages/Cart';
 import GoldRate from './pages/GoldRate';
+import { ProfileProvider } from './context/profile.context';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/gold-coin/:gramQt" element={<GoldCoinPage />} />
-        <Route path="/silver-coin/:gramQt" element={<SilverCoinsPage />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/gold-rate" element={<GoldRate />} />
-        <Route path="/vitepage" element={<ViteDefaultPage />} />
-        <Route path="/test-connection" element={<TestConnection />} />
-        <Route path="/test-connection/test-login" element={<TestLogin />} />
-        <Route path="/test-connection/verify-login" element={<VerifyLogin />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <ProfileProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/gold-coin/:gramQt" element={<GoldCoinPage />} />
+          <Route path="/silver-coin/:gramQt" element={<SilverCoinsPage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/gold-rate" element={<GoldRate />} />
+          <Route path="/vitepage" element={<ViteDefaultPage />} />
+          <Route path="/test-connection" element={<TestConnection />} />
+          <Route path="/test-connection/test-login" element={<TestLogin />} />
+          <Route
+            path="/test-connection/verify-login"
+            element={<VerifyLogin />}
+          />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </ProfileProvider>
   );
 }
 
