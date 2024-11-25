@@ -239,9 +239,19 @@ const Header = () => {
 
       const data = await response.json();
 
-      setMessage(data.message);
+      // console.log('sign up : -', data);
 
-      displayMessage('info', data, message);
+      if (
+        data.error ===
+        `SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'try2@gmail.com' for key 'email'`
+      ) {
+        displayMessage('error', 'Email already exists');
+      }
+
+      if (data.message) {
+        setMessage(data.message);
+        displayMessage('info', data.message);
+      }
 
       handleSignUpClose();
     } catch (error) {

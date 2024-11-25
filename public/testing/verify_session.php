@@ -22,7 +22,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $inputSessionId = $data['sessionId'];
 
 // Check if the username exists in the database
-$sql = "SELECT * FROM test WHERE session_id = :sessionid";
+$sql = "SELECT * FROM users WHERE session_id = :sessionid";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':sessionid', $inputSessionId);
 $stmt->execute();

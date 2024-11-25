@@ -23,7 +23,7 @@ $inputUsername = $data['username'];
 $inputPassword = $data['password'];
 
 // Check if the username exists in the database
-$sql = "SELECT password FROM test WHERE username = :username";
+$sql = "SELECT password FROM users WHERE username = :username";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':username', $inputUsername);
 $stmt->execute();

@@ -26,7 +26,7 @@ try{
 
 
 // Upadte Session id
-$sql = "UPDATE test SET session_id = :sessionid WHERE id = :id";
+$sql = "UPDATE users SET session_id = :sessionid WHERE id = :id";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':sessionid', $inputSessionId);
 $stmt->bindParam(':id', $inputUserId, PDO::PARAM_INT);

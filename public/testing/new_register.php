@@ -24,7 +24,7 @@ try {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert into the database
-        $sql = "INSERT INTO test (username, password, email) VALUES (:username, :password, :email)";
+        $sql = "INSERT INTO users (username, password, email) VALUES (:username, :password, :email)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $hashedPassword);

@@ -11,7 +11,7 @@ const GoldRate = () => {
     const handlePrice = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1/testing/test/test.php'
+          'http://127.0.0.1/testing/test/gold_rate.php'
         );
 
         // console.log(response.data);
