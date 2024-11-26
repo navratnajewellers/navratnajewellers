@@ -63,6 +63,17 @@ button {
   height: 25px;
 }
 
+.cart-quantity {
+  background-color: #ff0000;
+  color: #ffffff;
+  font-family: cursive;
+  border-radius: 50%;
+  padding: 2px 4px;
+  font-size: 12px;
+  top: 0;
+  right: -10px;
+}
+
 .header-store h4 {
   font-size: 16px;
   padding: 0;

@@ -22,17 +22,19 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useProfile } from '../context/profile.context';
 import CryptoJS from 'crypto-js';
+import { useCart } from '../context/Cart.context';
 
 const Header = () => {
   const toaster = useToaster();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUp] = useState(false);
-  const [message, setMessage] = useState('');
   // const [userData, setUserData] = useState({
   //   id: '',
   //   username: '',
   // });
   const { userData, setUserData } = useProfile();
+
+  const { cartData } = useCart();
 
   const [signupFormValue, setSignupFormValue] = useState({
     name: '',
@@ -56,11 +58,13 @@ const Header = () => {
   //   loginPassword: loginFormValue.password,
   // });
 
+  //cart Upading function with useEffect
+
   // for display notification message
   const displayMessage = (type, message) => {
     toaster.push(
       <Message showIcon type={type} closable>
-        <strong>{type}!</strong> {message}
+        <strong>{message}</strong>
       </Message>,
       { placement: 'topCenter', duration: 2000 }
     );
@@ -88,9 +92,12 @@ const Header = () => {
       // setMessage(response.data.message);
 
       // displayMessage('info', response.data.message);
-      console.log(response.data.message);
+      // console.log(response.data.message);
+
+      if (!response.data.status) {
+        displayMessage('info', response.data.message);
+      }
     } catch (error) {
-      setMessage('Session update failed.');
       displayMessage('error', 'Session update failed.');
       console.log(error);
     }
@@ -100,23 +107,25 @@ const Header = () => {
   const renderMenu = ({ onClose, left, top, className }, ref) => {
     const handleSelect = eventKey => {
       onClose();
-      console.log(eventKey);
+      // console.log(eventKey);
       if (eventKey === 1) {
-        console.log('login modal is open');
+        // console.log('login modal is open');
         setIsLoginOpen(true);
       }
       if (eventKey === 2) {
-        console.log('sign up modal is open');
+        // console.log('sign up modal is open');
         setIsSignUp(true);
       }
       if (eventKey === 4) {
-        console.log('Logout Successfully');
+        // console.log('Logout Successfully');
         setUserData({
           id: '',
           username: '',
           sessionId: '',
         });
         sessionStorage.removeItem('sessionId');
+
+        displayMessage('info', 'Logout Succesfully');
       }
     };
     return (
@@ -174,8 +183,6 @@ const Header = () => {
   };
 
   const handleLogin = async e => {
-    setMessage('');
-
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -185,17 +192,16 @@ const Header = () => {
           password: loginFormValue.password,
         }
       );
-      setMessage(response.data.message);
 
       displayMessage('info', response.data.message);
 
       //check database message for successful login
 
       if (response.data.message === 'Login successful') {
-        console.log(response.data);
+        // console.log(response.data);
 
         const sessionId = generateSessionId(response.data.username);
-        console.log(sessionId);
+        // console.log(sessionId);
 
         setUserData({
           id: response.data.id,
@@ -206,13 +212,12 @@ const Header = () => {
         updateSessionId(response.data.id, sessionId);
 
         sessionStorage.setItem('sessionId', sessionId);
-        const storedSessionId = sessionStorage.getItem('sessionId');
-        console.log('stored session id', storedSessionId);
+        // const storedSessionId = sessionStorage.getItem('sessionId');
+        // console.log('stored session id', storedSessionId);
 
         handleLoginClose();
       }
     } catch (error) {
-      setMessage('An error occurred during login.');
       displayMessage('error', 'An error occurred during login.');
       console.log(error);
     }
@@ -249,19 +254,17 @@ const Header = () => {
       }
 
       if (data.message) {
-        setMessage(data.message);
         displayMessage('info', data.message);
       }
 
       handleSignUpClose();
     } catch (error) {
-      setMessage('An error occurred during signup.');
       displayMessage('error', 'An error occurred during signup.');
       console.log(error);
     }
   };
 
-  console.log(message, userData);
+  // console.log(message, userData);
 
   // console.log(sessionStorage.getItem('sessionId'));
 
@@ -320,10 +323,13 @@ const Header = () => {
           </div>
         </div>
         <div className="header-store dis-flex">
-          <div className="dis-flex">
+          <div className="dis-flex pos-rel">
+            <p className="pos-abs cart-quantity dis-flex">
+              {cartData.quantity}
+            </p>
             <IoCartOutline className="header-icons" />
           </div>
-          <div className="header-text-container cursorPointer">
+          <div className="header-text-container cursorPointer ">
             <h4 className="textCenter">
               <Link to="/cart">Cart</Link>
             </h4>

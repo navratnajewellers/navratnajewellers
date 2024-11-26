@@ -5,10 +5,42 @@ import { GiJewelCrown } from '@react-icons/all-files/gi/GiJewelCrown';
 import HomeProducts from '../components/home/HomeProducts';
 import HomeConnectUs from '../components/home/HomeConnectUs';
 import Footer from '../components/Footer';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Contact from './Contact';
 
 const Home = () => {
-  return (
-    <>
+  const [isWebsiteOnUpdate, setIsWebsiteOnUpdate] = useState(false);
+
+  useEffect(() => {
+    const handlePrice = async () => {
+      try {
+        const response = await axios.get(
+          'http://127.0.0.1/testing/test/website_status.php'
+        );
+
+        // console.log(response.data);
+        setIsWebsiteOnUpdate(response.data.update_status);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    handlePrice();
+  }, []);
+
+  // if (isWebsiteOnUpdate) {
+  //   console.log('Website is updating' + isWebsiteOnUpdate);
+  // } else {
+  //   console.log('Website is live' + isWebsiteOnUpdate);
+  // }
+
+  return isWebsiteOnUpdate ? (
+    <div>
+      <Contact />
+    </div>
+  ) : (
+    <div>
       <div className="header-container margin-t10">
         <Header />
       </div>
@@ -80,7 +112,7 @@ const Home = () => {
       <div>
         <Footer />
       </div>
-    </>
+    </div>
   );
 };
 

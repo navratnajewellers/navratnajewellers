@@ -19,30 +19,18 @@ try {
 
 // Get data from React frontend
 $data = json_decode(file_get_contents('php://input'), true);
-$inputSessionId = $data['sessionId'];
-$inputUserId = $data['id'];
+$inputUserId = $data['userId'];
 
-try{
-
-
-// Update Session id
-$sql = "UPDATE users SET session_id = :sessionid WHERE id = :id";
+// Check if the username exists in the database
+$sql = "SELECT * FROM cart WHERE user_id = :userId";
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(':sessionid', $inputSessionId);
-$stmt->bindParam(':id', $inputUserId, PDO::PARAM_INT);
-//$stmt->execute();
-//$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt->bindParam(':userId', $inputUserId);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($stmt->execute()) {
-    // display message
-	echo json_encode(['status' => true, 'message' => 'Record updated successfully']);
-    } else {
-    echo json_encode(['status' => false, 'message' => 'Failed to update']);
+if ($user) {
+    echo json_encode(['status' => 'success', 'message' => 'user found successfullly', 'record' => $user ]);
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Username not found']);
 }
-
-
-} catch (PDOException $e){
-	echo json_encode(['status' => false, 'message' => 'Error: '. $e->getMessage()]);
-}
-
 ?>

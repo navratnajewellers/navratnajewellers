@@ -1,4 +1,6 @@
-const GoldImageCarousol = () => {
+const GoldImageCarousol = ({ productData }) => {
+  // console.log(productData);
+
   return (
     <>
       <div
@@ -28,7 +30,11 @@ const GoldImageCarousol = () => {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              src="/24K_1_gram_gold_coin.jpeg"
+              src={
+                productData
+                  ? productData.product_img1
+                  : '/24K_1_gram_gold_coin.jpeg'
+              }
               alt="Los Angeles"
               className="d-block"
               style={{ width: '100%' }}
@@ -36,7 +42,11 @@ const GoldImageCarousol = () => {
           </div>
           <div className="carousel-item">
             <img
-              src="/24K_1_gram_gold_coin.jpeg"
+              src={
+                productData
+                  ? productData.product_img2
+                  : '/24K_1_gram_gold_coin.jpeg'
+              }
               alt="Chicago"
               className="d-block"
               style={{ width: '100%' }}
@@ -44,7 +54,11 @@ const GoldImageCarousol = () => {
           </div>
           <div className="carousel-item">
             <img
-              src="/24K_1_gram_gold_coin.jpeg"
+              src={
+                productData
+                  ? productData.product_img2
+                  : '/24K_1_gram_gold_coin.jpeg'
+              }
               alt="New York"
               className="d-block"
               style={{ width: '100%' }}

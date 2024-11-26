@@ -1,21 +1,8 @@
-import { Link } from 'react-router-dom';
 import '../styles/Contact.css';
 
 const Contact = () => {
   return (
     <div>
-      <div className="textCenter">
-        <h1>Contact Us</h1>
-        <p>
-          <Link to="/">Home</Link>
-        </p>
-        <p>
-          <Link to="/gahvjhvas">unknown Page</Link>
-        </p>
-        <p>
-          <Link to="/test-connection">Testing Page</Link>
-        </p>
-      </div>
       <div className="main-container">
         <div className="imageWrapper">
           <img src="/1920X1350-min.jpg" alt="Navratna Jewellers" />

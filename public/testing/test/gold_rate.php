@@ -14,7 +14,7 @@ try {
 
 
      // Insert into the database
-        //$sql = "INSERT INTO test (username, password, email) VALUES (:username, :password, :email)";
+        //$sql = "INSERT INTO users (username, password, email) VALUES (:username, :password, :email)";
 	$sql = "SELECT * FROM gold_price";
         $stmt = $pdo->prepare($sql);
 	$stmt->execute();

@@ -8,27 +8,61 @@ import {
   Col,
   Grid,
   Loader,
+  Message,
   Row,
   SelectPicker,
   Text,
+  useToaster,
 } from 'rsuite';
 import GoldImageCarousol from './GoldImageCarousol';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useProfile } from '../../context/profile.context';
+import { useCart } from '../../context/Cart.context';
 
-const data = ['1', '2', '3', '4', '5', '10'].map(item => ({
+const data = [1, 2, 3, 4, 5, 10].map(item => ({
   label: item,
   value: item,
 }));
 
 const GoldCoinPage = () => {
+  const toaster = useToaster();
   const { gramQt } = useParams();
 
   const [priceData, setPriceData] = useState(null);
   const [productData, setProductData] = useState(null);
   const [productNotFound, setProductNotFound] = useState(null);
 
+  const [cartQuantity, setCartQuantity] = useState(0);
+
+  // for checking that user is login
+  const { userData } = useProfile();
+
+  const { cartData, setCartData } = useCart();
+
+  const priceBreak = {
+    productPrice: 1,
+    makingCharge: 1,
+    subTotal: 1,
+    gst: 1,
+    grand_total: 1,
+  };
+
+  // for display notification message
+  const displayMessage = (type, message) => {
+    toaster.push(
+      <Message showIcon type={type} closable>
+        <strong>{message}</strong>
+      </Message>,
+      { placement: 'topCenter', duration: 2000 }
+    );
+  };
+
   useEffect(() => {
+    // Clearing previous data to empty useState
+    setPriceData(null);
+    setProductData(null);
+
     // fetching price of gold from database to update page details
     const handlePrice = async () => {
       try {
@@ -55,7 +89,7 @@ const GoldCoinPage = () => {
           }
         );
 
-        console.log(response.data);
+        // console.log(response.data);
 
         if (response.data.status === 'success') {
           setProductData(response.data.productData);
@@ -75,10 +109,56 @@ const GoldCoinPage = () => {
   }, [gramQt]);
 
   const handleQuantityChange = e => {
-    console.log({ event: e });
+    setCartQuantity(e);
+    console.log({ event: e, cartQuantity: cartQuantity });
   };
 
-  console.log(gramQt, priceData, productData, productNotFound);
+  // displaying the various data on console
+  // console.log(gramQt, priceData, productData, productNotFound);
+
+  if (cartQuantity === 0 || cartQuantity == null) {
+    setCartQuantity(1);
+    console.log('quantity is empty, so it get set to default 1');
+  }
+
+  const handleAddToCart = async () => {
+    if (userData.id && productData.product_id) {
+      console.log('user is log in');
+      console.log('quantity add to cart is' + cartQuantity);
+
+      try {
+        const response = await axios.post(
+          'http://127.0.0.1/testing/test/update_cart.php',
+          {
+            user_id: userData.id,
+            product_id: productData.product_id,
+            quantity: cartQuantity,
+            price: priceBreak.grand_total * cartQuantity,
+          }
+        );
+
+        console.log(response.data);
+
+        displayMessage('info', 'Cart Updated');
+
+        // updating the cart
+        const previousQuantity = cartData.quantity;
+        setCartData(val => ({
+          ...val,
+          quantity: previousQuantity + cartQuantity,
+        }));
+      } catch (error) {
+        console.log(error);
+
+        displayMessage('eror', error);
+      }
+    } else {
+      console.log('user is not log in');
+    }
+  };
+
+  // console.log({ userData: userData, productData: productData });
+  console.log({ cartQuantity: cartQuantity, cartData: cartData });
 
   return (
     <div>
@@ -96,7 +176,7 @@ const GoldCoinPage = () => {
           <Breadcrumb.Item active>Gold Coin {gramQt} Gram</Breadcrumb.Item>
         </Breadcrumb>
       </div>
-      {productData === null || productData === 'undefined' ? (
+      {!productData ? (
         <div className="loader-default-container dis-flex">
           {productNotFound === null ? (
             <Loader content="Loading..." vertical />
@@ -108,6 +188,23 @@ const GoldCoinPage = () => {
         </div>
       ) : (
         <div>
+          <div className="dis-none">
+            {
+              (priceBreak.productPrice =
+                priceData.price_1_gram_24K * productData.weight)
+            }
+            {(priceBreak.makingCharge = priceBreak.productPrice * 0.08)}
+            {
+              (priceBreak.subTotal =
+                priceBreak.productPrice + priceBreak.makingCharge)
+            }
+            {(priceBreak.gst = Math.round(priceBreak.subTotal * 0.03))}
+            {
+              (priceBreak.grand_total = Math.round(
+                priceBreak.subTotal + priceBreak.gst
+              ))
+            }
+          </div>
           <div>
             <Grid fluid>
               <Row className="show-grid">
@@ -119,7 +216,7 @@ const GoldCoinPage = () => {
                   className="grid-gold-image"
                 >
                   <div className="product-carousel-container">
-                    <GoldImageCarousol />
+                    <GoldImageCarousol productData={productData} />
                   </div>
                 </Col>
                 <Col
@@ -136,19 +233,25 @@ const GoldCoinPage = () => {
                     <div className="textCenter product-price">
                       <h2>
                         <span>Price: </span>
-                        <span>₹ 8768</span>
+                        <span>₹ {priceBreak.grand_total}</span>
                       </h2>
                     </div>
                     <div className="quantity-cart-container dis-flex">
                       <SelectPicker
                         label="Quantity"
                         data={data}
-                        searchable={false}
+                        searchable={true}
                         style={{ width: 224 }}
                         placeholder="Select Quantity"
                         onChange={handleQuantityChange}
+                        defaultValue={cartQuantity}
                       />
-                      <Button className="add-to-card">Add to Card</Button>
+                      <Button
+                        className="add-to-card"
+                        onClick={() => handleAddToCart()}
+                      >
+                        Add to Card
+                      </Button>
                     </div>
                     <div className="product-details">
                       <div className="product-heading textCenter">
@@ -202,48 +305,25 @@ const GoldCoinPage = () => {
                                   <td>{productData.karat} Gold Coin</td>
                                   <td>₹ {priceData.price_1_gram_24K}/g</td>
                                   <td>{productData.weight} g</td>
-                                  <td>
-                                    ₹{' '}
-                                    {priceData.price_1_gram_24K *
-                                      productData.weight}
-                                  </td>
+                                  <td>₹ {priceBreak.productPrice}</td>
                                 </tr>
                                 <tr>
                                   <td>Making Charges</td>
                                   <td>-</td>
                                   <td>-</td>
-                                  <td>
-                                    ₹{' '}
-                                    {priceData.price_1_gram_24K *
-                                      productData.weight *
-                                      0.08}
-                                  </td>
+                                  <td>₹ {priceBreak.makingCharge}</td>
                                 </tr>
                                 <tr>
                                   <td>Sub Total</td>
                                   <td>-</td>
                                   <td>{productData.weight}g Gross Wt.</td>
-                                  <td>
-                                    ₹{' '}
-                                    {priceData.price_1_gram_24K *
-                                      productData.weight +
-                                      priceData.price_1_gram_24K *
-                                        productData.weight *
-                                        0.08}
-                                  </td>
+                                  <td>₹ {priceBreak.subTotal}</td>
                                 </tr>
                                 <tr>
                                   <td>GST</td>
                                   <td>-</td>
                                   <td>-</td>
-                                  <td>
-                                    ₹{' '}
-                                    {(priceData.price_1_gram_24K +
-                                      priceData.price_1_gram_24K *
-                                        productData.weight *
-                                        0.08) *
-                                      0.03}
-                                  </td>
+                                  <td>₹ {priceBreak.gst}</td>
                                 </tr>
                                 <tr className="table-active table-grand-total ">
                                   <td
@@ -255,14 +335,7 @@ const GoldCoinPage = () => {
                                   >
                                     Grand Total
                                   </td>
-                                  <td>
-                                    ₹{' '}
-                                    {priceData.price_1_gram_24K +
-                                      priceData.price_1_gram_24K *
-                                        productData.weight *
-                                        0.08 +
-                                      priceData.price_1_gram_24K * 0.03}
-                                  </td>
+                                  <td>₹ {priceBreak.grand_total}</td>
                                 </tr>
                               </tbody>
                             </table>
