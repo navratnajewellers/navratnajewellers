@@ -1,5 +1,6 @@
 @import './styles/gold-price.css';
 @import './styles/GoldCoin.css';
+@import './styles/Cart.css';
 
 /* remove margin coming from default */
 body {
@@ -62,6 +63,14 @@ body {
 
 .z-10 {
   z-index: 10;
+}
+
+.margin-t5 {
+  margin-top: 5px;
+}
+
+.margin-b5 {
+  margin-bottom: 5px;
 }
 
 .margin-t10 {
@@ -158,4 +167,11 @@ body {
 .loader-default-container {
   width: 100%;
   height: 300px;
+}
+
+/* breadcrumb container */
+.breadcrumb-container {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  padding-left: 50px;
 }
