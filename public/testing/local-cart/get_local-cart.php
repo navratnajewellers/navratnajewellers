@@ -22,9 +22,9 @@ $data = json_decode(file_get_contents('php://input'), true);
 $inputUserId = $data['userId'];
 
 // Check if the username exists in the database
-$sql = "SELECT * FROM cart WHERE user_id = :userId";
+$sql = "SELECT * FROM offline_cart WHERE local_user_id = :user_id";
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(':userId', $inputUserId);
+$stmt->bindParam(':user_id', $inputUserId);
 $stmt->execute();
 $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

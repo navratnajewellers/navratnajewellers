@@ -105,6 +105,13 @@ const GoldCoinPage = () => {
 
     fetchProduct();
 
+    // updating the local cart data if user is not login
+    // if (userData.id === '' && cartData.quantity !== 0) {
+    //   console.log('local storage get updated');
+
+    //   //localStorage.setItem('cart', JSON.stringify(cartData));
+    // }
+
     return () => {};
   }, [gramQt]);
 
@@ -142,10 +149,12 @@ const GoldCoinPage = () => {
         displayMessage('info', 'Cart Updated');
 
         // updating the cart
-        const previousQuantity = cartData.quantity;
+        //const previousQuantity = cartData.quantity;
         setCartData(val => ({
           ...val,
-          quantity: previousQuantity + cartQuantity,
+          product_id: productData.product_id,
+          quantity: val.quantity + cartQuantity,
+          price: val.price + priceBreak.grand_total * cartQuantity,
         }));
       } catch (error) {
         console.log(error);
@@ -154,6 +163,37 @@ const GoldCoinPage = () => {
       }
     } else {
       console.log('user is not log in');
+
+      const hashedLocalUserId = JSON.parse(localStorage.getItem('localCart'));
+
+      try {
+        const response = await axios.post(
+          'http://127.0.0.1/testing/local-cart/update_local-cart.php',
+          {
+            user_id: hashedLocalUserId,
+            product_id: productData.product_id,
+            quantity: cartQuantity,
+            price: priceBreak.grand_total * cartQuantity,
+          }
+        );
+
+        console.log(response.data);
+
+        displayMessage('info', 'local Cart Updated');
+
+        // updating the cart
+        //const previousQuantity = cartData.quantity;
+        setCartData(val => ({
+          ...val,
+          product_id: productData.product_id,
+          quantity: val.quantity + cartQuantity,
+          price: val.price + priceBreak.grand_total * cartQuantity,
+        }));
+      } catch (error) {
+        console.log(error);
+
+        displayMessage('eror', error);
+      }
     }
   };
 
@@ -176,7 +216,7 @@ const GoldCoinPage = () => {
           <Breadcrumb.Item active>Gold Coin {gramQt} Gram</Breadcrumb.Item>
         </Breadcrumb>
       </div>
-      {!productData ? (
+      {!productData || !priceData ? (
         <div className="loader-default-container dis-flex">
           {productNotFound === null ? (
             <Loader content="Loading..." vertical />

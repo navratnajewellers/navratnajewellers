@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2024 at 02:26 PM
+-- Generation Time: Nov 28, 2024 at 09:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -61,8 +61,9 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(1, 4, 1, 30, 261930, '2024-11-26 10:24:07', '2024-11-26 18:53:54'),
-(2, 4, 2, 6, 104778, '2024-11-26 11:04:24', '2024-11-26 18:47:39');
+(1, 4, 1, 38, 331778, '2024-11-26 10:24:07', '2024-11-27 14:50:21'),
+(2, 4, 2, 11, 192093, '2024-11-26 11:04:24', '2024-11-27 13:35:58'),
+(3, 3, 1, 7, 61117, '2024-11-27 08:09:00', '2024-11-27 13:43:10');
 
 -- --------------------------------------------------------
 
@@ -83,6 +84,30 @@ CREATE TABLE `gold_price` (
 
 INSERT INTO `gold_price` (`id`, `price_1_gram_24K`, `price_1_gram_22K`, `price_1_gram_18K`) VALUES
 (1, 7849, 7195, 5887);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `offline_cart`
+--
+
+CREATE TABLE `offline_cart` (
+  `id` int(11) NOT NULL,
+  `local_user_id` varchar(255) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `offline_cart`
+--
+
+INSERT INTO `offline_cart` (`id`, `local_user_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
+(9, '07f04bf435221e69a5d04cf95b1507407ee37bd811fd3425d93cdbf9bc78b5e8', 2, 2, 34926, '2024-11-28 06:55:54', '2024-11-28 12:25:54'),
+(10, '27ed3229d6e5b59d21ab6ea14b726368b7ebd281a9b0e3c37e11eb85e61bca16', 2, 2, 34926, '2024-11-28 07:07:53', '2024-11-28 12:37:53');
 
 -- --------------------------------------------------------
 
@@ -135,8 +160,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `session_id`, `created_at`, `updated_at`) VALUES
 (1, 'san', '$2y$10$tMiYyJ.MB1.60vrE.NMx8.cux5iMtkzWwvkBrxbF7lGuugW.qhgHG', 'NOT NULL', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (2, 'admin', 'admin', 'admin@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
-(3, 'new admin', '$2y$10$HcPH9aMC.Zf1mNvaBO9iCu0gKYQUmD6PpNkJntiPWY1Bjcdvn.niS', 'adm@gmail.com', 'e581124ff2f543298f6078bc511eecdf58df0dea929d4802b4a5deb6f93d6e5b', '2024-11-25 08:12:33', '2024-11-26 17:26:59'),
-(4, 'demo', '$2y$10$LTXh5vdbmzk7x6R1jTsON.s3bWQcMlAGU1gu8F/yiVP1Knswggd7G', 'demo@gmail.com', 'cf533cb17c248a96772242bb9c0fa516b4874d39e28af385a97b9d4db6a6f2cd', '2024-11-25 08:12:33', '2024-11-26 17:27:43'),
+(3, 'new admin', '$2y$10$HcPH9aMC.Zf1mNvaBO9iCu0gKYQUmD6PpNkJntiPWY1Bjcdvn.niS', 'adm@gmail.com', 'b406e420136143981c64f23620cda18225b43dae9a69b904b2abd2b66949639f', '2024-11-25 08:12:33', '2024-11-27 13:38:52'),
+(4, 'demo', '$2y$10$LTXh5vdbmzk7x6R1jTsON.s3bWQcMlAGU1gu8F/yiVP1Knswggd7G', 'demo@gmail.com', '7fec1aae5a53ea13252cdf42949ec86668ad9273a833d60fd5486609869449d5', '2024-11-25 08:12:33', '2024-11-27 16:25:51'),
 (5, 'navratna', '$2y$10$aeg.2TclN.P6raFTDN49/uaavt6LCoYlNljux4QexRfs/kddq1LLG', 'navratna@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (6, 'demo new', '$2y$10$l4RWsvtOmKwJvKhIlR8ot.SGurttmL.C5n3pFofr8UM.VuNuH1Zsa', 'demonew@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (8, 'demo', '$2y$10$sh2GKimjHUhd5dcYVOi9Aud2LBNsElq4wrNDryjf4WyuLIAxq0JPC', 'demo1@gmail.com', 'dddefd097c98caf028e950ce27c39cb217e28eff0e775a5333dabcaf415cc04c', '2024-11-25 09:08:55', '2024-11-25 14:39:25'),
@@ -144,7 +169,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `session_id`, `creat
 (11, 'new user', '$2y$10$ehWPPM3v3GxbGTyFKu3i5.utmfwdC6.iDvD8NSIcHMBB.SSFdnANO', 'user@gmail.com', NULL, '2024-11-25 09:13:44', '2024-11-25 14:43:44'),
 (12, 'try1', '$2y$10$XNP4cPE5yBKcVrcj9vlw0uM2ROd46LDjdWIOh7K1GWsSlCqbqoW2m', 'try1@gmail.com', NULL, '2024-11-25 09:40:27', '2024-11-25 15:10:27'),
 (13, 'hey', '$2y$10$ecwk0egs7StEk8C/7Yqhq..kgYzTN4W.tvS2tRXzk8CUNK.e2OzgG', 'hey@gmail.com', NULL, '2024-11-25 09:46:13', '2024-11-25 15:16:13'),
-(14, 'try2', '$2y$10$W50BqAm0oL3kFn7L16tqn.vT8Ell3aaaLmbaJtu6cMFvAZEVF.q0e', 'try2@gmail.com', NULL, '2024-11-25 09:50:40', '2024-11-25 15:20:40');
+(14, 'try2', '$2y$10$W50BqAm0oL3kFn7L16tqn.vT8Ell3aaaLmbaJtu6cMFvAZEVF.q0e', 'try2@gmail.com', '7ea47f5a7574e257dd6f2a466b99a16096724299dddd33d9a595e026815df37c', '2024-11-25 09:50:40', '2024-11-27 14:41:26');
 
 -- --------------------------------------------------------
 
@@ -190,6 +215,14 @@ ALTER TABLE `gold_price`
   ADD PRIMARY KEY (`price_1_gram_24K`);
 
 --
+-- Indexes for table `offline_cart`
+--
+ALTER TABLE `offline_cart`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `local_user_id` (`local_user_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
@@ -222,7 +255,13 @@ ALTER TABLE `addresses`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `offline_cart`
+--
+ALTER TABLE `offline_cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -258,6 +297,12 @@ ALTER TABLE `addresses`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
+
+--
+-- Constraints for table `offline_cart`
+--
+ALTER TABLE `offline_cart`
+  ADD CONSTRAINT `offline_cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

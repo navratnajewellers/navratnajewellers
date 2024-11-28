@@ -34,7 +34,7 @@ const Header = () => {
   // });
   const { userData, setUserData } = useProfile();
 
-  const { cartData } = useCart();
+  const { cartData, setCartData } = useCart();
 
   const [signupFormValue, setSignupFormValue] = useState({
     name: '',
@@ -46,6 +46,8 @@ const Header = () => {
     email: '',
     password: '',
   });
+
+  // const localCartData = JSON.parse(localStorage.getItem('cart'));
 
   // console.log({ userData, setUserData });
 
@@ -118,12 +120,23 @@ const Header = () => {
       }
       if (eventKey === 4) {
         // console.log('Logout Successfully');
+
+        // setting the user data to null or default
         setUserData({
           id: '',
           username: '',
           sessionId: '',
         });
         sessionStorage.removeItem('sessionId');
+
+        // resetting cart data - user id data to null
+        setCartData({
+          id: '',
+          user_id: '',
+          product_id: '',
+          quantity: 0,
+          price: 0,
+        });
 
         displayMessage('info', 'Logout Succesfully');
       }
