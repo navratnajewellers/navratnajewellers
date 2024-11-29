@@ -22,7 +22,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $inputUserId = $data['userId'];
 
 // Check if the username exists in the database
-$sql = "SELECT * FROM `cart` INNER JOIN users INNER JOIN product ON cart.user_id = users.id AND cart.product_id = product.product_id WHERE users.id = :user_id";
+$sql = "SELECT * FROM `cart` INNER JOIN product ON cart.product_id = product.product_id WHERE cart.user_id = :user_id";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':user_id', $inputUserId);
 $stmt->execute();

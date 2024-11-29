@@ -3,6 +3,7 @@ import {
   Button,
   Col,
   Container,
+  Loader,
   Message,
   Row,
   useToaster,
@@ -13,18 +14,29 @@ import { useProfile } from '../context/profile.context';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import CartItem from './cart/CartItem';
+// import CartItem from './cart/CartItem';
+import CartItemGrid from './cart/CartItemGrid';
 
 const Cart = () => {
   const toaster = useToaster();
 
   // for checking that user is login
   const { userData } = useProfile();
-  const [isLoading, setIsLoading] = useState(false);
-  const [priceData, setPriceData] = useState(null);
+  const [isPriceLoading, setIsPriceLoading] = useState(true);
+  const [isCartLoading, setIsCartLoading] = useState(true);
 
-  // to be deleted
-  const [isUIUpadting] = useState(true);
+  const [priceData, setPriceData] = useState(null);
+  const [cartProduct, setCartProduct] = useState(null);
+
+  const [grand_total, setGrand_total] = useState(0);
+
+  // const priceDetails = {
+  //   productPrice: 1,
+  //   makingCharge: 1,
+  //   subTotal: 1,
+  //   gst: 1,
+  //   grand_total: 1,
+  // };
 
   // to display message
   const displayMessage = (type, message) => {
@@ -41,7 +53,7 @@ const Cart = () => {
 
     // getting the price of gold
     const getGoldPrice = async () => {
-      setIsLoading(true);
+      setIsPriceLoading(true);
 
       try {
         const response = await axios.get(
@@ -52,7 +64,7 @@ const Cart = () => {
         setPriceData(response.data.record);
 
         if (response.status === 200) {
-          setIsLoading(false);
+          setIsPriceLoading(false);
           console.log('price data is loaded');
         }
       } catch (error) {
@@ -60,14 +72,14 @@ const Cart = () => {
       }
     };
 
-    // getGoldPrice();
+    getGoldPrice();
 
     //check if user is login or not
     if (userData.id) {
       console.log('user is login');
 
       const fetchCartData = async () => {
-        setIsLoading(true);
+        setIsCartLoading(true);
 
         try {
           const response = await axios.post(
@@ -80,26 +92,46 @@ const Cart = () => {
           // console.log(response.data.message);
           console.log(response.data);
 
-          setIsLoading(false);
+          if (response.status === 200) {
+            setCartProduct(response.data.record);
+            setIsCartLoading(false);
+          }
         } catch (error) {
           console.log(error);
         }
       };
 
-      // fetchCartData();
-
-      //only for the updating of UI, so diable the error
-      if (!isUIUpadting) {
-        getGoldPrice();
-        fetchCartData();
-        console.log({ isLoading: isLoading, priceData: priceData });
-      }
+      fetchCartData();
     } else {
       console.log(' user data is empty and user is not login');
     }
   }, [userData]);
 
-  //console.log({ isLoading: isLoading, priceData: priceData });
+  // calculating the total price of product in cart
+  function loadTotalPrice() {
+    // if (isPriceLoading === false && isPriceLoading === false) {
+    //   cartProduct.map(data => {
+    //     priceDetails.productPrice =
+    //       priceData.price_1_gram_24K * data.weight * data.quantity;
+    //     priceDetails.makingCharge = priceDetails.productPrice * 0.08;
+    //     priceDetails.subTotal =
+    //       priceDetails.productPrice + priceDetails.makingCharge;
+    //     priceDetails.gst = priceDetails.subTotal * 0.03;
+    //     priceDetails.grand_total = Math.round(
+    //       priceDetails.grand_total + priceDetails.subTotal + priceDetails.gst
+    //     );
+    //   });
+    // }
+  }
+
+  // console.log({ priceDetails: priceDetails });
+
+  console.log({
+    isPriceLoading: isPriceLoading,
+    isCartLoading: isCartLoading,
+    priceData: priceData,
+    cartProduct: cartProduct,
+  });
 
   return (
     <div>
@@ -118,59 +150,83 @@ const Cart = () => {
             <Breadcrumb.Item active>Cart</Breadcrumb.Item>
           </Breadcrumb>
         </div>
-        <div className="cart-container">
-          <Container>
-            <Row>
-              <Col
-                xs={24}
-                sm={24}
-                md={16}
-                lg={16}
-                className="cart-information-container"
-              >
-                <CartItem />
-              </Col>
-              <Col
-                xs={24}
-                sm={24}
-                md={8}
-                lg={8}
-                className="order-summery-container"
-              >
-                <div className="order-summary">
-                  <div>
-                    <h4>ORDER SUMMARY</h4>
+        {isPriceLoading || isCartLoading ? (
+          <div className="loader-default-container dis-flex">
+            <Loader content="Loading..." vertical />
+          </div>
+        ) : (
+          <div className="cart-container">
+            <div className="dis-none">{loadTotalPrice()}</div>
+            <Container>
+              <Row>
+                <Col
+                  xs={24}
+                  sm={24}
+                  md={16}
+                  lg={16}
+                  className="cart-information-container"
+                >
+                  <CartItemGrid
+                    priceData={priceData}
+                    cartProduct={cartProduct}
+                    setGrand_total={setGrand_total}
+                  />
+                  {/* {cartProduct.map(data => (
+                    <CartItem
+                      key={data.id}
+                      cartData={data}
+                      priceData={priceData}
+                      cartProduct={cartProduct}
+                      setCartProduct={setCartProduct}
+                    />
+                  ))} */}
+                </Col>
+                <Col
+                  xs={24}
+                  sm={24}
+                  md={8}
+                  lg={8}
+                  className="order-summery-container"
+                >
+                  <div className="order-summary">
+                    <div>
+                      <h4 className="main-color margin-b10">ORDER SUMMARY</h4>
+                    </div>
+                    <div>
+                      <table className="table table-borderless order-summary-table">
+                        <tbody>
+                          <tr>
+                            <td>Sub Total</td>
+                            {/* <td>₹ {priceDetails.grand_total}</td> */}
+                            <td>₹ {grand_total}</td>
+                          </tr>
+                          <tr>
+                            <td>Discount</td>
+                            <td>- ₹ 0</td>
+                          </tr>
+                          <tr>
+                            <td>Delivery Charge</td>
+                            <td>FREE</td>
+                          </tr>
+                          <tr>
+                            <td>TOTAL (Incl of all Taxes.)</td>
+                            {/* <td>₹ {priceDetails.grand_total}</td> */}
+                            <td>₹ {grand_total}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="dis-flex">
+                      <Button className="proceed-to-checkout">
+                        Proceed to Checkout
+                      </Button>
+                    </div>
                   </div>
-                  <div>
-                    <table className="table table-borderless order-summary-table">
-                      <tbody>
-                        <tr>
-                          <td>Sub Total</td>
-                          <td>₹ 26103</td>
-                        </tr>
-                        <tr>
-                          <td>Discount</td>
-                          <td>- ₹ 0</td>
-                        </tr>
-                        <tr>
-                          <td>Delivery Charge</td>
-                          <td>FREE</td>
-                        </tr>
-                        <tr>
-                          <td>TOTAL (Incl of all Taxes.)</td>
-                          <td>₹ 26103</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div className="dis-flex">
-                    <Button>Proceed to Checkout</Button>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        )}
       </div>
       <div className="dis-flex dis-none ">
         <img src="/empty-cart-no-empty.png" alt="Empty cart"></img>
