@@ -59,13 +59,13 @@ export const CartProvider = ({ children }) => {
 
             console.log('price get updated');
           } else if (response.data.status === 'error') {
-            // setCartData({
-            //   id: '',
-            //   user_id: '',
-            //   product_id: '',
-            //   quantity: 0,
-            //   price: 0,
-            // });
+            setCartData({
+              id: '',
+              user_id: userData.id,
+              product_id: '',
+              quantity: 0,
+              price: 0,
+            });
 
             console.log('only user_id get updated');
           }

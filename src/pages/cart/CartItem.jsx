@@ -1,6 +1,5 @@
 import { Button, Col, Container, Divider, Row } from 'rsuite';
 import TrashIcon from '@rsuite/icons/Trash';
-// import axios from 'axios';
 
 const CartItem = ({
   cartData,
@@ -18,109 +17,6 @@ const CartItem = ({
 
   console.log({ cartData: cartData });
 
-  // const updateCart = async (
-  //   cartId,
-  //   actionType,
-  //   productPrice = 0,
-  //   quantity = 0
-  // ) => {
-  //   console.log({
-  //     cartId: cartId,
-  //     actionType: actionType,
-  //     productPrice: productPrice,
-  //     quantity: quantity,
-  //   });
-
-  //   // cheacking filter
-  //   if (actionType === 'remove') {
-  //     // const upadteCartProduct = newCartproduct.filter(data => data !== data);
-  //     // setNewCartProduct(upadteCartProduct);
-  //     console.log('inside the remove action type');
-
-  //     // setNewCartProduct(val => val.filter(data => data.id !== cartId));
-  //   } else if (actionType === 'increaseDecreaseQuantity') {
-  //     console.log('inside the cart quantity action type');
-
-  //     setNewCartProduct(val =>
-  //       val.map(data => {
-  //         return data.id == cartId
-  //           ? { ...data, quantity: quantity, price: grand_total * quantity }
-  //           : data;
-  //       })
-  //     );
-  //   }
-
-  //   console.log({ cartProduct, newCartproduct });
-
-  //   // try {
-  //   //   const response = await axios.post(
-  //   //     'http://127.0.0.1/testing/cart/delete_original_cart.php',
-  //   //     {
-  //   //       cart_id: cartId,
-  //   //       action_type: actionType,
-  //   //       product_price: productPrice,
-  //   //       quantity: quantity,
-  //   //     }
-  //   //   );
-
-  //   //   // console.log(response.data.message);
-  //   //   console.log(response.data);
-
-  //   //   if (response.status === 200) {
-  //   //     // setCartProduct(response.data.record);
-  //   //     // setIsCartLoading(false);
-  //   //     setCartProduct(val => val.filter(data => data.id === cartId))
-
-  //   //     setCartProduct(val => val.map(data => {
-  //   //       if(data.id === cartId){
-  //   //         return({...data,
-  //   //           quantity: quantity,
-  //   //         price: grand_total * quantity,
-  //   //         })
-
-  //   //       }else {
-  //   //         return({...data})
-  //   //       }
-  //   //     }))
-  //   //   }
-  //   // } catch (error) {
-  //   //   console.log(error);
-  //   // }
-  // };
-
-  // // to delete the product from cart
-  // const handleRemoveCartProduct = async cartId => {
-  //   console.log('remove the cart product with id ' + cartId);
-
-  //   updateCart(cartId, 'remove');
-  // };
-
-  // //to increase cart quantity
-  // const handleIncreaseCart = cartId => {
-  //   console.log('in increase cart quantity with cart id ' + cartId);
-
-  //   const previousQuantity = cartData.quantity + 1;
-  //   updateCart(
-  //     cartId,
-  //     'increaseDecreaseQuantity',
-  //     grand_total,
-  //     previousQuantity
-  //   );
-  // };
-
-  // //to decrease cart quantity
-  // const handleDecreaseCart = cartId => {
-  //   console.log('in decrease cart quantity with cart id ' + cartId);
-
-  //   const previousQuantity = cartData.quantity - 1;
-  //   updateCart(
-  //     cartId,
-  //     'increaseDecreaseQuantity',
-  //     grand_total,
-  //     previousQuantity
-  //   );
-  // };
-
   return (
     <div className="cart-product-container">
       <Divider />
@@ -128,8 +24,8 @@ const CartItem = ({
         <Container>
           <Row>
             <Col
-              xs={7}
-              sm={7}
+              xs={10}
+              sm={10}
               md={7}
               lg={7}
               className="cart-product-img-container"
@@ -145,7 +41,75 @@ const CartItem = ({
                 ></img>
               </div>
             </Col>
-            <Col
+            <Col xs={14} sm={14} md={17} lg={17}>
+              <Row>
+                <Col
+                  xs={24}
+                  sm={24}
+                  md={18}
+                  lg={18}
+                  className="order-product-info-container"
+                >
+                  <div>
+                    <h5 className="margin-t10">{cartData.name}</h5>
+                    <h4 className="margin-t5 margin-b20">₹ {grand_total}</h4>
+                  </div>
+                  <div className="margin-b10 remove-cart-product">
+                    <Button
+                      startIcon={<TrashIcon />}
+                      onClick={() =>
+                        handleRemoveCartProduct(
+                          cartData.id,
+                          cartData.quantity,
+                          grand_total
+                        )
+                      }
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                </Col>
+                <Col
+                  xs={24}
+                  sm={24}
+                  md={6}
+                  lg={6}
+                  className="order-product-btn-container"
+                >
+                  <div>
+                    <Button
+                      className="product-add-cart_btn"
+                      disabled={cartData.quantity === 1 ? true : false}
+                      onClick={() =>
+                        handleDecreaseCart(
+                          cartData.id,
+                          cartData.quantity,
+                          grand_total
+                        )
+                      }
+                    >
+                      -
+                    </Button>
+                    <span className="product-cart-quantity">
+                      {cartData.quantity}
+                    </span>
+                    <Button
+                      className="product-add-cart_btn"
+                      onClick={() =>
+                        handleIncreaseCart(
+                          cartData.id,
+                          cartData.quantity,
+                          grand_total
+                        )
+                      }
+                    >
+                      +
+                    </Button>
+                  </div>
+                </Col>
+              </Row>
+            </Col>
+            {/* <Col
               xs={12}
               sm={12}
               md={12}
@@ -159,7 +123,13 @@ const CartItem = ({
               <div className="margin-b10">
                 <Button
                   startIcon={<TrashIcon />}
-                  onClick={() => handleRemoveCartProduct(cartData.id)}
+                  onClick={() =>
+                    handleRemoveCartProduct(
+                      cartData.id,
+                      cartData.quantity,
+                      grand_total
+                    )
+                  }
                 >
                   Remove
                 </Button>
@@ -175,7 +145,14 @@ const CartItem = ({
               <div>
                 <Button
                   className="product-add-cart_btn"
-                  onClick={() => handleDecreaseCart(cartData.id)}
+                  disabled={cartData.quantity === 1 ? true : false}
+                  onClick={() =>
+                    handleDecreaseCart(
+                      cartData.id,
+                      cartData.quantity,
+                      grand_total
+                    )
+                  }
                 >
                   -
                 </Button>
@@ -184,12 +161,18 @@ const CartItem = ({
                 </span>
                 <Button
                   className="product-add-cart_btn"
-                  onClick={() => handleIncreaseCart(cartData.id)}
+                  onClick={() =>
+                    handleIncreaseCart(
+                      cartData.id,
+                      cartData.quantity,
+                      grand_total
+                    )
+                  }
                 >
                   +
                 </Button>
               </div>
-            </Col>
+            </Col> */}
           </Row>
         </Container>
       </div>

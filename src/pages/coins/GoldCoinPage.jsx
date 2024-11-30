@@ -86,6 +86,7 @@ const GoldCoinPage = () => {
           'http://127.0.0.1/testing/test/product.php',
           {
             weight: gramQt,
+            productCategory: 'gold-coin',
           }
         );
 

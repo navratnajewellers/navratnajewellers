@@ -3,6 +3,7 @@ import {
   Button,
   Col,
   Container,
+  Divider,
   Loader,
   Message,
   Row,
@@ -28,15 +29,8 @@ const Cart = () => {
   const [priceData, setPriceData] = useState(null);
   const [cartProduct, setCartProduct] = useState(null);
 
+  // to be set by the CartItemGrid
   const [grand_total, setGrand_total] = useState(0);
-
-  // const priceDetails = {
-  //   productPrice: 1,
-  //   makingCharge: 1,
-  //   subTotal: 1,
-  //   gst: 1,
-  //   grand_total: 1,
-  // };
 
   // to display message
   const displayMessage = (type, message) => {
@@ -104,27 +98,37 @@ const Cart = () => {
       fetchCartData();
     } else {
       console.log(' user data is empty and user is not login');
+
+      const fetchLocalCartData = async () => {
+        setIsCartLoading(true);
+
+        try {
+          const hashedLocalUserId = JSON.parse(
+            localStorage.getItem('localCart')
+          );
+
+          const response = await axios.post(
+            'http://127.0.0.1/testing/cart/fetch_local_cart.php',
+            {
+              localId: hashedLocalUserId,
+            }
+          );
+
+          // console.log(response.data.message);
+          console.log(response.data);
+
+          if (response.status === 200) {
+            setCartProduct(response.data.record);
+            setIsCartLoading(false);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      fetchLocalCartData();
     }
   }, [userData]);
-
-  // calculating the total price of product in cart
-  function loadTotalPrice() {
-    // if (isPriceLoading === false && isPriceLoading === false) {
-    //   cartProduct.map(data => {
-    //     priceDetails.productPrice =
-    //       priceData.price_1_gram_24K * data.weight * data.quantity;
-    //     priceDetails.makingCharge = priceDetails.productPrice * 0.08;
-    //     priceDetails.subTotal =
-    //       priceDetails.productPrice + priceDetails.makingCharge;
-    //     priceDetails.gst = priceDetails.subTotal * 0.03;
-    //     priceDetails.grand_total = Math.round(
-    //       priceDetails.grand_total + priceDetails.subTotal + priceDetails.gst
-    //     );
-    //   });
-    // }
-  }
-
-  // console.log({ priceDetails: priceDetails });
 
   console.log({
     isPriceLoading: isPriceLoading,
@@ -156,7 +160,6 @@ const Cart = () => {
           </div>
         ) : (
           <div className="cart-container">
-            <div className="dis-none">{loadTotalPrice()}</div>
             <Container>
               <Row>
                 <Col
@@ -170,16 +173,9 @@ const Cart = () => {
                     priceData={priceData}
                     cartProduct={cartProduct}
                     setGrand_total={setGrand_total}
+                    userData={userData}
                   />
-                  {/* {cartProduct.map(data => (
-                    <CartItem
-                      key={data.id}
-                      cartData={data}
-                      priceData={priceData}
-                      cartProduct={cartProduct}
-                      setCartProduct={setCartProduct}
-                    />
-                  ))} */}
+                  <Divider />
                 </Col>
                 <Col
                   xs={24}
@@ -192,7 +188,7 @@ const Cart = () => {
                     <div>
                       <h4 className="main-color margin-b10">ORDER SUMMARY</h4>
                     </div>
-                    <div>
+                    <div className="table-responsive">
                       <table className="table table-borderless order-summary-table">
                         <tbody>
                           <tr>

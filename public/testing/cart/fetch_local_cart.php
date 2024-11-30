@@ -19,21 +19,18 @@ try {
 
 // Get data from React frontend
 $data = json_decode(file_get_contents('php://input'), true);
-$inputWeight = $data['weight'];
-$inputCategory = $data['productCategory'];
+$inputLocalUserId = $data['localId'];
 
 // Check if the username exists in the database
-$sql = "SELECT * FROM product WHERE weight = :weight AND product_category = :p_category";
+$sql = "SELECT * FROM `offline_cart` INNER JOIN product ON offline_cart.product_id = product.product_id WHERE offline_cart.local_user_id = :local_id";
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(':weight', $inputWeight);
-$stmt->bindParam(':p_category', $inputCategory);
+$stmt->bindParam(':local_id', $inputLocalUserId);
 $stmt->execute();
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($user) {
-    // displat product
-    echo json_encode(['status' => 'success', 'message' => 'product details fetch successfullly', 'productData' => $user ]);
+    echo json_encode(['status' => 'success', 'message' => 'user found successfullly', 'record' => $user ]);
 } else {
-    echo json_encode(['status' => 'error', 'message' => 'product not found']);
+    echo json_encode(['status' => 'error', 'message' => 'Username not found']);
 }
 ?>
