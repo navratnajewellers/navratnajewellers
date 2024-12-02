@@ -38,7 +38,9 @@ const GoldCoinPage = () => {
   // for checking that user is login
   const { userData } = useProfile();
 
-  const { cartData, setCartData } = useCart();
+  // const { cartData, setCartData } = useCart();
+  // only to use when ready for production and console log is off
+  const { setCartData } = useCart();
 
   const priceBreak = {
     productPrice: 1,
@@ -118,7 +120,7 @@ const GoldCoinPage = () => {
 
   const handleQuantityChange = e => {
     setCartQuantity(e);
-    console.log({ event: e, cartQuantity: cartQuantity });
+    // console.log({ event: e, cartQuantity: cartQuantity });
   };
 
   // displaying the various data on console
@@ -126,13 +128,13 @@ const GoldCoinPage = () => {
 
   if (cartQuantity === 0 || cartQuantity == null) {
     setCartQuantity(1);
-    console.log('quantity is empty, so it get set to default 1');
+    // console.log('quantity is empty, so it get set to default 1');
   }
 
   const handleAddToCart = async () => {
     if (userData.id && productData.product_id) {
-      console.log('user is log in');
-      console.log('quantity add to cart is' + cartQuantity);
+      // console.log('user is log in');
+      // console.log('quantity add to cart is' + cartQuantity);
 
       try {
         const response = await axios.post(
@@ -145,25 +147,27 @@ const GoldCoinPage = () => {
           }
         );
 
-        console.log(response.data);
+        // console.log(response.data);
 
-        displayMessage('info', 'Cart Updated');
+        if (response.status === 200) {
+          displayMessage('info', 'Cart Updated');
 
-        // updating the cart
-        //const previousQuantity = cartData.quantity;
-        setCartData(val => ({
-          ...val,
-          product_id: productData.product_id,
-          quantity: val.quantity + cartQuantity,
-          price: val.price + priceBreak.grand_total * cartQuantity,
-        }));
+          // updating the cart
+          //const previousQuantity = cartData.quantity;
+          setCartData(val => ({
+            ...val,
+            product_id: productData.product_id,
+            quantity: val.quantity + cartQuantity,
+            price: val.price + priceBreak.grand_total * cartQuantity,
+          }));
+        }
       } catch (error) {
         console.log(error);
 
         displayMessage('eror', error);
       }
     } else {
-      console.log('user is not log in');
+      // console.log('user is not log in');
 
       const hashedLocalUserId = JSON.parse(localStorage.getItem('localCart'));
 
@@ -178,18 +182,20 @@ const GoldCoinPage = () => {
           }
         );
 
-        console.log(response.data);
+        // console.log(response.data);
 
-        displayMessage('info', 'local Cart Updated');
+        if (response.status === 200) {
+          displayMessage('info', 'local Cart Updated');
 
-        // updating the cart
-        //const previousQuantity = cartData.quantity;
-        setCartData(val => ({
-          ...val,
-          product_id: productData.product_id,
-          quantity: val.quantity + cartQuantity,
-          price: val.price + priceBreak.grand_total * cartQuantity,
-        }));
+          // updating the cart
+          //const previousQuantity = cartData.quantity;
+          setCartData(val => ({
+            ...val,
+            product_id: productData.product_id,
+            quantity: val.quantity + cartQuantity,
+            price: val.price + priceBreak.grand_total * cartQuantity,
+          }));
+        }
       } catch (error) {
         console.log(error);
 
@@ -199,7 +205,7 @@ const GoldCoinPage = () => {
   };
 
   // console.log({ userData: userData, productData: productData });
-  console.log({ cartQuantity: cartQuantity, cartData: cartData });
+  // console.log({ cartQuantity: cartQuantity, cartData: cartData });
 
   return (
     <div>

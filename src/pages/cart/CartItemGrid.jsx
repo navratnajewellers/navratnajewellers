@@ -31,7 +31,10 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
     });
   }
 
-  setGrand_total(priceDetails.grand_total);
+  // setTimeout is used to delay the time for updating total price of all product
+  setTimeout(() => {
+    setGrand_total(priceDetails.grand_total);
+  }, 300);
 
   // copy data from cartitem here
 
@@ -42,14 +45,14 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
     quantity = 0,
     cartStatus
   ) => {
-    console.log({
-      cartId: cartId,
-      actionType: actionType,
-      productPrice: productPrice,
-      quantity: quantity,
-    });
+    // console.log({
+    //   cartId: cartId,
+    //   actionType: actionType,
+    //   productPrice: productPrice,
+    //   quantity: quantity,
+    // });
 
-    console.log({ cartProduct, newCartproduct });
+    // console.log({ cartProduct, newCartproduct });
 
     try {
       let response;
@@ -82,14 +85,14 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
       }
 
       // console.log(response.data.message);
-      console.log(response.data);
+      // console.log(response.data);
 
       if (response.status === 200) {
         // cheacking filter
         if (actionType === 'remove') {
-          console.log('inside the remove action type');
+          // console.log('inside the remove action type');
 
-          console.log(typeof cartId);
+          // console.log(typeof cartId);
           // removing the product from the copy of cartProduct i.e newCartProduct
           setNewCartProduct(val => val.filter(data => data.id !== cartId));
 
@@ -100,7 +103,7 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
             price: val.price + productPrice * quantity,
           }));
         } else if (actionType === 'increaseDecreaseQuantity') {
-          console.log('inside the cart quantity action type');
+          // console.log('inside the cart quantity action type');
 
           // updating the quantity of the copy of cartProduct i.e newCartProduct
           setNewCartProduct(val =>
@@ -142,14 +145,14 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
     cartQuantity,
     singleProductPrice
   ) => {
-    console.log('remove the cart product with id ' + cartId);
+    // console.log('remove the cart product with id ' + cartId);
 
     updateCart(cartId, 'remove', singleProductPrice, cartQuantity);
   };
 
   //to increase cart quantity
   const handleIncreaseCart = (cartId, cartQuantity, singleProductPrice) => {
-    console.log('in increase cart quantity with cart id ' + cartId);
+    // console.log('in increase cart quantity with cart id ' + cartId);
 
     const updatedQuantity = cartQuantity + 1;
     updateCart(
@@ -163,7 +166,7 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
 
   //to decrease cart quantity
   const handleDecreaseCart = (cartId, cartQuantity, singleProductPrice) => {
-    console.log('in decrease cart quantity with cart id ' + cartId);
+    // console.log('in decrease cart quantity with cart id ' + cartId);
 
     const updatedQuantity = cartQuantity - 1;
     updateCart(

@@ -15,7 +15,7 @@ const CartItem = ({
   const gst = subTotal * 0.03;
   const grand_total = Math.round(subTotal + gst);
 
-  console.log({ cartData: cartData });
+  // console.log({ cartData: cartData });
 
   return (
     <div className="cart-product-container">

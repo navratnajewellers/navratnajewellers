@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import PageNotFound from './pages/PageNotFound';
@@ -18,7 +18,7 @@ function App() {
   return (
     <ProfileProvider>
       <CartProvider>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
@@ -35,7 +35,7 @@ function App() {
             />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </CartProvider>
     </ProfileProvider>
   );

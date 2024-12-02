@@ -33,17 +33,17 @@ const Cart = () => {
   const [grand_total, setGrand_total] = useState(0);
 
   // to display message
-  const displayMessage = (type, message) => {
+  const displayMessage = (type, message, duration = 2000) => {
     toaster.push(
       <Message showIcon type={type} closable>
         <strong>{message}</strong>
       </Message>,
-      { placement: 'topCenter', duration: 2000 }
+      { placement: 'topCenter', duration: duration }
     );
   };
 
   useEffect(() => {
-    console.log(userData);
+    // console.log(userData);
 
     // getting the price of gold
     const getGoldPrice = async () => {
@@ -59,7 +59,7 @@ const Cart = () => {
 
         if (response.status === 200) {
           setIsPriceLoading(false);
-          console.log('price data is loaded');
+          // console.log('price data is loaded');
         }
       } catch (error) {
         console.log(error);
@@ -70,7 +70,7 @@ const Cart = () => {
 
     //check if user is login or not
     if (userData.id) {
-      console.log('user is login');
+      // console.log('user is login');
 
       const fetchCartData = async () => {
         setIsCartLoading(true);
@@ -84,7 +84,7 @@ const Cart = () => {
           );
 
           // console.log(response.data.message);
-          console.log(response.data);
+          // console.log(response.data);
 
           if (response.status === 200) {
             setCartProduct(response.data.record);
@@ -97,7 +97,7 @@ const Cart = () => {
 
       fetchCartData();
     } else {
-      console.log(' user data is empty and user is not login');
+      // console.log(' user data is empty and user is not login');
 
       const fetchLocalCartData = async () => {
         setIsCartLoading(true);
@@ -115,7 +115,7 @@ const Cart = () => {
           );
 
           // console.log(response.data.message);
-          console.log(response.data);
+          // console.log(response.data);
 
           if (response.status === 200) {
             setCartProduct(response.data.record);
@@ -130,12 +130,24 @@ const Cart = () => {
     }
   }, [userData]);
 
-  console.log({
-    isPriceLoading: isPriceLoading,
-    isCartLoading: isCartLoading,
-    priceData: priceData,
-    cartProduct: cartProduct,
-  });
+  // console.log({
+  //   isPriceLoading: isPriceLoading,
+  //   isCartLoading: isCartLoading,
+  //   priceData: priceData,
+  //   cartProduct: cartProduct,
+  // });
+
+  const handleCheckout = () => {
+    if (userData.id) {
+      displayMessage('info', 'payment step is on the way');
+    } else {
+      displayMessage(
+        'error',
+        'you need to login first before payemnt process',
+        4000
+      );
+    }
+  };
 
   return (
     <div>
@@ -213,7 +225,10 @@ const Cart = () => {
                       </table>
                     </div>
                     <div className="dis-flex">
-                      <Button className="proceed-to-checkout">
+                      <Button
+                        className="proceed-to-checkout"
+                        onClick={() => handleCheckout()}
+                      >
                         Proceed to Checkout
                       </Button>
                     </div>

@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     if (userData.id) {
-      console.log('user is login');
+      // console.log('user is login');
 
       const fetchCartData = async () => {
         try {
@@ -33,7 +33,7 @@ export const CartProvider = ({ children }) => {
           );
 
           // console.log(response.data.message);
-          console.log(response.data);
+          // console.log(response.data);
 
           if (response.data.status === 'success') {
             // reset to default to get only database values
@@ -57,7 +57,7 @@ export const CartProvider = ({ children }) => {
               price: newPrice,
             });
 
-            console.log('price get updated');
+            // console.log('price get updated');
           } else if (response.data.status === 'error') {
             setCartData({
               id: '',
@@ -67,7 +67,7 @@ export const CartProvider = ({ children }) => {
               price: 0,
             });
 
-            console.log('only user_id get updated');
+            // console.log('only user_id get updated');
           }
         } catch (error) {
           console.log(error);
@@ -76,7 +76,7 @@ export const CartProvider = ({ children }) => {
 
       fetchCartData();
     } else {
-      console.log('user is not login');
+      // console.log('user is not login');
 
       // const saveLocalCart = localStorage.getItem('cart');
 
@@ -99,12 +99,12 @@ export const CartProvider = ({ children }) => {
         const rawString = `${randomNumber}_${timestamp}`;
         const hashedSessionId = CryptoJS.SHA256(rawString).toString();
 
-        console.log({
-          randomNumber: randomNumber,
-          hashedSessionId: hashedSessionId,
-        });
+        // console.log({
+        //   randomNumber: randomNumber,
+        //   hashedSessionId: hashedSessionId,
+        // });
 
-        console.log('localcart is not set in local');
+        // console.log('localcart is not set in local');
         localStorage.setItem('localCart', JSON.stringify(hashedSessionId));
       } else {
         const hashedLocalUserId = JSON.parse(localStorage.getItem('localCart'));
@@ -141,7 +141,7 @@ export const CartProvider = ({ children }) => {
                 price: newPrice,
               }));
 
-              console.log('local cart price get updated');
+              // console.log('local cart price get updated');
             }
           } catch (error) {
             console.log(error);
