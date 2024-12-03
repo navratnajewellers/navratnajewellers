@@ -13,6 +13,7 @@ import Cart from './pages/Cart';
 import GoldRate from './pages/GoldRate';
 import { ProfileProvider } from './context/profile.context';
 import { CartProvider } from './context/Cart.context';
+import PaymentTest from './pages/PaymentTest';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
               path="/test-connection/verify-login"
               element={<VerifyLogin />}
             />
+            <Route path="/testPayment" element={<PaymentTest />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </HashRouter>

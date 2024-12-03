@@ -32,6 +32,8 @@ const Cart = () => {
   // to be set by the CartItemGrid
   const [grand_total, setGrand_total] = useState(0);
 
+  // const navigate = useNavigate();
+
   // to display message
   const displayMessage = (type, message, duration = 2000) => {
     toaster.push(
@@ -140,12 +142,64 @@ const Cart = () => {
   const handleCheckout = () => {
     if (userData.id) {
       displayMessage('info', 'payment step is on the way');
+
+      const intitiatePayment = async () => {
+        try {
+          const response = await axios.post(
+            'http://127.0.0.1/testing/RazorPay/create_order.php',
+            {
+              amount: 50000,
+            }
+          );
+
+          // open razor payment dialog
+          const options = {
+            key: 'key id',
+            amount: 50000,
+            currency: 'INR',
+            name: 'Navratna Jewellers',
+            description: 'Test Transaction',
+            order_id: response.data.order_id,
+            handler: function (response) {
+              // handle payment success
+              console.log({ response });
+
+              alert(
+                `payment Successful Payment ID: ${response.razorpay_payment_id}`
+              );
+              displayMessage(
+                'info',
+                `payment Successful Payment ID: ${response.razorpay_payment_id}`,
+                3000
+              );
+            },
+            prefill: {
+              name: 'Navratna Jewellers',
+              email: 'customer@example.com',
+              contact: '1234567890',
+            },
+            theme: {
+              color: '#3399cc',
+            },
+          };
+
+          const rzp = new window.Razorpay(options);
+          rzp.open();
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      intitiatePayment();
     } else {
       displayMessage(
         'error',
         'you need to login first before payemnt process',
         4000
       );
+
+      // navigate('/');
+      window.location.href = '/';
     }
   };
 
