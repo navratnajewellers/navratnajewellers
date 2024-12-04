@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { Button } from 'rsuite';
+import { Button, ButtonToolbar, Container, Form, Row, Schema } from 'rsuite';
+import AddressModal from './cart/AddressModal';
 
 const PaymentTest = () => {
   const initiatePayment = async () => {
@@ -46,9 +47,84 @@ const PaymentTest = () => {
     }
   };
 
+  const handleMoveCartToOrder = async (status, orderId, price, user_id) => {
+    try {
+      const response = await axios.post(
+        'http://127.0.0.1/testing/payment-update/update_order_items.php',
+        {
+          status: status,
+          user_id: user_id,
+          orderId: orderId,
+          goldPrice: price,
+        }
+      );
+
+      console.log(response);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handlegetAddress = async userId => {
+    try {
+      const response = await axios.post(
+        'http://127.0.0.1/testing/addresses/fetch_address.php',
+        {
+          userId: userId,
+        }
+      );
+
+      console.log(response);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // modal functions
+  const { StringType } = Schema.Types;
+  const model = Schema.Model({
+    name: StringType().isRequired('This field is required.'),
+    email: StringType()
+      .isEmail('Please enter a valid email address.')
+      .isRequired('This field is required.'),
+  });
+
   return (
     <div>
       <Button onClick={initiatePayment}>Pay Rs. 500</Button>
+      <Button
+        onClick={() =>
+          handleMoveCartToOrder('success', 'order_PT1EW5TFPf0IRA', 7898, 4)
+        }
+      >
+        Move from cart to Order item
+      </Button>
+      <Button onClick={() => handlegetAddress(5)}>Get Address</Button>
+      <Container>
+        <Row>
+          <Form model={model}>
+            <Form.Group controlId="name">
+              <Form.ControlLabel>Username</Form.ControlLabel>
+              <Form.Control name="name" />
+            </Form.Group>
+            <Form.Group controlId="email">
+              <Form.ControlLabel>Email</Form.ControlLabel>
+              <Form.Control name="email" />
+            </Form.Group>
+
+            <ButtonToolbar>
+              <Button appearance="primary" type="submit">
+                Submit
+              </Button>
+            </ButtonToolbar>
+          </Form>
+        </Row>
+        <Row>
+          <AddressModal />
+        </Row>
+      </Container>
     </div>
   );
 };

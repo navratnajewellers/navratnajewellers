@@ -32,10 +32,19 @@ const Cart = () => {
   // to be set by the CartItemGrid
   const [grand_total, setGrand_total] = useState(0);
 
+  // check addrtess
+  const [address, setAddress] = useState({
+    status: 'notFound',
+    country: '',
+    city: '',
+  });
+
+  const [isAddressLoading, setIsAddressLoading] = useState(true);
+
   // const navigate = useNavigate();
 
   // to display message
-  const displayMessage = (type, message, duration = 2000) => {
+  const displayMessage = (type = 'info', message, duration = 2000) => {
     toaster.push(
       <Message showIcon type={type} closable>
         <strong>{message}</strong>
@@ -98,6 +107,44 @@ const Cart = () => {
       };
 
       fetchCartData();
+
+      // checking the status of the login user address
+      const checkAddressStatus = async () => {
+        setIsAddressLoading(true);
+        try {
+          const response = await axios.post(
+            'http://127.0.0.1/testing/addresses/fetch_address.php',
+            {
+              userId: userData.id,
+            }
+          );
+
+          if (response.status === 200) {
+            console.log(response);
+            console.log(response.data);
+
+            if (response.data.status === 'notFound') {
+              setAddress(val => ({
+                ...val,
+                status: response.data.status,
+              }));
+            } else if (response.data.status === 'found') {
+              setAddress(val => ({
+                ...val,
+                status: response.data.status,
+                country: response.data.country,
+                city: response.data.city,
+              }));
+            }
+
+            setIsAddressLoading(false);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      checkAddressStatus();
     } else {
       // console.log(' user data is empty and user is not login');
 
@@ -130,6 +177,15 @@ const Cart = () => {
 
       fetchLocalCartData();
     }
+
+    return () => {
+      // resetting the default value of address on returning of useEffect
+      setAddress({
+        status: 'notFound',
+        country: '',
+        city: '',
+      });
+    };
   }, [userData]);
 
   // console.log({
@@ -139,58 +195,116 @@ const Cart = () => {
   //   cartProduct: cartProduct,
   // });
 
+  // moving the cart item to order_item
+  const handleMoveCartToOrder = async (status, orderId) => {
+    try {
+      const response = await axios.post(
+        'http://127.0.0.1/testing/payment-update/update_order_items.php',
+        {
+          status: status,
+          user_id: userData.id,
+          orderId: orderId,
+          goldPrice: priceData.price_1_gram_24K,
+        }
+      );
+
+      console.log(response);
+      console.log(response.data);
+
+      if (response.status === 200) {
+        console.log(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleCheckout = () => {
     if (userData.id) {
       displayMessage('info', 'payment step is on the way');
 
-      const intitiatePayment = async () => {
+      // updated code
+
+      const handlePayment = async () => {
         try {
+          // Step 1: Fetch Order ID from the backend
           const response = await axios.post(
-            'http://127.0.0.1/testing/RazorPay/create_order.php',
+            'http://127.0.0.1/testing/RazorPay/updated_create_order.php',
             {
-              amount: 50000,
+              amount: grand_total * 100,
+              user_id: userData.id,
             }
           );
 
-          // open razor payment dialog
+          console.log(response.data);
+
+          if (!response.data.order_id) {
+            throw new Error('Failed to create order!');
+          }
+
+          // key: 'YOUR_RAZORPAY_KEY_ID'
+          // Step 2: Initialize Razorpay
           const options = {
-            key: 'key id',
-            amount: 50000,
+            key: 'YOUR_RAZORPAY_KEY_ID', // Replace with your Razorpay Key ID
+            amount: response.data.amount,
             currency: 'INR',
             name: 'Navratna Jewellers',
             description: 'Test Transaction',
-            order_id: response.data.order_id,
-            handler: function (response) {
-              // handle payment success
-              console.log({ response });
+            order_id: response.data.order_id, // Pass order_id from backend
+            handler: async function (response) {
+              console.log(response);
 
-              alert(
-                `payment Successful Payment ID: ${response.razorpay_payment_id}`
+              // Step 4: Verify payment
+              // send order_id, payment_id, and signature for verification of payment
+              const verification = await axios.post(
+                'http://127.0.0.1/testing/RazorPay/verify_payment.php',
+                {
+                  ...response,
+                }
               );
-              displayMessage(
-                'info',
-                `payment Successful Payment ID: ${response.razorpay_payment_id}`,
-                3000
-              );
+              console.log(verification.data);
+
+              if (verification.data.status === 'success') {
+                handleMoveCartToOrder(
+                  verification.data.status,
+                  verification.data.orderId
+                );
+              }
+
+              // console.log("Payment verification:", verification.data);
             },
             prefill: {
-              name: 'Navratna Jewellers',
-              email: 'customer@example.com',
-              contact: '1234567890',
+              name: 'John Doe',
+              email: 'johndoe@example.com',
+              contact: '9999999999',
+            },
+            notes: {
+              address: 'Razorpay Corporate Office',
             },
             theme: {
               color: '#3399cc',
             },
           };
 
-          const rzp = new window.Razorpay(options);
-          rzp.open();
+          const razorpay = new window.Razorpay(options);
+          razorpay.open();
         } catch (error) {
-          console.log(error);
+          console.error('Payment initiation failed:', error);
         }
       };
 
-      intitiatePayment();
+      //handlePayment();
+
+      // checking the address status
+      if (!isAddressLoading && address.status === 'found') {
+        displayMessage('info', 'Address is fill already proceed with payment');
+        // console.log(address);
+
+        handlePayment();
+      } else if (!isAddressLoading && address.status === 'notFound') {
+        displayMessage('info', 'Addrees need to fill first');
+        console.log(address);
+      }
     } else {
       displayMessage(
         'error',

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2024 at 02:21 PM
+-- Generation Time: Dec 04, 2024 at 02:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,6 +40,13 @@ CREATE TABLE `addresses` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `addresses`
+--
+
+INSERT INTO `addresses` (`id`, `user_id`, `address_line_1`, `address_line_2`, `country`, `city`, `postal_code`, `landmark`, `phone_number`, `created_at`) VALUES
+(1, 4, 'Ranchi', 'Jharkhand', 'India', 'Ranchi', '834001', NULL, '1234567890', '2024-12-04 11:06:16');
+
 -- --------------------------------------------------------
 
 --
@@ -61,9 +68,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(3, 3, 1, 7, 61117, '2024-11-27 08:09:00', '2024-11-27 13:43:10'),
-(9, 4, 2, 11, 193292, '2024-11-30 07:41:40', '2024-12-02 16:17:27'),
-(11, 4, 3, 1, 35143, '2024-12-02 08:13:15', '2024-12-02 13:43:15');
+(3, 3, 1, 7, 61117, '2024-11-27 08:09:00', '2024-11-27 13:43:10');
 
 -- --------------------------------------------------------
 
@@ -125,6 +130,18 @@ CREATE TABLE `orders` (
   `status` varchar(50) DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`, `total_amount`, `order_date`, `order_updateAt`, `status`) VALUES
+('order_PT10ahqcpmVqTa', 4, 50000.00, '2024-12-04 12:53:01', '2024-12-04 12:53:01', 'created'),
+('order_PT14QvJARSQC2m', 4, 50000.00, '2024-12-04 12:56:39', '2024-12-04 12:56:39', 'created'),
+('order_PT1BWXobSgzz1P', 4, 105429.00, '2024-12-04 13:03:22', '2024-12-04 13:03:22', 'created'),
+('order_PT1EW5TFPf0IRA', 4, 123000.00, '2024-12-04 13:06:12', '2024-12-04 13:06:36', 'paid'),
+('order_PT2efWo2gDsWs4', 3, 61500.00, '2024-12-04 14:29:40', '2024-12-04 14:30:23', 'paid'),
+('order_PT41BgNw7AcZpP', 4, 79072.00, '2024-12-04 15:49:40', '2024-12-04 15:50:10', 'paid');
+
 -- --------------------------------------------------------
 
 --
@@ -141,6 +158,14 @@ CREATE TABLE `order_items` (
   `updated_at_oi` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id_oi`, `product_id_oi`, `quantity_oi`, `price_oi`, `created_at_oi`, `updated_at_oi`) VALUES
+(5, 'order_PT41BgNw7AcZpP', 2, 4, 31592.00, '2024-12-04 10:20:10', '2024-12-04 15:50:10'),
+(6, 'order_PT41BgNw7AcZpP', 1, 1, 7898.00, '2024-12-04 10:20:10', '2024-12-04 15:50:10');
+
 -- --------------------------------------------------------
 
 --
@@ -155,6 +180,15 @@ CREATE TABLE `payment_details` (
   `pd_created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `pd_updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payment_details`
+--
+
+INSERT INTO `payment_details` (`pd_id`, `pd_order_id`, `pd_payment_id`, `pd_verify_signature`, `pd_created_at`, `pd_updated_at`) VALUES
+(1, 'order_PT1EW5TFPf0IRA', 'pay_PT1EflYgSATe15', 'c51b939d856a90149d4ace505d95b6dec7b9f5ac25cf5a489c80021934b5d51f', '2024-12-04 07:36:36', '2024-12-04 13:06:36'),
+(2, 'order_PT2efWo2gDsWs4', 'pay_PT2fAH5JJyolcl', '56e334024cc4de42811944bb3465e700fb54f0c89558e76cddfd040826436467', '2024-12-04 09:00:23', '2024-12-04 14:30:23'),
+(3, 'order_PT41BgNw7AcZpP', 'pay_PT41SOqqk2sRaj', 'e992fd8c211fb396416d7c46f0d58ba612e12b647e3fd7a7c1e1a607f821fb21', '2024-12-04 10:20:10', '2024-12-04 15:50:10');
 
 -- --------------------------------------------------------
 
@@ -210,8 +244,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `session_id`, `created_at`, `updated_at`) VALUES
 (1, 'san', '$2y$10$tMiYyJ.MB1.60vrE.NMx8.cux5iMtkzWwvkBrxbF7lGuugW.qhgHG', 'NOT NULL', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (2, 'admin', 'admin', 'admin@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
-(3, 'new admin', '$2y$10$HcPH9aMC.Zf1mNvaBO9iCu0gKYQUmD6PpNkJntiPWY1Bjcdvn.niS', 'adm@gmail.com', '9b65aea102b6e04731c73e2d083ee8efbf1e42c553b25f70ce2b4292d9ce44f1', '2024-11-25 08:12:33', '2024-12-03 16:30:22'),
-(4, 'demo', '$2y$10$LTXh5vdbmzk7x6R1jTsON.s3bWQcMlAGU1gu8F/yiVP1Knswggd7G', 'demo@gmail.com', 'c9c78d3dfaf575d7f2a94f242d4e320c26010039d04254ac89cb36dc2b991822', '2024-11-25 08:12:33', '2024-12-03 16:48:18'),
+(3, 'new admin', '$2y$10$HcPH9aMC.Zf1mNvaBO9iCu0gKYQUmD6PpNkJntiPWY1Bjcdvn.niS', 'adm@gmail.com', 'bbdbc1ae51f1544895793ba1573a957ad0ac582f65e45726e2d97077ede2240d', '2024-11-25 08:12:33', '2024-12-04 17:58:12'),
+(4, 'demo', '$2y$10$LTXh5vdbmzk7x6R1jTsON.s3bWQcMlAGU1gu8F/yiVP1Knswggd7G', 'demo@gmail.com', 'c401d0c9a495756c3b76f11dc542b94bfb4c5d64a38cfda73099b29ca371847c', '2024-11-25 08:12:33', '2024-12-04 17:57:52'),
 (5, 'navratna', '$2y$10$aeg.2TclN.P6raFTDN49/uaavt6LCoYlNljux4QexRfs/kddq1LLG', 'navratna@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (6, 'demo new', '$2y$10$l4RWsvtOmKwJvKhIlR8ot.SGurttmL.C5n3pFofr8UM.VuNuH1Zsa', 'demonew@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (8, 'demo', '$2y$10$sh2GKimjHUhd5dcYVOi9Aud2LBNsElq4wrNDryjf4WyuLIAxq0JPC', 'demo1@gmail.com', 'dddefd097c98caf028e950ce27c39cb217e28eff0e775a5333dabcaf415cc04c', '2024-11-25 09:08:55', '2024-11-25 14:39:25'),
@@ -248,6 +282,7 @@ INSERT INTO `website_update` (`id`, `update_status`) VALUES
 --
 ALTER TABLE `addresses`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id_2` (`user_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
@@ -321,13 +356,13 @@ ALTER TABLE `website_update`
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `offline_cart`
@@ -339,13 +374,13 @@ ALTER TABLE `offline_cart`
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `payment_details`
 --
 ALTER TABLE `payment_details`
-  MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product`

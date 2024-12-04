@@ -10,8 +10,8 @@ require 'vendor/autoload.php';
 use Razorpay\Api\Api;
 
 // Razorpay credentials
-$keyId = "rzp_test_1MFRdd0BJJ1Heu";
-$keySecret = "U7OVvF7GRNRhkUUE7PJn12GX";
+//$keyId = "rzp_test_1MFRdd0BJJ1Heu";
+//$keySecret = "U7OVvF7GRNRhkUUE7PJn12GX";
 
 // Initialize Razorpay API
 $api = new Api($keyId, $keySecret);
