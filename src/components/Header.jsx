@@ -1,8 +1,8 @@
 import {
+  AutoComplete,
   Button,
   Dropdown,
   Form,
-  Input,
   InputGroup,
   Message,
   Modal,
@@ -18,11 +18,32 @@ import { VscAccount } from '@react-icons/all-files/vsc/VscAccount';
 import { IoIosHeartEmpty } from '@react-icons/all-files/io/IoIosHeartEmpty';
 import { IoCartOutline } from '@react-icons/all-files/io5/IoCartOutline';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useProfile } from '../context/profile.context';
 import CryptoJS from 'crypto-js';
 import { useCart } from '../context/Cart.context';
+
+const data = [
+  'Eugenia',
+  'Bryan',
+  'Linda',
+  'Nancy',
+  'Lloyd',
+  'Alice',
+  'Julia',
+  'Albert',
+  'Louisa',
+  'Lester',
+  'Lola',
+  'Lydia',
+  'Hal',
+  'Hannah',
+  'Harriet',
+  'Hattie',
+  'Hazel',
+  'Hilda',
+];
 
 const Header = () => {
   const toaster = useToaster();
@@ -36,6 +57,8 @@ const Header = () => {
 
   const { cartData, setCartData } = useCart();
 
+  const [productData, setProductData] = useState(null);
+
   const [signupFormValue, setSignupFormValue] = useState({
     name: '',
     email: '',
@@ -46,6 +69,25 @@ const Header = () => {
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    const getAllProductData = async () => {
+      try {
+        const response = await axios.get(
+          'http://127.0.0.1/testing/test/all-product.php'
+        );
+
+        // console.log(response.data);
+        setProductData(response.data.productData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getAllProductData();
+  }, []);
+
+  console.log(productData);
 
   // const localCartData = JSON.parse(localStorage.getItem('cart'));
 
@@ -293,6 +335,14 @@ const Header = () => {
         </div>
         <div className="search-box">
           <InputGroup inside className="search-product">
+            <AutoComplete data={data} style={{ height: '100%' }} />
+            <InputGroup.Button className="search-icon-button">
+              <SearchIcon />
+            </InputGroup.Button>
+          </InputGroup>
+        </div>
+        {/* <div className="search-box">
+          <InputGroup inside className="search-product">
             <Input
               className="search-input textCenter"
               placeholder="Search here"
@@ -301,7 +351,7 @@ const Header = () => {
               <SearchIcon />
             </InputGroup.Button>
           </InputGroup>
-        </div>
+        </div> */}
         <div className="header-store dis-flex">
           <div className="dis-flex">
             <FaStore className="header-icons" />

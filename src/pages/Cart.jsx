@@ -17,6 +17,19 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 // import CartItem from './cart/CartItem';
 import CartItemGrid from './cart/CartItemGrid';
+import AddressModal from './cart/AddressModal';
+
+const addresDefault = {
+  status: 'notFound',
+  mobile: '',
+  address1: '',
+  address2: '',
+  country: 'India',
+  city: '',
+  state: '',
+  pincode: '',
+  landmark: '',
+};
 
 const Cart = () => {
   const toaster = useToaster();
@@ -33,13 +46,12 @@ const Cart = () => {
   const [grand_total, setGrand_total] = useState(0);
 
   // check addrtess
-  const [address, setAddress] = useState({
-    status: 'notFound',
-    country: '',
-    city: '',
-  });
+  const [address, setAddress] = useState(addresDefault);
 
   const [isAddressLoading, setIsAddressLoading] = useState(true);
+  const [isAddressModalOpen, setIsAddressModal] = useState(false);
+
+  const [userEmail, setUserEmail] = useState(null);
 
   // const navigate = useNavigate();
 
@@ -132,9 +144,16 @@ const Cart = () => {
               setAddress(val => ({
                 ...val,
                 status: response.data.status,
+                mobile: response.data.mobile,
+                address1: response.data.address1,
+                address2: response.data.address2,
                 country: response.data.country,
                 city: response.data.city,
+                state: response.data.state,
+                pincode: response.data.pincode,
               }));
+
+              setUserEmail(response.data.email);
             }
 
             setIsAddressLoading(false);
@@ -180,11 +199,7 @@ const Cart = () => {
 
     return () => {
       // resetting the default value of address on returning of useEffect
-      setAddress({
-        status: 'notFound',
-        country: '',
-        city: '',
-      });
+      setAddress(addresDefault);
     };
   }, [userData]);
 
@@ -213,6 +228,13 @@ const Cart = () => {
 
       if (response.status === 200) {
         console.log(response.data.message);
+        window.location.href = '/';
+
+        // displayMessage('info', 'Your order is placed successfully', 3000);
+
+        // setTimeout(() => {
+        //   window.location.href = '/';
+        // }, 4000);
       }
     } catch (error) {
       console.log(error);
@@ -221,7 +243,7 @@ const Cart = () => {
 
   const handleCheckout = () => {
     if (userData.id) {
-      displayMessage('info', 'payment step is on the way');
+      // displayMessage('info', 'payment step is on the way');
 
       // updated code
 
@@ -245,7 +267,7 @@ const Cart = () => {
           // key: 'YOUR_RAZORPAY_KEY_ID'
           // Step 2: Initialize Razorpay
           const options = {
-            key: 'YOUR_RAZORPAY_KEY_ID', // Replace with your Razorpay Key ID
+            key: 'rzp_test_lMFRdd0BJJlHeu', // Replace with your Razorpay Key ID
             amount: response.data.amount,
             currency: 'INR',
             name: 'Navratna Jewellers',
@@ -274,9 +296,9 @@ const Cart = () => {
               // console.log("Payment verification:", verification.data);
             },
             prefill: {
-              name: 'John Doe',
-              email: 'johndoe@example.com',
-              contact: '9999999999',
+              name: userData.username,
+              email: userEmail,
+              contact: address.mobile,
             },
             notes: {
               address: 'Razorpay Corporate Office',
@@ -285,6 +307,13 @@ const Cart = () => {
               color: '#3399cc',
             },
           };
+
+          // previous prefill
+          // prefill: {
+          //   name: 'John Doe',
+          //   email: 'johndoe@example.com',
+          //   contact: '9999999999',
+          // },
 
           const razorpay = new window.Razorpay(options);
           razorpay.open();
@@ -297,13 +326,15 @@ const Cart = () => {
 
       // checking the address status
       if (!isAddressLoading && address.status === 'found') {
-        displayMessage('info', 'Address is fill already proceed with payment');
+        // displayMessage('info', 'Address is fill already proceed with payment');
         // console.log(address);
 
         handlePayment();
       } else if (!isAddressLoading && address.status === 'notFound') {
         displayMessage('info', 'Addrees need to fill first');
-        console.log(address);
+        // console.log(address);
+
+        setIsAddressModal(true);
       }
     } else {
       displayMessage(
@@ -313,7 +344,9 @@ const Cart = () => {
       );
 
       // navigate('/');
-      window.location.href = '/';
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 4000);
     }
   };
 
@@ -355,7 +388,7 @@ const Cart = () => {
                     setGrand_total={setGrand_total}
                     userData={userData}
                   />
-                  <Divider />
+                  <Divider className={cartProduct ? '' : 'dis-none-imp'} />
                 </Col>
                 <Col
                   xs={24}
@@ -364,7 +397,9 @@ const Cart = () => {
                   lg={8}
                   className="order-summery-container"
                 >
-                  <div className="order-summary">
+                  <div
+                    className={`order-summary ${cartProduct ? '' : 'dis-none'}`}
+                  >
                     <div>
                       <h4 className="main-color margin-b10">ORDER SUMMARY</h4>
                     </div>
@@ -396,6 +431,7 @@ const Cart = () => {
                       <Button
                         className="proceed-to-checkout"
                         onClick={() => handleCheckout()}
+                        disabled={grand_total === 0 ? true : false}
                       >
                         Proceed to Checkout
                       </Button>
@@ -407,22 +443,18 @@ const Cart = () => {
           </div>
         )}
       </div>
-      <div className="dis-flex dis-none ">
-        <img src="/empty-cart-no-empty.png" alt="Empty cart"></img>
-        <h1>Cart is Empty</h1>
-        <div>
-          <Button
-            onClick={() =>
-              displayMessage('info', 'The message appears on the top.')
-            }
-            appearance="primary"
-          >
-            Push
-          </Button>
-        </div>
-      </div>
       <div>
         <Footer />
+      </div>
+      <div>
+        <AddressModal
+          isAddressModalOpen={isAddressModalOpen}
+          setIsAddressModal={setIsAddressModal}
+          address={address}
+          setAddress={setAddress}
+          userData={userData}
+          displayMessage={displayMessage}
+        />
       </div>
     </div>
   );

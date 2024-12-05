@@ -71,6 +71,19 @@
   background-color: rgb(255, 86, 142) !important;
 }
 
+.cart-empty-container {
+  width: 92vw;
+  position: relative;
+  left: -5vw;
+  flex-direction: column;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.cart-empty-container .imageWrapper {
+  width: 20%;
+}
+
 /* on small devices */
 @media screen and (max-width: 600px) {
   .order-product-info-container h5 {
@@ -90,5 +103,9 @@
   .remove-cart-product {
     position: absolute;
     right: 10px;
+  }
+
+  .cart-empty-container .imageWrapper {
+    width: 40%;
   }
 }

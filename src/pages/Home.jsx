@@ -13,7 +13,7 @@ const Home = () => {
   const [isWebsiteOnUpdate, setIsWebsiteOnUpdate] = useState(false);
 
   useEffect(() => {
-    const handlePrice = async () => {
+    const checkWebsiteStatus = async () => {
       try {
         const response = await axios.get(
           'http://127.0.0.1/testing/test/website_status.php'
@@ -26,7 +26,7 @@ const Home = () => {
       }
     };
 
-    handlePrice();
+    checkWebsiteStatus();
   }, []);
 
   // if (isWebsiteOnUpdate) {

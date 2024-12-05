@@ -32,7 +32,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user) {
 
-    echo json_encode(['status' => 'found', 'message' => 'Address is filled already', 'country' => $user['country'], 'city' => $user['city'] ]);
+    echo json_encode(['status' => 'found', 'message' => 'Address is filled already', 'mobile' => $user['phone_number'], 'address1' => $user['address_line_1'], 'address2' => $user['address_line_2'], 'country' => $user['country'], 'city' => $user['city'], 'state' => $user['state'], 'pincode' => $user['postal_code'], 'email' => $user['email'] ]);
 
 } else {
     echo json_encode(['status' => 'notFound', 'message' => 'Address not found']);
