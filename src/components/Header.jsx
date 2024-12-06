@@ -18,46 +18,24 @@ import { VscAccount } from '@react-icons/all-files/vsc/VscAccount';
 import { IoIosHeartEmpty } from '@react-icons/all-files/io/IoIosHeartEmpty';
 import { IoCartOutline } from '@react-icons/all-files/io5/IoCartOutline';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useProfile } from '../context/profile.context';
 import CryptoJS from 'crypto-js';
 import { useCart } from '../context/Cart.context';
+import { useProduct } from '../context/product.context';
 
-const data = [
-  'Eugenia',
-  'Bryan',
-  'Linda',
-  'Nancy',
-  'Lloyd',
-  'Alice',
-  'Julia',
-  'Albert',
-  'Louisa',
-  'Lester',
-  'Lola',
-  'Lydia',
-  'Hal',
-  'Hannah',
-  'Harriet',
-  'Hattie',
-  'Hazel',
-  'Hilda',
-];
+const autoFillData = [];
 
 const Header = () => {
   const toaster = useToaster();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUp] = useState(false);
-  // const [userData, setUserData] = useState({
-  //   id: '',
-  //   username: '',
-  // });
+
+  // getting the user data from profile context
   const { userData, setUserData } = useProfile();
 
   const { cartData, setCartData } = useCart();
-
-  const [productData, setProductData] = useState(null);
 
   const [signupFormValue, setSignupFormValue] = useState({
     name: '',
@@ -70,24 +48,19 @@ const Header = () => {
     password: '',
   });
 
-  useEffect(() => {
-    const getAllProductData = async () => {
-      try {
-        const response = await axios.get(
-          'http://127.0.0.1/testing/test/all-product.php'
-        );
+  // getting the product data fro the autocomplete data
+  const { productData } = useProduct();
 
-        // console.log(response.data);
-        setProductData(response.data.productData);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const [searchData, setSearchData] = useState(null);
 
-    getAllProductData();
-  }, []);
+  if (productData) {
+    productData.map((data, index) => {
+      autoFillData[index] = data.name;
+    });
+  }
 
-  console.log(productData);
+  // console.log(productData);
+  // console.log(autoFillData);
 
   // const localCartData = JSON.parse(localStorage.getItem('cart'));
 
@@ -255,22 +228,53 @@ const Header = () => {
       if (response.data.message === 'Login successful') {
         // console.log(response.data);
 
-        const sessionId = generateSessionId(response.data.username);
-        // console.log(sessionId);
+        // move local cart item to user cart
+        try {
+          const hashedLocalUserId = JSON.parse(
+            localStorage.getItem('localCart')
+          );
 
-        setUserData({
-          id: response.data.id,
-          username: response.data.username,
-          sessionId: sessionId,
-        });
+          const moveCart = await axios.post(
+            'http://127.0.0.1/testing/cart/local-to-cart.php',
+            {
+              user_id: response.data.id,
+              hashedId: hashedLocalUserId,
+            }
+          );
 
-        updateSessionId(response.data.id, sessionId);
+          console.log(moveCart.data);
 
-        sessionStorage.setItem('sessionId', sessionId);
-        // const storedSessionId = sessionStorage.getItem('sessionId');
-        // console.log('stored session id', storedSessionId);
+          if (moveCart.status === 200 && moveCart.data.status == 'success') {
+            // after local cart is successfully moved to user cart then apply login logic
+            //generate session for user to keep login after refresh
+            const sessionId = generateSessionId(response.data.username);
+            // console.log(sessionId);
 
-        handleLoginClose();
+            setUserData({
+              id: response.data.id,
+              username: response.data.username,
+              sessionId: sessionId,
+            });
+
+            updateSessionId(response.data.id, sessionId);
+
+            sessionStorage.setItem('sessionId', sessionId);
+            // const storedSessionId = sessionStorage.getItem('sessionId');
+            // console.log('stored session id', storedSessionId);
+
+            // updating the cart quantity
+            setCartData(val => ({
+              ...val,
+              quantity: val.quantity - moveCart.data.movedQuantity,
+            }));
+
+            handleLoginClose();
+          } else {
+            console.log('moving is not successful');
+          }
+        } catch (error) {
+          console.log(error);
+        }
       }
     } catch (error) {
       displayMessage('error', 'An error occurred during login.');
@@ -319,6 +323,15 @@ const Header = () => {
     }
   };
 
+  const handleAutofillData = value => {
+    console.log(value);
+    setSearchData(value);
+  };
+
+  const handleSearch = () => {
+    window.location.href = `http://localhost:5173/#/shop/${searchData}`;
+  };
+
   // console.log(message, userData);
 
   // console.log(sessionStorage.getItem('sessionId'));
@@ -335,23 +348,19 @@ const Header = () => {
         </div>
         <div className="search-box">
           <InputGroup inside className="search-product">
-            <AutoComplete data={data} style={{ height: '100%' }} />
-            <InputGroup.Button className="search-icon-button">
+            <AutoComplete
+              data={autoFillData}
+              style={{ height: '100%' }}
+              onChange={handleAutofillData}
+            />
+            <InputGroup.Button
+              className="search-icon-button"
+              onClick={() => handleSearch()}
+            >
               <SearchIcon />
             </InputGroup.Button>
           </InputGroup>
         </div>
-        {/* <div className="search-box">
-          <InputGroup inside className="search-product">
-            <Input
-              className="search-input textCenter"
-              placeholder="Search here"
-            />
-            <InputGroup.Button className="search-icon-button">
-              <SearchIcon />
-            </InputGroup.Button>
-          </InputGroup>
-        </div> */}
         <div className="header-store dis-flex">
           <div className="dis-flex">
             <FaStore className="header-icons" />

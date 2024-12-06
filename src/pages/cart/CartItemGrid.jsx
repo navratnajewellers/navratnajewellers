@@ -182,7 +182,7 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
 
   return (
     <div>
-      {newCartproduct ? (
+      {newCartproduct && newCartproduct.length !== 0 ? (
         newCartproduct.map(data => (
           <CartItem
             key={data.id}

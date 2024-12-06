@@ -14,31 +14,44 @@ import GoldRate from './pages/GoldRate';
 import { ProfileProvider } from './context/profile.context';
 import { CartProvider } from './context/Cart.context';
 import PaymentTest from './pages/PaymentTest';
+import { ProductProvider } from './context/product.context';
+import Product from './pages/coins/Product';
+import ShopGrid from './pages/product/ShopGrid';
 
 function App() {
   return (
     <ProfileProvider>
-      <CartProvider>
-        <HashRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/gold-coin/:gramQt" element={<GoldCoinPage />} />
-            <Route path="/silver-coin/:gramQt" element={<SilverCoinsPage />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/gold-rate" element={<GoldRate />} />
-            <Route path="/vitepage" element={<ViteDefaultPage />} />
-            <Route path="/test-connection" element={<TestConnection />} />
-            <Route path="/test-connection/test-login" element={<TestLogin />} />
-            <Route
-              path="/test-connection/verify-login"
-              element={<VerifyLogin />}
-            />
-            <Route path="/testPayment" element={<PaymentTest />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </HashRouter>
-      </CartProvider>
+      <ProductProvider>
+        <CartProvider>
+          <HashRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/gold-coin/:gramQt" element={<GoldCoinPage />} />
+              <Route
+                path="/silver-coin/:gramQt"
+                element={<SilverCoinsPage />}
+              />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/gold-rate" element={<GoldRate />} />
+              <Route path="/shop/:productName" element={<Product />} />
+              <Route path="/shop" element={<ShopGrid />} />
+              <Route path="/vitepage" element={<ViteDefaultPage />} />
+              <Route path="/test-connection" element={<TestConnection />} />
+              <Route
+                path="/test-connection/test-login"
+                element={<TestLogin />}
+              />
+              <Route
+                path="/test-connection/verify-login"
+                element={<VerifyLogin />}
+              />
+              <Route path="/testPayment" element={<PaymentTest />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </HashRouter>
+        </CartProvider>
+      </ProductProvider>
     </ProfileProvider>
   );
 }

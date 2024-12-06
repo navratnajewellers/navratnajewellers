@@ -1,6 +1,7 @@
 @import './styles/gold-price.css';
 @import './styles/GoldCoin.css';
 @import './styles/Cart.css';
+@import './styles/allProduct.css';
 
 /* remove margin coming from default */
 body {
@@ -174,4 +175,14 @@ body {
   margin-top: 40px;
   margin-bottom: 10px;
   padding-left: 50px;
+}
+
+/* disable default Link style */
+.dis-link-style {
+  text-decoration: none !important;
+  color: black;
+}
+
+.dis-link-style:hover {
+  color: black;
 }

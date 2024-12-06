@@ -267,7 +267,7 @@ const Cart = () => {
           // key: 'YOUR_RAZORPAY_KEY_ID'
           // Step 2: Initialize Razorpay
           const options = {
-            key: 'rzp_test_lMFRdd0BJJlHeu', // Replace with your Razorpay Key ID
+            key: 'YOUR_RAZORPAY_KEY_ID', // Replace with your Razorpay Key ID
             amount: response.data.amount,
             currency: 'INR',
             name: 'Navratna Jewellers',
@@ -388,7 +388,9 @@ const Cart = () => {
                     setGrand_total={setGrand_total}
                     userData={userData}
                   />
-                  <Divider className={cartProduct ? '' : 'dis-none-imp'} />
+                  <Divider
+                    className={grand_total === 0 ? 'dis-none-imp' : ''}
+                  />
                 </Col>
                 <Col
                   xs={24}
@@ -398,7 +400,7 @@ const Cart = () => {
                   className="order-summery-container"
                 >
                   <div
-                    className={`order-summary ${cartProduct ? '' : 'dis-none'}`}
+                    className={`order-summary ${grand_total === 0 ? 'dis-none' : ''}`}
                   >
                     <div>
                       <h4 className="main-color margin-b10">ORDER SUMMARY</h4>
