@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2024 at 02:23 PM
+-- Generation Time: Dec 07, 2024 at 02:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -89,7 +89,9 @@ CREATE TABLE `gold_price` (
   `price_1_gram_24K` int(11) NOT NULL,
   `price_1_gram_22K` int(11) DEFAULT NULL,
   `price_1_gram_18K` int(11) NOT NULL,
+  `price_1_gram_24K_s` int(11) NOT NULL DEFAULT 99,
   `making_charge_gold` decimal(10,2) NOT NULL DEFAULT 0.08,
+  `making_charge_silver` int(11) NOT NULL DEFAULT 20,
   `gst_gold` decimal(10,2) NOT NULL DEFAULT 0.03
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -97,8 +99,8 @@ CREATE TABLE `gold_price` (
 -- Dumping data for table `gold_price`
 --
 
-INSERT INTO `gold_price` (`id`, `price_1_gram_24K`, `price_1_gram_22K`, `price_1_gram_18K`, `making_charge_gold`, `gst_gold`) VALUES
-(1, 7898, 7195, 5887, 0.08, 0.03);
+INSERT INTO `gold_price` (`id`, `price_1_gram_24K`, `price_1_gram_22K`, `price_1_gram_18K`, `price_1_gram_24K_s`, `making_charge_gold`, `making_charge_silver`, `gst_gold`) VALUES
+(1, 7898, 7195, 5887, 99, 0.08, 20, 0.03);
 
 -- --------------------------------------------------------
 
@@ -266,8 +268,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `session_id`, `created_at`, `updated_at`) VALUES
 (1, 'san', '$2y$10$tMiYyJ.MB1.60vrE.NMx8.cux5iMtkzWwvkBrxbF7lGuugW.qhgHG', 'NOT NULL', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (2, 'admin', 'admin', 'admin@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
-(3, 'new admin', '$2y$10$HcPH9aMC.Zf1mNvaBO9iCu0gKYQUmD6PpNkJntiPWY1Bjcdvn.niS', 'adm@gmail.com', '45f33f3a44de67f9d2ded9d26691589637d33752060adfad41f1ee02f18f8727', '2024-11-25 08:12:33', '2024-12-06 15:16:52'),
-(4, 'demo', '$2y$10$LTXh5vdbmzk7x6R1jTsON.s3bWQcMlAGU1gu8F/yiVP1Knswggd7G', 'demo@gmail.com', '5f42fec8d8951b74d55ee4576b76402a57eeb1c8e3e9a7d98600c761762b08d6', '2024-11-25 08:12:33', '2024-12-06 16:39:46'),
+(3, 'new admin', '$2y$10$HcPH9aMC.Zf1mNvaBO9iCu0gKYQUmD6PpNkJntiPWY1Bjcdvn.niS', 'adm@gmail.com', 'b24e60087680e35ed3955085dd1dac855e024289c7de9b36538df91673b0bd53', '2024-11-25 08:12:33', '2024-12-07 17:33:51'),
+(4, 'demo', '$2y$10$LTXh5vdbmzk7x6R1jTsON.s3bWQcMlAGU1gu8F/yiVP1Knswggd7G', 'demo@gmail.com', 'c73975bcfbda62fec64209df12636117c0cc998d48952076f3c00c2ea7d6391b', '2024-11-25 08:12:33', '2024-12-07 18:17:10'),
 (5, 'navratna', '$2y$10$aeg.2TclN.P6raFTDN49/uaavt6LCoYlNljux4QexRfs/kddq1LLG', 'navratna@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (6, 'demo new', '$2y$10$l4RWsvtOmKwJvKhIlR8ot.SGurttmL.C5n3pFofr8UM.VuNuH1Zsa', 'demonew@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (8, 'demo', '$2y$10$sh2GKimjHUhd5dcYVOi9Aud2LBNsElq4wrNDryjf4WyuLIAxq0JPC', 'demo1@gmail.com', 'bfb0af304bcfdcd1de5dfd6ab885ae520e6ad6b7cfaa8a44c234c8c10827ef87', '2024-11-25 09:08:55', '2024-12-05 16:34:35'),

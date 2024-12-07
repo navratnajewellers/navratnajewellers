@@ -22,7 +22,7 @@ $makingCharge = $priceItems['price_1_gram_24K'] * $priceItems['making_charge_gol
 $gst = ($priceItems['price_1_gram_24K'] + $makingCharge) * $priceItems['gst_gold'];
 $goldPrice = round($priceItems['price_1_gram_24K'] + $makingCharge + $gst);
 
-echo json_encode(["message" => "Price updated", "data" => $priceItems, "22K gold price" => $priceItems['price_1_gram_24K'], "makingCharge" =>  $makingCharge, "gst" => $gst, "goldPrice" => $goldPrice ]);
+echo json_encode(["message" => "Price updated", "data" => $priceItems, "22K gold price" => $priceItems['price_1_gram_24K'], "makingCharge" =>  $makingCharge, "gst" => $gst, "goldPrice" => $goldPrice, "gold-rate-contain" => $priceItems ]);
 
  } catch (PDOException $e) {
     echo json_encode(["error" => $e->getMessage()]);

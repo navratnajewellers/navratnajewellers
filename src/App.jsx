@@ -17,6 +17,7 @@ import PaymentTest from './pages/PaymentTest';
 import { ProductProvider } from './context/product.context';
 import Product from './pages/coins/Product';
 import ShopGrid from './pages/product/ShopGrid';
+import UserDashboard from './pages/dashboard/UserDashboard';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
               <Route path="/gold-rate" element={<GoldRate />} />
               <Route path="/shop/:productName" element={<Product />} />
               <Route path="/shop" element={<ShopGrid />} />
+              <Route path="/dashboard" element={<UserDashboard />} />
               <Route path="/vitepage" element={<ViteDefaultPage />} />
               <Route path="/test-connection" element={<TestConnection />} />
               <Route

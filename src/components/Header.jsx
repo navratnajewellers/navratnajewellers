@@ -17,7 +17,7 @@ import { FaStore } from '@react-icons/all-files/fa/FaStore';
 import { VscAccount } from '@react-icons/all-files/vsc/VscAccount';
 import { IoIosHeartEmpty } from '@react-icons/all-files/io/IoIosHeartEmpty';
 import { IoCartOutline } from '@react-icons/all-files/io5/IoCartOutline';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import { useProfile } from '../context/profile.context';
@@ -29,6 +29,7 @@ const autoFillData = [];
 
 const Header = () => {
   const toaster = useToaster();
+  const navigate = useNavigate();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUp] = useState(false);
 
@@ -133,6 +134,10 @@ const Header = () => {
         // console.log('sign up modal is open');
         setIsSignUp(true);
       }
+      if (eventKey === 3) {
+        // console.log('user dashboard is open');
+        navigate('/dashboard');
+      }
       if (eventKey === 4) {
         // console.log('Logout Successfully');
 
@@ -154,6 +159,8 @@ const Header = () => {
         });
 
         displayMessage('info', 'Logout Succesfully');
+
+        window.location.replace('/');
       }
     };
     return (
