@@ -1,9 +1,11 @@
-import { Breadcrumb, Loader } from 'rsuite';
+import { Accordion, Breadcrumb, Loader } from 'rsuite';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useProfile } from '../../context/profile.context';
+import axios from 'axios';
+import UserOrderGrid from './UserOrderGrid';
 
 const UserDashboard = () => {
   const { userData } = useProfile();
@@ -12,6 +14,9 @@ const UserDashboard = () => {
   const [isUserLogin, setIsUserLogin] = useState(false);
 
   const [greetingMessage, setGreetingMessage] = useState('');
+
+  // order details with order items too
+  const [orderData, setOrderData] = useState(null);
 
   useEffect(() => {
     if (userData.id) {
@@ -23,20 +28,56 @@ const UserDashboard = () => {
     }
 
     // checking the date and time
-    const todayDate = new Date();
+    const getGreetingMessage = () => {
+      const todayDate = new Date();
 
-    if (todayDate.getHours() < 12) {
-      setGreetingMessage('Good Morning');
-    } else if (todayDate.getHours() >= 12 && todayDate.getHours() < 16) {
-      setGreetingMessage('Good Afternoon');
-    } else if (todayDate.getHours() >= 16 && todayDate.getHours() <= 23) {
-      setGreetingMessage('Good Evening');
-    } else {
-      setGreetingMessage('Good Night');
+      if (todayDate.getHours() < 12) {
+        setGreetingMessage('Good Morning');
+      } else if (todayDate.getHours() >= 12 && todayDate.getHours() < 16) {
+        setGreetingMessage('Good Afternoon');
+      } else if (todayDate.getHours() >= 16 && todayDate.getHours() <= 23) {
+        setGreetingMessage('Good Evening');
+      } else {
+        setGreetingMessage('Good Night');
+      }
+    };
+
+    getGreetingMessage();
+
+    if (userData.id) {
+      const getOrderDetails = async () => {
+        try {
+          const response = await axios.post(
+            'http://127.0.0.1/testing/dashboard/fetch_order.php',
+            {
+              userId: userData.id,
+            }
+          );
+
+          // console.log(response.data);
+          setOrderData(response.data.record);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      getOrderDetails();
     }
   }, [userData.id]);
 
-  // console.log(userData);
+  const handleReference = () => {
+    setTimeout(() => {
+      if (!userData.id) {
+        setTimeout(() => {
+          window.location.replace(`/`);
+        }, 4000);
+      }
+    }, 2000);
+  };
+
+  // console.log(userData);;
+  // console.log(orderData);
+  // console.log(userData.id);
 
   return (
     <div>
@@ -57,7 +98,7 @@ const UserDashboard = () => {
             <Loader content="Loading..." vertical />
           </div>
         ) : isUserLogin ? (
-          <div>
+          <div className="dashboard-container">
             <div>
               <h2>
                 {greetingMessage}, {userData.username} !{' '}
@@ -65,7 +106,16 @@ const UserDashboard = () => {
             </div>
             <div>
               <div>
-                <h4>Your Orders</h4>
+                <h4 className="textCenter margin-t30 margin-b50 main-color">
+                  Your Orders
+                </h4>
+              </div>
+              <div>
+                <Accordion defaultActiveKey={1} bordered>
+                  {orderData?.toReversed().map(data => (
+                    <UserOrderGrid key={data.id} orderData={data} />
+                  ))}
+                </Accordion>
               </div>
             </div>
           </div>
@@ -75,9 +125,7 @@ const UserDashboard = () => {
               Login to see your Dashboard
             </h3>
             <div className="dis-none">
-              {setTimeout(() => {
-                window.location.replace(`/`);
-              }, 4000)}
+              {userData.id ? '' : handleReference()}
             </div>
           </div>
         )}

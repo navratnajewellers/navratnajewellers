@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2024 at 02:17 PM
+-- Generation Time: Dec 10, 2024 at 02:21 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -146,10 +146,6 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `total_amount`, `order_date`, `order_updateAt`, `status`) VALUES
-('order_PT10ahqcpmVqTa', 4, 50000.00, '2024-12-04 12:53:01', '2024-12-04 12:53:01', 'created'),
-('order_PT14QvJARSQC2m', 4, 50000.00, '2024-12-04 12:56:39', '2024-12-04 12:56:39', 'created'),
-('order_PT1BWXobSgzz1P', 4, 105429.00, '2024-12-04 13:03:22', '2024-12-04 13:03:22', 'created'),
-('order_PT1EW5TFPf0IRA', 4, 123000.00, '2024-12-04 13:06:12', '2024-12-04 13:06:36', 'paid'),
 ('order_PT2efWo2gDsWs4', 3, 61500.00, '2024-12-04 14:29:40', '2024-12-04 14:30:23', 'paid'),
 ('order_PT41BgNw7AcZpP', 4, 79072.00, '2024-12-04 15:49:40', '2024-12-04 15:50:10', 'paid'),
 ('order_PTTjR8xBit9sZP', 4, 8786.00, '2024-12-05 16:58:54', '2024-12-05 16:59:36', 'paid'),
@@ -169,6 +165,7 @@ CREATE TABLE `order_items` (
   `product_id_oi` int(11) NOT NULL,
   `quantity_oi` int(11) NOT NULL,
   `price_oi` decimal(10,2) NOT NULL,
+  `delivery_status` varchar(255) NOT NULL DEFAULT 'processing',
   `created_at_oi` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at_oi` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -177,14 +174,14 @@ CREATE TABLE `order_items` (
 -- Dumping data for table `order_items`
 --
 
-INSERT INTO `order_items` (`id`, `order_id_oi`, `product_id_oi`, `quantity_oi`, `price_oi`, `created_at_oi`, `updated_at_oi`) VALUES
-(5, 'order_PT41BgNw7AcZpP', 2, 4, 31592.00, '2024-12-04 10:20:10', '2024-12-04 15:50:10'),
-(6, 'order_PT41BgNw7AcZpP', 1, 1, 7898.00, '2024-12-04 10:20:10', '2024-12-04 15:50:10'),
-(7, 'order_PTTjR8xBit9sZP', 1, 1, 7898.00, '2024-12-05 11:29:36', '2024-12-05 16:59:36'),
-(8, 'order_PTTpWh7MbShKVP', 3, 1, 7898.00, '2024-12-05 11:35:04', '2024-12-05 17:05:04'),
-(9, 'order_PTU2YcTUbLGJEv', 1, 2, 15796.00, '2024-12-05 11:47:37', '2024-12-05 17:17:37'),
-(10, 'order_PTU2YcTUbLGJEv', 2, 1, 7898.00, '2024-12-05 11:47:37', '2024-12-05 17:17:37'),
-(11, 'order_PTU7I5zvXqeeS7', 1, 1, 7898.00, '2024-12-05 11:51:57', '2024-12-05 17:21:57');
+INSERT INTO `order_items` (`id`, `order_id_oi`, `product_id_oi`, `quantity_oi`, `price_oi`, `delivery_status`, `created_at_oi`, `updated_at_oi`) VALUES
+(5, 'order_PT41BgNw7AcZpP', 2, 4, 31592.00, 'processing', '2024-12-04 10:20:10', '2024-12-04 15:50:10'),
+(6, 'order_PT41BgNw7AcZpP', 1, 1, 7898.00, 'processing', '2024-12-04 10:20:10', '2024-12-04 15:50:10'),
+(7, 'order_PTTjR8xBit9sZP', 1, 1, 7898.00, 'processing', '2024-12-05 11:29:36', '2024-12-05 16:59:36'),
+(8, 'order_PTTpWh7MbShKVP', 3, 1, 7898.00, 'processing', '2024-12-05 11:35:04', '2024-12-05 17:05:04'),
+(9, 'order_PTU2YcTUbLGJEv', 1, 2, 15796.00, 'processing', '2024-12-05 11:47:37', '2024-12-05 17:17:37'),
+(10, 'order_PTU2YcTUbLGJEv', 2, 1, 7898.00, 'processing', '2024-12-05 11:47:37', '2024-12-05 17:17:37'),
+(11, 'order_PTU7I5zvXqeeS7', 1, 1, 7898.00, 'order-cancel', '2024-12-05 11:51:57', '2024-12-10 17:48:26');
 
 -- --------------------------------------------------------
 
@@ -206,7 +203,6 @@ CREATE TABLE `payment_details` (
 --
 
 INSERT INTO `payment_details` (`pd_id`, `pd_order_id`, `pd_payment_id`, `pd_verify_signature`, `pd_created_at`, `pd_updated_at`) VALUES
-(1, 'order_PT1EW5TFPf0IRA', 'pay_PT1EflYgSATe15', 'c51b939d856a90149d4ace505d95b6dec7b9f5ac25cf5a489c80021934b5d51f', '2024-12-04 07:36:36', '2024-12-04 13:06:36'),
 (2, 'order_PT2efWo2gDsWs4', 'pay_PT2fAH5JJyolcl', '56e334024cc4de42811944bb3465e700fb54f0c89558e76cddfd040826436467', '2024-12-04 09:00:23', '2024-12-04 14:30:23'),
 (3, 'order_PT41BgNw7AcZpP', 'pay_PT41SOqqk2sRaj', 'e992fd8c211fb396416d7c46f0d58ba612e12b647e3fd7a7c1e1a607f821fb21', '2024-12-04 10:20:10', '2024-12-04 15:50:10'),
 (4, 'order_PTTjR8xBit9sZP', 'pay_PTTjsxgfBQPYD3', '9c2c8edcb6c808589d1c8ca7c0687cd25837bdecacf824c8241901899e4fcb76', '2024-12-05 11:29:36', '2024-12-05 16:59:36'),
@@ -268,8 +264,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `session_id`, `created_at`, `updated_at`) VALUES
 (1, 'san', '$2y$10$tMiYyJ.MB1.60vrE.NMx8.cux5iMtkzWwvkBrxbF7lGuugW.qhgHG', 'NOT NULL', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (2, 'admin', 'admin', 'admin@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
-(3, 'new admin', '$2y$10$HcPH9aMC.Zf1mNvaBO9iCu0gKYQUmD6PpNkJntiPWY1Bjcdvn.niS', 'adm@gmail.com', 'b24e60087680e35ed3955085dd1dac855e024289c7de9b36538df91673b0bd53', '2024-11-25 08:12:33', '2024-12-07 17:33:51'),
-(4, 'demo', '$2y$10$LTXh5vdbmzk7x6R1jTsON.s3bWQcMlAGU1gu8F/yiVP1Knswggd7G', 'demo@gmail.com', 'c73975bcfbda62fec64209df12636117c0cc998d48952076f3c00c2ea7d6391b', '2024-11-25 08:12:33', '2024-12-07 18:17:10'),
+(3, 'new admin', '$2y$10$HcPH9aMC.Zf1mNvaBO9iCu0gKYQUmD6PpNkJntiPWY1Bjcdvn.niS', 'adm@gmail.com', 'f74ceff626257e85818a5cb66c0a5bb3900c4acc32df92457670d57a5d663948', '2024-11-25 08:12:33', '2024-12-10 12:02:08'),
+(4, 'demo', '$2y$10$LTXh5vdbmzk7x6R1jTsON.s3bWQcMlAGU1gu8F/yiVP1Knswggd7G', 'demo@gmail.com', '9a175c10695c4ba0cfcc7984d56b8ee75d52ce337679890de5354c3853a31853', '2024-11-25 08:12:33', '2024-12-10 12:03:27'),
 (5, 'navratna', '$2y$10$aeg.2TclN.P6raFTDN49/uaavt6LCoYlNljux4QexRfs/kddq1LLG', 'navratna@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (6, 'demo new', '$2y$10$l4RWsvtOmKwJvKhIlR8ot.SGurttmL.C5n3pFofr8UM.VuNuH1Zsa', 'demonew@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (8, 'demo', '$2y$10$sh2GKimjHUhd5dcYVOi9Aud2LBNsElq4wrNDryjf4WyuLIAxq0JPC', 'demo1@gmail.com', 'bfb0af304bcfdcd1de5dfd6ab885ae520e6ad6b7cfaa8a44c234c8c10827ef87', '2024-11-25 09:08:55', '2024-12-05 16:34:35'),

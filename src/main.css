@@ -2,6 +2,7 @@
 @import './styles/GoldCoin.css';
 @import './styles/Cart.css';
 @import './styles/allProduct.css';
+@import './styles/dashboard.css';
 
 /* remove margin coming from default */
 body {
