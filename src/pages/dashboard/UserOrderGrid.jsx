@@ -51,7 +51,10 @@ const UserOrderGrid = ({ orderData }) => {
         );
 
         // console.log(response.data);
-        if (response.data) {
+        if (response.data.status == 'success') {
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
           console.log(response.data.message);
         }
       } catch (error) {

@@ -9,6 +9,7 @@ import {
   Nav,
   Navbar,
   Popover,
+  Schema,
   useToaster,
   Whisper,
 } from 'rsuite';
@@ -18,7 +19,7 @@ import { VscAccount } from '@react-icons/all-files/vsc/VscAccount';
 import { IoIosHeartEmpty } from '@react-icons/all-files/io/IoIosHeartEmpty';
 import { IoCartOutline } from '@react-icons/all-files/io5/IoCartOutline';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import axios from 'axios';
 import { useProfile } from '../context/profile.context';
 import CryptoJS from 'crypto-js';
@@ -27,9 +28,33 @@ import { useProduct } from '../context/product.context';
 
 const autoFillData = [];
 
+// model schema to check required data to be fill in form
+const { StringType } = Schema.Types;
+
+const signupModel = Schema.Model({
+  name: StringType().isRequired('Name is required'),
+  email: StringType()
+    .isEmail('Enter a valid email')
+    .isRequired('Email is required'),
+  password: StringType()
+    .minLength(6, 'Password should be atleast six character long')
+    .isRequired('Password is required'),
+});
+
+const loginModel = Schema.Model({
+  email: StringType()
+    .isEmail('Enter a valid email')
+    .isRequired('Email is required'),
+  password: StringType().isRequired('Password is required'),
+});
+
 const Header = () => {
   const toaster = useToaster();
   const navigate = useNavigate();
+
+  const signupRef = useRef();
+  const loginRef = useRef();
+
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUp] = useState(false);
 
@@ -218,115 +243,126 @@ const Header = () => {
   };
 
   const handleLogin = async e => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        'http://127.0.0.1/testing/verify_email_login.php',
-        {
-          email: loginFormValue.email,
-          password: loginFormValue.password,
-        }
-      );
+    // check if all the login model schema is fulfilled or not
+    if (loginRef.current.check()) {
+      // console.log('form values are correct');
 
-      displayMessage('info', response.data.message);
-
-      //check database message for successful login
-
-      if (response.data.message === 'Login successful') {
-        // console.log(response.data);
-
-        // move local cart item to user cart
-        try {
-          const hashedLocalUserId = JSON.parse(
-            localStorage.getItem('localCart')
-          );
-
-          const moveCart = await axios.post(
-            'http://127.0.0.1/testing/cart/local-to-cart.php',
-            {
-              user_id: response.data.id,
-              hashedId: hashedLocalUserId,
-            }
-          );
-
-          console.log(moveCart.data);
-
-          if (moveCart.status === 200 && moveCart.data.status == 'success') {
-            // after local cart is successfully moved to user cart then apply login logic
-            //generate session for user to keep login after refresh
-            const sessionId = generateSessionId(response.data.username);
-            // console.log(sessionId);
-
-            setUserData({
-              id: response.data.id,
-              username: response.data.username,
-              sessionId: sessionId,
-            });
-
-            updateSessionId(response.data.id, sessionId);
-
-            sessionStorage.setItem('sessionId', sessionId);
-            // const storedSessionId = sessionStorage.getItem('sessionId');
-            // console.log('stored session id', storedSessionId);
-
-            // updating the cart quantity
-            setCartData(val => ({
-              ...val,
-              quantity: val.quantity - moveCart.data.movedQuantity,
-            }));
-
-            handleLoginClose();
-          } else {
-            console.log('moving is not successful');
+      e.preventDefault();
+      try {
+        const response = await axios.post(
+          'http://127.0.0.1/testing/verify_email_login.php',
+          {
+            email: loginFormValue.email,
+            password: loginFormValue.password,
           }
-        } catch (error) {
-          console.log(error);
+        );
+
+        displayMessage('info', response.data.message);
+
+        //check database message for successful login
+
+        if (response.data.message === 'Login successful') {
+          // console.log(response.data);
+
+          // move local cart item to user cart
+          try {
+            const hashedLocalUserId = JSON.parse(
+              localStorage.getItem('localCart')
+            );
+
+            const moveCart = await axios.post(
+              'http://127.0.0.1/testing/cart/local-to-cart.php',
+              {
+                user_id: response.data.id,
+                hashedId: hashedLocalUserId,
+              }
+            );
+
+            console.log(moveCart.data);
+
+            if (moveCart.status === 200 && moveCart.data.status == 'success') {
+              // after local cart is successfully moved to user cart then apply login logic
+              //generate session for user to keep login after refresh
+              const sessionId = generateSessionId(response.data.username);
+              // console.log(sessionId);
+
+              setUserData({
+                id: response.data.id,
+                username: response.data.username,
+                sessionId: sessionId,
+              });
+
+              updateSessionId(response.data.id, sessionId);
+
+              sessionStorage.setItem('sessionId', sessionId);
+              // const storedSessionId = sessionStorage.getItem('sessionId');
+              // console.log('stored session id', storedSessionId);
+
+              // updating the cart quantity
+              setCartData(val => ({
+                ...val,
+                quantity: val.quantity - moveCart.data.movedQuantity,
+              }));
+
+              handleLoginClose();
+            } else {
+              console.log('moving is not successful');
+            }
+          } catch (error) {
+            console.log(error);
+          }
         }
+      } catch (error) {
+        displayMessage('error', 'An error occurred during login.');
+        console.log(error);
       }
-    } catch (error) {
-      displayMessage('error', 'An error occurred during login.');
-      console.log(error);
+    } else {
+      displayMessage('warning', 'Fill all the required data');
     }
   };
 
   const handleSignUp = async e => {
-    e.preventDefault();
+    if (signupRef.current.check()) {
+      e.preventDefault();
 
-    try {
-      const response = await fetch(
-        'http://127.0.0.1/testing/new_register.php',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: signupFormValue.name,
-            password: signupFormValue.password,
-            email: signupFormValue.email,
-          }),
+      try {
+        const response = await fetch(
+          'http://127.0.0.1/testing/new_register.php',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              username: signupFormValue.name,
+              password: signupFormValue.password,
+              email: signupFormValue.email,
+            }),
+          }
+        );
+
+        const data = await response.json();
+
+        // console.log('sign up : -', data);
+
+        if (
+          data.error ===
+          `SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'try2@gmail.com' for key 'email'`
+        ) {
+          displayMessage('error', 'Email already exists');
         }
-      );
 
-      const data = await response.json();
+        if (data.message) {
+          displayMessage('info', data.message);
+        }
 
-      // console.log('sign up : -', data);
-
-      if (
-        data.error ===
-        `SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'try2@gmail.com' for key 'email'`
-      ) {
-        displayMessage('error', 'Email already exists');
+        handleSignUpClose();
+      } catch (error) {
+        displayMessage('error', 'An error occurred during signup.');
+        console.log(error);
       }
-
-      if (data.message) {
-        displayMessage('info', data.message);
-      }
-
-      handleSignUpClose();
-    } catch (error) {
-      displayMessage('error', 'An error occurred during signup.');
-      console.log(error);
+    } else {
+      displayMessage('warning', 'Fill all the required data');
     }
   };
 
@@ -337,6 +373,10 @@ const Header = () => {
 
   const handleSearch = () => {
     window.location.href = `http://localhost:5173/#/shop/${searchData}`;
+  };
+
+  const handleForgotPassword = () => {
+    navigate('/forgotPassword');
   };
 
   // console.log(message, userData);
@@ -509,6 +549,8 @@ const Header = () => {
               fluid
               onChange={setSignupFormValue}
               formValue={signupFormValue}
+              model={signupModel}
+              ref={signupRef}
             >
               <Form.Group controlId="name-9">
                 <Form.ControlLabel>Username</Form.ControlLabel>
@@ -527,6 +569,13 @@ const Header = () => {
                   type="password"
                   autoComplete="off"
                 />
+                <Form.HelpText>Required</Form.HelpText>
+              </Form.Group>
+              <Form.Group controlId="TC-9">
+                <Form.ControlLabel>
+                  By creating an account or logging in, you agree to
+                  Navratna&apos;s Conditions of Use and Privacy Policy.
+                </Form.ControlLabel>
               </Form.Group>
             </Form>
           </Modal.Body>
@@ -546,7 +595,13 @@ const Header = () => {
             <Modal.Title>Login</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form fluid onChange={setLoginFormValue} formValue={loginFormValue}>
+            <Form
+              fluid
+              onChange={setLoginFormValue}
+              formValue={loginFormValue}
+              model={loginModel}
+              ref={loginRef}
+            >
               <Form.Group controlId="email-9">
                 <Form.ControlLabel>Email</Form.ControlLabel>
                 <Form.Control name="email" type="email" />
@@ -559,6 +614,16 @@ const Header = () => {
                   type="password"
                   autoComplete="off"
                 />
+                <Form.HelpText>Required</Form.HelpText>
+              </Form.Group>
+              <Form.Group controlId="forgot-9">
+                <Button onClick={handleForgotPassword}>Forget Password</Button>
+              </Form.Group>
+              <Form.Group controlId="TC-9">
+                <Form.ControlLabel>
+                  By continuing, you agree to Navratna&apos;s Conditions of Use
+                  and Privacy Notice.
+                </Form.ControlLabel>
               </Form.Group>
             </Form>
           </Modal.Body>

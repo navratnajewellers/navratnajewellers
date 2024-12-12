@@ -130,7 +130,7 @@ const AddressModal = ({
     <div>
       <Modal open={isAddressModalOpen} onClose={handleSignUpClose} size="xs">
         <Modal.Header className="modal-custom-header">
-          <Modal.Title>New User</Modal.Title>
+          <Modal.Title>User Address</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form
@@ -195,9 +195,5 @@ const AddressModal = ({
     </div>
   );
 };
-
-{
-  /* <Button onClick={handleModal}>Open Modal</Button> */
-}
 
 export default AddressModal;

@@ -25,7 +25,7 @@ const data = [1, 2, 3, 4, 5, 10].map(item => ({
   value: item,
 }));
 
-const GoldCoinPage = () => {
+const SilverCoinPage = () => {
   const toaster = useToaster();
   const { gramQt } = useParams();
 
@@ -39,7 +39,6 @@ const GoldCoinPage = () => {
   const { userData } = useProfile();
 
   // const { cartData, setCartData } = useCart();
-  // only to use when ready for production and console log is off
   const { setCartData } = useCart();
 
   const priceBreak = {
@@ -169,6 +168,10 @@ const GoldCoinPage = () => {
     } else {
       // console.log('user is not log in');
 
+      console.log({ priceBreak: priceBreak });
+
+      console.log('sent price is ' + priceBreak.grand_total * cartQuantity);
+
       const hashedLocalUserId = JSON.parse(localStorage.getItem('localCart'));
 
       try {
@@ -206,6 +209,7 @@ const GoldCoinPage = () => {
 
   // console.log({ userData: userData, productData: productData });
   // console.log({ cartQuantity: cartQuantity, cartData: cartData });
+  // console.log({ priceData: priceData, priceBreak: priceBreak });
 
   return (
     <div>
@@ -229,7 +233,7 @@ const GoldCoinPage = () => {
             <Loader content="Loading..." vertical />
           ) : (
             <h2 style={{ fontFamily: 'cursive' }}>
-              This product has been deleted.
+              This product get Out of Stock.
             </h2>
           )}
         </div>
@@ -238,9 +242,9 @@ const GoldCoinPage = () => {
           <div className="dis-none">
             {
               (priceBreak.productPrice =
-                priceData.price_1_gram_24K * productData.weight)
+                priceData.price_1_gram_24K_s * productData.weight)
             }
-            {(priceBreak.makingCharge = priceBreak.productPrice * 0.08)}
+            {(priceBreak.makingCharge = priceData.making_charge_silver)}
             {
               (priceBreak.subTotal =
                 priceBreak.productPrice + priceBreak.makingCharge)
@@ -350,7 +354,7 @@ const GoldCoinPage = () => {
                               <tbody>
                                 <tr>
                                   <td>{productData.karat} Silver Coin</td>
-                                  <td>₹ {priceData.price_1_gram_24K}/g</td>
+                                  <td>₹ {priceData.price_1_gram_24K_s}/g</td>
                                   <td>{productData.weight} g</td>
                                   <td>₹ {priceBreak.productPrice}</td>
                                 </tr>
@@ -358,7 +362,7 @@ const GoldCoinPage = () => {
                                   <td>Making Charges</td>
                                   <td>-</td>
                                   <td>-</td>
-                                  <td>₹ {priceBreak.makingCharge}</td>
+                                  <td>₹ {priceData.making_charge_silver}</td>
                                 </tr>
                                 <tr>
                                   <td>Sub Total</td>
@@ -382,7 +386,7 @@ const GoldCoinPage = () => {
                                   >
                                     Grand Total
                                   </td>
-                                  <td>₹ {priceBreak.grand_total}</td>
+                                  <td>₹ {priceData.s}</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -436,4 +440,4 @@ const GoldCoinPage = () => {
   );
 };
 
-export default GoldCoinPage;
+export default SilverCoinPage;

@@ -219,7 +219,7 @@ const Product = () => {
             <Loader content="Loading..." vertical />
           ) : (
             <h2 style={{ fontFamily: 'cursive' }}>
-              This product has been deleted.
+              This product get Out of Stock.
             </h2>
           )}
         </div>
@@ -238,23 +238,50 @@ const Product = () => {
               </Breadcrumb.Item>
             </Breadcrumb>
           </div>
-          <div className="dis-none">
-            {
-              (priceBreak.productPrice =
-                priceData.price_1_gram_24K * productData.weight)
-            }
-            {(priceBreak.makingCharge = priceBreak.productPrice * 0.08)}
-            {
-              (priceBreak.subTotal =
-                priceBreak.productPrice + priceBreak.makingCharge)
-            }
-            {(priceBreak.gst = Math.round(priceBreak.subTotal * 0.03))}
-            {
-              (priceBreak.grand_total = Math.round(
-                priceBreak.subTotal + priceBreak.gst
-              ))
-            }
+          <div>
+            {productData.product_category == 'gold-coin' ? (
+              <div>
+                <div className="dis-none">
+                  {
+                    (priceBreak.productPrice =
+                      priceData.price_1_gram_24K * productData.weight)
+                  }
+                  {(priceBreak.makingCharge = priceBreak.productPrice * 0.08)}
+                  {
+                    (priceBreak.subTotal =
+                      priceBreak.productPrice + priceBreak.makingCharge)
+                  }
+                  {(priceBreak.gst = Math.round(priceBreak.subTotal * 0.03))}
+                  {
+                    (priceBreak.grand_total = Math.round(
+                      priceBreak.subTotal + priceBreak.gst
+                    ))
+                  }
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div className="dis-none">
+                  {
+                    (priceBreak.productPrice =
+                      priceData.price_1_gram_24K_s * productData.weight)
+                  }
+                  {(priceBreak.makingCharge = priceData.making_charge_silver)}
+                  {
+                    (priceBreak.subTotal =
+                      priceBreak.productPrice + priceBreak.makingCharge)
+                  }
+                  {(priceBreak.gst = Math.round(priceBreak.subTotal * 0.03))}
+                  {
+                    (priceBreak.grand_total = Math.round(
+                      priceBreak.subTotal + priceBreak.gst
+                    ))
+                  }
+                </div>
+              </div>
+            )}
           </div>
+
           <div>
             <Grid fluid>
               <Row className="show-grid">

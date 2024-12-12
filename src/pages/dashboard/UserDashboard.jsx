@@ -66,13 +66,16 @@ const UserDashboard = () => {
   }, [userData.id]);
 
   const handleReference = () => {
+    // window.location.replace(`/`);
     setTimeout(() => {
+      // console.log('user is ' + userData.id);
+
       if (!userData.id) {
         setTimeout(() => {
-          window.location.replace(`/`);
+          //window.location.replace(`/`);
         }, 4000);
       }
-    }, 2000);
+    }, 4000);
   };
 
   // console.log(userData);;
@@ -113,7 +116,7 @@ const UserDashboard = () => {
               <div>
                 <Accordion defaultActiveKey={1} bordered>
                   {orderData?.toReversed().map(data => (
-                    <UserOrderGrid key={data.id} orderData={data} />
+                    <UserOrderGrid key={data.order_id} orderData={data} />
                   ))}
                 </Accordion>
               </div>
@@ -125,7 +128,7 @@ const UserDashboard = () => {
               Login to see your Dashboard
             </h3>
             <div className="dis-none">
-              {userData.id ? '' : handleReference()}
+              {!userData.id ? handleReference() : ''}
             </div>
           </div>
         )}

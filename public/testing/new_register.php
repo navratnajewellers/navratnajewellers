@@ -20,12 +20,15 @@ try {
 	$email = htmlspecialchars(strip_tags($data->email));
         $password = htmlspecialchars(strip_tags($data->password));
 
+	$userId = uniqid();
+
         // Hash the password
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert into the database
-        $sql = "INSERT INTO users (username, password, email) VALUES (:username, :password, :email)";
+        $sql = "INSERT INTO users (id, username, password, email) VALUES (:userId, :username, :password, :email)";
         $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':userId', $userId);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $hashedPassword);
 	$stmt->bindParam(':email', $email);

@@ -228,7 +228,7 @@ const GoldCoinPage = () => {
             <Loader content="Loading..." vertical />
           ) : (
             <h2 style={{ fontFamily: 'cursive' }}>
-              This product has been deleted.
+              This product get Out of Stock.
             </h2>
           )}
         </div>

@@ -19,6 +19,8 @@ import { Link } from 'react-router-dom';
 import CartItemGrid from './cart/CartItemGrid';
 import AddressModal from './cart/AddressModal';
 
+const YOUR_RAZORPAY_KEY_ID = null;
+
 const addresDefault = {
   status: 'notFound',
   mobile: '',
@@ -203,12 +205,12 @@ const Cart = () => {
     };
   }, [userData]);
 
-  // console.log({
-  //   isPriceLoading: isPriceLoading,
-  //   isCartLoading: isCartLoading,
-  //   priceData: priceData,
-  //   cartProduct: cartProduct,
-  // });
+  console.log({
+    isPriceLoading: isPriceLoading,
+    isCartLoading: isCartLoading,
+    priceData: priceData,
+    cartProduct: cartProduct,
+  });
 
   // moving the cart item to order_item
   const handleMoveCartToOrder = async (status, orderId) => {
@@ -220,6 +222,7 @@ const Cart = () => {
           user_id: userData.id,
           orderId: orderId,
           goldPrice: priceData.price_1_gram_24K,
+          silverPrice: priceData.price_1_gram_24K_s,
         }
       );
 
@@ -248,6 +251,12 @@ const Cart = () => {
       // updated code
 
       const handlePayment = async () => {
+        // checking the razorpay key before starting payment process
+        if (YOUR_RAZORPAY_KEY_ID == null) {
+          displayMessage('info', 'Set the razor key to continue', 3000);
+          return;
+        }
+
         try {
           // Step 1: Fetch Order ID from the backend
           const response = await axios.post(
@@ -267,7 +276,7 @@ const Cart = () => {
           // key: 'YOUR_RAZORPAY_KEY_ID'
           // Step 2: Initialize Razorpay
           const options = {
-            key: 'YOUR_RAZORPAY_KEY_ID', // Replace with your Razorpay Key ID
+            key: YOUR_RAZORPAY_KEY_ID, // Replace with your Razorpay Key ID
             amount: response.data.amount,
             currency: 'INR',
             name: 'Navratna Jewellers',

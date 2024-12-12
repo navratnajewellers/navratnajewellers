@@ -19,17 +19,31 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
 
   if (newCartproduct) {
     newCartproduct.map(data => {
-      priceDetails.productPrice =
-        priceData.price_1_gram_24K * data.weight * data.quantity;
-      priceDetails.makingCharge = priceDetails.productPrice * 0.08;
-      priceDetails.subTotal =
-        priceDetails.productPrice + priceDetails.makingCharge;
-      priceDetails.gst = priceDetails.subTotal * 0.03;
-      priceDetails.grand_total = Math.round(
-        priceDetails.grand_total + priceDetails.subTotal + priceDetails.gst
-      );
+      if (data.product_category == 'gold-coin') {
+        priceDetails.productPrice =
+          priceData.price_1_gram_24K * data.weight * data.quantity;
+        priceDetails.makingCharge = priceDetails.productPrice * 0.08;
+        priceDetails.subTotal =
+          priceDetails.productPrice + priceDetails.makingCharge;
+        priceDetails.gst = priceDetails.subTotal * 0.03;
+        priceDetails.grand_total = Math.round(
+          priceDetails.grand_total + priceDetails.subTotal + priceDetails.gst
+        );
+      } else if (data.product_category == 'silver-coin') {
+        priceDetails.productPrice =
+          priceData.price_1_gram_24K_s * data.weight * data.quantity;
+        priceDetails.makingCharge = priceData.making_charge_silver;
+        priceDetails.subTotal =
+          priceDetails.productPrice + priceDetails.makingCharge;
+        priceDetails.gst = priceDetails.subTotal * 0.03;
+        priceDetails.grand_total = Math.round(
+          priceDetails.grand_total + priceDetails.subTotal + priceDetails.gst
+        );
+      }
     });
   }
+
+  console.log(newCartproduct);
 
   // setTimeout is used to delay the time for updating total price of all product
   setTimeout(() => {

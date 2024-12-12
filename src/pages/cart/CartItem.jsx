@@ -9,11 +9,22 @@ const CartItem = ({
   handleIncreaseCart,
 }) => {
   // setting the price of the product
-  const productPrice = priceData.price_1_gram_24K * cartData.weight;
-  const makingCharge = productPrice * 0.08;
-  const subTotal = productPrice + makingCharge;
-  const gst = subTotal * 0.03;
-  const grand_total = Math.round(subTotal + gst);
+
+  let grand_total;
+
+  if (cartData.product_category == 'gold-coin') {
+    const productPrice = priceData.price_1_gram_24K * cartData.weight;
+    const makingCharge = productPrice * 0.08;
+    const subTotal = productPrice + makingCharge;
+    const gst = subTotal * 0.03;
+    grand_total = Math.round(subTotal + gst);
+  } else if (cartData.product_category == 'silver-coin') {
+    const productPrice = priceData.price_1_gram_24K_s * cartData.weight;
+    const makingCharge = priceData.making_charge_silver;
+    const subTotal = productPrice + makingCharge;
+    const gst = subTotal * 0.03;
+    grand_total = Math.round(subTotal + gst);
+  }
 
   // console.log({ cartData: cartData });
 

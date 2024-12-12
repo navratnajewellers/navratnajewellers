@@ -58,7 +58,7 @@ const OrderItemGrid = ({ orderItemData }) => {
               </Tag>
               <Tag size="lg">
                 <span>
-                  Quantity: <strong>{orderItemData.product_id_oi}</strong>{' '}
+                  Quantity: <strong>{orderItemData.quantity_oi}</strong>{' '}
                 </span>
               </Tag>
               <Tag
