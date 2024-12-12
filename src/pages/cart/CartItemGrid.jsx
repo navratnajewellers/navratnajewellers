@@ -43,7 +43,7 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
     });
   }
 
-  console.log(newCartproduct);
+  // console.log(newCartproduct);
 
   // setTimeout is used to delay the time for updating total price of all product
   setTimeout(() => {

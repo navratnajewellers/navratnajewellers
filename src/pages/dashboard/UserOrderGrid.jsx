@@ -38,7 +38,7 @@ const UserOrderGrid = ({ orderData }) => {
   };
 
   const handleCancelOrder = orderId => {
-    console.log(orderId);
+    // console.log(orderId);
 
     const getOrderItemDetails = async () => {
       try {
@@ -55,7 +55,7 @@ const UserOrderGrid = ({ orderData }) => {
           setTimeout(() => {
             window.location.reload();
           }, 2000);
-          console.log(response.data.message);
+          // console.log(response.data.message);
         }
       } catch (error) {
         console.log(error);

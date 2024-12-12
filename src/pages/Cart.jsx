@@ -134,8 +134,8 @@ const Cart = () => {
           );
 
           if (response.status === 200) {
-            console.log(response);
-            console.log(response.data);
+            // console.log(response);
+            // console.log(response.data);
 
             if (response.data.status === 'notFound') {
               setAddress(val => ({
@@ -205,12 +205,12 @@ const Cart = () => {
     };
   }, [userData]);
 
-  console.log({
-    isPriceLoading: isPriceLoading,
-    isCartLoading: isCartLoading,
-    priceData: priceData,
-    cartProduct: cartProduct,
-  });
+  // console.log({
+  //   isPriceLoading: isPriceLoading,
+  //   isCartLoading: isCartLoading,
+  //   priceData: priceData,
+  //   cartProduct: cartProduct,
+  // });
 
   // moving the cart item to order_item
   const handleMoveCartToOrder = async (status, orderId) => {

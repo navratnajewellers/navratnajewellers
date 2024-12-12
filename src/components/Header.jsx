@@ -278,7 +278,7 @@ const Header = () => {
               }
             );
 
-            console.log(moveCart.data);
+            // console.log(moveCart.data);
 
             if (moveCart.status === 200 && moveCart.data.status == 'success') {
               // after local cart is successfully moved to user cart then apply login logic
