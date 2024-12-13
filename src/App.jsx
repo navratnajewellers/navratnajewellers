@@ -21,50 +21,53 @@ import UserDashboard from './pages/dashboard/UserDashboard';
 import ForgotPassword from './pages/ForgotPassword';
 import { MessageProvider } from './context/message.context';
 import CategoryPageGrid from './pages/categoryPage/CategoryPageGrid';
+import { ServerProvider } from './context/server.context';
 
 function App() {
   return (
-    <MessageProvider>
-      <ProfileProvider>
-        <ProductProvider>
-          <CartProvider>
-            <HashRouter>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/gold-coin/:gramQt" element={<GoldCoinPage />} />
-                <Route
-                  path="/silver-coin/:gramQt"
-                  element={<SilverCoinsPage />}
-                />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/gold-rate" element={<GoldRate />} />
-                <Route path="/shop/:productName" element={<Product />} />
-                <Route path="/shop" element={<ShopGrid />} />
-                <Route path="/dashboard" element={<UserDashboard />} />
-                <Route path="/forgotPassword" element={<ForgotPassword />} />
-                <Route
-                  path="/product/:productCategory"
-                  element={<CategoryPageGrid />}
-                />
-                <Route path="/vitepage" element={<ViteDefaultPage />} />
-                <Route path="/test-connection" element={<TestConnection />} />
-                <Route
-                  path="/test-connection/test-login"
-                  element={<TestLogin />}
-                />
-                <Route
-                  path="/test-connection/verify-login"
-                  element={<VerifyLogin />}
-                />
-                <Route path="/testPayment" element={<PaymentTest />} />
-                <Route path="*" element={<PageNotFound />} />
-              </Routes>
-            </HashRouter>
-          </CartProvider>
-        </ProductProvider>
-      </ProfileProvider>
-    </MessageProvider>
+    <ServerProvider>
+      <MessageProvider>
+        <ProfileProvider>
+          <ProductProvider>
+            <CartProvider>
+              <HashRouter>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/gold-coin/:gramQt" element={<GoldCoinPage />} />
+                  <Route
+                    path="/silver-coin/:gramQt"
+                    element={<SilverCoinsPage />}
+                  />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/gold-rate" element={<GoldRate />} />
+                  <Route path="/shop/:productName" element={<Product />} />
+                  <Route path="/shop" element={<ShopGrid />} />
+                  <Route path="/dashboard" element={<UserDashboard />} />
+                  <Route path="/forgotPassword" element={<ForgotPassword />} />
+                  <Route
+                    path="/product/:productCategory"
+                    element={<CategoryPageGrid />}
+                  />
+                  <Route path="/vitepage" element={<ViteDefaultPage />} />
+                  <Route path="/test-connection" element={<TestConnection />} />
+                  <Route
+                    path="/test-connection/test-login"
+                    element={<TestLogin />}
+                  />
+                  <Route
+                    path="/test-connection/verify-login"
+                    element={<VerifyLogin />}
+                  />
+                  <Route path="/testPayment" element={<PaymentTest />} />
+                  <Route path="*" element={<PageNotFound />} />
+                </Routes>
+              </HashRouter>
+            </CartProvider>
+          </ProductProvider>
+        </ProfileProvider>
+      </MessageProvider>
+    </ServerProvider>
   );
 }
 

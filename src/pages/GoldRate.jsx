@@ -3,15 +3,18 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useServerLink } from '../context/server.context';
 
 const GoldRate = () => {
   const [priceData, setPriceData] = useState(null);
+
+  const { serverLink } = useServerLink();
 
   useEffect(() => {
     const handlePrice = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1/testing/test/gold_rate.php'
+          `${serverLink}/testing/test/gold_rate.php`
         );
 
         // console.log(response.data);
@@ -24,7 +27,7 @@ const GoldRate = () => {
     handlePrice();
 
     return () => {};
-  }, []);
+  }, [serverLink]);
 
   // console.log(priceData);
 

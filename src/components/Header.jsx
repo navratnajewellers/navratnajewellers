@@ -26,6 +26,7 @@ import { useProfile } from '../context/profile.context';
 import CryptoJS from 'crypto-js';
 import { useCart } from '../context/Cart.context';
 import { useProduct } from '../context/product.context';
+import { useServerLink } from '../context/server.context';
 
 const autoFillData = [];
 
@@ -63,6 +64,8 @@ const Header = () => {
   const { userData, setUserData } = useProfile();
 
   const { cartData, setCartData } = useCart();
+
+  const { serverLink } = useServerLink();
 
   const [isMobile] = useMediaQuery('(max-width: 600px)');
 
@@ -124,12 +127,14 @@ const Header = () => {
     return hashedSessionId;
   };
 
+  // console.log(serverLink);
+
   //update session id for login user
 
   const updateSessionId = async (id, sessionId) => {
     try {
       const response = await axios.post(
-        'http://127.0.0.1/testing/update_session.php',
+        `${serverLink}/testing/update_session.php`,
         {
           id: id,
           sessionId: sessionId,
@@ -253,7 +258,7 @@ const Header = () => {
       e.preventDefault();
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/verify_email_login.php',
+          `${serverLink}/testing/verify_email_login.php`,
           {
             email: loginFormValue.email,
             password: loginFormValue.password,
@@ -274,7 +279,7 @@ const Header = () => {
             );
 
             const moveCart = await axios.post(
-              'http://127.0.0.1/testing/cart/local-to-cart.php',
+              `${serverLink}/testing/cart/local-to-cart.php`,
               {
                 user_id: response.data.id,
                 hashedId: hashedLocalUserId,
@@ -329,20 +334,17 @@ const Header = () => {
       e.preventDefault();
 
       try {
-        const response = await fetch(
-          'http://127.0.0.1/testing/new_register.php',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              username: signupFormValue.name,
-              password: signupFormValue.password,
-              email: signupFormValue.email,
-            }),
-          }
-        );
+        const response = await fetch(`${serverLink}/testing/new_register.php`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: signupFormValue.name,
+            password: signupFormValue.password,
+            email: signupFormValue.email,
+          }),
+        });
 
         const data = await response.json();
 
@@ -370,7 +372,7 @@ const Header = () => {
   };
 
   const handleAutofillData = value => {
-    console.log(value);
+    // console.log(value);
     setSearchData(value);
   };
 

@@ -2,11 +2,14 @@ import { useState } from 'react';
 import CartItem from './CartItem';
 import axios from 'axios';
 import { useCart } from '../../context/Cart.context';
+import { useServerLink } from '../../context/server.context';
 
 const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
   const [newCartproduct, setNewCartProduct] = useState(cartProduct);
 
   const { setCartData } = useCart();
+
+  const { serverLink } = useServerLink();
 
   // updating the price for the grand total price of all the products
   const priceDetails = {
@@ -76,7 +79,7 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
         // console.log('user is log in with user id' + userData.id);
 
         response = await axios.post(
-          'http://127.0.0.1/testing/cart/delete_original_cart.php',
+          `${serverLink}/testing/cart/delete_original_cart.php`,
           {
             cart_id: cartId,
             action_type: actionType,
@@ -88,7 +91,7 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
         // console.log('user is not log in with user id' + userData.id);
 
         response = await axios.post(
-          'http://127.0.0.1/testing/cart/delete_local_cart.php',
+          `${serverLink}/testing/cart/delete_local_cart.php`,
           {
             local_id: cartId,
             action_type: actionType,

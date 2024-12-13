@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useServerLink } from '../context/server.context';
 
 const VerifyLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
+  const { serverLink } = useServerLink();
+
   const handleLogin = async e => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://127.0.0.1/testing/verify_login.php',
+        `${serverLink}/testing/verify_login.php`,
         {
           username,
           password,

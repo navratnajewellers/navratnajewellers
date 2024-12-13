@@ -19,6 +19,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useProfile } from '../../context/profile.context';
 import { useCart } from '../../context/Cart.context';
+import { useServerLink } from '../../context/server.context';
 
 const data = [1, 2, 3, 4, 5, 10].map(item => ({
   label: item,
@@ -28,6 +29,8 @@ const data = [1, 2, 3, 4, 5, 10].map(item => ({
 const SilverCoinPage = () => {
   const toaster = useToaster();
   const { gramQt } = useParams();
+
+  const { serverLink } = useServerLink();
 
   const [priceData, setPriceData] = useState(null);
   const [productData, setProductData] = useState(null);
@@ -68,7 +71,7 @@ const SilverCoinPage = () => {
     const handlePrice = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1/testing/test/gold_rate.php'
+          `${serverLink}/testing/test/gold_rate.php`
         );
 
         // console.log(response.data);
@@ -84,7 +87,7 @@ const SilverCoinPage = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/test/product.php',
+          `${serverLink}/testing/test/product.php`,
           {
             weight: gramQt,
             productCategory: 'silver-coin',
@@ -115,7 +118,7 @@ const SilverCoinPage = () => {
     // }
 
     return () => {};
-  }, [gramQt]);
+  }, [gramQt, serverLink]);
 
   const handleQuantityChange = e => {
     setCartQuantity(e);
@@ -137,7 +140,7 @@ const SilverCoinPage = () => {
 
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/test/update_cart.php',
+          `${serverLink}/testing/test/update_cart.php`,
           {
             user_id: userData.id,
             product_id: productData.product_id,
@@ -176,7 +179,7 @@ const SilverCoinPage = () => {
 
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/local-cart/update_local-cart.php',
+          `${serverLink}/testing/local-cart/update_local-cart.php`,
           {
             user_id: hashedLocalUserId,
             product_id: productData.product_id,

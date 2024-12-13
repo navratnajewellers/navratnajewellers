@@ -2,9 +2,12 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Accordion, Button, Placeholder, Text } from 'rsuite';
 import OrderItemGrid from './OrderItemGrid';
+import { useServerLink } from '../../context/server.context';
 
 const UserOrderGrid = ({ orderData }) => {
   // console.log(orderData);
+
+  const { serverLink } = useServerLink();
 
   const [orderItemData, setOrderItemData] = useState(null);
 
@@ -16,7 +19,7 @@ const UserOrderGrid = ({ orderData }) => {
     const getOrderItemDetails = async () => {
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/dashboard/fetch_order_item.php',
+          `${serverLink}/testing/dashboard/fetch_order_item.php`,
           {
             orderId: event,
           }
@@ -43,7 +46,7 @@ const UserOrderGrid = ({ orderData }) => {
     const getOrderItemDetails = async () => {
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/dashboard/cancel_order.php',
+          `${serverLink}/testing/dashboard/cancel_order.php`,
           {
             order_id: orderId,
             updated_status: 'order-cancel',

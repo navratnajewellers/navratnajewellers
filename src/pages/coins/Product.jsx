@@ -19,6 +19,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useProfile } from '../../context/profile.context';
 import { useCart } from '../../context/Cart.context';
+import { useServerLink } from '../../context/server.context';
 
 const data = [1, 2, 3, 4, 5, 10].map(item => ({
   label: item,
@@ -28,6 +29,8 @@ const data = [1, 2, 3, 4, 5, 10].map(item => ({
 const Product = () => {
   const toaster = useToaster();
   const { productName } = useParams();
+
+  const { serverLink } = useServerLink();
 
   // console.log(productName);
 
@@ -70,7 +73,7 @@ const Product = () => {
     const handlePrice = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1/testing/test/gold_rate.php'
+          `${serverLink}/testing/test/gold_rate.php`
         );
 
         // console.log(response.data);
@@ -86,7 +89,7 @@ const Product = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/test/product-byName.php',
+          `${serverLink}/testing/test/product-byName.php`,
           {
             productName: productName,
           }
@@ -116,7 +119,7 @@ const Product = () => {
     // }
 
     return () => {};
-  }, [productName]);
+  }, [productName, serverLink]);
 
   const handleQuantityChange = e => {
     setCartQuantity(e);
@@ -138,7 +141,7 @@ const Product = () => {
 
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/test/update_cart.php',
+          `${serverLink}/testing/test/update_cart.php`,
           {
             user_id: userData.id,
             product_id: productData.product_id,
@@ -173,7 +176,7 @@ const Product = () => {
 
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/local-cart/update_local-cart.php',
+          `${serverLink}/testing/local-cart/update_local-cart.php`,
           {
             user_id: hashedLocalUserId,
             product_id: productData.product_id,

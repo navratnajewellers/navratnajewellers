@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useRef } from 'react';
 import { Button, Form, InputPicker, Modal, Schema } from 'rsuite';
+import { useServerLink } from '../../context/server.context';
 
 const { StringType, NumberType } = Schema.Types;
 
@@ -66,6 +67,8 @@ const AddressModal = ({
 }) => {
   const formRef = useRef();
 
+  const { serverLink } = useServerLink();
+
   const handleSignUpClose = () => {
     setIsAddressModal(false);
   };
@@ -77,18 +80,18 @@ const AddressModal = ({
       const handleInsertAddress = async () => {
         try {
           const response = await axios.post(
-            'http://127.0.0.1/testing/addresses/update_address.php',
+            `${serverLink}/testing/addresses/update_address.php`,
             {
               userId: userData.id,
               ...address,
             }
           );
 
-          console.log(response);
-          console.log(response.data);
+          // console.log(response);
+          // console.log(response.data);
 
           if (response.status === 200 && response.data.status === 'success') {
-            console.log(response.data.message);
+            // console.log(response.data.message);
 
             // update address status to found to procedd with payment
             setAddress(val => ({

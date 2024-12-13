@@ -6,9 +6,12 @@ import { useEffect, useState } from 'react';
 import { useProfile } from '../../context/profile.context';
 import axios from 'axios';
 import UserOrderGrid from './UserOrderGrid';
+import { useServerLink } from '../../context/server.context';
 
 const UserDashboard = () => {
   const { userData } = useProfile();
+
+  const { serverLink } = useServerLink();
 
   const [isDashboardLoading, setIsDashboardLoading] = useState(true);
   const [isUserLogin, setIsUserLogin] = useState(false);
@@ -48,7 +51,7 @@ const UserDashboard = () => {
       const getOrderDetails = async () => {
         try {
           const response = await axios.post(
-            'http://127.0.0.1/testing/dashboard/fetch_order.php',
+            `${serverLink}/testing/dashboard/fetch_order.php`,
             {
               userId: userData.id,
             }
@@ -63,7 +66,7 @@ const UserDashboard = () => {
 
       getOrderDetails();
     }
-  }, [userData.id]);
+  }, [userData.id, serverLink]);
 
   const handleReference = () => {
     // window.location.replace(`/`);

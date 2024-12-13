@@ -1,14 +1,16 @@
 import { Breadcrumb, Divider, FlexboxGrid, Loader, Pagination } from 'rsuite';
 import Header from '../../components/Header';
-// import { useProduct } from '../../context/product.context';
 import { Link, useParams } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CategoryPageItem from './CategoryPageItem';
+import { useServerLink } from '../../context/server.context';
 
 const CategoryPageGrid = () => {
   const { productCategory } = useParams();
+
+  const { serverLink } = useServerLink();
 
   // console.log(productCategory);
 
@@ -25,7 +27,7 @@ const CategoryPageGrid = () => {
     const fetchCategoryProduct = async () => {
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/test/category_product.php',
+          `${serverLink}/testing/test/category_product.php`,
           {
             productCategory: productCategory,
           }
@@ -50,7 +52,7 @@ const CategoryPageGrid = () => {
     const handlePrice = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1/testing/test/gold_rate.php'
+          `${serverLink}/testing/test/gold_rate.php`
         );
 
         // console.log(response.data);
@@ -61,7 +63,7 @@ const CategoryPageGrid = () => {
     };
 
     handlePrice();
-  }, [productCategory]);
+  }, [productCategory, serverLink]);
 
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;

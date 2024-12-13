@@ -1,9 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Avatar, Tag, TagGroup, useMediaQuery } from 'rsuite';
+import { useServerLink } from '../../context/server.context';
 
 const OrderItemGrid = ({ orderItemData }) => {
   const [productData, setProductData] = useState(null);
+
+  const { serverLink } = useServerLink();
 
   const [isMobile] = useMediaQuery('(max-width: 600px)');
 
@@ -12,7 +15,7 @@ const OrderItemGrid = ({ orderItemData }) => {
     const fetchProduct = async () => {
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/test/product-ById.php',
+          `${serverLink}/testing/test/product-ById.php`,
           {
             productId: orderItemData.product_id_oi,
           }
@@ -35,7 +38,7 @@ const OrderItemGrid = ({ orderItemData }) => {
     if (orderItemData?.product_id_oi) {
       fetchProduct();
     }
-  }, [orderItemData.product_id_oi]);
+  }, [orderItemData.product_id_oi, serverLink]);
 
   // console.log(orderItemData);
   // console.log(productData);

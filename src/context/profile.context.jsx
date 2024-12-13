@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createContext, useContext, useEffect, useState } from 'react';
+import { useServerLink } from './server.context';
 
 const ProfileContext = createContext();
 
@@ -10,6 +11,8 @@ export const ProfileProvider = ({ children }) => {
     username: '',
     sessionId: '',
   });
+
+  const { serverLink } = useServerLink();
 
   useEffect(() => {
     const sessionId = sessionStorage.getItem('sessionId');
@@ -22,7 +25,7 @@ export const ProfileProvider = ({ children }) => {
       const updateUserData = async () => {
         try {
           const response = await axios.post(
-            'http://127.0.0.1/testing/verify_session.php',
+            `${serverLink}/testing/verify_session.php`,
             {
               sessionId: sessionId,
             }
@@ -45,7 +48,7 @@ export const ProfileProvider = ({ children }) => {
 
       // console.log('session id is not empty');
     }
-  }, []);
+  }, [serverLink]);
 
   return (
     <ProfileContext.Provider value={{ userData, setUserData }}>

@@ -1,14 +1,17 @@
 import { useState } from 'react';
+import { useServerLink } from '../context/server.context';
 
 const TestLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
+  const { serverLink } = useServerLink();
+
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const response = await fetch('http://127.0.0.1/testing/register.php', {
+    const response = await fetch(`${serverLink}/testing/register.php`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

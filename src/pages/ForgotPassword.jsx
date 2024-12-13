@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import axios from 'axios';
 import { useDisplayMessage } from '../context/message.context';
+import { useServerLink } from '../context/server.context';
 
 const { StringType, NumberType } = Schema.Types;
 
@@ -30,6 +31,8 @@ const passwordModel = Schema.Model({
 const ForgotPassword = () => {
   const { displayMessage } = useDisplayMessage();
 
+  const { serverLink } = useServerLink();
+
   const forgotPasswordRef = useRef();
 
   const passwordRef = useRef();
@@ -53,7 +56,7 @@ const ForgotPassword = () => {
     const getResetDetails = async () => {
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/resetPassword/reset_password.php',
+          `${serverLink}/testing/resetPassword/reset_password.php`,
           {
             email: e.email,
             phone_no: e.mobile,
@@ -115,7 +118,7 @@ const ForgotPassword = () => {
         const changePassword = async () => {
           try {
             const response = await axios.post(
-              'http://127.0.0.1/testing/resetPassword/change_password.php',
+              `${serverLink}/testing/resetPassword/change_password.php`,
               {
                 email: forgotPasswordFormValue.email,
                 password: passwordFormValue.password,

@@ -8,15 +8,18 @@ import Footer from '../components/Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Contact from './Contact';
+import { useServerLink } from '../context/server.context';
 
 const Home = () => {
   const [isWebsiteOnUpdate, setIsWebsiteOnUpdate] = useState(false);
+
+  const { serverLink } = useServerLink();
 
   useEffect(() => {
     const checkWebsiteStatus = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1/testing/test/website_status.php'
+          `${serverLink}/testing/test/website_status.php`
         );
 
         // console.log(response.data);
@@ -27,7 +30,7 @@ const Home = () => {
     };
 
     checkWebsiteStatus();
-  }, []);
+  }, [serverLink]);
 
   // if (isWebsiteOnUpdate) {
   //   console.log('Website is updating' + isWebsiteOnUpdate);

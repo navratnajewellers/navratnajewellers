@@ -6,10 +6,13 @@ import Footer from '../../components/Footer';
 import { useEffect, useState } from 'react';
 import ShopItem from './ShopItem';
 import axios from 'axios';
+import { useServerLink } from '../../context/server.context';
 
 const ShopGrid = () => {
   const { productData } = useProduct();
   const [priceData, setPriceData] = useState(null);
+
+  const { serverLink } = useServerLink();
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -20,7 +23,7 @@ const ShopGrid = () => {
     const handlePrice = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1/testing/test/gold_rate.php'
+          `${serverLink}/testing/test/gold_rate.php`
         );
 
         // console.log(response.data);
@@ -31,7 +34,7 @@ const ShopGrid = () => {
     };
 
     handlePrice();
-  }, []);
+  }, [serverLink]);
 
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;

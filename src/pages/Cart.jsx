@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom';
 // import CartItem from './cart/CartItem';
 import CartItemGrid from './cart/CartItemGrid';
 import AddressModal from './cart/AddressModal';
+import { useServerLink } from '../context/server.context';
 
 const YOUR_RAZORPAY_KEY_ID = null;
 
@@ -35,6 +36,8 @@ const addresDefault = {
 
 const Cart = () => {
   const toaster = useToaster();
+
+  const { serverLink } = useServerLink();
 
   // for checking that user is login
   const { userData } = useProfile();
@@ -76,7 +79,7 @@ const Cart = () => {
 
       try {
         const response = await axios.get(
-          'http://127.0.0.1/testing/test/gold_rate.php'
+          `${serverLink}/testing/test/gold_rate.php`
         );
 
         // console.log(response.data);
@@ -102,7 +105,7 @@ const Cart = () => {
 
         try {
           const response = await axios.post(
-            'http://127.0.0.1/testing/cart/fetch_original_cart.php',
+            `${serverLink}/testing/cart/fetch_original_cart.php`,
             {
               userId: userData.id,
             }
@@ -127,7 +130,7 @@ const Cart = () => {
         setIsAddressLoading(true);
         try {
           const response = await axios.post(
-            'http://127.0.0.1/testing/addresses/fetch_address.php',
+            `${serverLink}/testing/addresses/fetch_address.php`,
             {
               userId: userData.id,
             }
@@ -178,7 +181,7 @@ const Cart = () => {
           );
 
           const response = await axios.post(
-            'http://127.0.0.1/testing/cart/fetch_local_cart.php',
+            `${serverLink}/testing/cart/fetch_local_cart.php`,
             {
               localId: hashedLocalUserId,
             }
@@ -203,7 +206,7 @@ const Cart = () => {
       // resetting the default value of address on returning of useEffect
       setAddress(addresDefault);
     };
-  }, [userData]);
+  }, [userData, serverLink]);
 
   // console.log({
   //   isPriceLoading: isPriceLoading,
@@ -216,7 +219,7 @@ const Cart = () => {
   const handleMoveCartToOrder = async (status, orderId) => {
     try {
       const response = await axios.post(
-        'http://127.0.0.1/testing/payment-update/update_order_items.php',
+        `${serverLink}/testing/payment-update/update_order_items.php`,
         {
           status: status,
           user_id: userData.id,
@@ -226,8 +229,8 @@ const Cart = () => {
         }
       );
 
-      console.log(response);
-      console.log(response.data);
+      // console.log(response);
+      // console.log(response.data);
 
       if (response.status === 200) {
         console.log(response.data.message);
@@ -260,14 +263,14 @@ const Cart = () => {
         try {
           // Step 1: Fetch Order ID from the backend
           const response = await axios.post(
-            'http://127.0.0.1/testing/RazorPay/updated_create_order.php',
+            `${serverLink}/testing/RazorPay/updated_create_order.php`,
             {
               amount: grand_total * 100,
               user_id: userData.id,
             }
           );
 
-          console.log(response.data);
+          // console.log(response.data);
 
           if (!response.data.order_id) {
             throw new Error('Failed to create order!');
@@ -283,12 +286,12 @@ const Cart = () => {
             description: 'Test Transaction',
             order_id: response.data.order_id, // Pass order_id from backend
             handler: async function (response) {
-              console.log(response);
+              // console.log(response);
 
               // Step 4: Verify payment
               // send order_id, payment_id, and signature for verification of payment
               const verification = await axios.post(
-                'http://127.0.0.1/testing/RazorPay/verify_payment.php',
+                `${serverLink}/testing/RazorPay/verify_payment.php`,
                 {
                   ...response,
                 }

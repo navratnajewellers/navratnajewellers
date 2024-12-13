@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { useProfile } from './profile.context';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
+import { useServerLink } from './server.context';
 
 const CartContext = createContext();
 
@@ -19,6 +20,8 @@ export const CartProvider = ({ children }) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
+  const { serverLink } = useServerLink();
+
   useEffect(() => {
     if (userData.id) {
       // console.log('user is login');
@@ -26,7 +29,7 @@ export const CartProvider = ({ children }) => {
       const fetchCartData = async () => {
         try {
           const response = await axios.post(
-            'http://127.0.0.1/testing/test/fetch_cart.php',
+            `${serverLink}/testing/test/fetch_cart.php`,
             {
               userId: userData.id,
             }
@@ -112,7 +115,7 @@ export const CartProvider = ({ children }) => {
         const fetchLocalCartData = async () => {
           try {
             const response = await axios.post(
-              'http://127.0.0.1/testing/local-cart/get_local-cart.php',
+              `${serverLink}/testing/local-cart/get_local-cart.php`,
               {
                 userId: hashedLocalUserId,
               }
@@ -151,7 +154,7 @@ export const CartProvider = ({ children }) => {
         fetchLocalCartData();
       }
     }
-  }, [userData.id]);
+  }, [userData.id, serverLink]);
 
   return (
     <CartContext.Provider value={{ cartData, setCartData }}>

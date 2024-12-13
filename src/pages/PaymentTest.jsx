@@ -1,13 +1,16 @@
 import axios from 'axios';
 import { Button, ButtonToolbar, Container, Form, Row, Schema } from 'rsuite';
 import AddressModal from './cart/AddressModal';
+import { useServerLink } from '../context/server.context';
 
 const PaymentTest = () => {
+  const { serverLink } = useServerLink();
+
   const initiatePayment = async () => {
     try {
       // Step 1: Get the order ID from your PHP backend
       const response = await axios.post(
-        'http://127.0.0.1/testing/RazorPay/create_order.php',
+        `${serverLink}/testing/RazorPay/create_order.php`,
         {
           amount: 50000,
         }
@@ -50,7 +53,7 @@ const PaymentTest = () => {
   const handleMoveCartToOrder = async (status, orderId, price, user_id) => {
     try {
       const response = await axios.post(
-        'http://127.0.0.1/testing/payment-update/update_order_items.php',
+        `${serverLink}/testing/payment-update/update_order_items.php`,
         {
           status: status,
           user_id: user_id,
@@ -69,7 +72,7 @@ const PaymentTest = () => {
   const handlegetAddress = async userId => {
     try {
       const response = await axios.post(
-        'http://127.0.0.1/testing/addresses/fetch_address.php',
+        `${serverLink}/testing/addresses/fetch_address.php`,
         {
           userId: userId,
         }

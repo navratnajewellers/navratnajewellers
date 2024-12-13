@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Container } from 'rsuite';
+import { useServerLink } from '../context/server.context';
 
 const TestConnection = () => {
   const [customer, setCustomer] = useState(null);
 
+  const { serverLink } = useServerLink();
+
   const handleClick = async () => {
     try {
-      const response = await fetch(
-        'http://127.0.0.1/testing/testing_login.php'
-      );
+      const response = await fetch(`${serverLink}/testing/testing_login.php`);
 
       const body = await response.json();
       console.log(body);
