@@ -4,13 +4,9 @@ header("Content-Type: application/json");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-$dsn = "mysql:host=127.0.0.1;dbname=navratna";
-$username = "root";
-$password = "";
+require '../api/nav_db_connection.php';
 
 try {
-    $pdo = new PDO($dsn, $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // getting the price of the gold
 $priceQuery = "SELECT * FROM gold_price";

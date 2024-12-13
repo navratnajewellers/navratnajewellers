@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Avatar, Tag, TagGroup } from 'rsuite';
+import { Avatar, Tag, TagGroup, useMediaQuery } from 'rsuite';
 
 const OrderItemGrid = ({ orderItemData }) => {
   const [productData, setProductData] = useState(null);
+
+  const [isMobile] = useMediaQuery('(max-width: 600px)');
 
   useEffect(() => {
     //fetching product details from database using weight from gram quantity geting from page
@@ -45,7 +47,8 @@ const OrderItemGrid = ({ orderItemData }) => {
           <Avatar
             src={productData.product_img1}
             alt={productData.name}
-            size="xxl"
+            size={isMobile ? 'xxl' : 'xxl'}
+            className="order-product-image"
           />
           <div className="order-product-detail">
             <h6 className="margin-b20 main-color">{productData.name}</h6>
@@ -68,6 +71,7 @@ const OrderItemGrid = ({ orderItemData }) => {
                     ? 'red'
                     : 'green'
                 }
+                className="order-product-status"
               >
                 <span>
                   Status: <strong>{orderItemData.delivery_status}</strong>{' '}

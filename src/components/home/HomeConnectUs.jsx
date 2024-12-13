@@ -13,7 +13,11 @@ const HomeConnectUs = () => {
             </h3>
           </div>
           <div className="header-text-connect dis-flex">
-            <a href="https://api.whatsapp.com/send?phone=917004220367&text=Hi,%20Can%20I%20connect%20with%20Navranta%20Jewellers%20customer%20care!">
+            <a
+              target="_blank"
+              title="connect to whatsapp"
+              href="https://api.whatsapp.com/send?phone=917004220367&text=Hi,%20Can%20I%20connect%20with%20Navranta%20Jewellers%20customer%20care!"
+            >
               Connect
             </a>
             <span>&rarr;</span>
@@ -32,7 +36,9 @@ const HomeConnectUs = () => {
             </h3>
           </div>
           <div className="header-text-connect dis-flex">
-            <a href="tel:+91 7004220367">Book</a>
+            <a target="_blank" title="Make a booking" href="tel:+91 7004220367">
+              Book
+            </a>
             <span>&rarr;</span>
           </div>
         </div>

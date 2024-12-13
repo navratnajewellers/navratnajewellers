@@ -103,7 +103,7 @@ const UserDashboard = () => {
         ) : isUserLogin ? (
           <div className="dashboard-container">
             <div>
-              <h2>
+              <h2 className="user-greeting-message">
                 {greetingMessage}, {userData.username} !{' '}
               </h2>
             </div>

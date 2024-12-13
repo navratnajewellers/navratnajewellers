@@ -103,6 +103,7 @@
   .remove-cart-product {
     position: absolute;
     right: 10px;
+    z-index: 9;
   }
 
   .cart-empty-container .imageWrapper {

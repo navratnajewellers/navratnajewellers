@@ -4,7 +4,7 @@ const HomeProducts = () => {
   return (
     <div className="home-products-container">
       <div className="home-products pos-rel">
-        <Link to="/product/gold-coins">
+        <Link to="/product/gold-coin">
           <div className="imageWrapper">
             <img src="/fod-gold-coins.jpeg"></img>
           </div>
@@ -14,7 +14,7 @@ const HomeProducts = () => {
         </Link>
       </div>
       <div className="home-products pos-rel">
-        <Link to="/product/silver-coins">
+        <Link to="/product/silver-coin">
           <div className="imageWrapper">
             <img src="/Pure-Silver-Coin---10-gm.jpeg"></img>
           </div>

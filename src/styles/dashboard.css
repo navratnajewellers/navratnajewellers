@@ -6,8 +6,13 @@
 
 /* UserOrderGrid styling */
 .order-date {
+  position: absolute;
   top: 50%;
   right: 2%;
+}
+
+.order-date-heading {
+  display: none;
 }
 
 .order-header-container {
@@ -54,3 +59,46 @@
 /* .order-product-detail span {
   margin-top: 4px;
 } */
+
+/* mobile device */
+
+@media screen and (max-width: 600px) {
+  .user-greeting-message {
+    font-size: 30px;
+  }
+
+  .order-date {
+    position: relative;
+    bottom: 0;
+    left: 0;
+  }
+
+  .order-date-heading {
+    display: inline-block;
+  }
+
+  .order-product-container {
+    padding-right: 0;
+    display: flex;
+  }
+
+  .order-product-image {
+    /* border: solid 1px red; */
+    align-self: center;
+    margin-left: 5px;
+  }
+
+  .order-product-detail {
+    flex-basis: 80%;
+    /* border: solid 1px blue; */
+  }
+
+  .order-product-detail h6 {
+    padding-right: 5px;
+  }
+
+  .order-product-status {
+    margin-top: 15px !important ;
+    margin-bottom: 10px;
+  }
+}

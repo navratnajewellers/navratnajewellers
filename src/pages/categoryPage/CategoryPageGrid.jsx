@@ -1,14 +1,18 @@
 import { Breadcrumb, Divider, FlexboxGrid, Loader, Pagination } from 'rsuite';
 import Header from '../../components/Header';
-import { useProduct } from '../../context/product.context';
-import { Link } from 'react-router-dom';
+// import { useProduct } from '../../context/product.context';
+import { Link, useParams } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import { useEffect, useState } from 'react';
-import ShopItem from './ShopItem';
 import axios from 'axios';
+import CategoryPageItem from './CategoryPageItem';
 
-const ShopGrid = () => {
-  const { productData } = useProduct();
+const CategoryPageGrid = () => {
+  const { productCategory } = useParams();
+
+  // console.log(productCategory);
+
+  const [productData, setProductData] = useState(null);
   const [priceData, setPriceData] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,6 +21,32 @@ const ShopGrid = () => {
   const [pageSize] = useState(9);
 
   useEffect(() => {
+    //fetching product details from database using weight from gram quantity geting from page
+    const fetchCategoryProduct = async () => {
+      try {
+        const response = await axios.post(
+          'http://127.0.0.1/testing/test/category_product.php',
+          {
+            productCategory: productCategory,
+          }
+        );
+
+        // console.log(response.data);
+
+        if (response.data.status === 'success') {
+          setProductData(response.data.productData);
+        }
+
+        //   if (response.data.status === 'error') {
+
+        //   }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCategoryProduct();
+
     const handlePrice = async () => {
       try {
         const response = await axios.get(
@@ -31,7 +61,7 @@ const ShopGrid = () => {
     };
 
     handlePrice();
-  }, []);
+  }, [productCategory]);
 
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
@@ -59,7 +89,9 @@ const ShopGrid = () => {
           <Breadcrumb.Item>
             <Link to="/">Home</Link>
           </Breadcrumb.Item>
-          <Breadcrumb.Item active>Shop</Breadcrumb.Item>
+          <Breadcrumb.Item active>
+            {productCategory.toUpperCase()}
+          </Breadcrumb.Item>
         </Breadcrumb>
       </div>
       {!productData && !priceData ? (
@@ -71,7 +103,7 @@ const ShopGrid = () => {
           <div className='className="show-grid"'>
             <FlexboxGrid justify="center">
               {currentData?.map(data => (
-                <ShopItem
+                <CategoryPageItem
                   key={data.product_id}
                   productDetail={data}
                   priceData={priceData}
@@ -105,4 +137,4 @@ const ShopGrid = () => {
   );
 };
 
-export default ShopGrid;
+export default CategoryPageGrid;

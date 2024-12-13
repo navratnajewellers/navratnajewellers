@@ -6,16 +6,7 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // Database connection
-$dsn = 'mysql:host=127.0.0.1;dbname=navratna';
-$username = 'root'; // Change to your database username
-$password = '';     // Change to your database password
-try {
-    $pdo = new PDO($dsn, $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo json_encode(['status' => 'error', 'message' => 'Database connection failed']);
-    exit;
-}
+require '../api/nav_db_connection.php';
 
 // Get data from React frontend
 $data = json_decode(file_get_contents('php://input'), true);

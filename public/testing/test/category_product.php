@@ -5,19 +5,19 @@ header("Content-Type: application/json");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-// Database connection
 require '../api/nav_db_connection.php';
 
 // Get data from React frontend
 $data = json_decode(file_get_contents('php://input'), true);
-$inputName = $data['productName'];
+$inputCategory = $data['productCategory'];
+
 
 // Check if the username exists in the database
-$sql = "SELECT * FROM product WHERE name = :name";
+$sql = "SELECT * FROM product WHERE product_category = :p_category";
 $stmt = $pdo->prepare($sql);
-$stmt->bindParam(':name', $inputName);
+$stmt->bindParam(':p_category', $inputCategory);
 $stmt->execute();
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($user) {
     // displat product

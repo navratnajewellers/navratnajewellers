@@ -74,7 +74,8 @@ const UserOrderGrid = ({ orderData }) => {
           <div className="order-header-container">
             <div className="pos-rel">
               <div>Order-ID: {orderData.order_id}</div>
-              <div className="pos-abs order-date">
+              <div className="order-date">
+                <span className="order-date-heading">Date: </span>
                 {orderData.order_date.slice(0, 10)}
               </div>
             </div>

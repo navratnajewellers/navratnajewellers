@@ -20,6 +20,7 @@ import ShopGrid from './pages/product/ShopGrid';
 import UserDashboard from './pages/dashboard/UserDashboard';
 import ForgotPassword from './pages/ForgotPassword';
 import { MessageProvider } from './context/message.context';
+import CategoryPageGrid from './pages/categoryPage/CategoryPageGrid';
 
 function App() {
   return (
@@ -42,6 +43,10 @@ function App() {
                 <Route path="/shop" element={<ShopGrid />} />
                 <Route path="/dashboard" element={<UserDashboard />} />
                 <Route path="/forgotPassword" element={<ForgotPassword />} />
+                <Route
+                  path="/product/:productCategory"
+                  element={<CategoryPageGrid />}
+                />
                 <Route path="/vitepage" element={<ViteDefaultPage />} />
                 <Route path="/test-connection" element={<TestConnection />} />
                 <Route

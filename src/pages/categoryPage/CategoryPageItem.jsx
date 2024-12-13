@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { FlexboxGrid, Placeholder } from 'rsuite';
 
-const ShopItem = ({ productDetail, priceData }) => {
+const CategoryPageItem = ({ productDetail, priceData }) => {
   // console.log(productDetail, priceData);
 
   function handleProductPrice() {
@@ -62,4 +62,4 @@ const ShopItem = ({ productDetail, priceData }) => {
   );
 };
 
-export default ShopItem;
+export default CategoryPageItem;

@@ -10,6 +10,7 @@ import {
   Navbar,
   Popover,
   Schema,
+  useMediaQuery,
   useToaster,
   Whisper,
 } from 'rsuite';
@@ -62,6 +63,8 @@ const Header = () => {
   const { userData, setUserData } = useProfile();
 
   const { cartData, setCartData } = useCart();
+
+  const [isMobile] = useMediaQuery('(max-width: 600px)');
 
   const [signupFormValue, setSignupFormValue] = useState({
     name: '',
@@ -383,6 +386,13 @@ const Header = () => {
 
   // console.log(sessionStorage.getItem('sessionId'));
 
+  // name logic
+  // console.log(
+  //   userData.username.split(' ')?.[0].length > 6
+  //     ? `${userData.username.split(' ')?.[0].slice(0, 2)}...`
+  //     : userData.username.split(' ')?.[0]
+  // );
+
   return (
     <div className="header-main">
       <div className="header-primary">
@@ -426,7 +436,13 @@ const Header = () => {
             {/* <h4 className="textCenter">Account</h4> */}
             <Whisper placement="bottom" trigger="click" speaker={renderMenu}>
               <h4 className="textCenter">
-                {userData.username === '' ? 'Account' : `${userData.username}`}
+                {userData.username === ''
+                  ? 'Account'
+                  : `${
+                      userData.username.split(' ')[0].length > 6
+                        ? `${userData.username.split(' ')[0].slice(0, 6)}...`
+                        : userData.username.split(' ')[0]
+                    }`}
               </h4>
             </Whisper>
           </div>
@@ -525,14 +541,27 @@ const Header = () => {
             <Nav.Item as={Link} to="/gold-rate">
               Gold Rate
             </Nav.Item>
-            <Nav.Menu title="About">
+            <Nav.Menu title="About" className="about-menu">
               <Nav.Item>Navratna Jewellers</Nav.Item>
-              <Nav.Menu title="Contact">
+              <Nav.Menu
+                title="Contact"
+                openDirection={isMobile ? 'start' : 'end'}
+              >
                 <Nav.Item>
-                  <a href="mailto:navratnajewellers0@gmail.com">Email</a>
+                  <a
+                    href="mailto:navratnajewellers0@gmail.com"
+                    className="header-menu-option-link"
+                  >
+                    Email
+                  </a>
                 </Nav.Item>
                 <Nav.Item>
-                  <a href="tel:+91 7004220367">Telephone</a>
+                  <a
+                    href="tel:+91 7004220367"
+                    className="header-menu-option-link"
+                  >
+                    Telephone
+                  </a>
                 </Nav.Item>
               </Nav.Menu>
             </Nav.Menu>

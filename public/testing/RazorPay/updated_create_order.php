@@ -9,15 +9,11 @@ require 'vendor/autoload.php';
 
 use Razorpay\Api\Api;
 
-// Database connection using PDO
-$host = '127.0.0.1';
-$dbname = 'navratna';
-$username = 'root';
-$password = '';
+require '../api/nav_db_connection.php';
+
+require './nav_razor_api_key.php';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Razorpay API credentials
     // $api_key = 'YOUR_RAZORPAY_KEY_ID';

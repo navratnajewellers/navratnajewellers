@@ -114,3 +114,20 @@
   flex-direction: column;
   width: 240px;
 }
+
+/* mobile device */
+
+@media screen and (max-width: 600px) {
+  .assurance-item .imageWrapper {
+    width: 100px;
+    height: 80px;
+  }
+
+  .assurance-item {
+    margin-right: 40px;
+  }
+
+  .assurance-item h4 {
+    font-size: 16px;
+  }
+}

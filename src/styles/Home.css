@@ -97,6 +97,14 @@ button {
   color: black;
 }
 
+.header-menu-option-link {
+  text-decoration: none !important;
+  color: black;
+}
+
+.header-menu-option-link:hover {
+  color: #4848ed;
+}
 /* carousel */
 /* .carousel {
   border: solid 1px red;
@@ -139,7 +147,7 @@ button {
   width: 100%;
   background-color: whitesmoke;
   color: #000000;
-  transition: bottom 0.2s linear;
+  transition: bottom 0.4s linear;
 }
 
 .home-product-name span {
@@ -157,7 +165,8 @@ button {
 
 .home-products:hover .home-product-name {
   bottom: 40%;
-  background-color: black;
+  /* background-color: black; */
+  background-color: palevioletred;
   color: #ffffff;
 }
 
@@ -326,4 +335,22 @@ button {
   padding-left: 10px;
   padding-bottom: 10px;
   background-color: rgb(245, 245, 245);
+}
+
+/* mobile device */
+
+@media screen and (max-width: 640px) {
+  /* fix header menu issue */
+  .about-menu ul {
+    left: -74px !important;
+  }
+
+  .connect-us-wrapper {
+    margin-bottom: 40px;
+    margin-right: 0;
+  }
+
+  .footer-container {
+    display: block;
+  }
 }
