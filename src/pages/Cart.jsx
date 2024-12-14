@@ -248,6 +248,12 @@ const Cart = () => {
   };
 
   const handleCheckout = () => {
+    // console.log({
+    //   username: userData.username,
+    //   userMobile: address.mobile,
+    //   userEmailId: userEmail,
+    // });
+
     if (userData.id) {
       // displayMessage('info', 'payment step is on the way');
 

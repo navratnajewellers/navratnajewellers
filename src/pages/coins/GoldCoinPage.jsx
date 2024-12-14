@@ -175,7 +175,7 @@ const GoldCoinPage = () => {
 
       try {
         const response = await axios.post(
-          'http://127.0.0.1/testing/local-cart/update_local-cart.php',
+          `${serverLink}/testing/local-cart/update_local-cart.php`,
           {
             user_id: hashedLocalUserId,
             product_id: productData.product_id,
@@ -186,8 +186,11 @@ const GoldCoinPage = () => {
 
         // console.log(response.data);
 
-        if (response.status === 200) {
-          displayMessage('info', 'local Cart Updated');
+        if (
+          response.status === 200 &&
+          response.data.message == 'Cart updated successfully.'
+        ) {
+          displayMessage('info', 'Cart Updated');
 
           // updating the cart
           //const previousQuantity = cartData.quantity;

@@ -187,8 +187,11 @@ const Product = () => {
 
         // console.log(response.data);
 
-        if (response.status === 200) {
-          displayMessage('info', 'local Cart Updated');
+        if (
+          response.status === 200 &&
+          response.data.message == 'Cart updated successfully.'
+        ) {
+          displayMessage('info', 'Cart Updated');
 
           // updating the cart
           //const previousQuantity = cartData.quantity;

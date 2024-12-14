@@ -354,3 +354,9 @@ button {
     display: block;
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .home-products-container {
+    padding: 0;
+  }
+}

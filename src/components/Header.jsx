@@ -377,7 +377,14 @@ const Header = () => {
   };
 
   const handleSearch = () => {
-    window.location.href = `http://localhost:5173/#/shop/${searchData}`;
+    navigate(`/shop/${searchData}`);
+    // window.location.href = `http://localhost:5173/#/shop/${searchData}`;
+  };
+
+  // fire on select option
+  const handleSearchOptionSelect = searchText => {
+    // console.log(value);
+    navigate(`/shop/${searchText}`);
   };
 
   const handleForgotPassword = () => {
@@ -411,6 +418,7 @@ const Header = () => {
               data={autoFillData}
               style={{ height: '100%' }}
               onChange={handleAutofillData}
+              onSelect={handleSearchOptionSelect}
             />
             <InputGroup.Button
               className="search-icon-button"
@@ -441,9 +449,9 @@ const Header = () => {
                 {userData.username === ''
                   ? 'Account'
                   : `${
-                      userData.username.split(' ')[0].length > 6
-                        ? `${userData.username.split(' ')[0].slice(0, 6)}...`
-                        : userData.username.split(' ')[0]
+                      userData.username?.split(' ')[0].length > 6
+                        ? `${userData.username?.split(' ')[0].slice(0, 6)}...`
+                        : userData.username?.split(' ')[0]
                     }`}
               </h4>
             </Whisper>

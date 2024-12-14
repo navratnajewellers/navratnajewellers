@@ -171,9 +171,9 @@ const SilverCoinPage = () => {
     } else {
       // console.log('user is not log in');
 
-      console.log({ priceBreak: priceBreak });
+      // console.log({ priceBreak: priceBreak });
 
-      console.log('sent price is ' + priceBreak.grand_total * cartQuantity);
+      // console.log('sent price is ' + priceBreak.grand_total * cartQuantity);
 
       const hashedLocalUserId = JSON.parse(localStorage.getItem('localCart'));
 
@@ -190,8 +190,11 @@ const SilverCoinPage = () => {
 
         // console.log(response.data);
 
-        if (response.status === 200) {
-          displayMessage('info', 'local Cart Updated');
+        if (
+          response.status === 200 &&
+          response.data.message == 'Cart updated successfully.'
+        ) {
+          displayMessage('info', 'Cart Updated');
 
           // updating the cart
           //const previousQuantity = cartData.quantity;

@@ -131,3 +131,19 @@
     font-size: 16px;
   }
 }
+
+@media screen and (max-width: 770px) {
+  /* remove scroll from the product details  container */
+  .grid-gold-content {
+    overflow: initial;
+    height: auto;
+  }
+
+  .grid-gold-image {
+    height: auto;
+  }
+
+  .product-carousel-container {
+    padding: 0 5%;
+  }
+}
