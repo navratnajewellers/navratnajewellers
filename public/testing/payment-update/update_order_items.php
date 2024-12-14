@@ -17,7 +17,7 @@ try {
     $silverPrice = $data['silverPrice'];
 
 
-    if (!empty($data['status']) && $data['status'] == 'success') {
+    if (!empty($data['status']) && ( $data['status'] == 'success' || $data['status'] == 'COD' )) {
 
 
 // Move Cart Items to Order Items

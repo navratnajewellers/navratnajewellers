@@ -84,6 +84,11 @@
   width: 20%;
 }
 
+/* payment option modal style */
+.payment-option-modal .rs-modal-header-close {
+  top: -40px !important;
+}
+
 /* on small devices */
 @media screen and (max-width: 600px) {
   .order-product-info-container h5 {
@@ -117,7 +122,7 @@
   .remove-cart-product {
     position: absolute;
     right: 40%;
-    bottom: -60%;
+    bottom: -50%;
     z-index: 9;
   }
 }
