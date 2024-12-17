@@ -1,4 +1,4 @@
-import { Carousel, Divider } from 'rsuite';
+import { Affix, Carousel, Divider } from 'rsuite';
 import Header from '../components/Header';
 import '../styles/Home.css';
 import { GiJewelCrown } from '@react-icons/all-files/gi/GiJewelCrown';
@@ -44,9 +44,11 @@ const Home = () => {
     </div>
   ) : (
     <div>
-      <div className="header-container margin-t10">
-        <Header />
-      </div>
+      <Affix className="fixed-header">
+        <div className="header-container margin-t10">
+          <Header />
+        </div>
+      </Affix>
       <div className="carousel">
         <Carousel autoplay shape="bar" className="custom-slider">
           <a href="" className="dis-block">
@@ -99,7 +101,7 @@ const Home = () => {
           <HomeProducts />
         </div>
       </div>
-      <div className="home-connect-us margin-b60">
+      <div className="home-connect-us margin-t50 margin-b60">
         <div>
           <h2 className="textCenter fraunces-font main-color">
             Connect with Us

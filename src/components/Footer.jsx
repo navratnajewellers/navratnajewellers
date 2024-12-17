@@ -6,6 +6,7 @@ import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube';
 import { FaPinterest } from '@react-icons/all-files/fa/FaPinterest';
 import { FaLocationArrow } from '@react-icons/all-files/fa/FaLocationArrow';
 import { Accordion, useMediaQuery } from 'rsuite';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const [isMobile] = useMediaQuery('(max-width: 600px)');
@@ -63,9 +64,19 @@ const Footer = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="" target="_blank">
-                      About Navratna Jewellers
-                    </a>
+                    <Link to="/page/ahout-us">About Navratna Jewellers</Link>
+                  </li>
+                  <li>
+                    <Link to="/page/privacy-policy">Privacy Policy</Link>
+                  </li>
+                  <li>
+                    <Link to="/page/term-condition">Terms & Condition</Link>
+                  </li>
+                  <li>
+                    <Link to="/page/return-policy">Return Policy</Link>
+                  </li>
+                  <li>
+                    <Link to="/page/shipping-policy">Shipping Policy</Link>
                   </li>
                 </ul>
               </div>
@@ -156,9 +167,19 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="" target="_blank">
-                  About Navratna Jewellers
-                </a>
+                <Link to="/page/ahout-us">About Navratna Jewellers</Link>
+              </li>
+              <li>
+                <Link to="/page/privacy-policy">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link to="/page/term-condition">Terms & Condition</Link>
+              </li>
+              <li>
+                <Link to="/page/return-policy">Return Policy</Link>
+              </li>
+              <li>
+                <Link to="/page/shipping-policy">Shipping Policy</Link>
               </li>
             </ul>
           </div>

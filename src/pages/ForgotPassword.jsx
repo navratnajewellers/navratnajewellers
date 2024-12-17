@@ -1,4 +1,12 @@
-import { Breadcrumb, Button, ButtonToolbar, Form, Modal, Schema } from 'rsuite';
+import {
+  Affix,
+  Breadcrumb,
+  Button,
+  ButtonToolbar,
+  Form,
+  Modal,
+  Schema,
+} from 'rsuite';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { Link } from 'react-router-dom';
@@ -156,9 +164,11 @@ const ForgotPassword = () => {
 
   return (
     <div>
-      <div className="header-container margin-t10">
-        <Header />
-      </div>
+      <Affix className="fixed-header">
+        <div className="header-container margin-t10">
+          <Header />
+        </div>
+      </Affix>
       <div className="breadcrumb-container">
         <Breadcrumb>
           <Breadcrumb.Item>

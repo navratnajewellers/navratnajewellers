@@ -8,7 +8,7 @@ const HomeProducts = () => {
           <div className="imageWrapper">
             <img src="/fod-gold-coins.jpeg"></img>
           </div>
-          <div className="dis-flex home-product-name pos-abs z-10">
+          <div className="dis-flex home-product-name pos-abs">
             <span>Gold Coins</span>
           </div>
         </Link>
@@ -18,7 +18,7 @@ const HomeProducts = () => {
           <div className="imageWrapper">
             <img src="/Pure-Silver-Coin---10-gm.jpeg"></img>
           </div>
-          <div className="dis-flex home-product-name pos-abs z-10">
+          <div className="dis-flex home-product-name pos-abs">
             <span>Silver Coins</span>
           </div>
         </Link>

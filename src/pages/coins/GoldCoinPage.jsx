@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import {
   Accordion,
+  Affix,
   Breadcrumb,
   Button,
   Col,
@@ -214,9 +215,11 @@ const GoldCoinPage = () => {
 
   return (
     <div>
-      <div className="header-container margin-t10">
-        <Header />
-      </div>
+      <Affix className="fixed-header">
+        <div className="header-container margin-t10">
+          <Header />
+        </div>
+      </Affix>
       <div className="breadcrumb-container">
         <Breadcrumb>
           <Breadcrumb.Item>

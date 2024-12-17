@@ -1,4 +1,5 @@
 import {
+  Affix,
   Breadcrumb,
   Button,
   Col,
@@ -465,9 +466,11 @@ const Cart = () => {
 
   return (
     <div>
-      <div className="header-container margin-t10">
-        <Header />
-      </div>
+      <Affix className="fixed-header">
+        <div className="header-container margin-t10">
+          <Header />
+        </div>
+      </Affix>
       <div>
         <div className="breadcrumb-container">
           <Breadcrumb>

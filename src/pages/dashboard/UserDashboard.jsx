@@ -1,4 +1,4 @@
-import { Accordion, Breadcrumb, Loader } from 'rsuite';
+import { Accordion, Affix, Breadcrumb, Loader } from 'rsuite';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { Link } from 'react-router-dom';
@@ -87,9 +87,11 @@ const UserDashboard = () => {
 
   return (
     <div>
-      <div className="header-container margin-t10">
-        <Header />
-      </div>
+      <Affix className="fixed-header">
+        <div className="header-container margin-t10">
+          <Header />
+        </div>
+      </Affix>
       <div className="breadcrumb-container">
         <Breadcrumb>
           <Breadcrumb.Item>

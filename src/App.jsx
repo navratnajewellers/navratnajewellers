@@ -18,6 +18,11 @@ import ForgotPassword from './pages/ForgotPassword';
 import { MessageProvider } from './context/message.context';
 import CategoryPageGrid from './pages/categoryPage/CategoryPageGrid';
 import { ServerProvider } from './context/server.context';
+import ReturnPolicy from './pages/pcPages/ReturnPolicy';
+import PrivacyPolicy from './pages/pcPages/PrivacyPolicy';
+import ShippingPolicy from './pages/pcPages/ShippingPolicy';
+import TermAndConditions from './pages/pcPages/TermAndConditions';
+import AboutUs from './pages/pcPages/AboutUs';
 
 function App() {
   return (
@@ -45,6 +50,23 @@ function App() {
                     path="/product/:productCategory"
                     element={<CategoryPageGrid />}
                   />
+                  <Route
+                    path="/page/return-policy"
+                    element={<ReturnPolicy />}
+                  />
+                  <Route
+                    path="/page/privacy-policy"
+                    element={<PrivacyPolicy />}
+                  />
+                  <Route
+                    path="/page/shipping-policy"
+                    element={<ShippingPolicy />}
+                  />
+                  <Route
+                    path="/page/term-condition"
+                    element={<TermAndConditions />}
+                  />
+                  <Route path="/page/ahout-us" element={<AboutUs />} />
                   <Route path="/testPayment" element={<PaymentTest />} />
                   <Route path="*" element={<PageNotFound />} />
                 </Routes>

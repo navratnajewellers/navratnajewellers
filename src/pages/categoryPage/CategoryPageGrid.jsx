@@ -1,4 +1,11 @@
-import { Breadcrumb, Divider, FlexboxGrid, Loader, Pagination } from 'rsuite';
+import {
+  Affix,
+  Breadcrumb,
+  Divider,
+  FlexboxGrid,
+  Loader,
+  Pagination,
+} from 'rsuite';
 import Header from '../../components/Header';
 import { Link, useParams } from 'react-router-dom';
 import Footer from '../../components/Footer';
@@ -83,9 +90,11 @@ const CategoryPageGrid = () => {
 
   return (
     <div>
-      <div className="header-container margin-t10">
-        <Header />
-      </div>
+      <Affix className="fixed-header">
+        <div className="header-container margin-t10">
+          <Header />
+        </div>
+      </Affix>
       <div className="breadcrumb-container">
         <Breadcrumb>
           <Breadcrumb.Item>

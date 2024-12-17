@@ -9,7 +9,6 @@ body {
   margin: 0;
   background-color: rgb(244, 244, 244);
   position: relative;
-  width: 100vw;
 }
 
 .textCenter {
@@ -133,6 +132,10 @@ body {
   padding-left: 10px;
 }
 
+.padding-lr5 {
+  padding: 0 5%;
+}
+
 .modal-custom-header {
   position: relative;
 }
@@ -191,4 +194,8 @@ body {
 
 .dis-link-style:hover {
   color: black;
+}
+
+.fixed-header {
+  background-color: #ffffff;
 }

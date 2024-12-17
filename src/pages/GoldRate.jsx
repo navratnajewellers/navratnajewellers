@@ -1,4 +1,4 @@
-import { Loader, Text } from 'rsuite';
+import { Affix, Loader, Text } from 'rsuite';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import axios from 'axios';
@@ -33,9 +33,11 @@ const GoldRate = () => {
 
   return (
     <div>
-      <div className="header-container margin-t10">
-        <Header />
-      </div>
+      <Affix className="fixed-header">
+        <div className="header-container margin-t10">
+          <Header />
+        </div>
+      </Affix>
       <div className="gold-price-container">
         <div>
           <h2 className="text-center gp-primary-text">

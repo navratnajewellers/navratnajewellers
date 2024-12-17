@@ -3,6 +3,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import {
   Accordion,
+  Affix,
   Breadcrumb,
   Button,
   Col,
@@ -215,9 +216,11 @@ const Product = () => {
 
   return (
     <div>
-      <div className="header-container margin-t10">
-        <Header />
-      </div>
+      <Affix className="fixed-header">
+        <div className="header-container margin-t10">
+          <Header />
+        </div>
+      </Affix>
 
       {!productData || !priceData ? (
         <div className="loader-default-container dis-flex">
