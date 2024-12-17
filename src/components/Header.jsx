@@ -1,8 +1,10 @@
 import {
   AutoComplete,
   Button,
+  Drawer,
   Dropdown,
   Form,
+  IconButton,
   InputGroup,
   Message,
   Modal,
@@ -10,6 +12,7 @@ import {
   Navbar,
   Popover,
   Schema,
+  Sidenav,
   useMediaQuery,
   useToaster,
   Whisper,
@@ -27,6 +30,7 @@ import CryptoJS from 'crypto-js';
 import { useCart } from '../context/Cart.context';
 import { useProduct } from '../context/product.context';
 import { useServerLink } from '../context/server.context';
+import MenuIcon from '@rsuite/icons/Menu';
 
 const autoFillData = [];
 
@@ -84,6 +88,9 @@ const Header = () => {
   const { productData } = useProduct();
 
   const [searchData, setSearchData] = useState(null);
+
+  // side nav only for mobile devives
+  const [isSideNavOpen, setIsSideNavOpen] = useState(false);
 
   if (productData) {
     productData.map((data, index) => {
@@ -405,6 +412,14 @@ const Header = () => {
   return (
     <div className="header-main">
       <div className="header-primary">
+        <div className={`dis-flex side-menu-icon-container `}>
+          <IconButton
+            appearance="link"
+            size="lg"
+            icon={<MenuIcon />}
+            onClick={() => setIsSideNavOpen(true)}
+          ></IconButton>
+        </div>
         <div className="nav-logo">
           <Link to="/" className="dis-block">
             <div className="imageWrapper">
@@ -413,12 +428,16 @@ const Header = () => {
           </Link>
         </div>
         <div className="search-box">
-          <InputGroup inside className="search-product">
+          <InputGroup
+            inside
+            className={`search-product ${isMobile ? 'dis-none-imp' : ''} `}
+          >
             <AutoComplete
               data={autoFillData}
               style={{ height: '100%' }}
               onChange={handleAutofillData}
               onSelect={handleSearchOptionSelect}
+              placeholder="Search for Gold and Silver Coins"
             />
             <InputGroup.Button
               className="search-icon-button"
@@ -428,7 +447,15 @@ const Header = () => {
             </InputGroup.Button>
           </InputGroup>
         </div>
-        <div className="header-store dis-flex">
+        <Link to="/shop" className="header-store dis-flex">
+          <div className="dis-flex">
+            <FaStore className="header-icons" />
+          </div>
+          <div className="header-text-container cursorPointer">
+            <h4 className="textCenter">Stores</h4>
+          </div>
+        </Link>
+        {/* <div className="header-store dis-flex">
           <div className="dis-flex">
             <FaStore className="header-icons" />
           </div>
@@ -437,7 +464,7 @@ const Header = () => {
               <Link to="/shop">Stores</Link>
             </h4>
           </div>
-        </div>
+        </div> */}
         <div className="header-store dis-flex">
           <div className="dis-flex">
             <VscAccount className="header-icons" />
@@ -463,11 +490,11 @@ const Header = () => {
           </div>
           <div className="header-text-container cursorPointer">
             <h4 className="textCenter">
-              <Link to="/user/wishlist">Wishlist</Link>
+              <Link>Wishlist</Link>
             </h4>
           </div>
         </div>
-        <div className="header-store dis-flex">
+        <Link to="/cart" className="header-store dis-flex">
           <div className="dis-flex pos-rel">
             <p className="pos-abs cart-quantity dis-flex">
               {cartData.quantity}
@@ -475,13 +502,30 @@ const Header = () => {
             <IoCartOutline className="header-icons" />
           </div>
           <div className="header-text-container cursorPointer ">
-            <h4 className="textCenter">
-              <Link to="/cart">Cart</Link>
-            </h4>
+            <h4 className="textCenter">Cart</h4>
           </div>
+        </Link>
+      </div>
+      <div className={`margin-t5 margin-b20 ${isMobile ? '' : 'dis-none'} `}>
+        <div className="search-box">
+          <InputGroup inside className="search-product">
+            <AutoComplete
+              data={autoFillData}
+              style={{ height: '100%' }}
+              onChange={handleAutofillData}
+              onSelect={handleSearchOptionSelect}
+              placeholder="Search for Gold and Silver Coins"
+            />
+            <InputGroup.Button
+              className="search-icon-button"
+              onClick={() => handleSearch()}
+            >
+              <SearchIcon />
+            </InputGroup.Button>
+          </InputGroup>
         </div>
       </div>
-      <div className="header-secondary">
+      <div className={`header-secondary ${isMobile ? 'dis-none' : ''} `}>
         <Navbar className="dis-flex">
           <Nav>
             <Nav.Menu title="GOLD COINS">
@@ -675,6 +719,116 @@ const Header = () => {
             </Button>
           </Modal.Footer>
         </Modal>
+      </div>
+      <div>
+        <Drawer
+          open={isSideNavOpen}
+          placement="left"
+          onClose={() => setIsSideNavOpen(false)}
+          className="sidenav-drawer-container"
+        >
+          <Drawer.Header>
+            <h4 className="main-color">Navratna Jewellers</h4>
+          </Drawer.Header>
+          <Drawer.Body>
+            <div className="sidenav-container">
+              <Sidenav defaultOpenKeys={['2']}>
+                <Sidenav.Body>
+                  <Nav>
+                    <Nav.Item eventKey="1" as={Link} to="/gold-rate">
+                      Gold Rate
+                    </Nav.Item>
+                    <Nav.Menu eventKey="2" title="GOLD COINS">
+                      <Nav.Item eventKey="2-1" as={Link} to="/gold-coin/1">
+                        1 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="2-2" as={Link} to="/gold-coin/2">
+                        2 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="2-3" as={Link} to="/gold-coin/4">
+                        4 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="2-4" as={Link} to="/gold-coin/5">
+                        5 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="2-5" as={Link} to="/gold-coin/8">
+                        8 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="2-6" as={Link} to="/gold-coin/10">
+                        10 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="2-7" as={Link} to="/gold-coin/25">
+                        25 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="2-8" as={Link} to="/gold-coin/30">
+                        30 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="2-9" as={Link} to="/gold-coin/50">
+                        50 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="2-10" as={Link} to="/gold-coin/100">
+                        100 GRAM
+                      </Nav.Item>
+                    </Nav.Menu>
+                    <Nav.Menu eventKey="3" title="SILVER COINS">
+                      <Nav.Item eventKey="3-1" as={Link} to="/silver-coin/1">
+                        1 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="3-2" as={Link} to="/silver-coin/2">
+                        2 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="3-3" as={Link} to="/silver-coin/4">
+                        4 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="3-4" as={Link} to="/silver-coin/5">
+                        5 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="3-5" as={Link} to="/silver-coin/8">
+                        8 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="3-6" as={Link} to="/silver-coin/10">
+                        10 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="3-7" as={Link} to="/silver-coin/25">
+                        25 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="3-8" as={Link} to="/silver-coin/30">
+                        30 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="3-9" as={Link} to="/silver-coin/50">
+                        50 GRAM
+                      </Nav.Item>
+                      <Nav.Item eventKey="3-10" as={Link} to="/silver-coin/100">
+                        100 GRAM
+                      </Nav.Item>
+                    </Nav.Menu>
+                    <Nav.Menu eventKey="4" title="About">
+                      <Nav.Item eventKey="4-1">Navratna Jewellers</Nav.Item>
+                      <Nav.Menu eventKey="4-2" title="Contact">
+                        <Nav.Item eventKey="4-2-1">
+                          <a
+                            href="mailto:navratnajewellers0@gmail.com"
+                            className="header-menu-option-link"
+                          >
+                            Email
+                          </a>
+                        </Nav.Item>
+                        <Nav.Item eventKey="4-2-2">
+                          <a
+                            href="tel:+91 7004220367"
+                            className="header-menu-option-link"
+                          >
+                            Telephone
+                          </a>
+                        </Nav.Item>
+                      </Nav.Menu>
+                    </Nav.Menu>
+                  </Nav>
+                </Sidenav.Body>
+              </Sidenav>
+            </div>
+          </Drawer.Body>
+        </Drawer>
       </div>
     </div>
   );

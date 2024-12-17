@@ -11,7 +11,8 @@
   justify-content: center;
 }
 
-.header-primary div {
+.header-primary div,
+.header-primary a {
   height: 70px;
 }
 
@@ -56,6 +57,7 @@ button {
   /* border: solid 1px rosybrown; */
   width: 100px;
   flex-direction: column;
+  color: #000000;
 }
 
 .header-icons {
@@ -87,9 +89,11 @@ button {
 }
 
 .header-store:hover {
-  color: #4848ed;
+  text-decoration: none;
+  /* color: #4848ed; */
+  color: palevioletred;
   transform: scale(1.12);
-  transition: all 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
 .header-text-container a {
@@ -105,6 +109,32 @@ button {
 .header-menu-option-link:hover {
   color: #4848ed;
 }
+
+/* side menu styling */
+.side-menu-icon-container {
+  width: 70px;
+}
+
+.side-menu-icon-container svg {
+  color: #000000;
+}
+
+.sidenav-drawer-container {
+  width: 310px !important;
+}
+
+.sidenav-drawer-container .rs-drawer-header-close {
+  top: 0 !important;
+}
+
+.sidenav-drawer-container .rs-drawer-body {
+  padding: 0;
+}
+
+.sidenav-drawer-container .rs-drawer-content {
+  background-color: #f7f7fa;
+}
+
 /* carousel */
 /* .carousel {
   border: solid 1px red;
@@ -114,7 +144,7 @@ button {
 /* home page products */
 
 .shop-by-category {
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .home-products-container {
@@ -358,5 +388,12 @@ button {
 @media screen and (max-width: 1000px) {
   .home-products-container {
     padding: 0;
+  }
+}
+
+/* small devices */
+@media screen and (max-width: 450px) {
+  .search-box {
+    flex-basis: 5%;
   }
 }

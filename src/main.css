@@ -199,3 +199,8 @@ body {
 .fixed-header {
   background-color: #ffffff;
 }
+
+/* search product autofill container */
+.rs-picker-popup {
+  z-index: 99 !important;
+}
