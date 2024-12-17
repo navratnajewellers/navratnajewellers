@@ -412,7 +412,9 @@ const Header = () => {
   return (
     <div className="header-main">
       <div className="header-primary">
-        <div className={`dis-flex side-menu-icon-container `}>
+        <div
+          className={`dis-flex side-menu-icon-container  ${isMobile ? '' : 'dis-none'} `}
+        >
           <IconButton
             appearance="link"
             size="lg"
