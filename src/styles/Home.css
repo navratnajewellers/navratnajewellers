@@ -392,8 +392,25 @@ button {
 }
 
 /* small devices */
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 600px) {
   .search-box {
     flex-basis: 5%;
+  }
+
+  .shop-category-header h2 {
+    font-size: 26px;
+  }
+
+  .shop-category-header p {
+    font-size: 12px;
+  }
+
+  /* product styling */
+  .home-products {
+    width: 250px;
+  }
+
+  .home-products .imageWrapper {
+    height: 300px;
   }
 }

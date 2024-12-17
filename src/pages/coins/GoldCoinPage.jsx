@@ -405,7 +405,7 @@ const GoldCoinPage = () => {
           </div>
           <div className="assurance margin-t50 margin-b50">
             <div className="textCenter">
-              <h2>The Navratna Assurance</h2>
+              <h2 className="main-color margin-b10">The Navratna Assurance</h2>
               <p>Crafted by Experts, Cherished by You.</p>
             </div>
             <div className="assurance-item-container dis-flex margin-t50 textCenter">

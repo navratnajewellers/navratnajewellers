@@ -89,10 +89,13 @@ const Home = () => {
         </Carousel>
       </div>
       <div className="shop-by-category">
-        <div>
+        <div className="shop-category-header">
           <h2 className="textCenter fraunces-font main-color">
             Shop By Category
           </h2>
+          <p className="textCenter padding-lr5">
+            Browse through your favorite categories. We&apos;ve got them all!
+          </p>
         </div>
         <Divider>
           <GiJewelCrown />
@@ -102,10 +105,13 @@ const Home = () => {
         </div>
       </div>
       <div className="home-connect-us margin-t50 margin-b60">
-        <div>
+        <div className="shop-category-header">
           <h2 className="textCenter fraunces-font main-color">
             Connect with Us
           </h2>
+          <p className="textCenter padding-lr5 ">
+            We are always available to guide you at your convenience.
+          </p>
         </div>
         <Divider>
           <GiJewelCrown />
