@@ -1,4 +1,11 @@
-import { Breadcrumb, Divider, FlexboxGrid, Loader, Pagination } from 'rsuite';
+import {
+  Affix,
+  Breadcrumb,
+  Divider,
+  FlexboxGrid,
+  Loader,
+  Pagination,
+} from 'rsuite';
 import Header from '../../components/Header';
 import { useProduct } from '../../context/product.context';
 import { Link } from 'react-router-dom';
@@ -9,6 +16,9 @@ import axios from 'axios';
 import { useServerLink } from '../../context/server.context';
 
 const ShopGrid = () => {
+  // move to top of window wgen user on different section of other page
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   const { productData } = useProduct();
   const [priceData, setPriceData] = useState(null);
 
@@ -54,9 +64,11 @@ const ShopGrid = () => {
 
   return (
     <div>
-      <div className="header-container margin-t10">
-        <Header />
-      </div>
+      <Affix className="fixed-header">
+        <div className="header-container margin-t10">
+          <Header />
+        </div>
+      </Affix>
       <div className="breadcrumb-container">
         <Breadcrumb>
           <Breadcrumb.Item>

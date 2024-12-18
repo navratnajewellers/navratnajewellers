@@ -28,6 +28,9 @@ const data = [1, 2, 3, 4, 5, 10].map(item => ({
 }));
 
 const GoldCoinPage = () => {
+  // move to top of window wgen user on different section of other page
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   const toaster = useToaster();
   const { gramQt } = useParams();
 

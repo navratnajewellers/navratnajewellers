@@ -3,6 +3,9 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 
 const ReturnPolicy = () => {
+  // move to top of window wgen user on different section of other page
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   return (
     <div>
       <Affix className="fixed-header">

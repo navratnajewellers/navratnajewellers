@@ -18,6 +18,8 @@ const UserOrderGrid = ({ orderData }) => {
 
     const getOrderItemDetails = async () => {
       try {
+        setDeliveryStatus(null);
+
         const response = await axios.post(
           `${serverLink}/testing/dashboard/fetch_order_item.php`,
           {
@@ -38,6 +40,8 @@ const UserOrderGrid = ({ orderData }) => {
     };
 
     getOrderItemDetails();
+
+    // console.log({ delivery_status: delivery_status });
   };
 
   const handleCancelOrder = orderId => {
@@ -94,9 +98,19 @@ const UserOrderGrid = ({ orderData }) => {
             <OrderItemGrid key={data.id} orderItemData={data} />
           ))
         ) : (
-          <Placeholder.Paragraph />
+          <Placeholder.Paragraph
+            graph="square"
+            active
+            className="margin-t10 margin-b20 padding-lr5 "
+          />
         )}
-        <div className={delivery_status == 'order-cancel' ? 'dis-none' : ''}>
+        <div
+          className={
+            delivery_status === 'order-cancel' || delivery_status == null
+              ? 'dis-none'
+              : ''
+          }
+        >
           <Button onClick={() => handleCancelOrder(orderData.order_id)}>
             Cancel Order
           </Button>

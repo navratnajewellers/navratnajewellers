@@ -6,6 +6,9 @@ import { useEffect, useState } from 'react';
 import { useServerLink } from '../context/server.context';
 
 const GoldRate = () => {
+  // move to top of window wgen user on different section of other page
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   const [priceData, setPriceData] = useState(null);
 
   const { serverLink } = useServerLink();

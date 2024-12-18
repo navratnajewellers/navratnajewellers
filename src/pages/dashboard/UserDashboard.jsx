@@ -1,4 +1,4 @@
-import { Accordion, Affix, Breadcrumb, Loader } from 'rsuite';
+import { Accordion, Affix, Breadcrumb, Button, Loader } from 'rsuite';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { Link } from 'react-router-dom';
@@ -20,6 +20,8 @@ const UserDashboard = () => {
 
   // order details with order items too
   const [orderData, setOrderData] = useState(null);
+
+  const [orderLimit, setOrderLimit] = useState(5);
 
   useEffect(() => {
     if (userData.id) {
@@ -85,6 +87,10 @@ const UserDashboard = () => {
   // console.log(orderData);
   // console.log(userData.id);
 
+  const handleNoOfOrder = () => {
+    setOrderLimit('all');
+  };
+
   return (
     <div>
       <Affix className="fixed-header">
@@ -119,11 +125,39 @@ const UserDashboard = () => {
                 </h4>
               </div>
               <div>
-                <Accordion defaultActiveKey={1} bordered>
-                  {orderData?.toReversed().map(data => (
-                    <UserOrderGrid key={data.order_id} orderData={data} />
-                  ))}
-                </Accordion>
+                <h4 className="margin-b20">Your last five order :</h4>
+
+                {orderLimit !== 'all' ? (
+                  <Accordion defaultActiveKey={1} bordered>
+                    {orderData
+                      ?.toReversed()
+                      .slice(0, 5)
+                      .map(data => (
+                        <UserOrderGrid key={data.order_id} orderData={data} />
+                      ))}
+                  </Accordion>
+                ) : (
+                  <Accordion defaultActiveKey={1} bordered>
+                    {orderData?.toReversed().map(data => (
+                      <UserOrderGrid key={data.order_id} orderData={data} />
+                    ))}
+                  </Accordion>
+                )}
+                {/* <Accordion defaultActiveKey={1} bordered>
+                  {orderData
+                    ?.toReversed()
+                    .slice(orderLimit)
+                    .map(data => (
+                      <UserOrderGrid key={data.order_id} orderData={data} />
+                    ))}
+                </Accordion> */}
+              </div>
+              <div
+                className={`margin-t20 ${orderLimit !== 'all' ? '' : 'dis-none'}`}
+              >
+                <Button onClick={() => handleNoOfOrder()} appearance="primary">
+                  See all orders
+                </Button>
               </div>
             </div>
           </div>
