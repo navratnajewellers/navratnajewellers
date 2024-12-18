@@ -52,7 +52,7 @@ const Cart = () => {
   // to be set by the CartItemGrid
   const [grand_total, setGrand_total] = useState(0);
 
-  // check addrtess
+  // check address
   const [address, setAddress] = useState(addresDefault);
 
   const [isAddressLoading, setIsAddressLoading] = useState(true);

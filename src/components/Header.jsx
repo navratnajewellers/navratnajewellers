@@ -598,7 +598,9 @@ const Header = () => {
               Gold Rate
             </Nav.Item>
             <Nav.Menu title="About" className="about-menu">
-              <Nav.Item>Navratna Jewellers</Nav.Item>
+              <Nav.Item as={Link} to="/page/ahout-us">
+                Navratna Jewellers
+              </Nav.Item>
               <Nav.Menu
                 title="Contact"
                 openDirection={isMobile ? 'start' : 'end'}
@@ -805,7 +807,9 @@ const Header = () => {
                       </Nav.Item>
                     </Nav.Menu>
                     <Nav.Menu eventKey="4" title="About">
-                      <Nav.Item eventKey="4-1">Navratna Jewellers</Nav.Item>
+                      <Nav.Item eventKey="4-1" as={Link} to="/page/ahout-us">
+                        Navratna Jewellers
+                      </Nav.Item>
                       <Nav.Menu eventKey="4-2" title="Contact">
                         <Nav.Item eventKey="4-2-1">
                           <a

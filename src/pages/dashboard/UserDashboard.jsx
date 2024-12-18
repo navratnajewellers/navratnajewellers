@@ -7,6 +7,19 @@ import { useProfile } from '../../context/profile.context';
 import axios from 'axios';
 import UserOrderGrid from './UserOrderGrid';
 import { useServerLink } from '../../context/server.context';
+import UserAddressDrawer from './UserAddressDrawer';
+
+const addressDefault = {
+  status: 'notFound',
+  mobile: '',
+  address1: '',
+  address2: '',
+  country: 'India',
+  city: '',
+  state: '',
+  pincode: '',
+  landmark: '',
+};
 
 const UserDashboard = () => {
   const { userData } = useProfile();
@@ -21,7 +34,19 @@ const UserDashboard = () => {
   // order details with order items too
   const [orderData, setOrderData] = useState(null);
 
+  // to limit the result order list
   const [orderLimit, setOrderLimit] = useState(5);
+
+  // user address drawer variable
+  const [isUserAddressOpen, setIsUserAddressOpen] = useState(false);
+
+  // check address
+  const [address, setAddress] = useState(addressDefault);
+
+  //user address from database
+  const [userAddress, setUserAddress] = useState(addressDefault);
+
+  const [isAddressLoading, setIsAddressLoading] = useState(true);
 
   useEffect(() => {
     if (userData.id) {
@@ -91,6 +116,67 @@ const UserDashboard = () => {
     setOrderLimit('all');
   };
 
+  const handleViewAddress = () => {
+    // open user address drawer
+    setIsUserAddressOpen(true);
+
+    // checking the status of the login user address
+    const getAddress = async () => {
+      setIsAddressLoading(true);
+      try {
+        const response = await axios.post(
+          `${serverLink}/testing/addresses/fetch_address.php`,
+          {
+            userId: userData.id,
+          }
+        );
+
+        if (response.status === 200) {
+          // console.log(response);
+          // console.log(response.data);
+
+          if (response.data.status === 'notFound') {
+            setAddress(val => ({
+              ...val,
+              status: response.data.status,
+            }));
+          } else if (response.data.status === 'found') {
+            setAddress(val => ({
+              ...val,
+              status: response.data.status,
+              mobile: response.data.mobile,
+              address1: response.data.address1,
+              address2: response.data.address2,
+              country: response.data.country,
+              city: response.data.city,
+              state: response.data.state,
+              pincode: response.data.pincode,
+            }));
+
+            // for backup
+            setUserAddress(val => ({
+              ...val,
+              status: response.data.status,
+              mobile: response.data.mobile,
+              address1: response.data.address1,
+              address2: response.data.address2,
+              country: response.data.country,
+              city: response.data.city,
+              state: response.data.state,
+              pincode: response.data.pincode,
+            }));
+          }
+
+          setIsAddressLoading(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getAddress();
+  };
+
   return (
     <div>
       <Affix className="fixed-header">
@@ -117,6 +203,11 @@ const UserDashboard = () => {
               <h2 className="user-greeting-message">
                 {greetingMessage}, {userData.username} !{' '}
               </h2>
+            </div>
+            <div className="margin-t30 margin-b20">
+              <Button appearance="ghost" onClick={() => handleViewAddress()}>
+                View Address
+              </Button>
             </div>
             <div>
               <div>
@@ -159,6 +250,17 @@ const UserDashboard = () => {
                   See all orders
                 </Button>
               </div>
+            </div>
+            <div>
+              <UserAddressDrawer
+                isUserAddressOpen={isUserAddressOpen}
+                setIsUserAddressOpen={setIsUserAddressOpen}
+                userData={userData}
+                address={address}
+                setAddress={setAddress}
+                userAddress={userAddress}
+                isAddressLoading={isAddressLoading}
+              />
             </div>
           </div>
         ) : (
