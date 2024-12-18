@@ -24,7 +24,31 @@ try {
 	$phoneNumber = htmlspecialchars(strip_tags($data->mobile));
 
 
-        // Insert into the database
+// Check if the user exists in the database
+$searchQuery = "SELECT * FROM addresses WHERE user_id = :userId";
+$searchStmt = $pdo->prepare($searchQuery);
+$searchStmt->bindParam(':userId', $userId);
+$searchStmt->execute();
+$user = $searchStmt->fetch(PDO::FETCH_ASSOC);
+
+if ($user) {
+
+    // Update Address into the database
+	$sql = "UPDATE addresses SET address_line_1 = :address_one, address_line_2 = :address_two, country = :country, city = :city, state = :state, postal_code = :pincode, landmark = :landmark, phone_number = :mobile_number WHERE user_id = :user_id";
+        $stmt = $pdo->prepare($sql);
+	$stmt->bindParam(':user_id', $userId);
+        $stmt->bindParam(':address_one', $address1);
+        $stmt->bindParam(':address_two', $address2);
+        $stmt->bindParam(':country', $country);
+        $stmt->bindParam(':city', $city);
+        $stmt->bindParam(':state', $state);
+        $stmt->bindParam(':pincode', $postalCode);
+        $stmt->bindParam(':landmark', $landmark);
+	$stmt->bindParam(':mobile_number', $phoneNumber);
+
+
+} else {
+    // Insert into the database
 	$sql = "INSERT INTO `addresses` (`user_id`, `address_line_1`, `address_line_2`, `country`, `city`, `state`, `postal_code`, `landmark`, `phone_number`) VALUES (:user_id, :address_one, :address_two, :country, :city, :state, :pincode, :landmark, :mobile_number)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':user_id', $userId);
@@ -36,6 +60,9 @@ try {
         $stmt->bindParam(':pincode', $postalCode);
         $stmt->bindParam(':landmark', $landmark);
 	$stmt->bindParam(':mobile_number', $phoneNumber);
+
+}
+
 
         if ($stmt->execute()) {
             echo json_encode(["status" => "success", "message" => "Address updated registered successfully."]);
