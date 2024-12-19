@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2024 at 01:05 PM
+-- Generation Time: Dec 19, 2024 at 02:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,13 +46,14 @@ CREATE TABLE `addresses` (
 --
 
 INSERT INTO `addresses` (`id`, `user_id`, `address_line_1`, `address_line_2`, `country`, `city`, `state`, `postal_code`, `landmark`, `phone_number`, `created_at`) VALUES
-(1, 4, 'Ranchi', 'Jharkhand', 'India', 'Ranchi', 'Jharkhand', '834001', NULL, '1234567890', '2024-12-04 11:06:16'),
+(1, 4, 'Ranchi', 'Jharkhand', 'India', 'Ranchi', 'Jharkhand', '834001', '', '1234567890', '2024-12-04 11:06:16'),
 (2, 6, 'Delhi, India', NULL, 'India', 'Delhi', 'Delhi', '664566', NULL, '9988776655', '2024-12-05 09:55:36'),
 (3, 3, 'Ranchi, Jharkhand', '', 'India', 'Ranchi', 'Jharkhand', '834001', '', '9204780758', '2024-12-05 10:48:30'),
 (4, 8, 'Ranchi, Jharkhand', '', 'India', 'Ranchi', 'Jharkhand', '834001', '', '9204780758', '2024-12-05 11:05:40'),
 (5, 22, '1451656dhj ksbxakus', '', 'India', 'Ranchi', 'Jharkhand', '834001', '', '1618828772', '2024-12-05 11:39:03'),
 (6, 6759445, 'Ranchi, Jharkhand', '', 'India', 'Ranchi', 'Jharkhand', '833998', '', '9204780758', '2024-12-11 07:52:22'),
-(7, 14, 'Ranchi, Jharkhand', '', 'India', 'Ranchi', 'Jharkhand', '834001', '', '9204780758', '2024-12-12 10:53:29');
+(7, 14, 'Ranchi, Jharkhand', '', 'India', 'Ranchi', 'Jharkhand', '834001', '', '9204780758', '2024-12-12 10:53:29'),
+(11, 5, 'Ranchi, Jharkhand', '', 'India', 'Ranchi', 'Jharkhand', '834001', '', '9204780758', '2024-12-18 11:18:45');
 
 -- --------------------------------------------------------
 
@@ -75,8 +76,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(16, 22, 1, 1, 8786, '2024-12-05 11:38:02', '2024-12-05 17:08:02'),
-(42, 4, 1, 1, 8786, '2024-12-12 06:57:11', '2024-12-12 12:27:11');
+(16, 22, 1, 1, 8786, '2024-12-05 11:38:02', '2024-12-05 17:08:02');
 
 -- --------------------------------------------------------
 
@@ -105,6 +105,30 @@ INSERT INTO `gold_price` (`id`, `price_1_gram_24K`, `price_1_gram_22K`, `price_1
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `nav_admin`
+--
+
+CREATE TABLE `nav_admin` (
+  `ad_id` varchar(255) NOT NULL,
+  `ad_name` varchar(255) NOT NULL,
+  `ad_email` varchar(255) NOT NULL,
+  `ad_password` varchar(255) NOT NULL,
+  `ad_created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ad_updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `nav_admin`
+--
+
+INSERT INTO `nav_admin` (`ad_id`, `ad_name`, `ad_email`, `ad_password`, `ad_created_at`, `ad_updated_at`) VALUES
+('132556', 'admin', 'admin@gmail.com', '$2y$10$gHHYyCt79wf0tPWQFM3Y7u6oGREjjPJ9OS2hk3PwAI6aWWXo1Symq', '2024-12-19 07:48:23', '2024-12-19 13:41:49'),
+('6763', 'admin2', 'admin2@gmail.com', '$2y$10$uz9OKXbR3UeIsCoG3pH3g.O2YnVtF8yll.6LvVMltbw2i1GlKJdfq', '2024-12-19 09:46:56', '2024-12-19 15:16:56'),
+('6763f229d6966', 'admin3', 'admin3@gmail.com', '$2y$10$0qzmxCRJ9LsvC9eDjm0qMuJXSIcT4BWm0ZU95XhlrpnH5kz65qTSS', '2024-12-19 10:15:06', '2024-12-19 15:45:06');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `offline_cart`
 --
 
@@ -123,8 +147,7 @@ CREATE TABLE `offline_cart` (
 --
 
 INSERT INTO `offline_cart` (`id`, `local_user_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(10, '27ed3229d6e5b59d21ab6ea14b726368b7ebd281a9b0e3c37e11eb85e61bca16', 2, 2, 34926, '2024-11-28 07:07:53', '2024-11-28 12:37:53'),
-(15, 'f3ab981a393c4da72d279e674cd09c2dc61b8289026dc5915e7bc5245e1011a5', 1, 1, 8786, '2024-12-02 08:17:03', '2024-12-02 13:47:03');
+(10, '27ed3229d6e5b59d21ab6ea14b726368b7ebd281a9b0e3c37e11eb85e61bca16', 2, 2, 34926, '2024-11-28 07:07:53', '2024-11-28 12:37:53');
 
 -- --------------------------------------------------------
 
@@ -150,7 +173,20 @@ INSERT INTO `orders` (`order_id`, `user_id`, `total_amount`, `order_date`, `orde
 ('order_PVlzO70dJdRb7d', 4, 96643.00, '2024-12-11 12:08:29', '2024-12-11 12:08:53', 'paid'),
 ('order_PVmSqqQvoN9F4q', 3, 61500.00, '2024-12-11 12:36:23', '2024-12-11 12:36:46', 'paid'),
 ('order_PVnFVc4PHtABq9', 6759445, 79072.00, '2024-12-11 13:22:26', '2024-12-11 13:22:57', 'paid'),
-('order_PWErzxEl8tIkJe', 14, 30481.00, '2024-12-12 16:23:37', '2024-12-12 16:24:01', 'paid');
+('order_PWErzxEl8tIkJe', 14, 30481.00, '2024-12-12 16:23:37', '2024-12-12 16:24:01', 'paid'),
+('order_PWGbQOq3UMXnW3', 4, 19448.00, '2024-12-12 18:05:18', '2024-12-12 18:06:00', 'paid'),
+('order_PX2BZHgk9HbS2b', 4, 35143.00, '2024-12-14 16:38:07', '2024-12-14 16:38:07', 'created'),
+('order_PX2Exk9OacT6hU', 4, 35143.00, '2024-12-14 16:41:20', '2024-12-14 16:41:20', 'created'),
+('order_PX2FfiIpH1CxDK', 4, 35143.00, '2024-12-14 16:42:00', '2024-12-14 16:42:00', 'created'),
+('order_PX2Gfl3xSkuYGa', 4, 35143.00, '2024-12-14 16:42:57', '2024-12-14 16:42:57', 'created'),
+('order_PX2Ho5xASnyLYz', 4, 1040.00, '2024-12-14 16:44:02', '2024-12-14 16:44:02', 'created'),
+('order_PX2hxgPBepxgDD', 4, 1040.00, '2024-12-14 17:08:47', '2024-12-14 17:09:20', 'paid'),
+('order_PX2PNOQWeq5Jor', 4, 1040.00, '2024-12-14 16:51:11', '2024-12-14 16:51:11', 'created'),
+('order_PX2TxMhEFDKsd4', 4, 70286.00, '2024-12-14 16:55:32', '2024-12-14 16:55:32', 'created'),
+('order_PX2vQo6jhTpaJQ', 4, 43929.00, '2024-12-14 17:21:32', '2024-12-14 17:21:32', 'created'),
+('order_PX2xCbXy6jCclQ', 4, 43929.00, '2024-12-14 17:23:13', '2024-12-14 17:23:13', 'created'),
+('order_PX46EMkdLHJnNS', 4, 836.00, '2024-12-14 18:30:27', '2024-12-14 18:30:27', 'created'),
+('order_PX4L76Mi7NQdVQ', 4, 836.00, '2024-12-14 18:44:32', '2024-12-14 18:44:59', 'paid');
 
 -- --------------------------------------------------------
 
@@ -185,7 +221,16 @@ INSERT INTO `order_items` (`id`, `order_id_oi`, `product_id_oi`, `quantity_oi`, 
 (20, 'order_PWErzxEl8tIkJe', 5, 2, 428.00, 'processing', '2024-12-12 10:54:01', '2024-12-12 16:24:01'),
 (21, 'order_PWErzxEl8tIkJe', 2, 1, 17571.00, 'processing', '2024-12-12 10:54:01', '2024-12-12 16:24:01'),
 (22, 'order_PWErzxEl8tIkJe', 4, 2, 225.00, 'processing', '2024-12-12 10:54:01', '2024-12-12 16:24:01'),
-(23, 'order_PWErzxEl8tIkJe', 11, 4, 12257.00, 'processing', '2024-12-12 10:54:01', '2024-12-12 16:24:01');
+(23, 'order_PWErzxEl8tIkJe', 11, 4, 12257.00, 'processing', '2024-12-12 10:54:01', '2024-12-12 16:24:01'),
+(24, 'order_PWGbQOq3UMXnW3', 1, 2, 17571.00, 'order-cancel', '2024-12-12 12:36:00', '2024-12-12 18:16:19'),
+(25, 'order_PWGbQOq3UMXnW3', 5, 1, 225.00, 'order-cancel', '2024-12-12 12:36:00', '2024-12-12 18:16:19'),
+(26, 'order_PWGbQOq3UMXnW3', 8, 2, 1652.00, 'order-cancel', '2024-12-12 12:36:00', '2024-12-12 18:16:19'),
+(27, 'order_PX2Gfl3xSkuYGa', 3, 1, 35143.00, 'processing', '2024-12-14 11:12:57', '2024-12-14 16:42:57'),
+(28, 'order_PX2PNOQWeq5Jor', 9, 1, 1040.00, 'processing', '2024-12-14 11:21:12', '2024-12-14 16:51:12'),
+(29, 'order_PX2TxMhEFDKsd4', 15, 1, 70286.00, 'processing', '2024-12-14 11:25:32', '2024-12-14 16:55:32'),
+(30, 'order_PX2hxgPBepxgDD', 9, 1, 1040.00, 'processing', '2024-12-14 11:39:20', '2024-12-14 17:09:20'),
+(31, 'order_PX2xCbXy6jCclQ', 14, 1, 43929.00, 'processing', '2024-12-14 11:53:13', '2024-12-14 17:23:13'),
+(32, 'order_PX4L76Mi7NQdVQ', 8, 1, 836.00, 'processing', '2024-12-14 13:14:59', '2024-12-14 18:44:59');
 
 -- --------------------------------------------------------
 
@@ -211,7 +256,10 @@ INSERT INTO `payment_details` (`pd_id`, `pd_order_id`, `pd_payment_id`, `pd_veri
 (9, 'order_PVlzO70dJdRb7d', 'pay_PVlzXwXVfOv7R0', 'a3532f4bbe21f203985f152a29ddc17f21b6dc8f424b1696657f01b5030ee634', '2024-12-11 06:38:53', '2024-12-11 12:08:53'),
 (10, 'order_PVmSqqQvoN9F4q', 'pay_PVmT00SxPyF1m4', 'dab99745dcfde40497792fca6972195653ecb958fd8685cc2dca04f201bf26d2', '2024-12-11 07:06:46', '2024-12-11 12:36:46'),
 (11, 'order_PVnFVc4PHtABq9', 'pay_PVnFmDEU4S2kIo', 'f439e0eba4d9c264a86be697cac7703593b443084bab8ee8a6338760134bde69', '2024-12-11 07:52:57', '2024-12-11 13:22:57'),
-(12, 'order_PWErzxEl8tIkJe', 'pay_PWEsBBCtIElywd', 'b1172a447f91cabbf6fc5609841daf41a43e68fa3f7954aa433b62279776dca5', '2024-12-12 10:54:01', '2024-12-12 16:24:01');
+(12, 'order_PWErzxEl8tIkJe', 'pay_PWEsBBCtIElywd', 'b1172a447f91cabbf6fc5609841daf41a43e68fa3f7954aa433b62279776dca5', '2024-12-12 10:54:01', '2024-12-12 16:24:01'),
+(13, 'order_PWGbQOq3UMXnW3', 'pay_PWGbtW4iUD7JJT', 'd33003be68d10ca5b4f1c089a2469287f7797741bd7dd2dcb709febc24adaf01', '2024-12-12 12:36:00', '2024-12-12 18:06:00'),
+(14, 'order_PX2hxgPBepxgDD', 'pay_PX2iHHSynsCeHZ', '697d21513d5a19cbc5d77e1ae3fd5da001f147cad8ee5d0c9cc7d589ff910a7e', '2024-12-14 11:39:20', '2024-12-14 17:09:20'),
+(15, 'order_PX4L76Mi7NQdVQ', 'pay_PX4LKDzJasYE2p', '917fc8d14c9bc1e94587017c7199a96cf191d72e0145213c5637af2718f9f992', '2024-12-14 13:14:59', '2024-12-14 18:44:59');
 
 -- --------------------------------------------------------
 
@@ -284,8 +332,8 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `session_id`, `creat
 (1, 'san', '$2y$10$tMiYyJ.MB1.60vrE.NMx8.cux5iMtkzWwvkBrxbF7lGuugW.qhgHG', 'NOT NULL', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (2, 'admin', 'admin', 'admin@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (3, 'new admin', '$2y$10$HcPH9aMC.Zf1mNvaBO9iCu0gKYQUmD6PpNkJntiPWY1Bjcdvn.niS', 'adm@gmail.com', '5ef2529231099fa39cabcb46f8b6769381794bf8ff25a5641a7f86f94e9d5d74', '2024-11-25 08:12:33', '2024-12-11 12:36:07'),
-(4, 'demo', '$2y$10$MBw0Uz6e/ZLCdwZUC0jSAeSfbP2aFebh7WEH0Hb6K/aXINe5fjjbO', 'demo@gmail.com', '922492b53233f4c72d2f22f0085e4fbb0f73ee9db188d8c5cc9ff681baf5d7a7', '2024-11-25 08:12:33', '2024-12-12 13:02:43'),
-(5, 'navratna', '$2y$10$aeg.2TclN.P6raFTDN49/uaavt6LCoYlNljux4QexRfs/kddq1LLG', 'navratna@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
+(4, 'demo', '$2y$10$gHHYyCt79wf0tPWQFM3Y7u6oGREjjPJ9OS2hk3PwAI6aWWXo1Symq', 'demo@gmail.com', 'e8ef811e03b382cd92c10e5a13936e585c74563d6e71703819d7830cf5810884', '2024-11-25 08:12:33', '2024-12-18 17:14:17'),
+(5, 'navratna', '$2y$10$aeg.2TclN.P6raFTDN49/uaavt6LCoYlNljux4QexRfs/kddq1LLG', 'navratna@gmail.com', 'f47fad7f6b3160ec8161fade7a450a59d75142d35110aafe082098403dd7782f', '2024-11-25 08:12:33', '2024-12-18 16:48:01'),
 (6, 'demo new', '$2y$10$l4RWsvtOmKwJvKhIlR8ot.SGurttmL.C5n3pFofr8UM.VuNuH1Zsa', 'demonew@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 (8, 'demo', '$2y$10$sh2GKimjHUhd5dcYVOi9Aud2LBNsElq4wrNDryjf4WyuLIAxq0JPC', 'demo1@gmail.com', 'bfb0af304bcfdcd1de5dfd6ab885ae520e6ad6b7cfaa8a44c234c8c10827ef87', '2024-11-25 09:08:55', '2024-12-05 16:34:35'),
 (10, 'try', '$2y$10$SVdV2Nllo9W/PcwIRIKXQ.3DJYJfBv21qorjCTrVyw5dMAEe1oPgC', 'try@gmail.com', NULL, '2024-11-25 09:12:24', '2024-11-25 14:42:24'),
@@ -293,8 +341,9 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `session_id`, `creat
 (12, 'try1', '$2y$10$XNP4cPE5yBKcVrcj9vlw0uM2ROd46LDjdWIOh7K1GWsSlCqbqoW2m', 'try1@gmail.com', NULL, '2024-11-25 09:40:27', '2024-11-25 15:10:27'),
 (13, 'hey', '$2y$10$ecwk0egs7StEk8C/7Yqhq..kgYzTN4W.tvS2tRXzk8CUNK.e2OzgG', 'hey@gmail.com', NULL, '2024-11-25 09:46:13', '2024-11-25 15:16:13'),
 (14, 'try2', '$2y$10$W50BqAm0oL3kFn7L16tqn.vT8Ell3aaaLmbaJtu6cMFvAZEVF.q0e', 'try2@gmail.com', 'e2a30525fcffa68f5ff6bd4f2422313a26afe1fdc1229db6bd2d1f5e62ad457b', '2024-11-25 09:50:40', '2024-12-12 16:22:55'),
-(22, 'demo3', '$2y$10$2sj0eLn5zs99LwzUYY3.v.F2akLiTVKvAfdLrFZsBCmYuCG9gCiv6', 'demo3@gmail.com', 'c19bc6a30836cd7629c3a9e1be99964e09959433d00e3de9f676a0ab2df041d6', '2024-12-05 11:37:39', '2024-12-05 17:07:55'),
+(22, 'demo3', '$2y$10$2sj0eLn5zs99LwzUYY3.v.F2akLiTVKvAfdLrFZsBCmYuCG9gCiv6', 'demo3@gmail.com', 'ae5eaeeb55478086421cbde75eee04fde1d8c7e691849e13f078a28114592e68', '2024-12-05 11:37:39', '2024-12-18 16:41:20'),
 (23, 'try3', '$2y$10$cwgnnftnGftxRfglH5xKMuQ/fayJw2ND05nI5IyhIzY/1aBjeyDgm', 'try3@gmail.com', 'ecd437bafb98d30e1a4239f9857f47d4dd342bf828fbddd5b7b3919d626d1313', '2024-12-11 07:44:12', '2024-12-11 13:14:29'),
+(675, 'hehe', '$2y$10$KW/6mZoguVoBR7KrTWUhTOexl3/ZXfuLIEAmMaJEbPqFYbehTfrRi', 'hehe@gmail.com', 'a90888eff44f9cc9178d87cbaadb384b456caf9f33786dca3839de84dc550239', '2024-12-13 07:46:08', '2024-12-13 13:16:32'),
 (6759445, 'Raj Singh', '$2y$10$wQ7q2jno/P2QXbBAxKNGhOknznwVoIQ8tltm4BCa/gyzUVQ7nEzuK', 'raj@gmail.com', '15a9b080b1e470c9529eaf8730f554e7a8f3273e53f969ac0264052b0fc40191', '2024-12-11 07:50:53', '2024-12-11 13:21:30');
 
 -- --------------------------------------------------------
@@ -340,6 +389,13 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `gold_price`
   ADD PRIMARY KEY (`price_1_gram_24K`);
+
+--
+-- Indexes for table `nav_admin`
+--
+ALTER TABLE `nav_admin`
+  ADD PRIMARY KEY (`ad_id`),
+  ADD UNIQUE KEY `ad_email` (`ad_email`);
 
 --
 -- Indexes for table `offline_cart`
@@ -398,31 +454,31 @@ ALTER TABLE `website_update`
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `offline_cart`
 --
 ALTER TABLE `offline_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `payment_details`
 --
 ALTER TABLE `payment_details`
-  MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `product`

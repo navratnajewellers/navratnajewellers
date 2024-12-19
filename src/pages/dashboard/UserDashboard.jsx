@@ -216,7 +216,11 @@ const UserDashboard = () => {
                 </h4>
               </div>
               <div>
-                <h4 className="margin-b20">Your last five order :</h4>
+                <h4
+                  className={`margin-b20 textCenter  ${orderLimit === 5 ? '' : 'dis-none'} `}
+                >
+                  Your last five order :
+                </h4>
 
                 {orderLimit !== 'all' ? (
                   <Accordion defaultActiveKey={1} bordered>
