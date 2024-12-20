@@ -5,10 +5,9 @@ import { GiJewelCrown } from '@react-icons/all-files/gi/GiJewelCrown';
 import HomeProducts from '../components/home/HomeProducts';
 import HomeConnectUs from '../components/home/HomeConnectUs';
 import Footer from '../components/Footer';
-import { lazy, Suspense, useEffect, useState } from 'react';
-import axios from 'axios';
+import { lazy, Suspense } from 'react';
 import Contact from './Contact';
-import { useServerLink } from '../context/server.context';
+import { useWebStatus } from '../context/status.context';
 
 const Header = lazy(() => import('../components/Header'));
 
@@ -16,32 +15,7 @@ const Home = () => {
   // move to top of window wgen user on different section of other page
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
-  const [isWebsiteOnUpdate, setIsWebsiteOnUpdate] = useState(false);
-
-  const { serverLink } = useServerLink();
-
-  useEffect(() => {
-    const checkWebsiteStatus = async () => {
-      try {
-        const response = await axios.get(
-          `${serverLink}/testing/test/website_status.php`
-        );
-
-        // console.log(response.data);
-        setIsWebsiteOnUpdate(response.data.update_status);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    checkWebsiteStatus();
-  }, [serverLink]);
-
-  // if (isWebsiteOnUpdate) {
-  //   console.log('Website is updating' + isWebsiteOnUpdate);
-  // } else {
-  //   console.log('Website is live' + isWebsiteOnUpdate);
-  // }
+  const { isWebsiteOnUpdate } = useWebStatus();
 
   return isWebsiteOnUpdate ? (
     <div>

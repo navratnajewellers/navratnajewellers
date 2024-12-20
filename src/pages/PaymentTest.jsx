@@ -6,6 +6,10 @@ import { useServerLink } from '../context/server.context';
 const PaymentTest = () => {
   const { serverLink } = useServerLink();
 
+  if (serverLink === '') {
+    window.location.replace('/');
+  }
+
   const initiatePayment = async () => {
     try {
       // Step 1: Get the order ID from your PHP backend

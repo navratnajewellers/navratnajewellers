@@ -14,8 +14,16 @@ import { useEffect, useState } from 'react';
 import ShopItem from './ShopItem';
 import axios from 'axios';
 import { useServerLink } from '../../context/server.context';
+import { useWebStatus } from '../../context/status.context';
 
 const ShopGrid = () => {
+  // check the website update status
+  const { isWebsiteOnUpdate } = useWebStatus();
+
+  if (isWebsiteOnUpdate) {
+    window.location.replace('/');
+  }
+
   // move to top of window wgen user on different section of other page
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 

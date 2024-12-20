@@ -1,8 +1,16 @@
 import { Affix } from 'rsuite';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import { useWebStatus } from '../../context/status.context';
 
 const TermAndConditions = () => {
+  // check the website update status
+  const { isWebsiteOnUpdate } = useWebStatus();
+
+  if (isWebsiteOnUpdate) {
+    window.location.replace('/');
+  }
+
   // move to top of window wgen user on different section of other page
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 

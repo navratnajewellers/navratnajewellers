@@ -21,6 +21,7 @@ import { Link } from 'react-router-dom';
 import CartItemGrid from './cart/CartItemGrid';
 import AddressModal from './cart/AddressModal';
 import { useServerLink } from '../context/server.context';
+import { useWebStatus } from '../context/status.context';
 
 const Header = lazy(() => import('../components/Header'));
 
@@ -39,6 +40,13 @@ const addresDefault = {
 };
 
 const Cart = () => {
+  // check the website update status
+  const { isWebsiteOnUpdate } = useWebStatus();
+
+  if (isWebsiteOnUpdate) {
+    window.location.replace('/');
+  }
+
   const toaster = useToaster();
 
   const { serverLink } = useServerLink();

@@ -21,6 +21,7 @@ import axios from 'axios';
 import { useProfile } from '../../context/profile.context';
 import { useCart } from '../../context/Cart.context';
 import { useServerLink } from '../../context/server.context';
+import { useWebStatus } from '../../context/status.context';
 
 const data = [1, 2, 3, 4, 5, 10].map(item => ({
   label: item,
@@ -28,6 +29,13 @@ const data = [1, 2, 3, 4, 5, 10].map(item => ({
 }));
 
 const Product = () => {
+  // check the website update status
+  const { isWebsiteOnUpdate } = useWebStatus();
+
+  if (isWebsiteOnUpdate) {
+    window.location.replace('/');
+  }
+
   // move to top of window wgen user on different section of other page
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 

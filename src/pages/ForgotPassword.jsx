@@ -14,6 +14,7 @@ import { useRef, useState } from 'react';
 import axios from 'axios';
 import { useDisplayMessage } from '../context/message.context';
 import { useServerLink } from '../context/server.context';
+import { useWebStatus } from '../context/status.context';
 
 const { StringType, NumberType } = Schema.Types;
 
@@ -37,6 +38,13 @@ const passwordModel = Schema.Model({
 });
 
 const ForgotPassword = () => {
+  // check the website update status
+  const { isWebsiteOnUpdate } = useWebStatus();
+
+  if (isWebsiteOnUpdate) {
+    window.location.replace('/');
+  }
+
   const { displayMessage } = useDisplayMessage();
 
   const { serverLink } = useServerLink();

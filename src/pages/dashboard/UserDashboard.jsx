@@ -8,6 +8,7 @@ import axios from 'axios';
 import UserOrderGrid from './UserOrderGrid';
 import { useServerLink } from '../../context/server.context';
 import UserAddressDrawer from './UserAddressDrawer';
+import { useWebStatus } from '../../context/status.context';
 
 const addressDefault = {
   status: 'notFound',
@@ -22,6 +23,13 @@ const addressDefault = {
 };
 
 const UserDashboard = () => {
+  // check the website update status
+  const { isWebsiteOnUpdate } = useWebStatus();
+
+  if (isWebsiteOnUpdate) {
+    window.location.replace('/');
+  }
+
   const { userData } = useProfile();
 
   const { serverLink } = useServerLink();
