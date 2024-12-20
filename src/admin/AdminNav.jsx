@@ -17,11 +17,18 @@ const AdminNav = () => {
           <Nav.Item eventKey="dashboard" as={Link} to="/nav-admin">
             Admin Dashboard
           </Nav.Item>
-          <Nav.Item eventKey="change-rate" as={Link} to="/change-rate">
+          <Nav.Item eventKey="change-rate" as={Link} to="/admin/change-rate">
             Change Rate
           </Nav.Item>
-          <Nav.Item eventKey="order-details" as={Link} to="/order-list">
+          <Nav.Item eventKey="order-details" as={Link} to="/admin/order-list">
             Order Details
+          </Nav.Item>
+          <Nav.Item
+            eventKey="website-status"
+            as={Link}
+            to="/admin/website-status"
+          >
+            Website Status
           </Nav.Item>
         </Nav>
       </div>

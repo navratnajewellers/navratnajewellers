@@ -28,6 +28,7 @@ import UpdateGoldRate from './admin/UpdateGoldRate';
 import OrderListGrid from './admin/OrderListGrid';
 import AdminMainLayout from './admin/AdminMainLayout';
 import { AdminProfileProvider } from './context/adminProfile.context';
+import WebsiteStatus from './admin/WebsiteStatus';
 
 function App() {
   return (
@@ -83,8 +84,18 @@ function App() {
                     <Route path="*" element={<PageNotFound />} />
                     <Route element={<AdminMainLayout />}>
                       <Route path="/nav-admin" element={<AdminDashboard />} />
-                      <Route path="/change-rate" element={<UpdateGoldRate />} />
-                      <Route path="/order-list" element={<OrderListGrid />} />
+                      <Route
+                        path="/admin/change-rate"
+                        element={<UpdateGoldRate />}
+                      />
+                      <Route
+                        path="/admin/order-list"
+                        element={<OrderListGrid />}
+                      />
+                      <Route
+                        path="/admin/website-status"
+                        element={<WebsiteStatus />}
+                      />
                     </Route>
                   </Routes>
                 </HashRouter>

@@ -1,17 +1,32 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Accordion, Button, Placeholder, Text } from 'rsuite';
+import {
+  Accordion,
+  Button,
+  Loader,
+  Placeholder,
+  Tag,
+  TagGroup,
+  Text,
+} from 'rsuite';
 import { useServerLink } from '../../context/server.context';
 import OrderItemGrid from '../../pages/dashboard/OrderItemGrid';
 
 const AdminOrderGrid = ({ orderData }) => {
-  console.log(orderData);
+  // console.log(orderData);
 
   const { serverLink } = useServerLink();
 
   const [orderItemData, setOrderItemData] = useState(null);
 
   const [delivery_status, setDeliveryStatus] = useState(null);
+
+  const [userDetails, setUserDetails] = useState({
+    username: '',
+    email: '',
+  });
+
+  const [isUserLoading, setIsUserLoading] = useState(true);
 
   const handleOrder = event => {
     // console.log(event);
@@ -42,6 +57,35 @@ const AdminOrderGrid = ({ orderData }) => {
     getOrderItemDetails();
 
     // console.log({ delivery_status: delivery_status });
+
+    const getUserDetails = async () => {
+      setIsUserLoading(true);
+
+      try {
+        const response = await axios.post(
+          `${serverLink}/testing/admin/order/get_user.php`,
+          {
+            orderId: event,
+          }
+        );
+
+        // console.log(response.data);
+
+        // setting delivery status to block cancel order button
+        if (response.data.status === 'success') {
+          setUserDetails({
+            username: response.data.username,
+            email: response.data.email,
+          });
+
+          setIsUserLoading(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getUserDetails();
   };
 
   const handleCancelOrder = orderId => {
@@ -94,6 +138,26 @@ const AdminOrderGrid = ({ orderData }) => {
         onSelect={handleOrder}
         className="order-container"
       >
+        {isUserLoading ? (
+          <div>
+            <Loader center content="Loading..." />
+          </div>
+        ) : (
+          <div className="margin-t10 margin-b20">
+            <TagGroup>
+              <Tag size="lg" color="blue">
+                <span>
+                  Customer Name: <strong> {userDetails.username} </strong>
+                </span>
+              </Tag>
+              <Tag size="lg" color="blue">
+                <span>
+                  Customer Email: <strong>{userDetails.email}</strong>{' '}
+                </span>
+              </Tag>
+            </TagGroup>
+          </div>
+        )}
         {orderItemData ? (
           orderItemData.map(data => (
             <OrderItemGrid key={data.id} orderItemData={data} />

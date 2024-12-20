@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Button, ButtonToolbar, Form, Loader, Schema } from 'rsuite';
 import { useDisplayMessage } from '../context/message.context';
 import { useServerLink } from '../context/server.context';
@@ -26,7 +26,7 @@ const UpdateGoldRate = () => {
   });
 
   // for getting the price of gold and silver
-  const getPriceDetails = async () => {
+  const getPriceDetails = useCallback(async () => {
     setIsPriceDataLoading(true);
 
     try {
@@ -47,12 +47,12 @@ const UpdateGoldRate = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [serverLink]);
 
   // get the price for single time
   useEffect(() => {
     getPriceDetails();
-  }, []);
+  }, [getPriceDetails]);
 
   // console.log(priceData);
 

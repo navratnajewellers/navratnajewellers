@@ -23,7 +23,7 @@ const OrderListGrid = () => {
           `${serverLink}/testing/admin/order/get_order_details.php`
         );
 
-        console.log(response.data);
+        // console.log(response.data);
 
         if (response.status === 200 && response.data.status == 'success') {
           setOrderData(response.data.record);

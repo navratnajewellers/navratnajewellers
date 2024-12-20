@@ -12,15 +12,17 @@ import {
   useToaster,
 } from 'rsuite';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 import { useProfile } from '../context/profile.context';
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 // import CartItem from './cart/CartItem';
 import CartItemGrid from './cart/CartItemGrid';
 import AddressModal from './cart/AddressModal';
 import { useServerLink } from '../context/server.context';
+
+const Header = lazy(() => import('../components/Header'));
 
 const YOUR_RAZORPAY_KEY_ID = null;
 
@@ -468,7 +470,10 @@ const Cart = () => {
     <div>
       <Affix className="fixed-header">
         <div className="header-container margin-t10">
-          <Header />
+          <Suspense fallback={<Loader center content="Loading..." vertical />}>
+            <Header />
+          </Suspense>
+          {/* <Header /> */}
         </div>
       </Affix>
       <div>
