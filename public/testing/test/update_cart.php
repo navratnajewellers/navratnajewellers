@@ -35,7 +35,7 @@ try {
 		// Update Session id
 		$sql = "UPDATE cart SET quantity = :quantity, price = :price WHERE user_id = :user_id AND product_id = :product_id";
 		$stmt = $pdo->prepare($sql);
-		$stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+		$stmt->bindParam(':user_id', $userId);
 		$stmt->bindParam(':product_id', $productId, PDO::PARAM_INT);
 		$stmt->bindParam(':quantity', $quantity);
 		$stmt->bindParam(':price', $price);

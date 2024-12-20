@@ -64,7 +64,7 @@ foreach ($cartItems as $item) {
 		// Update Session id
 		$updateCartQuery = "UPDATE cart SET quantity = :quantity, price = :price WHERE user_id = :user_id AND product_id = :product_id";
 		$updateCartStmt = $pdo->prepare($updateCartQuery);
-		$updateCartStmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+		$updateCartStmt->bindParam(':user_id', $userId);
 		$updateCartStmt->bindParam(':product_id', $item['product_id'], PDO::PARAM_INT);
 		$updateCartStmt->bindParam(':quantity', $quantity);
 		$updateCartStmt->bindParam(':price', $price);

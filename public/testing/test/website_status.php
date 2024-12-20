@@ -16,9 +16,9 @@ try {
 	$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            echo json_encode(["status" => "success","message" => "Price Data retrive successfuly.", "update_status" => $user['update_status'] ]);
+            echo json_encode(["status" => "success","message" => "Website status retrive successfuly.", "update_status" => $user['update_status'] ]);
         } else {
-            echo json_encode(["message" => "Failed to retrive price data."]);
+            echo json_encode(["message" => "Failed to retrive website status."]);
         }
 
 } catch (PDOException $e) {

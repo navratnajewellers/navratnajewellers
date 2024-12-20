@@ -19,7 +19,7 @@ try{
 $sql = "UPDATE users SET session_id = :sessionid WHERE id = :id";
 $stmt = $pdo->prepare($sql);
 $stmt->bindParam(':sessionid', $inputSessionId);
-$stmt->bindParam(':id', $inputUserId, PDO::PARAM_INT);
+$stmt->bindParam(':id', $inputUserId);
 //$stmt->execute();
 //$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
