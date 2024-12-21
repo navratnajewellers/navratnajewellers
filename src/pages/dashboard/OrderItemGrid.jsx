@@ -18,6 +18,7 @@ const OrderItemGrid = ({ orderItemData }) => {
           `${serverLink}/testing/test/product-ById.php`,
           {
             productId: orderItemData.product_id_oi,
+            protectionId: 'Nav##$56',
           }
         );
 

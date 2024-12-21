@@ -145,6 +145,7 @@ const Header = () => {
         {
           id: id,
           sessionId: sessionId,
+          protectionId: 'Nav##$56',
         }
       );
       // setMessage(response.data.message);
@@ -269,6 +270,7 @@ const Header = () => {
           {
             email: loginFormValue.email,
             password: loginFormValue.password,
+            protectionId: 'Nav##$56',
           }
         );
 
@@ -290,6 +292,7 @@ const Header = () => {
               {
                 user_id: response.data.id,
                 hashedId: hashedLocalUserId,
+                protectionId: 'Nav##$56',
               }
             );
 
@@ -350,6 +353,7 @@ const Header = () => {
             username: signupFormValue.name,
             password: signupFormValue.password,
             email: signupFormValue.email,
+            protectionId: 'Nav##$56',
           }),
         });
 

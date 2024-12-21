@@ -37,6 +37,7 @@ const CategoryPageGrid = () => {
           `${serverLink}/testing/test/category_product.php`,
           {
             productCategory: productCategory,
+            protectionId: 'Nav##$56',
           }
         );
 
@@ -58,8 +59,11 @@ const CategoryPageGrid = () => {
 
     const handlePrice = async () => {
       try {
-        const response = await axios.get(
-          `${serverLink}/testing/test/gold_rate.php`
+        const response = await axios.post(
+          `${serverLink}/testing/test/gold_rate.php`,
+          {
+            protectionId: 'Nav##$56',
+          }
         );
 
         // console.log(response.data);

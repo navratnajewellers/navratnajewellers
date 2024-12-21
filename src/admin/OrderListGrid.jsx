@@ -20,7 +20,10 @@ const OrderListGrid = () => {
 
       try {
         const response = await axios.post(
-          `${serverLink}/testing/admin/order/get_order_details.php`
+          `${serverLink}/testing/admin/order/get_order_details.php`,
+          {
+            protectionId: 'Nav##$56',
+          }
         );
 
         // console.log(response.data);

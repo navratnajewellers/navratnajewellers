@@ -21,8 +21,11 @@ const WebsiteStatus = () => {
     setIsStatusLoading(true);
 
     try {
-      const response = await axios.get(
-        `${serverLink}/testing/test/website_status.php`
+      const response = await axios.post(
+        `${serverLink}/testing/test/website_status.php`,
+        {
+          protectionId: 'Nav##$56',
+        }
       );
 
       //   console.log(response.data);
@@ -51,6 +54,7 @@ const WebsiteStatus = () => {
           `${serverLink}/testing/admin/update_website_status.php`,
           {
             websiteStatus: siteStatus,
+            protectionId: 'Nav##$56',
           }
         );
 

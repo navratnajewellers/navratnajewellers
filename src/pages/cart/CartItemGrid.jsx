@@ -85,6 +85,7 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
             action_type: actionType,
             product_price: productPrice,
             quantity: quantity,
+            protectionId: 'Nav##$56',
           }
         );
       } else {
@@ -97,6 +98,7 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
             action_type: actionType,
             product_price: productPrice,
             quantity: quantity,
+            protectionId: 'Nav##$56',
           }
         );
       }

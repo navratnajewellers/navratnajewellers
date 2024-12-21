@@ -83,6 +83,7 @@ const AddressModal = ({
             `${serverLink}/testing/addresses/update_address.php`,
             {
               userId: userData.id,
+              protectionId: 'Nav##$56',
               ...address,
             }
           );

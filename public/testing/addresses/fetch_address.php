@@ -11,6 +11,13 @@ try {
 
 // Get data from React frontend
 $data = json_decode(file_get_contents('php://input'), true);
+
+// check the protection getting from react frontend matched or not, before proceed further otherwise exit
+if(empty($data['protectionId']) || ($data['protectionId'] != 'Nav##$56') ){
+    echo 'Direct access not allowed';
+    exit();
+}
+
 $inputuserId = $data['userId'];
 
 // Check if the username exists in the database

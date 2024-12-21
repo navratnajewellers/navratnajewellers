@@ -76,6 +76,7 @@ const ForgotPassword = () => {
           {
             email: e.email,
             phone_no: e.mobile,
+            protectionId: 'Nav##$56',
           }
         );
 
@@ -138,6 +139,7 @@ const ForgotPassword = () => {
               {
                 email: forgotPasswordFormValue.email,
                 password: passwordFormValue.password,
+                protectionId: 'Nav##$56',
               }
             );
 

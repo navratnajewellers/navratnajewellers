@@ -32,6 +32,7 @@ export const CartProvider = ({ children }) => {
             `${serverLink}/testing/test/fetch_cart.php`,
             {
               userId: userData.id,
+              protectionId: 'Nav##$56',
             }
           );
 
@@ -118,6 +119,7 @@ export const CartProvider = ({ children }) => {
               `${serverLink}/testing/local-cart/get_local-cart.php`,
               {
                 userId: hashedLocalUserId,
+                protectionId: 'Nav##$56',
               }
             );
 

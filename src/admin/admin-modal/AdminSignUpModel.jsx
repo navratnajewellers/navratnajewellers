@@ -57,6 +57,7 @@ const AdminSignUpModel = ({ isAdminSignUpOpen, setIsAdminSignUp }) => {
               password: signupFormValue.password,
               email: signupFormValue.email,
               secretKey: signupFormValue.secretKey,
+              protectionId: 'Nav##$56',
             }),
           }
         );

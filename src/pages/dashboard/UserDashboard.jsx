@@ -89,6 +89,7 @@ const UserDashboard = () => {
             `${serverLink}/testing/dashboard/fetch_order.php`,
             {
               userId: userData.id,
+              protectionId: 'Nav##$56',
             }
           );
 
@@ -136,6 +137,7 @@ const UserDashboard = () => {
           `${serverLink}/testing/addresses/fetch_address.php`,
           {
             userId: userData.id,
+            protectionId: 'Nav##$56',
           }
         );
 

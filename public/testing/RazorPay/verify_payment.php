@@ -23,6 +23,12 @@ try {
 
     $input = json_decode(file_get_contents('php://input'), true);
 
+// check the protection getting from react frontend matched or not, before proceed further otherwise exit
+if(empty($input['protectionId']) || ($input['protectionId'] != 'Nav##$56') ){
+    echo 'Direct access not allowed';
+    exit();
+}
+
     $attributes = [
         'razorpay_order_id' => $input['razorpay_order_id'],
         'razorpay_payment_id' => $input['razorpay_payment_id'],

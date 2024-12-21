@@ -12,8 +12,11 @@ export const ProductProvider = ({ children }) => {
   useEffect(() => {
     const getAllProductData = async () => {
       try {
-        const response = await axios.get(
-          `${serverLink}/testing/test/all-product.php`
+        const response = await axios.post(
+          `${serverLink}/testing/test/all-product.php`,
+          {
+            protectionId: 'Nav##$56',
+          }
         );
 
         // console.log(response.data);

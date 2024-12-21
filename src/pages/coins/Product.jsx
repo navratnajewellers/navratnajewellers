@@ -84,8 +84,11 @@ const Product = () => {
     // fetching price of gold from database to update page details
     const handlePrice = async () => {
       try {
-        const response = await axios.get(
-          `${serverLink}/testing/test/gold_rate.php`
+        const response = await axios.post(
+          `${serverLink}/testing/test/gold_rate.php`,
+          {
+            protectionId: 'Nav##$56',
+          }
         );
 
         // console.log(response.data);
@@ -104,6 +107,7 @@ const Product = () => {
           `${serverLink}/testing/test/product-byName.php`,
           {
             productName: productName,
+            protectionId: 'Nav##$56',
           }
         );
 
@@ -159,6 +163,7 @@ const Product = () => {
             product_id: productData.product_id,
             quantity: cartQuantity,
             price: priceBreak.grand_total * cartQuantity,
+            protectionId: 'Nav##$56',
           }
         );
 
@@ -194,6 +199,7 @@ const Product = () => {
             product_id: productData.product_id,
             quantity: cartQuantity,
             price: priceBreak.grand_total * cartQuantity,
+            protectionId: 'Nav##$56',
           }
         );
 

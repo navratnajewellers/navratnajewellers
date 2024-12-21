@@ -24,6 +24,12 @@ try {
     // Create Razorpay order
     $input = json_decode(file_get_contents('php://input'), true);
 
+// check the protection getting from react frontend matched or not, before proceed further otherwise exit
+if(empty($input['protectionId']) || ($input['protectionId'] != 'Nav##$56') ){
+    echo 'Direct access not allowed';
+    exit();
+}
+
     // Amount in paise
     $amount = $input['amount']; 
     $userId = $input['user_id'];

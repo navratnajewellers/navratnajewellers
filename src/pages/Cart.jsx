@@ -100,8 +100,11 @@ const Cart = () => {
       setIsPriceLoading(true);
 
       try {
-        const response = await axios.get(
-          `${serverLink}/testing/test/gold_rate.php`
+        const response = await axios.post(
+          `${serverLink}/testing/test/gold_rate.php`,
+          {
+            protectionId: 'Nav##$56',
+          }
         );
 
         // console.log(response.data);
@@ -130,6 +133,7 @@ const Cart = () => {
             `${serverLink}/testing/cart/fetch_original_cart.php`,
             {
               userId: userData.id,
+              protectionId: 'Nav##$56',
             }
           );
 
@@ -155,6 +159,7 @@ const Cart = () => {
             `${serverLink}/testing/addresses/fetch_address.php`,
             {
               userId: userData.id,
+              protectionId: 'Nav##$56',
             }
           );
 
@@ -206,6 +211,7 @@ const Cart = () => {
             `${serverLink}/testing/cart/fetch_local_cart.php`,
             {
               localId: hashedLocalUserId,
+              protectionId: 'Nav##$56',
             }
           );
 
@@ -251,6 +257,7 @@ const Cart = () => {
           orderId: orderId,
           goldPrice: priceData.price_1_gram_24K,
           silverPrice: priceData.price_1_gram_24K_s,
+          protectionId: 'Nav##$56',
         }
       );
 
@@ -293,6 +300,7 @@ const Cart = () => {
         {
           amount: grand_total * 100,
           user_id: userData.id,
+          protectionId: 'Nav##$56',
         }
       );
 
@@ -320,6 +328,7 @@ const Cart = () => {
             `${serverLink}/testing/RazorPay/verify_payment.php`,
             {
               ...response,
+              protectionId: 'Nav##$56',
             }
           );
           // console.log(verification.data);
@@ -354,6 +363,7 @@ const Cart = () => {
                 `${serverLink}/testing/payment-update/delete-order1.php`,
                 {
                   orderId: response.data.order_id,
+                  protectionId: 'Nav##$56',
                 }
               );
               // console.log(paymentCancel.data);
@@ -395,6 +405,7 @@ const Cart = () => {
         {
           amount: grand_total * 100,
           user_id: userData.id,
+          protectionId: 'Nav##$56',
         }
       );
 

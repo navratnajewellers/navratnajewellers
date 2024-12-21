@@ -19,6 +19,14 @@ $api = new Api($keyId, $keySecret);
 
 // Capture details from the frontend
 $data = json_decode(file_get_contents('php://input'), true);
+
+// check the protection getting from react frontend matched or not, before proceed further otherwise exit
+if(empty($data['protectionId']) || ($data['protectionId'] != 'Nav##$56') ){
+    echo 'Direct access not allowed';
+    exit();
+}
+
+
 $amount = $data['amount']; 
 // Amount in paise (e.g., 50000 = ₹500)
 //$amount = 50000;

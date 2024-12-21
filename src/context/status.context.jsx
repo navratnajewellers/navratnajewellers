@@ -12,8 +12,11 @@ export const StatusProvider = ({ children }) => {
   useEffect(() => {
     const checkWebsiteStatus = async () => {
       try {
-        const response = await axios.get(
-          `${serverLink}/testing/test/website_status.php`
+        const response = await axios.post(
+          `${serverLink}/testing/test/website_status.php`,
+          {
+            protectionId: 'Nav##$56',
+          }
         );
 
         // console.log(response.data);

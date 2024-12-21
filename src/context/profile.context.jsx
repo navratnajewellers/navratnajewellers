@@ -28,6 +28,7 @@ export const ProfileProvider = ({ children }) => {
             `${serverLink}/testing/verify_session.php`,
             {
               sessionId: sessionId,
+              protectionId: 'Nav##$56',
             }
           );
 

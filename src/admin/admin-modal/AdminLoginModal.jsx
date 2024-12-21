@@ -40,6 +40,7 @@ const AdminLoginModal = ({ isLoginOpen, setIsLoginOpen }) => {
           {
             email: loginFormValue.email,
             password: loginFormValue.password,
+            protectionId: 'Nav##$56',
           }
         );
 

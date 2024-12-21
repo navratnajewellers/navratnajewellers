@@ -39,6 +39,7 @@ const AdminOrderGrid = ({ orderData }) => {
           `${serverLink}/testing/dashboard/fetch_order_item.php`,
           {
             orderId: event,
+            protectionId: 'Nav##$56',
           }
         );
 
@@ -66,6 +67,7 @@ const AdminOrderGrid = ({ orderData }) => {
           `${serverLink}/testing/admin/order/get_user.php`,
           {
             orderId: event,
+            protectionId: 'Nav##$56',
           }
         );
 
@@ -98,6 +100,7 @@ const AdminOrderGrid = ({ orderData }) => {
           {
             order_id: orderId,
             updated_status: 'order-cancel',
+            protectionId: 'Nav##$56',
           }
         );
 
