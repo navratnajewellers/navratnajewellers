@@ -11,8 +11,25 @@ import {
 } from 'rsuite';
 import { useServerLink } from '../../context/server.context';
 import OrderItemGrid from '../../pages/dashboard/OrderItemGrid';
+// import AdminUserAddressModel from '../admin-modal/AdminUserAddressModel';
 
-const AdminOrderGrid = ({ orderData }) => {
+// const addressDefault = {
+//   username: '',
+//   mobile: '',
+//   address1: '',
+//   address2: '',
+//   country: 'India',
+//   city: '',
+//   state: '',
+//   pincode: '',
+//   landmark: '',
+// };
+
+const AdminOrderGrid = ({
+  orderData,
+  setUserAddress,
+  setIsAddressModalOpen,
+}) => {
   // console.log(orderData);
 
   const { serverLink } = useServerLink();
@@ -27,6 +44,9 @@ const AdminOrderGrid = ({ orderData }) => {
   });
 
   const [isUserLoading, setIsUserLoading] = useState(true);
+
+  // const [userAddress, setUserAddress] = useState(addressDefault);
+  // const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
 
   const handleOrder = event => {
     // console.log(event);
@@ -80,6 +100,19 @@ const AdminOrderGrid = ({ orderData }) => {
             email: response.data.email,
           });
 
+          // setting the user address for viewing
+          setUserAddress(val => ({
+            ...val,
+            username: response.data.username,
+            mobile: response.data.userAddress.phone_number,
+            address1: response.data.userAddress.address_line_1,
+            address2: response.data.userAddress.address_line_2,
+            country: response.data.userAddress.country,
+            city: response.data.userAddress.city,
+            state: response.data.userAddress.state,
+            pincode: response.data.userAddress.postal_code,
+          }));
+
           setIsUserLoading(false);
         }
       } catch (error) {
@@ -120,6 +153,7 @@ const AdminOrderGrid = ({ orderData }) => {
   };
 
   // console.log(orderItemData);
+  // console.log(userAddress);
 
   return (
     <div>
@@ -159,6 +193,14 @@ const AdminOrderGrid = ({ orderData }) => {
                 </span>
               </Tag>
             </TagGroup>
+            <div className="margin-t20">
+              <Button
+                appearance="primary"
+                onClick={() => setIsAddressModalOpen(true)}
+              >
+                View User Address
+              </Button>
+            </div>
           </div>
         )}
         {orderItemData ? (
@@ -185,6 +227,11 @@ const AdminOrderGrid = ({ orderData }) => {
           </Button>
         </div>
       </Accordion.Panel>
+      {/* <AdminUserAddressModel
+        userAddress={userAddress}
+        isAddressModalOpen={isAddressModalOpen}
+        setIsAddressModalOpen={setIsAddressModalOpen}
+      /> */}
     </div>
   );
 };

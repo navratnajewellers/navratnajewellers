@@ -3,6 +3,19 @@ import { useEffect, useState } from 'react';
 import { useServerLink } from '../context/server.context';
 import { Accordion, Button, Loader } from 'rsuite';
 import AdminOrderGrid from './orderGrid/AdminOrderGrid';
+import AdminUserAddressModel from './admin-modal/AdminUserAddressModel';
+
+const addressDefault = {
+  username: '',
+  mobile: '',
+  address1: '',
+  address2: '',
+  country: 'India',
+  city: '',
+  state: '',
+  pincode: '',
+  landmark: '',
+};
 
 const OrderListGrid = () => {
   const { serverLink } = useServerLink();
@@ -13,6 +26,10 @@ const OrderListGrid = () => {
 
   // to limit the result order list
   const [orderLimit, setOrderLimit] = useState(5);
+
+  // user address modal in AdminOrderGrid
+  const [userAddress, setUserAddress] = useState(addressDefault);
+  const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
 
   useEffect(() => {
     const getOrderDetails = async () => {
@@ -72,13 +89,23 @@ const OrderListGrid = () => {
                   ?.toReversed()
                   .slice(0, 5)
                   .map(data => (
-                    <AdminOrderGrid key={data.order_id} orderData={data} />
+                    <AdminOrderGrid
+                      key={data.order_id}
+                      orderData={data}
+                      setUserAddress={setUserAddress}
+                      setIsAddressModalOpen={setIsAddressModalOpen}
+                    />
                   ))}
               </Accordion>
             ) : (
               <Accordion defaultActiveKey={1} bordered>
                 {orderData?.toReversed().map(data => (
-                  <AdminOrderGrid key={data.order_id} orderData={data} />
+                  <AdminOrderGrid
+                    key={data.order_id}
+                    orderData={data}
+                    setUserAddress={setUserAddress}
+                    setIsAddressModalOpen={setIsAddressModalOpen}
+                  />
                 ))}
               </Accordion>
             )}
@@ -89,6 +116,13 @@ const OrderListGrid = () => {
             <Button onClick={() => handleNoOfOrder()} appearance="primary">
               See all orders
             </Button>
+          </div>
+          <div>
+            <AdminUserAddressModel
+              userAddress={userAddress}
+              isAddressModalOpen={isAddressModalOpen}
+              setIsAddressModalOpen={setIsAddressModalOpen}
+            />
           </div>
         </div>
       )}

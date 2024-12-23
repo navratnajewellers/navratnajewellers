@@ -7,8 +7,10 @@ import axios from 'axios';
 const { NumberType } = Schema.Types;
 
 const changeRateModel = Schema.Model({
-  gold: NumberType().isRequired('Gold rate is required'),
+  gold24k: NumberType().isRequired('Gold rate is required'),
   silver: NumberType().isRequired('Silver rate is required'),
+  gold22k: NumberType().isRequired('Gold rate is required'),
+  gold18k: NumberType().isRequired('Gold rate is required'),
 });
 
 const UpdateGoldRate = () => {
@@ -21,8 +23,10 @@ const UpdateGoldRate = () => {
   const [isPriceDataLoading, setIsPriceDataLoading] = useState(true);
 
   const [rateFormValue, setRateFormValue] = useState({
-    gold: '',
+    gold24k: '',
     silver: '',
+    gold22k: '',
+    gold18k: '',
   });
 
   // for getting the price of gold and silver
@@ -38,12 +42,16 @@ const UpdateGoldRate = () => {
       );
 
       // console.log(response.data);
+
+      // set the price of gold and silver for backup and to resetting to original data
       setPriceData(response.data.record);
 
       // setting the gold and silver price in rate form value
       setRateFormValue({
-        gold: response.data.record.price_1_gram_24K,
+        gold24k: response.data.record.price_1_gram_24K,
         silver: response.data.record.price_1_gram_24K_s,
+        gold22k: response.data.record.price_1_gram_22K,
+        gold18k: response.data.record.price_1_gram_18K,
       });
 
       setIsPriceDataLoading(false);
@@ -62,8 +70,10 @@ const UpdateGoldRate = () => {
   // reset the price of input rate with the real price from database
   const handlePriceReset = () => {
     setRateFormValue({
-      gold: priceData.price_1_gram_24K,
+      gold24k: priceData.price_1_gram_24K,
       silver: priceData.price_1_gram_24K_s,
+      gold22k: priceData.price_1_gram_22K,
+      gold18k: priceData.price_1_gram_18K,
     });
   };
 
@@ -75,8 +85,10 @@ const UpdateGoldRate = () => {
         const response = await axios.post(
           `${serverLink}/testing/admin/update_rate.php`,
           {
-            goldRate: rateFormValue.gold,
+            goldRate24k: rateFormValue.gold24k,
             silverRate: rateFormValue.silver,
+            goldRate22k: rateFormValue.gold22k,
+            goldRate18k: rateFormValue.gold18k,
             protectionId: 'Nav##$56',
           }
         );
@@ -100,7 +112,7 @@ const UpdateGoldRate = () => {
   // console.log(rateFormValue);
 
   return (
-    <div className="dis-flex margin-t50 flex-dir-col">
+    <div className="dis-flex margin-t50 margin-b100 flex-dir-col">
       <div className="margin-b30">
         <h3>Gold and Silver Rate in Rupees</h3>
       </div>
@@ -116,14 +128,24 @@ const UpdateGoldRate = () => {
           ref={updateRateRef}
           onSubmit={handleSubmit}
         >
-          <Form.Group controlId="gold-9">
+          <Form.Group controlId="gold24k-9">
             <Form.ControlLabel>Gold Rate 24k</Form.ControlLabel>
-            <Form.Control name="gold" type="number" />
+            <Form.Control name="gold24k" type="number" />
             <Form.HelpText tooltip>Required</Form.HelpText>
           </Form.Group>
           <Form.Group controlId="silver-9">
             <Form.ControlLabel>Silver Rate 24K</Form.ControlLabel>
             <Form.Control name="silver" type="number" />
+            <Form.HelpText tooltip>Required</Form.HelpText>
+          </Form.Group>
+          <Form.Group controlId="gold22k-9">
+            <Form.ControlLabel>Gold Rate 22k</Form.ControlLabel>
+            <Form.Control name="gold22k" type="number" />
+            <Form.HelpText tooltip>Required</Form.HelpText>
+          </Form.Group>
+          <Form.Group controlId="gold18k-9">
+            <Form.ControlLabel>Gold Rate 18k</Form.ControlLabel>
+            <Form.Control name="gold18k" type="number" />
             <Form.HelpText tooltip>Required</Form.HelpText>
           </Form.Group>
           <Form.Group>

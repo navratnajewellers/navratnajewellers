@@ -146,7 +146,7 @@ const ForgotPassword = () => {
             // console.log(response.data);
             if (response.data.status == true) {
               displayMessage(
-                'info',
+                'success',
                 'Password has been changed successfully',
                 2000
               );

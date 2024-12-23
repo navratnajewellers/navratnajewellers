@@ -6,7 +6,7 @@ import AdminLoginModal from './admin-modal/AdminLoginModal';
 import { Loader } from 'rsuite';
 
 const AdminMainLayout = () => {
-  console.log('inside the main Layout');
+  // console.log('inside the main Layout');
 
   const { adminData } = useAdminProfile();
 
@@ -15,15 +15,16 @@ const AdminMainLayout = () => {
   useEffect(() => {
     if (!adminData.id) {
       setIsLoginOpen(true);
-      console.log('admin is not login');
-    } else {
-      console.log('admin is log in');
+      // console.log('admin is not login');
     }
+    //  else {
+    //   console.log('admin is log in');
+    // }
 
     return () => {};
   }, [adminData.id]);
 
-  console.log(adminData);
+  // console.log(adminData);
 
   return (
     <div>

@@ -5,7 +5,7 @@ import { Nav } from 'rsuite';
 const AdminNav = () => {
   const [active, setActive] = useState('dashboard');
 
-  console.log('inside the nav dashboard');
+  // console.log('inside the nav dashboard');
 
   return (
     <div className="margin-b20">

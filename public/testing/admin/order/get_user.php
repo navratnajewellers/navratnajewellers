@@ -29,7 +29,15 @@ if(empty($data->protectionId) || ($data->protectionId != 'Nav##$56') ){
 	$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 	if ($user) {
- 		echo json_encode(['status' => 'success', 'message' => 'user found', 'username' => $user['username'], 'email' => $user['email'] ]);
+
+		// Get the address of user from the database
+		$addressQuery = "SELECT * FROM `addresses` WHERE user_id = :userId";
+		$addressStmt = $pdo->prepare($addressQuery);
+		$addressStmt->bindParam(':userId', $user['id']);
+		$addressStmt->execute();
+		$userAddress = $addressStmt->fetch(PDO::FETCH_ASSOC);
+
+ 		echo json_encode(['status' => 'success', 'message' => 'user found', 'username' => $user['username'], 'email' => $user['email'], "userAddress" => $userAddress ]);
     
 	} else {
     		echo json_encode(['status' => 'error', 'message' => 'Username not found']);
