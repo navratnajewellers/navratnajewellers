@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2024 at 01:48 PM
+-- Generation Time: Dec 23, 2024 at 01:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -71,7 +71,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(75, '4', 6, 1, 428, '2024-12-20 11:45:41', '2024-12-20 17:15:41');
+(75, '4', 6, 1, 428, '2024-12-20 11:45:41', '2024-12-20 17:15:41'),
+(79, '4', 2, 1, 8786, '2024-12-21 11:22:28', '2024-12-21 16:52:28');
 
 -- --------------------------------------------------------
 
@@ -95,7 +96,7 @@ CREATE TABLE `gold_price` (
 --
 
 INSERT INTO `gold_price` (`id`, `price_1_gram_24K`, `price_1_gram_22K`, `price_1_gram_18K`, `price_1_gram_24K_s`, `making_charge_gold`, `making_charge_silver`, `gst_gold`) VALUES
-(1, 7898, 7195, 5887, 99, 0.08, 20, 0.03);
+(1, 7892, 7195, 5887, 99, 0.08, 20, 0.03);
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,7 @@ CREATE TABLE `nav_admin` (
 
 INSERT INTO `nav_admin` (`ad_id`, `ad_name`, `ad_email`, `ad_password`, `ad_created_at`, `ad_updated_at`) VALUES
 ('132556', 'admin', 'admin@gmail.com', '$2y$10$gHHYyCt79wf0tPWQFM3Y7u6oGREjjPJ9OS2hk3PwAI6aWWXo1Symq', '2024-12-19 07:48:23', '2024-12-19 13:41:49'),
-('6763', 'admin2', 'admin2@gmail.com', '$2y$10$uz9OKXbR3UeIsCoG3pH3g.O2YnVtF8yll.6LvVMltbw2i1GlKJdfq', '2024-12-19 09:46:56', '2024-12-19 15:16:56'),
+('6763', 'admin2', 'admin2@gmail.com', '$2y$10$HIt/Az8KrZ/7jOXrhUUO1Or6jVq7GzeE6ljnVajz1XuG1n9KzKEPi', '2024-12-19 09:46:56', '2024-12-23 14:32:07'),
 ('6763f229d6966', 'admin3', 'admin3@gmail.com', '$2y$10$0qzmxCRJ9LsvC9eDjm0qMuJXSIcT4BWm0ZU95XhlrpnH5kz65qTSS', '2024-12-19 10:15:06', '2024-12-19 15:45:06');
 
 -- --------------------------------------------------------
@@ -156,18 +157,21 @@ CREATE TABLE `orders` (
   `total_amount` decimal(10,2) NOT NULL,
   `order_date` datetime DEFAULT current_timestamp(),
   `order_updateAt` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `status` varchar(50) DEFAULT 'pending'
+  `status` varchar(50) DEFAULT 'pending',
+  `payment_method` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `user_id`, `total_amount`, `order_date`, `order_updateAt`, `status`) VALUES
-('order_PVlt1h5bIuTAmk', '4', 123000.00, '2024-12-11 12:02:28', '2024-12-11 12:03:02', 'paid'),
-('order_PX4L76Mi7NQdVQ', '4', 836.00, '2024-12-14 18:44:32', '2024-12-14 18:44:59', 'paid'),
-('order_PZQuNae5nxB6Up', '676559113fe83', 44765.00, '2024-12-20 18:07:10', '2024-12-20 18:08:19', 'paid'),
-('order_PZQx2pVmerk1ao', '676559113fe83', 5119.00, '2024-12-20 18:09:42', '2024-12-20 18:09:42', 'created');
+INSERT INTO `orders` (`order_id`, `user_id`, `total_amount`, `order_date`, `order_updateAt`, `status`, `payment_method`) VALUES
+('order_PabajVE97rdsEO', '676559113fe83', 225.00, '2024-12-23 17:13:12', '2024-12-23 17:13:38', 'paid', 'online'),
+('order_PabZ3IZHRvjacx', '676559113fe83', 123.00, '2024-12-23 17:11:37', '2024-12-23 17:11:37', 'created', 'cod'),
+('order_PVlt1h5bIuTAmk', '4', 123000.00, '2024-12-11 12:02:28', '2024-12-23 16:54:04', 'paid', 'online'),
+('order_PX4L76Mi7NQdVQ', '4', 836.00, '2024-12-14 18:44:32', '2024-12-23 16:54:23', 'paid', 'online'),
+('order_PZQuNae5nxB6Up', '676559113fe83', 44765.00, '2024-12-20 18:07:10', '2024-12-23 16:54:35', 'paid', 'online'),
+('order_PZQx2pVmerk1ao', '676559113fe83', 5119.00, '2024-12-20 18:09:42', '2024-12-23 16:54:50', 'created', 'cod');
 
 -- --------------------------------------------------------
 
@@ -196,7 +200,9 @@ INSERT INTO `order_items` (`id`, `order_id_oi`, `product_id_oi`, `quantity_oi`, 
 (32, 'order_PX4L76Mi7NQdVQ', 8, 1, 836.00, 'processing', '2024-12-14 13:14:59', '2024-12-14 18:44:59'),
 (33, 'order_PZQuNae5nxB6Up', 14, 1, 43929.00, 'order-cancel', '2024-12-20 12:38:19', '2024-12-20 18:08:41'),
 (34, 'order_PZQuNae5nxB6Up', 8, 1, 836.00, 'order-cancel', '2024-12-20 12:38:19', '2024-12-20 18:08:41'),
-(35, 'order_PZQx2pVmerk1ao', 12, 1, 5119.00, 'processing', '2024-12-20 12:39:42', '2024-12-20 18:09:42');
+(35, 'order_PZQx2pVmerk1ao', 12, 1, 5119.00, 'processing', '2024-12-20 12:39:42', '2024-12-20 18:09:42'),
+(36, 'order_PabZ3IZHRvjacx', 4, 1, 123.00, 'processing', '2024-12-23 11:41:37', '2024-12-23 17:11:37'),
+(37, 'order_PabajVE97rdsEO', 5, 1, 225.00, 'processing', '2024-12-23 11:43:38', '2024-12-23 17:13:38');
 
 -- --------------------------------------------------------
 
@@ -219,7 +225,8 @@ CREATE TABLE `payment_details` (
 
 INSERT INTO `payment_details` (`pd_id`, `pd_order_id`, `pd_payment_id`, `pd_verify_signature`, `pd_created_at`, `pd_updated_at`) VALUES
 (8, 'order_PVlt1h5bIuTAmk', 'pay_PVltM9cBDhhdKz', '8a676f5dcb634c7c57a0a908388e2eb80d3d635aaec9aeba1f77624e9eb8fa89', '2024-12-11 06:33:02', '2024-12-11 12:03:02'),
-(16, 'order_PZQuNae5nxB6Up', 'pay_PZQvJXTAjHPLdz', 'eb742c9b1d7fa974b7ae55482f99eac9514adb43575c534f2bf9c2bc432b5c45', '2024-12-20 12:38:19', '2024-12-20 18:08:19');
+(16, 'order_PZQuNae5nxB6Up', 'pay_PZQvJXTAjHPLdz', 'eb742c9b1d7fa974b7ae55482f99eac9514adb43575c534f2bf9c2bc432b5c45', '2024-12-20 12:38:19', '2024-12-20 18:08:19'),
+(17, 'order_PabajVE97rdsEO', 'pay_PabavYsxiHjeMI', '21ad9687c264c1b9dfbabc830915072920b184fe8da65d52075e89fff4fab75c', '2024-12-23 11:43:38', '2024-12-23 17:13:38');
 
 -- --------------------------------------------------------
 
@@ -292,9 +299,9 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `session_id`, `creat
 ('1', 'san', '$2y$10$tMiYyJ.MB1.60vrE.NMx8.cux5iMtkzWwvkBrxbF7lGuugW.qhgHG', 'NOT NULL', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 ('2', 'admin', 'admin', 'admin@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 ('3', 'new admin', '$2y$10$HcPH9aMC.Zf1mNvaBO9iCu0gKYQUmD6PpNkJntiPWY1Bjcdvn.niS', 'adm@gmail.com', '5ef2529231099fa39cabcb46f8b6769381794bf8ff25a5641a7f86f94e9d5d74', '2024-11-25 08:12:33', '2024-12-11 12:36:07'),
-('4', 'demo', '$2y$10$gHHYyCt79wf0tPWQFM3Y7u6oGREjjPJ9OS2hk3PwAI6aWWXo1Symq', 'demo@gmail.com', '4929c669b50158624792b81f4377b1009f0de775516e339cdc28988608a2e037', '2024-11-25 08:12:33', '2024-12-20 17:14:38'),
+('4', 'demo', '$2y$10$gHHYyCt79wf0tPWQFM3Y7u6oGREjjPJ9OS2hk3PwAI6aWWXo1Symq', 'demo@gmail.com', '0e6dec02e555aea1c8d504859289ece7072fda6126c986ae5991bf31e1686496', '2024-11-25 08:12:33', '2024-12-21 16:52:28'),
 ('6759445', 'Raj Singh', '$2y$10$wQ7q2jno/P2QXbBAxKNGhOknznwVoIQ8tltm4BCa/gyzUVQ7nEzuK', 'raj@gmail.com', '15a9b080b1e470c9529eaf8730f554e7a8f3273e53f969ac0264052b0fc40191', '2024-12-11 07:50:53', '2024-12-11 13:21:30'),
-('676559113fe83', 'demo 4', '$2y$10$UYHRP2CahIYrU5A6TH2UkuH12pe7KTZJza5OVWYD0a1dTL3xkOIOq', 'demo4@gmail.com', '606d138285bc9b1aef58d6c7069c0bb9553d13fa1d0888bc7c32ecbfd8785669', '2024-12-20 11:46:25', '2024-12-20 17:23:14'),
+('676559113fe83', 'demo 4', '$2y$10$UYHRP2CahIYrU5A6TH2UkuH12pe7KTZJza5OVWYD0a1dTL3xkOIOq', 'demo4@gmail.com', '96bc1a2b7ad3496e95938fbd1afa063ae72880f71e9bf82d34ae52f0272fe49f', '2024-12-20 11:46:25', '2024-12-23 16:50:32'),
 ('8', 'demo', '$2y$10$sh2GKimjHUhd5dcYVOi9Aud2LBNsElq4wrNDryjf4WyuLIAxq0JPC', 'demo1@gmail.com', 'bfb0af304bcfdcd1de5dfd6ab885ae520e6ad6b7cfaa8a44c234c8c10827ef87', '2024-11-25 09:08:55', '2024-12-05 16:34:35');
 
 -- --------------------------------------------------------
@@ -411,25 +418,25 @@ ALTER TABLE `addresses`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `offline_cart`
 --
 ALTER TABLE `offline_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `payment_details`
 --
 ALTER TABLE `payment_details`
-  MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `product`
