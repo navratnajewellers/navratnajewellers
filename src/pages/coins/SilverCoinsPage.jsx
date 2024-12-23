@@ -412,7 +412,7 @@ const SilverCoinPage = () => {
                                   >
                                     Grand Total
                                   </td>
-                                  <td>₹ {priceData.s}</td>
+                                  <td>₹ {priceBreak.grand_total}</td>
                                 </tr>
                               </tbody>
                             </table>

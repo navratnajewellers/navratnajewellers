@@ -48,7 +48,7 @@ if(empty($data->protectionId) || ($data->protectionId != 'Nav##$56') ){
 
 		if ($stmt->execute()) {
 		    // display message
-			echo json_encode(['status' => true, 'message' => 'Cart updated successfully']);
+			echo json_encode(['status' => true, 'message' => 'Cart updated successfully.']);
 		    } else {
 		    echo json_encode(['status' => false, 'message' => 'Failed to update cart']);
 		}
