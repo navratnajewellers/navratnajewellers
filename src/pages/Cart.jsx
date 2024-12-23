@@ -300,6 +300,7 @@ const Cart = () => {
         {
           amount: grand_total * 100,
           user_id: userData.id,
+          paymentMethod: 'online',
           protectionId: 'Nav##$56',
         }
       );
@@ -405,6 +406,7 @@ const Cart = () => {
         {
           amount: grand_total * 100,
           user_id: userData.id,
+          paymentMethod: 'cod',
           protectionId: 'Nav##$56',
         }
       );

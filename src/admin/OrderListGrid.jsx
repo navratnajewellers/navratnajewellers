@@ -85,21 +85,18 @@ const OrderListGrid = () => {
 
             {orderLimit !== 'all' ? (
               <Accordion defaultActiveKey={1} bordered>
-                {orderData
-                  ?.toReversed()
-                  .slice(0, 5)
-                  .map(data => (
-                    <AdminOrderGrid
-                      key={data.order_id}
-                      orderData={data}
-                      setUserAddress={setUserAddress}
-                      setIsAddressModalOpen={setIsAddressModalOpen}
-                    />
-                  ))}
+                {orderData?.slice(0, 5).map(data => (
+                  <AdminOrderGrid
+                    key={data.order_id}
+                    orderData={data}
+                    setUserAddress={setUserAddress}
+                    setIsAddressModalOpen={setIsAddressModalOpen}
+                  />
+                ))}
               </Accordion>
             ) : (
               <Accordion defaultActiveKey={1} bordered>
-                {orderData?.toReversed().map(data => (
+                {orderData?.map(data => (
                   <AdminOrderGrid
                     key={data.order_id}
                     orderData={data}

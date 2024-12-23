@@ -33,6 +33,7 @@ if(empty($input['protectionId']) || ($input['protectionId'] != 'Nav##$56') ){
     // Amount in paise
     $amount = $input['amount']; 
     $userId = $input['user_id'];
+    $inputPaymentMethod = $input['paymentMethod'];
 
     $orderData = [
         'receipt' => uniqid(),
@@ -43,8 +44,8 @@ if(empty($input['protectionId']) || ($input['protectionId'] != 'Nav##$56') ){
     $razorpayOrder = $api->order->create($orderData);
 
     // Save order details to the database
-    $stmt = $pdo->prepare("INSERT INTO orders (order_id, user_id, total_amount, status) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$razorpayOrder['id'], $userId, $amount/100, 'created']);
+    $stmt = $pdo->prepare("INSERT INTO orders (order_id, user_id, total_amount, status, payment_method) VALUES (?, ?, ?, ?, ?)");
+    $stmt->execute([$razorpayOrder['id'], $userId, $amount/100, 'created', $inputPaymentMethod]);
 
     echo json_encode(['order_id' => $razorpayOrder['id'], 'amount' => $amount]);
     //echo json_encode(['user_id' => $userId, 'amount' => $amount]);

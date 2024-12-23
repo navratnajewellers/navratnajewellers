@@ -161,14 +161,29 @@ const AdminOrderGrid = ({
         header={
           <div className="order-header-container">
             <div className="pos-rel">
-              <div>Order-ID: {orderData.order_id}</div>
+              <div>
+                Order-ID:{' '}
+                <span className="color-blue">{orderData.order_id}</span>
+              </div>
               <div className="order-date">
                 <span className="order-date-heading">Date: </span>
                 {orderData.order_date.slice(0, 10)}
               </div>
             </div>
-            <Text>Total Price: {orderData.total_amount.slice(0, -3)} </Text>
-            <Text>Payment Status: {orderData.status} </Text>
+            <Text>
+              Total Price:{' '}
+              <span className="color-blue">
+                {orderData.total_amount.slice(0, -3)}
+              </span>{' '}
+            </Text>
+            <Text>
+              Payment Status:{' '}
+              <span className="color-blue">{orderData.status} </span>
+            </Text>
+            <Text>
+              Payment Method:{' '}
+              <span className="color-blue">{orderData.payment_method}</span>{' '}
+            </Text>
           </div>
         }
         eventKey={orderData.order_id}

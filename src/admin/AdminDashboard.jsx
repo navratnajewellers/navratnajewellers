@@ -41,7 +41,7 @@ const AdminDashboard = () => {
         id: '',
         username: '',
       });
-    }, 100);
+    }, 400);
   };
 
   return (
