@@ -114,7 +114,7 @@ const UpdateGoldRate = () => {
   return (
     <div className="dis-flex margin-t50 margin-b100 flex-dir-col">
       <div className="margin-b30">
-        <h3>Gold and Silver Rate in Rupees</h3>
+        <h3 className="textCenter">Gold and Silver Rate in Rupees</h3>
       </div>
       {isPriceDataLoading ? (
         <div className="height-width-full dis-flex">

@@ -227,15 +227,17 @@ button {
   padding: 7px;
   padding-left: 16px;
   margin-top: 10px;
-  width: 130px;
+  width: 150px;
   justify-content: space-between;
   background-color: rgb(233, 233, 233);
   border-radius: 8px;
+  color: palevioletred;
   transition: width 0.8s ease-in-out;
 }
 
 .header-text-connect:hover {
   width: 96%;
+  text-decoration: none;
 }
 
 .header-text-connect a {

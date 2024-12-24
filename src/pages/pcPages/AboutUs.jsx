@@ -21,7 +21,7 @@ const AboutUs = () => {
           <Header />
         </div>
       </Affix>
-      <div className="margin-t50 margin-b100 textCenter ">
+      <div className="margin-t50 margin-b100 textCenter padding-lr5">
         <h3 className="main-color margin-b30 ">About Us</h3>
         <p>
           Designer jewellery collections, featuring exquisite designs that blend

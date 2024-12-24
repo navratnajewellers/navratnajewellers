@@ -59,7 +59,13 @@ const AdminDashboard = () => {
           <Button appearance="primary" onClick={() => setIsPasswordOpen(true)}>
             Change Password
           </Button>
-          <Button onClick={() => handleAdminLogout()}>Logout</Button>
+          <Button
+            appearance="primary"
+            color="red"
+            onClick={() => handleAdminLogout()}
+          >
+            Logout
+          </Button>
         </ButtonToolbar>
       </div>
       <div>

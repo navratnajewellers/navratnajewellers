@@ -70,7 +70,7 @@ const OrderListGrid = () => {
           <Loader content="Loading..." vertical size="md" />
         </div>
       ) : (
-        <div>
+        <div className="padding-lr5">
           <div>
             <h3 className="textCenter margin-t30 margin-b50 main-color">
               Orders Details

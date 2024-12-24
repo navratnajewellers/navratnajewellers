@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Nav } from 'rsuite';
+import { Nav, useMediaQuery } from 'rsuite';
 
 const AdminNav = () => {
+  const [isMobile] = useMediaQuery('(max-width: 600px)');
+
   const [active, setActive] = useState('dashboard');
 
   // console.log('inside the nav dashboard');
@@ -12,7 +14,7 @@ const AdminNav = () => {
       <h2 className="textCenter main-color margin-t20 margin-b30 ">
         Navratna Jewellers Admin Panel
       </h2>
-      <div>
+      <div style={isMobile ? { overflowY: 'scroll' } : {}}>
         <Nav appearance="tabs" activeKey={active} onSelect={setActive}>
           <Nav.Item eventKey="dashboard" as={Link} to="/nav-admin">
             Admin Dashboard

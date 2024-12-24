@@ -1,15 +1,12 @@
-import { Affix, Carousel, Divider, Loader } from 'rsuite';
-// import Header from '../components/Header';
+import { Affix, Carousel, Divider } from 'rsuite';
+import Header from '../components/Header';
 import '../styles/Home.css';
 import { GiJewelCrown } from '@react-icons/all-files/gi/GiJewelCrown';
 import HomeProducts from '../components/home/HomeProducts';
 import HomeConnectUs from '../components/home/HomeConnectUs';
 import Footer from '../components/Footer';
-import { lazy, Suspense } from 'react';
 import Contact from './Contact';
 import { useWebStatus } from '../context/status.context';
-
-const Header = lazy(() => import('../components/Header'));
 
 const Home = () => {
   // move to top of window wgen user on different section of other page
@@ -25,13 +22,10 @@ const Home = () => {
     <div>
       <Affix className="fixed-header">
         <div className="header-container margin-t10">
-          <Suspense fallback={<Loader center content="Loading..." vertical />}>
-            <Header />
-          </Suspense>
-          {/* <Header /> */}
+          <Header />
         </div>
       </Affix>
-      <div className="carousel">
+      <div className="main-carousel">
         <Carousel autoplay shape="bar" className="custom-slider">
           <a href="" className="dis-block">
             <img

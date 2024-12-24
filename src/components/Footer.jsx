@@ -28,7 +28,10 @@ const Footer = () => {
                     <span className="footer-icon-wrapper">
                       <IoIosMail className="footer-icon" />
                     </span>
-                    <a href="mailto:navratnajewellers0@gmail.com">
+                    <a
+                      href="mailto:navratnajewellers0@gmail.com"
+                      title="Write to us"
+                    >
                       Write to Us
                     </a>
                   </li>
@@ -36,7 +39,9 @@ const Footer = () => {
                     <span className="footer-icon-wrapper footer-call-icon">
                       <IoCallOutline className="footer-icon" />
                     </span>
-                    <a href="tel:+91 7004220367">7004220367</a>
+                    <a href="tel:+91 7004220367" title="Call us">
+                      7004220367
+                    </a>
                   </li>
                   <li>
                     <span className="footer-icon-wrapper footer-loc-icon">
@@ -44,6 +49,7 @@ const Footer = () => {
                     </span>
                     <a
                       target="_blank"
+                      title="Find a store loaction"
                       href="https://maps.app.goo.gl/mzKSgSyRAtaYwsWA9"
                     >
                       Find Store
