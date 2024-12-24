@@ -20,11 +20,11 @@ const Home = () => {
     </div>
   ) : (
     <div>
-      <Affix className="fixed-header">
-        <div className="header-container margin-t10">
+      <div className="header-container">
+        <Affix className="fixed-header padding-t10 ">
           <Header />
-        </div>
-      </Affix>
+        </Affix>
+      </div>
       <div className="main-carousel">
         <Carousel autoplay shape="bar" className="custom-slider">
           <a href="" className="dis-block">

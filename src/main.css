@@ -145,6 +145,10 @@ body {
   padding-left: 10px;
 }
 
+.padding-t10 {
+  padding-top: 10px;
+}
+
 .padding-lr5 {
   padding: 0 5%;
 }
