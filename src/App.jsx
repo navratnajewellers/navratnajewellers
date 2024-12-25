@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import PageNotFound from './pages/PageNotFound';
@@ -30,8 +30,24 @@ import AdminMainLayout from './admin/AdminMainLayout';
 import { AdminProfileProvider } from './context/adminProfile.context';
 import WebsiteStatus from './admin/WebsiteStatus';
 import { StatusProvider } from './context/status.context';
+import { useEffect } from 'react';
+import { initializeAnalytics, logPageView } from './analytics.js';
+
+const TrackPageView = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    logPageView(location.pathname);
+  }, [location]);
+
+  return null;
+};
 
 function App() {
+  useEffect(() => {
+    initializeAnalytics();
+  }, []);
+
   return (
     <ServerProvider>
       <StatusProvider>
@@ -41,6 +57,7 @@ function App() {
               <ProductProvider>
                 <CartProvider>
                   <HashRouter>
+                    <TrackPageView />
                     <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/contact" element={<Contact />} />

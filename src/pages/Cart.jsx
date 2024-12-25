@@ -22,6 +22,7 @@ import CartItemGrid from './cart/CartItemGrid';
 import AddressModal from './cart/AddressModal';
 import { useServerLink } from '../context/server.context';
 import { useWebStatus } from '../context/status.context';
+import { logCustomEvent } from '../analytics';
 
 const Header = lazy(() => import('../components/Header'));
 
@@ -440,6 +441,10 @@ const Cart = () => {
         // displayMessage('info', 'Address is fill already proceed with payment');
         // console.log(address);
 
+        // send the log for payment option click
+        logCustomEvent('User', 'Payment Option', 'Payment Option Click');
+
+        // open payment option modal
         setIsPaymentOptionOpen(true);
 
         // payment logic is handle by payment option modal (note: important)
