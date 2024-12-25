@@ -6,7 +6,11 @@ const HomeProducts = () => {
       <div className="home-products pos-rel">
         <Link to="/product/gold-coin">
           <div className="imageWrapper">
-            <img src="/fod-gold-coins.jpeg"></img>
+            <img
+              src="/fod-gold-coins.jpeg"
+              alt="Gold Coin"
+              loading="lazy"
+            ></img>
           </div>
           <div className="dis-flex home-product-name pos-abs">
             <span>Gold Coins</span>
@@ -16,7 +20,11 @@ const HomeProducts = () => {
       <div className="home-products pos-rel">
         <Link to="/product/silver-coin">
           <div className="imageWrapper">
-            <img src="/Pure-Silver-Coin---10-gm.jpeg"></img>
+            <img
+              src="/Pure-Silver-Coin---10-gm.jpeg"
+              alt="Silver Coin"
+              loading="lazy"
+            ></img>
           </div>
           <div className="dis-flex home-product-name pos-abs">
             <span>Silver Coins</span>

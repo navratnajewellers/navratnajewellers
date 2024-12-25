@@ -29,36 +29,46 @@ const Home = () => {
         <Carousel autoplay shape="bar" className="custom-slider">
           <a href="" className="dis-block">
             <img
+              loading="lazy"
               className="height-width-100"
               src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=1"
+              alt="Carosuel Image"
               height="250"
             />
           </a>
           <a href="" className="dis-block">
             <img
+              loading="lazy"
               className="height-width-100"
               src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=2"
+              alt="Carosuel Image"
               height="250"
             />
           </a>
           <a href="" className="dis-block">
             <img
+              loading="lazy"
               className="height-width-100"
               src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=3"
+              alt="Carosuel Image"
               height="250"
             />
           </a>
           <a href="" className="dis-block">
             <img
+              loading="lazy"
               className="height-width-100"
               src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=4"
+              alt="Carosuel Image"
               height="250"
             />
           </a>
           <a href="" className="dis-block">
             <img
+              loading="lazy"
               className="height-width-100"
               src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=5"
+              alt="Carosuel Image"
               height="250"
             />
           </a>

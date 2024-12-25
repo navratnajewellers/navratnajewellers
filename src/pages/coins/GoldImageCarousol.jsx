@@ -35,7 +35,8 @@ const GoldImageCarousol = ({ productData }) => {
                   ? productData.product_img1
                   : '/24K_1_gram_gold_coin.jpeg'
               }
-              alt="Los Angeles"
+              alt={productData ? productData.name : 'Product Image'}
+              loading="lazy"
               className="d-block"
               style={{ width: '100%' }}
             />
@@ -47,7 +48,8 @@ const GoldImageCarousol = ({ productData }) => {
                   ? productData.product_img2
                   : '/24K_1_gram_gold_coin.jpeg'
               }
-              alt="Chicago"
+              alt={productData ? productData.name : 'Product Image'}
+              loading="lazy"
               className="d-block"
               style={{ width: '100%' }}
             />
@@ -56,10 +58,11 @@ const GoldImageCarousol = ({ productData }) => {
             <img
               src={
                 productData
-                  ? productData.product_img2
+                  ? productData.product_img3
                   : '/24K_1_gram_gold_coin.jpeg'
               }
-              alt="New York"
+              alt={productData ? productData.name : 'Product Image'}
+              loading="lazy"
               className="d-block"
               style={{ width: '100%' }}
             />

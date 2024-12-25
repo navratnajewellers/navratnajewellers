@@ -216,7 +216,11 @@ const CartItemGrid = ({ priceData, cartProduct, setGrand_total, userData }) => {
       ) : (
         <div className="dis-flex cart-empty-container ">
           <div className="imageWrapper">
-            <img src="/empty-cart-no-empty.png" alt="Empty cart"></img>
+            <img
+              src="/empty-cart-no-empty.png"
+              alt="Empty cart"
+              loading="lazy"
+            ></img>
           </div>
           <h2 className="margin-t50">Your Cart is Empty</h2>
         </div>

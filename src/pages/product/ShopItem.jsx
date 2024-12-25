@@ -37,7 +37,8 @@ const ShopItem = ({ productDetail, priceData }) => {
                       ? productDetail.product_img1
                       : '/24K_1_gram_gold_coin.jpeg'
                   }
-                  alt="24K_1_gram_gold_coin"
+                  alt={productDetail.name}
+                  loading="lazy"
                 ></img>
               </div>
               <div>

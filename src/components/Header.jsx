@@ -429,7 +429,11 @@ const Header = () => {
         <div className="nav-logo">
           <Link to="/" className="dis-block">
             <div className="imageWrapper">
-              <img src="/nav-jew-logo.jpg"></img>
+              <img
+                src="/nav-jew-logo.jpg"
+                loading="lazy"
+                alt="Navratna Jewellers Logo"
+              ></img>
             </div>
           </Link>
         </div>
