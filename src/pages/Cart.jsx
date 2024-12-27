@@ -247,6 +247,33 @@ const Cart = () => {
   //   cartProduct: cartProduct,
   // });
 
+  // send mail for successfully placing order
+  const handleOrderSuccessEmail = async orderId => {
+    try {
+      const response = await axios.post(
+        `${serverLink}/testing/mailer/sendOrderConfirmationMail.php`,
+        {
+          user_id: userData.id,
+          orderId: orderId,
+          protectionId: 'Nav##$56',
+        }
+      );
+
+      // console.log(response);
+      // console.log(response.data);
+
+      if (response.status === 200 && response.data.status == 'success') {
+        displayMessage('success', 'Your order is placed successfully', 2000);
+        setTimeout(() => {
+          setIsPaymentLoading(false);
+          window.location.href = '/';
+        }, 2000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // moving the cart item to order_item
   const handleMoveCartToOrder = async (status, orderId) => {
     try {
@@ -272,12 +299,14 @@ const Cart = () => {
         // console.log(response.data.message);
         // window.location.href = '/';
 
-        displayMessage('success', 'Your order is placed successfully', 2000);
+        handleOrderSuccessEmail(orderId);
 
-        setTimeout(() => {
-          setIsPaymentLoading(false);
-          window.location.href = '/';
-        }, 2000);
+        // displayMessage('success', 'Your order is placed successfully', 2000);
+
+        // setTimeout(() => {
+        //   setIsPaymentLoading(false);
+        //   window.location.href = '/';
+        // }, 2000);
       }
     } catch (error) {
       console.log(error);
@@ -631,8 +660,16 @@ const Cart = () => {
       <div>
         <Modal backdrop="false" size="full" open={isPaymentLoading}>
           <Modal.Body>
-            <div className="height-width-100 dis-flex">
-              <Loader content="Loading..." vertical />
+            <div className="height-width-100 dis-flex flex-dir-col ">
+              <Loader content="Loading..." size="lg" vertical />
+              <div>
+                <h3>
+                  Payment is processing,{' '}
+                  <span style={{ color: 'red' }}>
+                    Please don&apos;t close or refresh the window !!
+                  </span>
+                </h3>
+              </div>
             </div>
           </Modal.Body>
         </Modal>
