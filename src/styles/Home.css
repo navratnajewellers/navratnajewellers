@@ -200,6 +200,15 @@ button {
   color: #ffffff;
 }
 
+.home-products img {
+  transition: all 0.4s linear;
+}
+
+.home-products:hover img {
+  scale: 1.1;
+  filter: blur(2px);
+}
+
 /* home page connect us */
 
 .home-connect-us-container {
@@ -377,13 +386,15 @@ button {
     left: -74px !important;
   }
 
-  .connect-us-wrapper {
-    margin-bottom: 40px;
-    margin-right: 0;
-  }
-
   .footer-container {
     display: block;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .connect-us-wrapper {
+    margin-bottom: 40px;
+    margin-right: 20px;
   }
 }
 

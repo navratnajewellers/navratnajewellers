@@ -70,7 +70,7 @@ const GoldImageCarousol = ({ productData }) => {
         </div>
 
         <button
-          className="carousel-control-prev product-carousel-button"
+          className="carousel-control-prev product-carousel-button flex-jc-start "
           type="button"
           data-bs-target="#demo"
           data-bs-slide="prev"
@@ -78,7 +78,7 @@ const GoldImageCarousol = ({ productData }) => {
           <span className="carousel-control-prev-icon"></span>
         </button>
         <button
-          className="carousel-control-next product-carousel-button"
+          className="carousel-control-next product-carousel-button flex-jc-end "
           type="button"
           data-bs-target="#demo"
           data-bs-slide="next"

@@ -47,6 +47,14 @@ body {
   flex-direction: column;
 }
 
+.flex-jc-start {
+  justify-content: flex-start;
+}
+
+.flex-jc-end {
+  justify-content: flex-end;
+}
+
 .dis-block {
   display: block;
 }

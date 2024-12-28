@@ -36,9 +36,6 @@ const SilverCoinPage = () => {
     window.location.replace('/');
   }
 
-  // move to top of window wgen user on different section of other page
-  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-
   const toaster = useToaster();
   const { gramQt } = useParams();
 
@@ -75,6 +72,10 @@ const SilverCoinPage = () => {
   };
 
   useEffect(() => {
+    // only used once time when page load
+    // move to top of window wgen user on different section of other page
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
     // Clearing previous data to empty useState
     setPriceData(null);
     setProductData(null);

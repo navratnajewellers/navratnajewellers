@@ -19,14 +19,36 @@
 .grid-gold-content {
   /* border: solid 1px blue; */
   height: 520px;
-  overflow: scroll;
+  overflow-y: scroll;
 
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  /*-ms-overflow-style: none;*/ /* IE and Edge */
+  /*scrollbar-width: none;*/ /* Firefox */
 }
 
-.grid-gold-content::-webkit-scrollbar {
+/* diable the scroll bar display */
+/* .grid-gold-content::-webkit-scrollbar {
   display: none;
+} */
+
+/* Now style the scrollbar */
+
+.grid-gold-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.grid-gold-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.grid-gold-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #f72585, #b5179e);
+  border-radius: 10px;
+  border: 1px solid #f1f1f1;
+}
+
+.grid-gold-content::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #7209b7, #560bad);
+  border: 1px solid #560bad;
 }
 
 .table-grand-total {
@@ -54,6 +76,15 @@
 .product-carousel {
   border-radius: 20px;
   overflow: hidden;
+}
+
+.product-carousel-button {
+  width: 50%;
+  padding: 0 5%;
+}
+
+.product-carousel-button:hover {
+  background: none;
 }
 
 .product-title {

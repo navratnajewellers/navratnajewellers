@@ -36,9 +36,6 @@ const Product = () => {
     window.location.replace('/');
   }
 
-  // move to top of window wgen user on different section of other page
-  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-
   const toaster = useToaster();
   const { productName } = useParams();
 
@@ -77,6 +74,10 @@ const Product = () => {
   };
 
   useEffect(() => {
+    // only used once time when page load
+    // move to top of window wgen user on different section of other page
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
     // Clearing previous data to empty useState
     setPriceData(null);
     setProductData(null);
