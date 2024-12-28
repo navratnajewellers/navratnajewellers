@@ -48,6 +48,9 @@ const Cart = () => {
     window.location.replace('/');
   }
 
+  // move to top of window wgen user on different section of other page
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   const toaster = useToaster();
 
   const { serverLink } = useServerLink();
