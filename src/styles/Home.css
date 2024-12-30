@@ -205,8 +205,8 @@ button {
 }
 
 .home-products:hover img {
-  scale: 1.1;
-  filter: blur(2px);
+  scale: 1.04;
+  /* filter: blur(2px); */
 }
 
 /* home page connect us */
