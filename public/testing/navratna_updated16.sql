@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2024 at 01:27 PM
+-- Generation Time: Dec 30, 2024 at 12:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,7 +48,8 @@ CREATE TABLE `addresses` (
 INSERT INTO `addresses` (`id`, `user_id`, `address_line_1`, `address_line_2`, `country`, `city`, `state`, `postal_code`, `landmark`, `phone_number`, `created_at`) VALUES
 (1, '4', 'Ranchi', 'Jharkhand', 'India', 'Ranchi', 'Jharkhand', '834001', '', '1234567890', '2024-12-04 11:06:16'),
 (4, '8', 'Ranchi, Jharkhand', '', 'India', 'Ranchi', 'Jharkhand', '834001', '', '9204780758', '2024-12-05 11:05:40'),
-(12, '676559113fe83', 'Ranchi, Jharkhand', '', 'India', 'Ranchi', 'Jharkhand', '834001', '', '1234567890', '2024-12-20 11:47:35');
+(12, '676559113fe83', 'Ranchi, Jharkhand', '', 'India', 'Ranchi', 'Jharkhand', '834001', '', '1234567890', '2024-12-20 11:47:35'),
+(13, '676e8f899908c', 'Ranchi, Jharkhand', 'Jharkhand', 'India', 'Ranchi', 'Jharkhand', '834001', '', '1234567890', '2024-12-27 11:30:41');
 
 -- --------------------------------------------------------
 
@@ -125,6 +126,26 @@ INSERT INTO `nav_admin` (`ad_id`, `ad_name`, `ad_email`, `ad_password`, `ad_crea
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `nav_version`
+--
+
+CREATE TABLE `nav_version` (
+  `id` int(11) NOT NULL,
+  `version` decimal(10,2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `nav_version`
+--
+
+INSERT INTO `nav_version` (`id`, `version`, `created_at`, `updated_at`) VALUES
+(5465347, 1.05, '2024-12-30 09:15:35', '2024-12-30 17:13:33');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `offline_cart`
 --
 
@@ -143,7 +164,7 @@ CREATE TABLE `offline_cart` (
 --
 
 INSERT INTO `offline_cart` (`id`, `local_user_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(10, '27ed3229d6e5b59d21ab6ea14b726368b7ebd281a9b0e3c37e11eb85e61bca16', 2, 2, 34926, '2024-11-28 07:07:53', '2024-11-28 12:37:53');
+(68, '07f04bf435221e69a5d04cf95b1507407ee37bd811fd3425d93cdbf9bc78b5e8', 16, 1, 87791, '2024-12-30 08:16:10', '2024-12-30 13:46:10');
 
 -- --------------------------------------------------------
 
@@ -168,6 +189,7 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`order_id`, `user_id`, `total_amount`, `order_date`, `order_updateAt`, `status`, `payment_method`) VALUES
 ('order_PabajVE97rdsEO', '676559113fe83', 225.00, '2024-12-23 17:13:12', '2024-12-23 17:13:38', 'paid', 'online'),
 ('order_PabZ3IZHRvjacx', '676559113fe83', 123.00, '2024-12-23 17:11:37', '2024-12-23 17:11:37', 'created', 'cod'),
+('order_PcBcSxdyaJVpUx', '676e8f899908c', 8902.00, '2024-12-27 17:06:50', '2024-12-27 17:07:25', 'paid', 'online'),
 ('order_PVlt1h5bIuTAmk', '4', 123000.00, '2024-12-11 12:02:28', '2024-12-23 16:54:04', 'paid', 'online'),
 ('order_PX4L76Mi7NQdVQ', '4', 836.00, '2024-12-14 18:44:32', '2024-12-23 16:54:23', 'paid', 'online'),
 ('order_PZQuNae5nxB6Up', '676559113fe83', 44765.00, '2024-12-20 18:07:10', '2024-12-23 16:54:35', 'paid', 'online'),
@@ -202,7 +224,9 @@ INSERT INTO `order_items` (`id`, `order_id_oi`, `product_id_oi`, `quantity_oi`, 
 (34, 'order_PZQuNae5nxB6Up', 8, 1, 836.00, 'order-cancel', '2024-12-20 12:38:19', '2024-12-20 18:08:41'),
 (35, 'order_PZQx2pVmerk1ao', 12, 1, 5119.00, 'processing', '2024-12-20 12:39:42', '2024-12-20 18:09:42'),
 (36, 'order_PabZ3IZHRvjacx', 4, 1, 123.00, 'processing', '2024-12-23 11:41:37', '2024-12-23 17:11:37'),
-(37, 'order_PabajVE97rdsEO', 5, 1, 225.00, 'processing', '2024-12-23 11:43:38', '2024-12-23 17:13:38');
+(37, 'order_PabajVE97rdsEO', 5, 1, 225.00, 'processing', '2024-12-23 11:43:38', '2024-12-23 17:13:38'),
+(38, 'order_PcBcSxdyaJVpUx', 4, 1, 123.00, 'processing', '2024-12-27 11:37:25', '2024-12-27 17:07:25'),
+(39, 'order_PcBcSxdyaJVpUx', 1, 1, 8779.00, 'processing', '2024-12-27 11:37:25', '2024-12-27 17:07:25');
 
 -- --------------------------------------------------------
 
@@ -226,7 +250,8 @@ CREATE TABLE `payment_details` (
 INSERT INTO `payment_details` (`pd_id`, `pd_order_id`, `pd_payment_id`, `pd_verify_signature`, `pd_created_at`, `pd_updated_at`) VALUES
 (8, 'order_PVlt1h5bIuTAmk', 'pay_PVltM9cBDhhdKz', '8a676f5dcb634c7c57a0a908388e2eb80d3d635aaec9aeba1f77624e9eb8fa89', '2024-12-11 06:33:02', '2024-12-11 12:03:02'),
 (16, 'order_PZQuNae5nxB6Up', 'pay_PZQvJXTAjHPLdz', 'eb742c9b1d7fa974b7ae55482f99eac9514adb43575c534f2bf9c2bc432b5c45', '2024-12-20 12:38:19', '2024-12-20 18:08:19'),
-(17, 'order_PabajVE97rdsEO', 'pay_PabavYsxiHjeMI', '21ad9687c264c1b9dfbabc830915072920b184fe8da65d52075e89fff4fab75c', '2024-12-23 11:43:38', '2024-12-23 17:13:38');
+(17, 'order_PabajVE97rdsEO', 'pay_PabavYsxiHjeMI', '21ad9687c264c1b9dfbabc830915072920b184fe8da65d52075e89fff4fab75c', '2024-12-23 11:43:38', '2024-12-23 17:13:38'),
+(18, 'order_PcBcSxdyaJVpUx', 'pay_PcBcpNcpCBvunG', '478babebde555439e9021d1550470f1e42f14369fbd06bf1f209f54bfd50f434', '2024-12-27 11:37:25', '2024-12-27 17:07:25');
 
 -- --------------------------------------------------------
 
@@ -299,9 +324,10 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `session_id`, `creat
 ('1', 'san', '$2y$10$tMiYyJ.MB1.60vrE.NMx8.cux5iMtkzWwvkBrxbF7lGuugW.qhgHG', 'NOT NULL', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 ('2', 'admin', 'admin', 'admin@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 ('3', 'new admin', '$2y$10$HcPH9aMC.Zf1mNvaBO9iCu0gKYQUmD6PpNkJntiPWY1Bjcdvn.niS', 'adm@gmail.com', '5ef2529231099fa39cabcb46f8b6769381794bf8ff25a5641a7f86f94e9d5d74', '2024-11-25 08:12:33', '2024-12-11 12:36:07'),
-('4', 'demo', '$2y$10$gHHYyCt79wf0tPWQFM3Y7u6oGREjjPJ9OS2hk3PwAI6aWWXo1Symq', 'demo@gmail.com', '0e6dec02e555aea1c8d504859289ece7072fda6126c986ae5991bf31e1686496', '2024-11-25 08:12:33', '2024-12-21 16:52:28'),
+('4', 'demo', '$2y$10$gHHYyCt79wf0tPWQFM3Y7u6oGREjjPJ9OS2hk3PwAI6aWWXo1Symq', 'demo@gmail.com', 'c45bd3ba7923ed2d23ceceec6d64e8226a5b21280971847f9626ba959ed49827', '2024-11-25 08:12:33', '2024-12-25 13:14:46'),
 ('6759445', 'Raj Singh', '$2y$10$wQ7q2jno/P2QXbBAxKNGhOknznwVoIQ8tltm4BCa/gyzUVQ7nEzuK', 'raj@gmail.com', '15a9b080b1e470c9529eaf8730f554e7a8f3273e53f969ac0264052b0fc40191', '2024-12-11 07:50:53', '2024-12-11 13:21:30'),
 ('676559113fe83', 'demo 4', '$2y$10$UYHRP2CahIYrU5A6TH2UkuH12pe7KTZJza5OVWYD0a1dTL3xkOIOq', 'demo4@gmail.com', '96bc1a2b7ad3496e95938fbd1afa063ae72880f71e9bf82d34ae52f0272fe49f', '2024-12-20 11:46:25', '2024-12-23 16:50:32'),
+('676e8f899908c', 'navratna', '$2y$10$TwMVQsRM0d7P0HfY8khWB.Pxv3apFpa3HA.PBezi646YQVSCML3Ge', 'navratnajewellers0@gmail.com', '9f81c5b02341b6840a8715d42ca39c8aa51d88caaed8411fe9b05d9980786bd0', '2024-12-27 11:29:13', '2024-12-28 14:54:15'),
 ('8', 'demo', '$2y$10$sh2GKimjHUhd5dcYVOi9Aud2LBNsElq4wrNDryjf4WyuLIAxq0JPC', 'demo1@gmail.com', 'bfb0af304bcfdcd1de5dfd6ab885ae520e6ad6b7cfaa8a44c234c8c10827ef87', '2024-11-25 09:08:55', '2024-12-05 16:34:35');
 
 -- --------------------------------------------------------
@@ -354,6 +380,12 @@ ALTER TABLE `gold_price`
 ALTER TABLE `nav_admin`
   ADD PRIMARY KEY (`ad_id`),
   ADD UNIQUE KEY `ad_email` (`ad_email`);
+
+--
+-- Indexes for table `nav_version`
+--
+ALTER TABLE `nav_version`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `offline_cart`
@@ -412,31 +444,31 @@ ALTER TABLE `website_update`
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `offline_cart`
 --
 ALTER TABLE `offline_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `payment_details`
 --
 ALTER TABLE `payment_details`
-  MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `pd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `product`

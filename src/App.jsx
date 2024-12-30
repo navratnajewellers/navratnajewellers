@@ -32,6 +32,7 @@ import WebsiteStatus from './admin/WebsiteStatus';
 import { StatusProvider } from './context/status.context';
 import { useEffect } from 'react';
 import { initializeAnalytics, logPageView } from './analytics.js';
+import { DeleteAndVersionProvider } from './context/deleteAndVersion.context.jsx';
 
 const TrackPageView = () => {
   const location = useLocation();
@@ -50,80 +51,88 @@ function App() {
 
   return (
     <ServerProvider>
-      <StatusProvider>
-        <MessageProvider>
-          <AdminProfileProvider>
-            <ProfileProvider>
-              <ProductProvider>
-                <CartProvider>
-                  <HashRouter>
-                    <TrackPageView />
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/contact" element={<Contact />} />
-                      <Route
-                        path="/gold-coin/:gramQt"
-                        element={<GoldCoinPage />}
-                      />
-                      <Route
-                        path="/silver-coin/:gramQt"
-                        element={<SilverCoinsPage />}
-                      />
-                      <Route path="/cart" element={<Cart />} />
-                      <Route path="/gold-rate" element={<GoldRate />} />
-                      <Route path="/shop/:productName" element={<Product />} />
-                      <Route path="/shop" element={<ShopGrid />} />
-                      <Route path="/dashboard" element={<UserDashboard />} />
-                      <Route
-                        path="/forgotPassword"
-                        element={<ForgotPassword />}
-                      />
-                      <Route
-                        path="/product/:productCategory"
-                        element={<CategoryPageGrid />}
-                      />
-                      <Route
-                        path="/page/return-policy"
-                        element={<ReturnPolicy />}
-                      />
-                      <Route
-                        path="/page/privacy-policy"
-                        element={<PrivacyPolicy />}
-                      />
-                      <Route
-                        path="/page/shipping-policy"
-                        element={<ShippingPolicy />}
-                      />
-                      <Route
-                        path="/page/term-condition"
-                        element={<TermAndConditions />}
-                      />
-                      <Route path="/page/ahout-us" element={<AboutUs />} />
-                      <Route path="/testPayment" element={<PaymentTest />} />
-                      <Route path="*" element={<PageNotFound />} />
-                      <Route element={<AdminMainLayout />}>
-                        <Route path="/nav-admin" element={<AdminDashboard />} />
+      <DeleteAndVersionProvider>
+        <StatusProvider>
+          <MessageProvider>
+            <AdminProfileProvider>
+              <ProfileProvider>
+                <ProductProvider>
+                  <CartProvider>
+                    <HashRouter>
+                      <TrackPageView />
+                      <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/contact" element={<Contact />} />
                         <Route
-                          path="/admin/change-rate"
-                          element={<UpdateGoldRate />}
+                          path="/gold-coin/:gramQt"
+                          element={<GoldCoinPage />}
                         />
                         <Route
-                          path="/admin/order-list"
-                          element={<OrderListGrid />}
+                          path="/silver-coin/:gramQt"
+                          element={<SilverCoinsPage />}
+                        />
+                        <Route path="/cart" element={<Cart />} />
+                        <Route path="/gold-rate" element={<GoldRate />} />
+                        <Route
+                          path="/shop/:productName"
+                          element={<Product />}
+                        />
+                        <Route path="/shop" element={<ShopGrid />} />
+                        <Route path="/dashboard" element={<UserDashboard />} />
+                        <Route
+                          path="/forgotPassword"
+                          element={<ForgotPassword />}
                         />
                         <Route
-                          path="/admin/website-status"
-                          element={<WebsiteStatus />}
+                          path="/product/:productCategory"
+                          element={<CategoryPageGrid />}
                         />
-                      </Route>
-                    </Routes>
-                  </HashRouter>
-                </CartProvider>
-              </ProductProvider>
-            </ProfileProvider>
-          </AdminProfileProvider>
-        </MessageProvider>
-      </StatusProvider>
+                        <Route
+                          path="/page/return-policy"
+                          element={<ReturnPolicy />}
+                        />
+                        <Route
+                          path="/page/privacy-policy"
+                          element={<PrivacyPolicy />}
+                        />
+                        <Route
+                          path="/page/shipping-policy"
+                          element={<ShippingPolicy />}
+                        />
+                        <Route
+                          path="/page/term-condition"
+                          element={<TermAndConditions />}
+                        />
+                        <Route path="/page/ahout-us" element={<AboutUs />} />
+                        <Route path="/testPayment" element={<PaymentTest />} />
+                        <Route path="*" element={<PageNotFound />} />
+                        <Route element={<AdminMainLayout />}>
+                          <Route
+                            path="/nav-admin"
+                            element={<AdminDashboard />}
+                          />
+                          <Route
+                            path="/admin/change-rate"
+                            element={<UpdateGoldRate />}
+                          />
+                          <Route
+                            path="/admin/order-list"
+                            element={<OrderListGrid />}
+                          />
+                          <Route
+                            path="/admin/website-status"
+                            element={<WebsiteStatus />}
+                          />
+                        </Route>
+                      </Routes>
+                    </HashRouter>
+                  </CartProvider>
+                </ProductProvider>
+              </ProfileProvider>
+            </AdminProfileProvider>
+          </MessageProvider>
+        </StatusProvider>
+      </DeleteAndVersionProvider>
     </ServerProvider>
   );
 }
