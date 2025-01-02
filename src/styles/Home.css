@@ -135,6 +135,20 @@ button {
   background-color: #f7f7fa;
 }
 
+/* header gold rate container */
+.header-gold-rate p {
+  background-color: palevioletred;
+  color: #ffffff;
+  padding: 4px 15px;
+  border-radius: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header-gold-rate span {
+  margin-left: 10px;
+  font-weight: 600;
+}
+
 /* carousel */
 /* .carousel {
   border: solid 1px red;
@@ -301,7 +315,7 @@ button {
 
 .footer-container a:hover {
   /* color: #4848ed; */
-  color: black;
+  color: rgb(27, 80, 255);
   transform: scale(1.15);
 }
 

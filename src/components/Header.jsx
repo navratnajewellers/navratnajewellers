@@ -6,6 +6,7 @@ import {
   Form,
   IconButton,
   InputGroup,
+  Loader,
   Message,
   Modal,
   Nav,
@@ -31,6 +32,7 @@ import { useCart } from '../context/Cart.context';
 import { useProduct } from '../context/product.context';
 import { useServerLink } from '../context/server.context';
 import MenuIcon from '@rsuite/icons/Menu';
+import { usePrice } from '../context/price.context';
 
 const autoFillData = [];
 
@@ -86,6 +88,9 @@ const Header = () => {
 
   // getting the product data fro the autocomplete data
   const { productData } = useProduct();
+
+  // to display the gold price
+  const { priceData } = usePrice();
 
   const [searchData, setSearchData] = useState(null);
 
@@ -361,18 +366,22 @@ const Header = () => {
 
         // console.log('sign up : -', data);
 
-        if (
-          data.error ===
-          `SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'try2@gmail.com' for key 'email'`
-        ) {
-          displayMessage('error', 'Email already exists');
-        }
-
         if (data.message) {
           displayMessage('info', data.message);
         }
 
-        handleSignUpClose();
+        if (
+          data.error ===
+          `SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '${signupFormValue.email}' for key 'email'`
+        ) {
+          displayMessage('error', 'Email already exists');
+        } else {
+          // close the sign up model
+          handleSignUpClose();
+
+          // oprn login modal to login
+          setIsLoginOpen(true);
+        }
       } catch (error) {
         displayMessage('error', 'An error occurred during signup.');
         console.log(error);
@@ -412,6 +421,34 @@ const Header = () => {
   //     ? `${userData.username.split(' ')?.[0].slice(0, 2)}...`
   //     : userData.username.split(' ')?.[0]
   // );
+
+  // to display the price of gold
+  const speaker = (
+    <Popover title="Today's Gold Rate:">
+      {priceData ? (
+        <div className="header-gold-rate">
+          <p>
+            <strong>24KT Gold: </strong>{' '}
+            <span> ₹ {priceData.price_1_gram_24K}</span>
+          </p>
+          <p>
+            <strong>22KT Gold: </strong>{' '}
+            <span> ₹ {priceData.price_1_gram_22K}</span>
+          </p>
+          <p>
+            <strong>18KT Gold: </strong>{' '}
+            <span> ₹ {priceData.price_1_gram_18K}</span>
+          </p>
+        </div>
+      ) : (
+        <div className="height-width-100 dis-flex " style={{ height: '80px' }}>
+          <Loader content="loading..." vertical />
+        </div>
+      )}
+    </Popover>
+  );
+
+  // console.log(priceData);
 
   return (
     <div className="header-main">
@@ -603,7 +640,16 @@ const Header = () => {
               </Nav.Item>
             </Nav.Menu>
             <Nav.Item as={Link} to="/gold-rate">
-              Gold Rate
+              {/* Gold Rate */}
+              <Whisper
+                placement="bottom"
+                trigger="hover"
+                controlId="control-id-hover-enterable"
+                speaker={speaker}
+                enterable
+              >
+                Gold Rate
+              </Whisper>
             </Nav.Item>
             <Nav.Menu title="About" className="about-menu">
               <Nav.Item as={Link} to="/page/ahout-us">
