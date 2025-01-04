@@ -7,7 +7,7 @@ const HomeProducts = () => {
         <Link to="/product/gold-coin">
           <div className="imageWrapper">
             <img
-              src="/fod-gold-coins.jpeg"
+              src="/images/gold-coin.png"
               alt="Gold Coin"
               loading="lazy"
             ></img>
@@ -21,7 +21,7 @@ const HomeProducts = () => {
         <Link to="/product/silver-coin">
           <div className="imageWrapper">
             <img
-              src="/Pure-Silver-Coin---10-gm.jpeg"
+              src="/images/silver-coins.png"
               alt="Silver Coin"
               loading="lazy"
             ></img>

@@ -824,8 +824,23 @@ const Header = () => {
                     <Nav.Item eventKey="1" as={Link} to="/gold-rate">
                       Gold Rate
                     </Nav.Item>
-                    <Nav.Menu eventKey="2" title="GOLD COINS">
-                      <Nav.Item eventKey="2-1" as={Link} to="/gold-coin/1">
+                    <Nav.Menu
+                      eventKey="2"
+                      title={<span className="fraunces-font">Gold Coin</span>}
+                    >
+                      {productData
+                        ?.filter(data => data.product_category == 'gold-coin')
+                        .map(data => (
+                          <Nav.Item
+                            key={data.product_id}
+                            eventKey={data.product_id}
+                            as={Link}
+                            to={`/shop/${data.name}`}
+                          >
+                            <span className="fraunces-font">{data.name}</span>
+                          </Nav.Item>
+                        ))}
+                      {/* <Nav.Item eventKey="2-1" as={Link} to="/gold-coin/1">
                         1 GRAM
                       </Nav.Item>
                       <Nav.Item eventKey="2-2" as={Link} to="/gold-coin/2">
@@ -854,10 +869,29 @@ const Header = () => {
                       </Nav.Item>
                       <Nav.Item eventKey="2-10" as={Link} to="/gold-coin/100">
                         100 GRAM
-                      </Nav.Item>
+                      </Nav.Item> */}
                     </Nav.Menu>
-                    <Nav.Menu eventKey="3" title="SILVER COINS">
-                      <Nav.Item eventKey="3-1" as={Link} to="/silver-coin/1">
+                    <Nav.Menu
+                      eventKey="3"
+                      title={
+                        <span className="fraunces-font color-white ">
+                          Silver Coin
+                        </span>
+                      }
+                    >
+                      {productData
+                        ?.filter(data => data.product_category == 'silver-coin')
+                        .map(data => (
+                          <Nav.Item
+                            key={data.product_id}
+                            eventKey={data.product_id}
+                            as={Link}
+                            to={`/shop/${data.name}`}
+                          >
+                            <span className="fraunces-font">{data.name}</span>
+                          </Nav.Item>
+                        ))}
+                      {/* <Nav.Item eventKey="3-1" as={Link} to="/silver-coin/1">
                         1 GRAM
                       </Nav.Item>
                       <Nav.Item eventKey="3-2" as={Link} to="/silver-coin/2">
@@ -886,7 +920,7 @@ const Header = () => {
                       </Nav.Item>
                       <Nav.Item eventKey="3-10" as={Link} to="/silver-coin/100">
                         100 GRAM
-                      </Nav.Item>
+                      </Nav.Item> */}
                     </Nav.Menu>
                     <Nav.Menu eventKey="4" title="About">
                       <Nav.Item eventKey="4-1" as={Link} to="/page/ahout-us">
