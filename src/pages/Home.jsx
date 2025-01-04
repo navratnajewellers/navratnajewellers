@@ -31,7 +31,7 @@ const Home = () => {
             <img
               loading="lazy"
               className="height-width-100"
-              src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=1"
+              src="/images/banner-image1.jpg"
               alt="Carosuel Image"
               height="250"
             />
@@ -40,7 +40,7 @@ const Home = () => {
             <img
               loading="lazy"
               className="height-width-100"
-              src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=2"
+              src="/images/banner-image2.jpg"
               alt="Carosuel Image"
               height="250"
             />
@@ -49,7 +49,7 @@ const Home = () => {
             <img
               loading="lazy"
               className="height-width-100"
-              src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=3"
+              src="/images/banner-image1.jpg"
               alt="Carosuel Image"
               height="250"
             />
@@ -58,7 +58,7 @@ const Home = () => {
             <img
               loading="lazy"
               className="height-width-100"
-              src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=4"
+              src="/images/banner-image2.jpg"
               alt="Carosuel Image"
               height="250"
             />
@@ -67,7 +67,7 @@ const Home = () => {
             <img
               loading="lazy"
               className="height-width-100"
-              src="https://via.placeholder.com/600x250/8f8e94/FFFFFF?text=5"
+              src="/images/banner-image1.jpg"
               alt="Carosuel Image"
               height="250"
             />

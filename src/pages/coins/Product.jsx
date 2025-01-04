@@ -480,7 +480,7 @@ const Product = () => {
                   <img src="/mmtc-certified.jpg" alt="trust logo"></img>
                 </div>
                 <div className="margin-t20">
-                  <h4>MMTRC Certified Gold</h4>
+                  <h4>MMTC-PAMP Certified</h4>
                 </div>
               </div>
             </div>

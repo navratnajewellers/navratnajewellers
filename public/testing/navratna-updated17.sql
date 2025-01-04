@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2024 at 12:44 PM
+-- Generation Time: Jan 04, 2025 at 09:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -66,14 +66,6 @@ CREATE TABLE `cart` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(75, '4', 6, 1, 428, '2024-12-20 11:45:41', '2024-12-20 17:15:41'),
-(79, '4', 2, 1, 8786, '2024-12-21 11:22:28', '2024-12-21 16:52:28');
 
 -- --------------------------------------------------------
 
@@ -141,7 +133,7 @@ CREATE TABLE `nav_version` (
 --
 
 INSERT INTO `nav_version` (`id`, `version`, `created_at`, `updated_at`) VALUES
-(5465347, 1.05, '2024-12-30 09:15:35', '2024-12-30 17:13:33');
+(5465347, 1.06, '2024-12-30 09:15:35', '2024-12-30 18:53:16');
 
 -- --------------------------------------------------------
 
@@ -159,13 +151,6 @@ CREATE TABLE `offline_cart` (
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `offline_cart`
---
-
-INSERT INTO `offline_cart` (`id`, `local_user_id`, `product_id`, `quantity`, `price`, `created_at`, `updated_at`) VALUES
-(68, '07f04bf435221e69a5d04cf95b1507407ee37bd811fd3425d93cdbf9bc78b5e8', 16, 1, 87791, '2024-12-30 08:16:10', '2024-12-30 13:46:10');
-
 -- --------------------------------------------------------
 
 --
@@ -181,19 +166,6 @@ CREATE TABLE `orders` (
   `status` varchar(50) DEFAULT 'pending',
   `payment_method` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`order_id`, `user_id`, `total_amount`, `order_date`, `order_updateAt`, `status`, `payment_method`) VALUES
-('order_PabajVE97rdsEO', '676559113fe83', 225.00, '2024-12-23 17:13:12', '2024-12-23 17:13:38', 'paid', 'online'),
-('order_PabZ3IZHRvjacx', '676559113fe83', 123.00, '2024-12-23 17:11:37', '2024-12-23 17:11:37', 'created', 'cod'),
-('order_PcBcSxdyaJVpUx', '676e8f899908c', 8902.00, '2024-12-27 17:06:50', '2024-12-27 17:07:25', 'paid', 'online'),
-('order_PVlt1h5bIuTAmk', '4', 123000.00, '2024-12-11 12:02:28', '2024-12-23 16:54:04', 'paid', 'online'),
-('order_PX4L76Mi7NQdVQ', '4', 836.00, '2024-12-14 18:44:32', '2024-12-23 16:54:23', 'paid', 'online'),
-('order_PZQuNae5nxB6Up', '676559113fe83', 44765.00, '2024-12-20 18:07:10', '2024-12-23 16:54:35', 'paid', 'online'),
-('order_PZQx2pVmerk1ao', '676559113fe83', 5119.00, '2024-12-20 18:09:42', '2024-12-23 16:54:50', 'created', 'cod');
 
 -- --------------------------------------------------------
 
@@ -212,22 +184,6 @@ CREATE TABLE `order_items` (
   `updated_at_oi` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `order_items`
---
-
-INSERT INTO `order_items` (`id`, `order_id_oi`, `product_id_oi`, `quantity_oi`, `price_oi`, `delivery_status`, `created_at_oi`, `updated_at_oi`) VALUES
-(12, 'order_PVlt1h5bIuTAmk', 2, 1, 17572.00, 'order-cancel', '2024-12-11 06:33:02', '2024-12-11 12:19:08'),
-(13, 'order_PVlt1h5bIuTAmk', 3, 3, 105432.00, 'order-cancel', '2024-12-11 06:33:02', '2024-12-11 12:19:08'),
-(32, 'order_PX4L76Mi7NQdVQ', 8, 1, 836.00, 'processing', '2024-12-14 13:14:59', '2024-12-14 18:44:59'),
-(33, 'order_PZQuNae5nxB6Up', 14, 1, 43929.00, 'order-cancel', '2024-12-20 12:38:19', '2024-12-20 18:08:41'),
-(34, 'order_PZQuNae5nxB6Up', 8, 1, 836.00, 'order-cancel', '2024-12-20 12:38:19', '2024-12-20 18:08:41'),
-(35, 'order_PZQx2pVmerk1ao', 12, 1, 5119.00, 'processing', '2024-12-20 12:39:42', '2024-12-20 18:09:42'),
-(36, 'order_PabZ3IZHRvjacx', 4, 1, 123.00, 'processing', '2024-12-23 11:41:37', '2024-12-23 17:11:37'),
-(37, 'order_PabajVE97rdsEO', 5, 1, 225.00, 'processing', '2024-12-23 11:43:38', '2024-12-23 17:13:38'),
-(38, 'order_PcBcSxdyaJVpUx', 4, 1, 123.00, 'processing', '2024-12-27 11:37:25', '2024-12-27 17:07:25'),
-(39, 'order_PcBcSxdyaJVpUx', 1, 1, 8779.00, 'processing', '2024-12-27 11:37:25', '2024-12-27 17:07:25');
-
 -- --------------------------------------------------------
 
 --
@@ -243,16 +199,6 @@ CREATE TABLE `payment_details` (
   `pd_updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `payment_details`
---
-
-INSERT INTO `payment_details` (`pd_id`, `pd_order_id`, `pd_payment_id`, `pd_verify_signature`, `pd_created_at`, `pd_updated_at`) VALUES
-(8, 'order_PVlt1h5bIuTAmk', 'pay_PVltM9cBDhhdKz', '8a676f5dcb634c7c57a0a908388e2eb80d3d635aaec9aeba1f77624e9eb8fa89', '2024-12-11 06:33:02', '2024-12-11 12:03:02'),
-(16, 'order_PZQuNae5nxB6Up', 'pay_PZQvJXTAjHPLdz', 'eb742c9b1d7fa974b7ae55482f99eac9514adb43575c534f2bf9c2bc432b5c45', '2024-12-20 12:38:19', '2024-12-20 18:08:19'),
-(17, 'order_PabajVE97rdsEO', 'pay_PabavYsxiHjeMI', '21ad9687c264c1b9dfbabc830915072920b184fe8da65d52075e89fff4fab75c', '2024-12-23 11:43:38', '2024-12-23 17:13:38'),
-(18, 'order_PcBcSxdyaJVpUx', 'pay_PcBcpNcpCBvunG', '478babebde555439e9021d1550470f1e42f14369fbd06bf1f209f54bfd50f434', '2024-12-27 11:37:25', '2024-12-27 17:07:25');
-
 -- --------------------------------------------------------
 
 --
@@ -264,7 +210,7 @@ CREATE TABLE `product` (
   `name` varchar(255) NOT NULL,
   `metal_type` varchar(255) NOT NULL,
   `karat` varchar(255) NOT NULL,
-  `weight` int(11) NOT NULL,
+  `weight` decimal(10,1) NOT NULL,
   `weight_type` varchar(255) NOT NULL DEFAULT 'GRAM',
   `color` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
@@ -280,25 +226,26 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `name`, `metal_type`, `karat`, `weight`, `weight_type`, `color`, `description`, `product_img1`, `product_img2`, `product_img3`, `product_category`, `p_stock`) VALUES
-(1, '1 gram 24 Karat Gold Coin with Lakshmi Ganesha Motif', 'Gold', '24K', 1, 'GRAM', 'Yellow', 'This 24 Karat Navratna gold coin is the perfect investment for you. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/24K_1_gram_gold_coin.jpeg', '/24K_1_gram_gold_coin.jpeg', '/24K_1_gram_gold_coin.jpeg', 'gold-coin', 1),
-(2, '2 gram 24 Karat Gold Coin with Lakshmi Ganesha Motif', 'Gold', '24K', 2, 'GRAM', 'Yellow', 'This 24 Karat yellow gold coin features the auspicious Lakshmi Ganesha motif and weighs 2 gram. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high polished finish adds a lustrous appeal to the coin.', '/24K_1_gram_gold_coin.jpeg', '/24K_1_gram_gold_coin.jpeg', '/24K_1_gram_gold_coin.jpeg', 'gold-coin', 1),
-(3, 'Ashtalakshmi 22 Karat Gold Coin', 'Gold', '24K', 4, 'GRAM', 'Yellow', 'Lakshmi is the Goddess of wealth and prosperity. This 22 Karat yellow gold coin features eight avatars of Goddess Lakshmi and weighs 4 grams.', '/4-gram-gold-coin.jpeg', '/4-gram-gold-coin.jpeg', '/4-gram-gold-coin.jpeg', 'gold-coin', 1),
-(4, '1 gram 24 Karat Silver Coin with Lakshmi Ganesha Motif', 'Silver', '24K', 1, 'GRAM', 'Metallic Grey', 'This 24 Karat Navratna silver coin is the perfect investment for you. The tail also features the silver purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.\r\n', '/silver_coin.jpeg', '/silver_coin.jpeg', '/silver_coin.jpeg', 'silver-coin', 1),
-(5, '2 gram 24 Karat Silver Coin with Lakshmi Ganesha Motif', 'Silver', '24K', 2, 'GRAM', 'Metallic Grey', 'This 24 Karat Navratna silver coin is the perfect investment for you. The tail also features the silver purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/silver_coin.jpeg', '/silver_coin.jpeg', '/silver_coin.jpeg', 'silver-coin', 1),
-(6, '4 gram 24 Karat Silver Coin with Lakshmi Ganesha Motif', 'Silver', '24K', 4, 'GRAM', 'Metallic Grey', 'This 24 Karat Navratna silver coin is the perfect investment for you. The tail also features the silver purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.\r\n', '/silver_coin.jpeg', '/silver_coin.jpeg', '/silver_coin.jpeg', 'silver-coin', 1),
-(7, '5 gram 24 Karat Silver Coin with Lakshmi Ganesha Motif', 'Silver', '24K', 5, 'GRAM', 'Metallic Grey', 'This 24 Karat Navratna silver coin is the perfect investment for you. The tail also features the silver purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.\r\n', '/silver_coin.jpeg', '/silver_coin.jpeg', '/silver_coin.jpeg', 'silver-coin', 1),
-(8, '8 gram 24 Karat Silver Coin with Lakshmi Ganesha Motif', 'Silver', '24K', 8, 'GRAM', 'Metallic Grey', 'This 24 Karat Navratna silver coin is the perfect investment for you. The tail also features the silver purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/silver_coin.jpeg', '/silver_coin.jpeg', '/silver_coin.jpeg', 'silver-coin', 1),
-(9, '10 gram 24 Karat Silver Coin with Lakshmi Ganesha Motif', 'Silver', '24K', 10, 'GRAM', 'Metallic Grey', 'This 24 Karat Navratna silver coin is the perfect investment for you. The tail also features the silver purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/silver_coin.jpeg', '/silver_coin.jpeg', '/silver_coin.jpeg', 'silver-coin', 1),
-(10, '25 gram 24 Karat Silver Coin with Lakshmi Ganesha Motif', 'Silver', '24K', 25, 'GRAM', 'Metallic Grey', 'This 24 Karat Navratna silver coin is the perfect investment for you. The tail also features the silver purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/silver_coin.jpeg', '/silver_coin.jpeg', '/silver_coin.jpeg', 'silver-coin', 1),
-(11, '30 gram 24 Karat Silver Coin with Lakshmi Ganesha Motif', 'Silver', '24K', 30, 'GRAM', 'Metallic Grey', 'This 24 Karat Navratna silver coin is the perfect investment for you. The tail also features the silver purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/silver_coin.jpeg', '/silver_coin.jpeg', '/silver_coin.jpeg', 'silver-coin', 1),
-(12, '50 gram 24 Karat Silver Coin with Lakshmi Ganesha Motif', 'Silver', '24K', 50, 'GRAM', 'Metallic Grey', 'This 24 Karat Navratna silver coin is the perfect investment for you. The tail also features the silver purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/silver_coin.jpeg', '/silver_coin.jpeg', '/silver_coin.jpeg', 'silver-coin', 1),
-(13, '100 gram 24 Karat Silver Coin with Lakshmi Ganesha Motif', 'Silver', '24K', 100, 'GRAM', 'Metallic Grey', 'This 24 Karat Navratna silver coin is the perfect investment for you. The tail also features the silver purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/silver_coin.jpeg', '/silver_coin.jpeg', '/silver_coin.jpeg', 'silver-coin', 1),
-(14, '5 gram 24 Karat Gold Coin with Ganesha-Lakshmi Motif', 'Gold', '24K', 5, 'GRAM', 'Yellow', 'This 24 Karat yellow gold coin features Lakshmi Ganesha motif and weighs 5 grams. The head of the coin showcases the portrait. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high polished finish adds a lustrous appeal to the coin. ', '/5gram_gold_coin.jpeg', '/5gram_gold_coin.jpeg', '/5gram_gold_coin.jpeg', 'gold-coin', 1),
-(15, '8 gram 24 Karat Gold Coin with Lakshmi Motif', 'Gold', '24K', 8, 'GRAM', 'Yellow', 'This 24 Karat yellow gold coin features Lakshmi motif and weighs 8 grams. The head of the coin showcases the portrait. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/8gram_gold_coin.jpeg', '/8gram_gold_coin.jpeg', '/8gram_gold_coin.jpeg', 'gold-coin', 1),
-(16, '10 gram 24 Karat Gold Coin with Ganesha-Lakshmi Motif', 'Gold', '24K', 10, 'GRAM', 'Yellow', 'This 24 Karat yellow gold coin features Lakshmi-Ganesha motif and weighs 10 grams. The head of the coin showcases the portrait. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/10gram_gold_coin.jpeg', '/10gram_gold_coin.jpeg', '/10gram_gold_coin.jpeg', 'gold-coin', 1),
-(17, '25 gram 24 Karat Gold Biscuit', 'Gold', '24K', 25, 'GRAM', 'Yellow', 'This 24 Karat gold biscuit from Navratna Jewellers is the perfect investment for you.', '/gold_biscuit.jpeg', '/gold_biscuit.jpeg', '/gold_biscuit.jpeg', 'gold-coin', 1),
-(18, '30 gram 24 Karat Gold Coin', 'Gold', '24K', 30, 'GRAM', 'Yellow', 'This 24 Karat Navratna gold coin is the perfect investment for you. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/8gram_gold_coin.jpeg', '/8gram_gold_coin.jpeg', '/8gram_gold_coin.jpeg', 'gold-coin', 1),
-(19, '50 gram 24 Karat Gold Biscuit', 'Gold', '24K', 50, 'GRAM', 'Yellow', 'This 24 Karat gold biscuit from Navratna Jewellers is the perfect investment for you.', '/gold_biscuit.jpeg', '/gold_biscuit.jpeg', '/gold_biscuit.jpeg', 'gold-coin', 1);
+(1, 'Lotus Round (Certipamp) 24K 1 Gram Gold Coin', 'Gold', '24K', 1.0, 'GRAM', 'Yellow', 'This 24 Karat Navratna gold coin is the perfect investment for you. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/images/1-gram-gold-coin.png', '/images/gold-mmtc-pamp.png', '/images/1-gram-gold-coin.png', 'gold-coin', 1),
+(9, 'Banyan Tree Ingot 10 Gram Silver Coin', 'Silver', '24K', 10.0, 'GRAM', 'Metallic Grey', 'This 10 gm silver bar symbolizes longevity and fulfillment through the depiction of Indian’s national tree, the Banyan. The banyan tree, also called ‘kalapatru’, has been a divine tree of wish-fulfilment which makes this silver coin a perfect gift to convey best wishes.', '/images/banyan-tree-purity-10-gm-silver-bar_1.webp', '/images/banyan-tree-purity-10-gm-silver-bar_2.webp', '/images/banyan-tree-purity-10-gm-silver-bar_3.webp', 'silver-coin', 1),
+(12, 'Banyan Tree Ingot-Qr 50 Gram Silver Coin', 'Silver', '24K', 50.0, 'GRAM', 'Metallic Grey', 'This 50 gm silver bar symbolizes longevity and fulfillment through the depiction of Indian’s national tree, the Banyan. The banyan tree, also called ‘kalapatru’, has been a divine tree of wish-fulfilment which makes this silver coin a perfect gift to convey best wishes.', '/images/mmtc-pamp-banyan-tree-silver-ingot-bar-of-50-gram-in-9999-purity-fineness-in-certi-card.jpeg', '/images/banyan-tree-purity-10-gm-silver-bar_1.webp', '/images/banyan-tree-purity-10-gm-silver-bar_3.webp', 'silver-coin', 1),
+(13, 'Ganesh Laxmi Coin Card 100 Gram Silver', 'Silver', '24K', 100.0, 'GRAM', 'Metallic Grey', 'Get 100g pure silver Lakshmi and Ganesha coin. Goddess Lakshmi on the coin represents the divine incarnation of physical beauty, fertility, luxury, and prosperity while Lord Ganesha is widely revered as the remover of obstacles and thought to bring good luck. He is also the patron of arts and sciences; and also represents intellect and wisdom. The \'Shubh-Labh\' is a prayer for good luck and the swastika being the sign of well-bringing and prosperity. ', '/images/silver_coin.jpeg', '/images/ganesh-lakshmi-ji-9999-purity-100-gm-silver-coins_1.webp', '/images/ganesh-lakshmi-ji-9999-purity-100-gm-silver-coins_5.webp', 'silver-coin', 1),
+(14, 'Lotus Ingot (Certipamp) 5 Gram 24K Gold Coin', 'Gold', '24K', 5.0, 'GRAM', 'Yellow', 'This 24 Karat yellow gold coin features Lakshmi Ganesha motif and weighs 5 grams. The head of the coin showcases the portrait. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high polished finish adds a lustrous appeal to the coin. ', '/images/lotus-gold-ingot-5-gm-front.png', '/images/lotus-gold-ingot-5-gm.png', '/images/lotus-gold-ingot-5-gm-front.png', 'gold-coin', 1),
+(16, 'Lotus Bar Certicard(923) 24K 10 Gram Gold', 'Gold', '24K', 10.0, 'GRAM', 'Yellow', 'This 24 Karat yellow gold coin features Lakshmi-Ganesha motif and weighs 10 grams. The head of the coin showcases the portrait. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/images/lotus_bar_1.webp', '/images/lotus-bar-gold-2.jpg', '/images/lotus-24k-gold-bar.webp', 'gold-coin', 1),
+(20, 'Lotus Round (Certipamp) 0.5 Gram Gold Coin', 'Gold', '24K', 0.5, 'GRAM', 'Yellow', 'This 24 Karat Navratna gold coin is the perfect investment for you. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/images/0-5-gm-lotus-yellow-gold-coin-mmtc-pamp.jpeg', '/images/0-5-gm-lotus-yellow-gold-coin-mmtc-pamp.jpeg', '/images/0-5-gm-lotus-yellow-gold-coin-mmtc-pamp.jpeg', 'gold-coin', 1),
+(21, 'Lotus Bar Certicard (723) 24K 20 Gram Gold', 'Gold', '24K', 20.0, 'GRAM', 'Yellow', 'This 24 Karat Navratna gold coin is the perfect investment for you. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/images/lotus_bar_1.webp', '/images/lotus-24k-gold-bar.webp', '/images/lotus-bar-gold-2.jpg', 'gold-coin', 1),
+(22, 'Shankh Laxmi Coin Certi-Qr 24K 20 Gram Gold Coin', 'Gold', '24K', 20.0, 'GRAM', 'Yellow', 'This 24 Karat Navratna gold coin is the perfect investment for you. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/images/shankh-laxmi-coin-20-gm-gold-1.png', '/images/shankh-laxmi-coin-20-gm-gold-2.jpg', '/images/shankh-laxmi-coin-20-gm-gold-1.png', 'gold-coin', 1),
+(23, 'Lotus Ingot (Certipamp) 31.1 Gram Gold Coin', 'Gold', '24K', 31.1, 'GRAM', 'Yellow', 'This 24 Karat Navratna gold coin is the perfect investment for you. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/images/lotus-ingot-31-1-front.png', '/images/lotus-ingot-31-1.jpeg', '/images/lotus-ingot-31-1-front.png', 'gold-coin', 1),
+(24, 'Lotus Minted Bar Certicard (923) 24K 100 Gram Gold', 'Gold', '24K', 100.0, 'GRAM', 'Yellow', 'This 24 Karat Navratna gold coin is the perfect investment for you. The tail also features the gold purity and the weight of the coin. With a plain rim, the coin highlights a serrated pattern along its edge. The high-polished finish adds a lustrous appeal to the coin.', '/images/lotus_bar_1.webp', '/images/lotus-24k-gold-bar.webp', '/images/lotus-bar-gold-2.jpg', 'gold-coin', 1),
+(25, 'Laxmi Ganesh Round-Qr 10 Gram Silver Coin', 'Silver', '24K', 10.0, 'GRAM', 'Metallic Grey', 'MMTC-PAMP 10 Grams Lakshmi Ganesh silver coin is in 24 Karat 999.9 Purity. As the Divine Incarnation of physical beauty, fertility, luxury, and prosperity, Lakshmi is portrayed with Her four arms that together represent Cosmic Omnipotence, as well as perfection and freedom from limitations.\r\n\r\nWe see two hands hold the Lotus flowers, reflecting beauty, perfection, and rebirth, while another offers silver coins as an affirmation of enduring wealth, and finally, one open palm assures safety and protection. Ganesha bestows blessings of prosperity upon His devotees, but also, represents His power to remove obstacles from the paths of humankind.', '/images/silver_coin.jpeg', '/images/ganesh-lakshmi-ji-9999-purity-100-gm-silver-coins_1.webp', '/images/ganesh-lakshmi-ji-9999-purity-100-gm-silver-coins_5.webp', 'silver-coin', 1),
+(26, 'Banyan Tree Ingot 20 Gram Silver Coin', 'Silver', '24K', 20.0, 'GRAM', 'Metallic Grey', 'This 20 gram silver bar symbolizes longevity and fulfillment through the depiction of Indian’s national tree, the Banyan. The banyan tree, also called ‘kalapatru’, has been a divine tree of wish-fulfilment which makes this silver coin a perfect gift to convey best wishes.', '/images/mmtc-pamp-banyan-tree-silver-ingot-bar-of-20-gram-in-9999-purity-fineness-in-certi-card.jpeg', '/images/banyan-tree-purity-10-gm-silver-bar_1.webp', '/images/banyan-tree-purity-10-gm-silver-bar_2.webp', 'silver-coin', 1),
+(27, 'Laxmi Ganesh Round-Qr 20 Gram Silver Coin', 'Silver', '24K', 20.0, 'GRAM', 'Metallic Grey', 'Get the beautiful and auspicious Ganesh Lakshmi 20g pure silver coin to bring home purest blessings from these venerated deities from Hindu mythology. As the divine incarnation of physical beauty, fertility, luxury, and prosperity, Goddess Lakshmi is portrayed with her four arms that together represent Cosmic Omnipotence, as well as perfection and freedom from limitations.', '/images/silver_coin.jpeg', '/images/ganesh-lakshmi-ji-9999-purity-100-gm-silver-coins_1.webp', '/images/ganesh-lakshmi-ji-9999-purity-100-gm-silver-coins_5.webp', 'silver-coin', 1),
+(28, 'Ganesh Laxmi Coin Card 50 Gram Silver', 'Silver', '24K', 50.0, 'GRAM', 'Metallic Grey', 'This symbolically rich 50g Ganesh Lakshmi 999.9 purity silver coin is minted with portrayals of Lakshmi and Ganesha on one side. The Swastika refers to ‘conducive to well-being’ and represents the constant rising and setting of the Sun is also minted on the coin. It is an affirmation of the start of life, particularly honoured during observances of Navagraha Pooja.', '/images/ganesh-lakshmi-ji-9999-purity-100-gm-silver-coins_1.webp', '/images/ganesh-lakshmi-ji-9999-purity-100-gm-silver-coins_5.webp', '/images/ganesh-lakshmi-ji-purity-50-gm-silver_4.webp', 'silver-coin', 1),
+(29, 'Banyan Tree Ingot 100 Gram Silver', 'Silver', '24K', 100.0, 'GRAM', 'Metallic Grey', 'Get 100g pure silver Lakshmi and Ganesha coin. Goddess Lakshmi on the coin represents the divine incarnation of physical beauty, fertility, luxury, and prosperity while Lord Ganesha is widely revered as the remover of obstacles and thought to bring good luck. He is also the patron of arts and sciences; and also represents intellect and wisdom. The \'Shubh-Labh\' is a prayer for good luck and the swastika being the sign of well-bringing and prosperity. ', '/images/ganesh-lakshmi-ji-9999-purity-100-gm-silver-coins_1.webp', '/images/ganesh-lakshmi-ji-9999-purity-100-gm-silver-coins_5.webp', '/images/ganesh-lakshmi-ji-purity-50-gm-silver_4.webp', 'silver-coin', 1),
+(30, 'Banyan Tree Bar 250 Gram Silver', 'Silver', '24K', 250.0, 'GRAM', 'Metallic Grey', 'This 250 gm silver bar symbolizes longevity and fulfillment through the depiction of Indian’s national tree, the Banyan. The banyan tree, also called ‘kalapatru’, has been a divine tree of wish-fulfilment which makes this silver coin a perfect gift to convey best wishes.', '/images/mmtc-pamp-banyan-tree-silver-bar-of-250-gram-in-9999-purity-fineness.jpeg', '/images/banyan-tree-purity-10-gm-silver-bar_1.webp', '/images/banyan-tree-purity-10-gm-silver-bar_2.webp', 'silver-coin', 1),
+(31, 'Casted Bar 500 Gram Silver', 'Silver', '24K', 500.0, 'GRAM', 'Metallic Grey', 'MMTC-PAMP silver cast bars come with 999 purity and with a weight of 500 g+ as we assure positive weight tolerance on each of our minted products. This is an MMTC-PAMP guarantee that every minted product will offer more than the listed weight, ensuring you always get the best value for your money.\r\n\r\nThe rectangular silver cast is beautifully designed, and it can be presented as a token of blessings to someone special or purchased as a safe investment. Crafted using world-class refining technology from our partner PAMP, every 500 g MMTC-PAMP Silver cast bar is encased in an elegant Blue buttoned box making it ideal for gifting. As an investment, pure silver is considered as a safe option by most financial experts across the globe. Our 500 g silver cast bar is precisely minted with decorative details and comes with its own certificate. The global standard for the highest purities of both gold and silver products is designated as 999 fine. MMTC-PAMP products are made using the world’s most state-of-the-art Swiss technology that gives you guaranteed quality.', '/images/500gm-cast-bars.webp', '/images/500gm-casted-bar-box.webp', '/images/500gm-cast-bars.webp', 'silver-coin', 1),
+(32, 'Casted Bar 1000 Gram Silver', 'Silver', '24K', 1000.0, 'GRAM', 'Metallic Grey', 'MMTC-PAMP 1kg silver cast bars come with 999 purity and with a weight of 1000 g+ as we assure positive weight tolerance on each of our minted products. This is an MMTC-PAMP guarantee that every minted product will offer more than the listed weight, ensuring you always get the best value for your money.', '/images/1kg-silver-bar-new-3-1.webp', '/images/1kg-cast-bar-box-2.webp', '/images/1kg-silver-bar-new-3-1.webp', 'silver-coin', 1),
+(33, 'Ram Lalla Bar Colored Certicard (Box) 50 Gram Silver', 'Silver', '24K', 50.0, 'GRAM', 'Metallic Grey', 'Lord Ram holds immense significance for millions of devotees worldwide. Revered as the seventh incarnation of Lord Vishnu, Lord Ram is celebrated for righteousness, justice, and moral integrity. His epic journey, as chronicled in the revered scripture Ramayana, serves as a timeless testament to the triumph of good over evil and the enduring power of faith and devotion.\r\n\r\nMMTC-PAMP\'s Ram Lalla Silver bar embodies the essence of this sacred occasion, offering devotees a tangible symbol of their faith and devotion. Meticulously crafted to the highest standards on purest silver with 99.99+% purity, customers can cherish the authenticity and value of each bar. The Ram Lalla Silver Bar is a timeless symbol of devotion and spirituality, making it an ideal and cherished memento which can be passed down generations.', '/images/ram-lalla-9999-purity-50-gm-silver-bars_1.webp', '/images/ram-lalla-purity-50-gm-silver-bars_3-1.webp', '/images/ram-lalla-purity-50-gm-silver-bars_5-1.webp', 'silver-coin', 1);
 
 -- --------------------------------------------------------
 
@@ -324,7 +271,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `session_id`, `creat
 ('1', 'san', '$2y$10$tMiYyJ.MB1.60vrE.NMx8.cux5iMtkzWwvkBrxbF7lGuugW.qhgHG', 'NOT NULL', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 ('2', 'admin', 'admin', 'admin@gmail.com', NULL, '2024-11-25 08:12:33', '2024-11-25 13:42:33'),
 ('3', 'new admin', '$2y$10$HcPH9aMC.Zf1mNvaBO9iCu0gKYQUmD6PpNkJntiPWY1Bjcdvn.niS', 'adm@gmail.com', '5ef2529231099fa39cabcb46f8b6769381794bf8ff25a5641a7f86f94e9d5d74', '2024-11-25 08:12:33', '2024-12-11 12:36:07'),
-('4', 'demo', '$2y$10$gHHYyCt79wf0tPWQFM3Y7u6oGREjjPJ9OS2hk3PwAI6aWWXo1Symq', 'demo@gmail.com', 'c45bd3ba7923ed2d23ceceec6d64e8226a5b21280971847f9626ba959ed49827', '2024-11-25 08:12:33', '2024-12-25 13:14:46'),
+('4', 'demo', '$2y$10$gHHYyCt79wf0tPWQFM3Y7u6oGREjjPJ9OS2hk3PwAI6aWWXo1Symq', 'demo@gmail.com', '87fe72d4ecf1d031f3b717936f9944e99ceb6740e81245c1c49dd1af3e60f3ea', '2024-11-25 08:12:33', '2025-01-03 12:34:30'),
 ('6759445', 'Raj Singh', '$2y$10$wQ7q2jno/P2QXbBAxKNGhOknznwVoIQ8tltm4BCa/gyzUVQ7nEzuK', 'raj@gmail.com', '15a9b080b1e470c9529eaf8730f554e7a8f3273e53f969ac0264052b0fc40191', '2024-12-11 07:50:53', '2024-12-11 13:21:30'),
 ('676559113fe83', 'demo 4', '$2y$10$UYHRP2CahIYrU5A6TH2UkuH12pe7KTZJza5OVWYD0a1dTL3xkOIOq', 'demo4@gmail.com', '96bc1a2b7ad3496e95938fbd1afa063ae72880f71e9bf82d34ae52f0272fe49f', '2024-12-20 11:46:25', '2024-12-23 16:50:32'),
 ('676e8f899908c', 'navratna', '$2y$10$TwMVQsRM0d7P0HfY8khWB.Pxv3apFpa3HA.PBezi646YQVSCML3Ge', 'navratnajewellers0@gmail.com', '9f81c5b02341b6840a8715d42ca39c8aa51d88caaed8411fe9b05d9980786bd0', '2024-12-27 11:29:13', '2024-12-28 14:54:15'),
@@ -450,7 +397,7 @@ ALTER TABLE `addresses`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `offline_cart`
@@ -474,7 +421,7 @@ ALTER TABLE `payment_details`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `website_update`

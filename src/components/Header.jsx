@@ -449,6 +449,7 @@ const Header = () => {
   );
 
   // console.log(priceData);
+  // console.log(productData);
 
   return (
     <div className="header-main">
@@ -575,69 +576,93 @@ const Header = () => {
       <div className={`header-secondary ${isMobile ? 'dis-none' : ''} `}>
         <Navbar className="dis-flex">
           <Nav>
-            <Nav.Menu title="GOLD COINS">
-              <Nav.Item as={Link} to="/gold-coin/1">
-                1 GRAM
+            <Nav.Menu title={<span className="fraunces-font">Gold Coin</span>}>
+              {productData
+                ?.filter(data => data.product_category == 'gold-coin')
+                .map(data => (
+                  <Nav.Item
+                    key={data.product_id}
+                    as={Link}
+                    to={`/shop/${data.name}`}
+                  >
+                    <span className="fraunces-font">{data.name}</span>
+                  </Nav.Item>
+                ))}
+              {/* <Nav.Item as={Link} to="/gold-coin/1">
+                1 GRAM GOLD COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/gold-coin/2">
-                2 GRAM
+                2 GRAM GOLD COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/gold-coin/4">
-                4 GRAM
+                4 GRAM GOLD COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/gold-coin/5">
-                5 GRAM
+                5 GRAM GOLD COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/gold-coin/8">
-                8 GRAM
+                8 GRAM GOLD COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/gold-coin/10">
-                10 GRAM
+                10 GRAM GOLD COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/gold-coin/25">
-                25 GRAM
+                25 GRAM GOLD COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/gold-coin/30">
-                30 GRAM
+                30 GRAM GOLD COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/gold-coin/50">
-                50 GRAM
+                50 GRAM GOLD COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/gold-coin/100">
-                100 GRAM
-              </Nav.Item>
+                100 GRAM GOLD COINS
+              </Nav.Item> */}
             </Nav.Menu>
-            <Nav.Menu title="SILVER COINS">
-              <Nav.Item as={Link} to="/silver-coin/1">
-                1 GRAM
+            <Nav.Menu
+              title={<span className="fraunces-font">Silver Coin</span>}
+            >
+              {productData
+                ?.filter(data => data.product_category == 'silver-coin')
+                .map(data => (
+                  <Nav.Item
+                    key={data.product_id}
+                    as={Link}
+                    to={`/shop/${data.name}`}
+                  >
+                    <span className="fraunces-font">{data.name}</span>
+                  </Nav.Item>
+                ))}
+              {/* <Nav.Item as={Link} to="/silver-coin/1">
+                1 GRAM SILVER COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/silver-coin/2">
-                2 GRAM
+                2 GRAM SILVER COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/silver-coin/4">
-                4 GRAM
+                4 GRAM SILVER COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/silver-coin/5">
-                5 GRAM
+                5 GRAM SILVER COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/silver-coin/8">
-                8 GRAM
+                8 GRAM SILVER COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/silver-coin/10">
-                10 GRAM
+                10 GRAM SILVER COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/silver-coin/25">
-                25 GRAM
+                25 GRAM SILVER COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/silver-coin/30">
-                30 GRAM
+                30 GRAM SILVER COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/silver-coin/50">
-                50 GRAM
+                50 GRAM SILVER COINS
               </Nav.Item>
               <Nav.Item as={Link} to="/silver-coin/100">
-                100 GRAM
-              </Nav.Item>
+                100 GRAM SILVER COINS
+              </Nav.Item> */}
             </Nav.Menu>
             <Nav.Item as={Link} to="/gold-rate">
               {/* Gold Rate */}
@@ -648,15 +673,18 @@ const Header = () => {
                 speaker={speaker}
                 enterable
               >
-                Gold Rate
+                <span className="fraunces-font">Gold Rate</span>
               </Whisper>
             </Nav.Item>
-            <Nav.Menu title="About" className="about-menu">
+            <Nav.Menu
+              title={<span className="fraunces-font">About</span>}
+              className="about-menu"
+            >
               <Nav.Item as={Link} to="/page/ahout-us">
-                Navratna Jewellers
+                <span className="fraunces-font">Navratna Jewellers</span>
               </Nav.Item>
               <Nav.Menu
-                title="Contact"
+                title={<span className="fraunces-font">Contact</span>}
                 openDirection={isMobile ? 'start' : 'end'}
               >
                 <Nav.Item>

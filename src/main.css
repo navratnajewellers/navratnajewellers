@@ -7,7 +7,10 @@
 /* remove margin coming from default */
 body {
   margin: 0;
-  background-color: rgb(244, 244, 244);
+  /* background-color: rgb(244, 244, 244); */
+  /* background-color: #cc1c5d !important; */
+  /* background-color: #ba0a4a !important; */
+  /* background-color: rgb(255, 254, 254) !important ; */
   position: relative;
 }
 
