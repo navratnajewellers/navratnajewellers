@@ -34,12 +34,10 @@ $priceItems = $priceStmt->fetch();
 // assigning values
     $userId = $data['user_id'];
     $localUserId = $data['hashedId'];
-    // $goldPrice = $priceItems['price_1_gram_24K'];
 
-    // calculating the price of the gold with making charge and gst
-    $makingCharge = $priceItems['price_1_gram_24K'] * $priceItems['making_charge_gold'];
-    $gst = ($priceItems['price_1_gram_24K'] + $makingCharge) * $priceItems['gst_gold'];
-    $goldPrice = round($priceItems['price_1_gram_24K'] + $makingCharge + $gst);
+	// set the gold and silver price from the database
+        $goldPrice = $priceItems['price_1_gram_24K'];
+	$silverPrice = $priceItems['price_1_gram_24K_s'];
 
 
 // Move Cart Items to Order Items
@@ -52,6 +50,15 @@ $cartItems = $cartItemsStmt->fetchAll();
 
 foreach ($cartItems as $item) {
 
+// get the product details and calculating the product price
+$productQuery = "SELECT * FROM product WHERE product_id = :productId";
+$productStmt = $pdo->prepare($productQuery);
+$productStmt->bindParam(':productId', $item['product_id']);
+$productStmt->execute();
+$productItem = $productStmt->fetch(PDO::FETCH_ASSOC);
+
+$productPrice;
+
 
 	//check product already add to cart with user and product ID
 	$sql = "SELECT * FROM cart WHERE user_id = :user_id AND product_id = :product_id";
@@ -62,26 +69,70 @@ foreach ($cartItems as $item) {
 	$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
+// if already product is added in cart
 	if ($user) {
-	    // update the price and quantity
-		$quantity = $user['quantity'] + $item['quantity'];
-		$price = $goldPrice * $quantity;
 
-		// Update Session id
+		// update the price and quantity
+		$quantity = $user['quantity'] + $item['quantity'];
+
+// caluculating price of gold and silver with making charge and gst
+if($productItem['metal_type'] == 'Gold'){
+
+$productPrice = $goldPrice * $productItem['weight'] *  $quantity;
+$makingCharge = $productPrice * 0.08;
+$subTotal = $productPrice + $makingCharge;
+$gst = $subTotal * 0.03;
+$productPrice = round($subTotal + $gst);
+
+} else {
+
+$productPrice = $silverPrice * $productItem['weight'] *  $quantity;
+$makingCharge = 20;
+$subTotal = $productPrice + $makingCharge;
+$gst = $subTotal * 0.03;
+$productPrice = round($subTotal + $gst);
+
+}
+
+// calculation end
+
+
+		// Update pervious product in cart
 		$updateCartQuery = "UPDATE cart SET quantity = :quantity, price = :price WHERE user_id = :user_id AND product_id = :product_id";
 		$updateCartStmt = $pdo->prepare($updateCartQuery);
 		$updateCartStmt->bindParam(':user_id', $userId);
 		$updateCartStmt->bindParam(':product_id', $item['product_id'], PDO::PARAM_INT);
 		$updateCartStmt->bindParam(':quantity', $quantity);
-		$updateCartStmt->bindParam(':price', $price);
+		$updateCartStmt->bindParam(':price', $productPrice);
 		$updateCartStmt->execute();
 
     
 	} else {
 
+// caluculating price of gold and silver with making charge and gst
+if($productItem['metal_type'] == 'Gold'){
+
+$productPrice = $goldPrice * $productItem['weight'] *  $item['quantity'];
+$makingCharge = $productPrice * 0.08;
+$subTotal = $productPrice + $makingCharge;
+$gst = $subTotal * 0.03;
+$productPrice = round($subTotal + $gst);
+
+} else {
+
+$productPrice = $silverPrice * $productItem['weight'] *  $item['quantity'];
+$makingCharge = 20;
+$subTotal = $productPrice + $makingCharge;
+$gst = $subTotal * 0.03;
+$productPrice = round($subTotal + $gst);
+
+}
+
+// calculation end
+
 		// update the quantity and price
 		$quantity = $item['quantity'];
-		$price = $goldPrice * $quantity;
+		//$price = $goldPrice * $quantity;
 
 		    // Insert into the database
 	        $insertCartQuery = "INSERT INTO cart (user_id, product_id, quantity, price) VALUES (:user_id, :product_id, :quantity, :price)";
@@ -89,7 +140,7 @@ foreach ($cartItems as $item) {
 	        $insertCartStmt->bindParam(':user_id', $userId);
 	        $insertCartStmt->bindParam(':product_id', $item['product_id']);
 		$insertCartStmt->bindParam(':quantity', $quantity);
-		$insertCartStmt->bindParam(':price', $price);
+		$insertCartStmt->bindParam(':price', $productPrice);
 		$insertCartStmt->execute();
 
 	        
