@@ -149,6 +149,19 @@ button {
   font-weight: 600;
 }
 
+/* nav menu on mobile device */
+.mobile-nav-menu {
+  /* color: #ff0000 !important; */
+  /* border: solid 1px palevioletred; */
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: palevioletred;
+}
+
+.mobile-nav-menu:last-child {
+  border-bottom-style: none;
+}
+
 /* carousel */
 /* .carousel {
   border: solid 1px red;

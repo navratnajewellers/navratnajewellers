@@ -821,12 +821,18 @@ const Header = () => {
               <Sidenav defaultOpenKeys={['2']}>
                 <Sidenav.Body>
                   <Nav>
-                    <Nav.Item eventKey="1" as={Link} to="/gold-rate">
-                      Gold Rate
+                    <Nav.Item
+                      eventKey="1"
+                      as={Link}
+                      to="/gold-rate"
+                      className="mobile-nav-menu"
+                    >
+                      <span className="fraunces-font">Gold Rate</span>
                     </Nav.Item>
                     <Nav.Menu
                       eventKey="2"
                       title={<span className="fraunces-font">Gold Coin</span>}
+                      className="mobile-nav-menu"
                     >
                       {productData
                         ?.filter(data => data.product_category == 'gold-coin')
@@ -873,11 +879,8 @@ const Header = () => {
                     </Nav.Menu>
                     <Nav.Menu
                       eventKey="3"
-                      title={
-                        <span className="fraunces-font color-white ">
-                          Silver Coin
-                        </span>
-                      }
+                      title={<span className="fraunces-font">Silver Coin</span>}
+                      className="mobile-nav-menu"
                     >
                       {productData
                         ?.filter(data => data.product_category == 'silver-coin')
@@ -922,12 +925,21 @@ const Header = () => {
                         100 GRAM
                       </Nav.Item> */}
                     </Nav.Menu>
-                    <Nav.Menu eventKey="4" title="About">
+                    <Nav.Menu
+                      eventKey="4"
+                      title={<span className="fraunces-font">About</span>}
+                      className="mobile-nav-menu"
+                    >
                       <Nav.Item eventKey="4-1" as={Link} to="/page/ahout-us">
-                        Navratna Jewellers
+                        <span className="fraunces-font">
+                          Navratna Jewellers
+                        </span>
                       </Nav.Item>
-                      <Nav.Menu eventKey="4-2" title="Contact">
-                        <Nav.Item eventKey="4-2-1">
+                      <Nav.Menu
+                        eventKey="4-2"
+                        title={<span className="fraunces-font">Contact</span>}
+                      >
+                        <Nav.Item eventKey="4-2-1" as={'span'}>
                           <a
                             href="mailto:navratnajewellers0@gmail.com"
                             className="header-menu-option-link"
@@ -935,7 +947,7 @@ const Header = () => {
                             Email
                           </a>
                         </Nav.Item>
-                        <Nav.Item eventKey="4-2-2">
+                        <Nav.Item eventKey="4-2-2" as={'span'}>
                           <a
                             href="tel:+91 7004220367"
                             className="header-menu-option-link"
