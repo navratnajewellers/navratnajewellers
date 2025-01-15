@@ -162,6 +162,21 @@ button {
   border-bottom-style: none;
 }
 
+/* make the hover effect on the menu item in header on desktop only */
+
+.desktop-menu-item,
+.contact-menu-item {
+  transition: all 0.2s linear !important;
+}
+
+.desktop-menu-item:hover {
+  padding: 15px 5px 15px 20px !important;
+}
+
+.contact-menu-item:hover {
+  padding: 4% 5px 4% 5% !important;
+}
+
 /* carousel */
 /* .carousel {
   border: solid 1px red;

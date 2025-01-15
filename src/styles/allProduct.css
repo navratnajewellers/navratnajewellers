@@ -14,6 +14,8 @@
   border-radius: 14px;
   overflow: hidden;
   margin-bottom: 15px;
+  /* border: solid 1px red; */
+  height: 320px;
 }
 
 .product-item-container img {
@@ -28,5 +30,9 @@
   .product-item-container {
     margin: 10px 10px;
     width: 150px !important;
+  }
+
+  .product-item-container .imageWrapper {
+    height: 180px;
   }
 }

@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'motion/react';
 
 const HomeProducts = () => {
   return (
     <div className="home-products-container">
-      <div className="home-products pos-rel">
+      <motion.div
+        className="home-products pos-rel"
+        initial={{ opacity: 0, translateY: 120 }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 1 }}
+      >
         <Link to="/product/gold-coin">
           <div className="imageWrapper">
             <img
@@ -16,8 +22,13 @@ const HomeProducts = () => {
             <span>Gold Coins</span>
           </div>
         </Link>
-      </div>
-      <div className="home-products pos-rel">
+      </motion.div>
+      <motion.div
+        className="home-products pos-rel"
+        initial={{ opacity: 0, translateY: 120 }}
+        whileInView={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 1 }}
+      >
         <Link to="/product/silver-coin">
           <div className="imageWrapper">
             <img
@@ -30,7 +41,7 @@ const HomeProducts = () => {
             <span>Silver Coins</span>
           </div>
         </Link>
-      </div>
+      </motion.div>
     </div>
   );
 };

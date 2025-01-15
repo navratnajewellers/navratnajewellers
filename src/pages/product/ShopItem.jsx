@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FlexboxGrid, Placeholder } from 'rsuite';
+import { motion } from 'motion/react';
 
 const ShopItem = ({ productDetail, priceData }) => {
   // console.log(productDetail, priceData);
@@ -29,7 +30,11 @@ const ShopItem = ({ productDetail, priceData }) => {
       <FlexboxGrid.Item colspan={6} className="product-item-container">
         {priceData && productDetail ? (
           <Link className="dis-link-style" to={`/shop/${productDetail.name}`}>
-            <div>
+            <motion.div
+              initial={{ opacity: 0, translateY: 60 }}
+              whileInView={{ opacity: 1, translateY: 0 }}
+              transition={{ duration: 0.7 }}
+            >
               <div className="imageWrapper">
                 <img
                   src={
@@ -51,7 +56,7 @@ const ShopItem = ({ productDetail, priceData }) => {
             </h4> */}
                 <h4>₹ {handleProductPrice()} </h4>
               </div>
-            </div>
+            </motion.div>
           </Link>
         ) : (
           <div>

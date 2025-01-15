@@ -1,10 +1,16 @@
 import { FaWhatsapp } from '@react-icons/all-files/fa/FaWhatsapp';
 import { IoLocation } from '@react-icons/all-files/io5/IoLocation';
+import { motion } from 'motion/react';
 
 const HomeConnectUs = () => {
   return (
     <div className="home-connect-us-container dis-flex">
-      <div className="connect-us-wrapper">
+      <motion.div
+        className="connect-us-wrapper"
+        initial={{ opacity: 0, scale: 0.2 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7 }}
+      >
         <div>
           <div>
             <h4>Connect On</h4>
@@ -25,8 +31,13 @@ const HomeConnectUs = () => {
         <div className="header-connectus-icon">
           <FaWhatsapp className="height-width-100 color-green" />
         </div>
-      </div>
-      <div className="connect-us-wrapper">
+      </motion.div>
+      <motion.div
+        className="connect-us-wrapper"
+        initial={{ opacity: 0, scale: 0.2 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7 }}
+      >
         <div>
           <div>
             <h4>Book an</h4>
@@ -54,7 +65,7 @@ const HomeConnectUs = () => {
         <div className="header-connectus-icon">
           <IoLocation className="height-width-100 color-blue" />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

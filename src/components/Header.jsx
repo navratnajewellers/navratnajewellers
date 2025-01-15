@@ -584,6 +584,7 @@ const Header = () => {
                     key={data.product_id}
                     as={Link}
                     to={`/shop/${data.name}`}
+                    className="desktop-menu-item"
                   >
                     <span className="fraunces-font">{data.name}</span>
                   </Nav.Item>
@@ -629,6 +630,7 @@ const Header = () => {
                     key={data.product_id}
                     as={Link}
                     to={`/shop/${data.name}`}
+                    className="desktop-menu-item"
                   >
                     <span className="fraunces-font">{data.name}</span>
                   </Nav.Item>
@@ -680,7 +682,11 @@ const Header = () => {
               title={<span className="fraunces-font">About</span>}
               className="about-menu"
             >
-              <Nav.Item as={Link} to="/page/ahout-us">
+              <Nav.Item
+                as={Link}
+                to="/page/ahout-us"
+                className="desktop-menu-item"
+              >
                 <span className="fraunces-font">Navratna Jewellers</span>
               </Nav.Item>
               <Nav.Menu
@@ -690,7 +696,7 @@ const Header = () => {
                 <Nav.Item>
                   <a
                     href="mailto:navratnajewellers0@gmail.com"
-                    className="header-menu-option-link"
+                    className="header-menu-option-link contact-menu-item "
                   >
                     Email
                   </a>
@@ -698,7 +704,7 @@ const Header = () => {
                 <Nav.Item>
                   <a
                     href="tel:+91 7004220367"
-                    className="header-menu-option-link"
+                    className="header-menu-option-link contact-menu-item "
                   >
                     Telephone
                   </a>
