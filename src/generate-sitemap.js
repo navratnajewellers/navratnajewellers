@@ -11,13 +11,13 @@ const BASE_URL = 'https://navratnajewellers.in';
 // Static routes of your application
 const staticRoutes = [
   { url: '/', changefreq: 'daily', priority: 1.0 },
-  { url: '/#/page/ahout-us', changefreq: 'monthly', priority: 0.8 },
-  { url: '/#/page/return-policy', changefreq: 'monthly', priority: 0.8 },
-  { url: '/#/page/privacy-policy', changefreq: 'monthly', priority: 0.8 },
-  { url: '/#/page/shipping-policy', changefreq: 'monthly', priority: 0.8 },
-  { url: '/#/page/term-condition', changefreq: 'monthly', priority: 0.8 },
-  { url: '/#/gold-rate', changefreq: 'monthly', priority: 0.8 },
-  { url: '/#/contact', changefreq: 'monthly', priority: 0.8 },
+  { url: '/page/ahout-us', changefreq: 'monthly', priority: 0.8 },
+  { url: '/page/return-policy', changefreq: 'monthly', priority: 0.8 },
+  { url: '/page/privacy-policy', changefreq: 'monthly', priority: 0.8 },
+  { url: '/page/shipping-policy', changefreq: 'monthly', priority: 0.8 },
+  { url: '/page/term-condition', changefreq: 'monthly', priority: 0.8 },
+  { url: '/gold-rate', changefreq: 'monthly', priority: 0.8 },
+  { url: '/contact', changefreq: 'monthly', priority: 0.8 },
 ];
 
 // Fetch dynamic routes (e.g., blog posts)
@@ -31,7 +31,7 @@ const fetchDynamicRoutes = async () => {
       }
     );
     return data.productData.map(post => ({
-      url: `/#/shop/${post.name}`,
+      url: `/shop/${post.name}`,
       changefreq: 'weekly',
       priority: 0.7,
     }));

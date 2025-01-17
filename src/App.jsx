@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import PageNotFound from './pages/PageNotFound';
@@ -60,7 +60,7 @@ function App() {
                 <ProfileProvider>
                   <ProductProvider>
                     <CartProvider>
-                      <HashRouter>
+                      <BrowserRouter>
                         <TrackPageView />
                         <Routes>
                           <Route path="/" element={<Home />} />
@@ -133,7 +133,7 @@ function App() {
                             />
                           </Route>
                         </Routes>
-                      </HashRouter>
+                      </BrowserRouter>
                     </CartProvider>
                   </ProductProvider>
                 </ProfileProvider>

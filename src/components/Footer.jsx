@@ -168,7 +168,7 @@ const Footer = () => {
             </div>
             <ul>
               <li>
-                <a href="" target="_blank">
+                <a href="/" target="_blank">
                   Offers & Contest Details
                 </a>
               </li>
