@@ -2,6 +2,7 @@ import { Affix } from 'rsuite';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { useWebStatus } from '../../context/status.context';
+import { Helmet } from 'react-helmet-async';
 
 const TermAndConditions = () => {
   // check the website update status
@@ -16,6 +17,9 @@ const TermAndConditions = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Term and Conditions</title>
+      </Helmet>
       <Affix className="fixed-header">
         <div className="header-container margin-t10">
           <Header />

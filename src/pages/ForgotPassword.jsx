@@ -15,6 +15,7 @@ import axios from 'axios';
 import { useDisplayMessage } from '../context/message.context';
 import { useServerLink } from '../context/server.context';
 import { useWebStatus } from '../context/status.context';
+import { Helmet } from 'react-helmet-async';
 
 const { StringType, NumberType } = Schema.Types;
 
@@ -174,6 +175,9 @@ const ForgotPassword = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Password Reset</title>
+      </Helmet>
       <Affix className="fixed-header">
         <div className="header-container margin-t10">
           <Header />

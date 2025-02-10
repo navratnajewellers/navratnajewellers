@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useAdminProfile } from '../context/adminProfile.context';
 import AdminLoginModal from './admin-modal/AdminLoginModal';
 import { Loader } from 'rsuite';
+import { Helmet } from 'react-helmet-async';
 
 const AdminMainLayout = () => {
   // console.log('inside the main Layout');
@@ -28,6 +29,9 @@ const AdminMainLayout = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Admin Panel</title>
+      </Helmet>
       <div>
         {adminData.id ? (
           <div>

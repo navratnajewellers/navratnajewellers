@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import PageNotFound404 from '../assets/404-page-not-found.jpg';
+import { Helmet } from 'react-helmet-async';
 
 const PageNotFound = () => {
   setTimeout(() => {
@@ -8,6 +9,9 @@ const PageNotFound = () => {
 
   return (
     <div className="height-width-100">
+      <Helmet>
+        <title>Page not Found</title>
+      </Helmet>
       <div>
         <img src={PageNotFound404} alt="404 page not found" width={720}></img>
       </div>

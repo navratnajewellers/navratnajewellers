@@ -22,6 +22,7 @@ import { useProfile } from '../../context/profile.context';
 import { useCart } from '../../context/Cart.context';
 import { useServerLink } from '../../context/server.context';
 import { useWebStatus } from '../../context/status.context';
+import { Helmet } from 'react-helmet-async';
 
 const data = [1, 2, 3, 4, 5, 10].map(item => ({
   label: item,
@@ -234,6 +235,9 @@ const Product = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Product</title>
+      </Helmet>
       <Affix className="fixed-header">
         <div className="header-container margin-t10">
           <Header />

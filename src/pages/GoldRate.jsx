@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useServerLink } from '../context/server.context';
 import { useWebStatus } from '../context/status.context';
+import { Helmet } from 'react-helmet-async';
+// import { Helmet } from 'react-helmet';
 
 const GoldRate = () => {
   // check the website update status
@@ -47,6 +49,17 @@ const GoldRate = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Price List</title>
+        <meta
+          name="keywords"
+          content="gold price, silver price, 1gram, MMTC, Navratna Jewellers, jewellery, gold, silver, gold coin, silver coin, Navratna Jewellers, coin, Jewellers"
+        />
+        <meta
+          name="description"
+          content="Navratna Jewellers in Ranchi Jharkhand is one of the leading businesses in the Gold Jewellery Showrooms, Diamond Jewellery Showrooms, Coin Dealers, Silver Jewellery Showrooms, Gold Coin Dealers, Silver Coin Dealers and much more. Find Address, Contact Number, Reviews & Ratings, Photos, Maps of Navratna Jewellers, Ranchi, Jharkhand."
+        />
+      </Helmet>
       <Affix className="fixed-header">
         <div className="header-container margin-t10">
           <Header />

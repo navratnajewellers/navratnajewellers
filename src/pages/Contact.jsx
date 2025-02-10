@@ -1,8 +1,12 @@
+import { Helmet } from 'react-helmet-async';
 import '../styles/Contact.css';
 
 const Contact = () => {
   return (
     <div>
+      <Helmet>
+        <title>Contact</title>
+      </Helmet>
       <div className="main-container">
         <div className="imageWrapper">
           <img src="/1920X1350-min.jpg" alt="Navratna Jewellers" />

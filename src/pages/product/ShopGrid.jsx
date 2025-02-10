@@ -15,6 +15,7 @@ import ShopItem from './ShopItem';
 import axios from 'axios';
 import { useServerLink } from '../../context/server.context';
 import { useWebStatus } from '../../context/status.context';
+import { Helmet } from 'react-helmet-async';
 
 const ShopGrid = () => {
   // check the website update status
@@ -75,6 +76,9 @@ const ShopGrid = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Shop</title>
+      </Helmet>
       <Affix className="fixed-header">
         <div className="header-container margin-t10">
           <Header />

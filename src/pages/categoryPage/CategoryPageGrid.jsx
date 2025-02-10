@@ -13,8 +13,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CategoryPageItem from './CategoryPageItem';
 import { useServerLink } from '../../context/server.context';
+import { Helmet } from 'react-helmet-async';
 
 const CategoryPageGrid = () => {
+  // move to top of window when user on different section of other page
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
   const { productCategory } = useParams();
 
   const { serverLink } = useServerLink();
@@ -94,6 +98,9 @@ const CategoryPageGrid = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Product</title>
+      </Helmet>
       <Affix className="fixed-header">
         <div className="header-container margin-t10">
           <Header />

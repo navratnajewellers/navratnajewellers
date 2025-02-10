@@ -7,9 +7,10 @@ import HomeConnectUs from '../components/home/HomeConnectUs';
 import Footer from '../components/Footer';
 import Contact from './Contact';
 import { useWebStatus } from '../context/status.context';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
-  // move to top of window wgen user on different section of other page
+  // move to top of window when user on different section of other page
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
   const { isWebsiteOnUpdate } = useWebStatus();
@@ -20,6 +21,52 @@ const Home = () => {
     </div>
   ) : (
     <div>
+      <Helmet>
+        <title>Navratna Jewellers</title>
+        <meta
+          name="keywords"
+          content="jewellery, gold, silver, gold coin, silver coin, Navratna Jewellers, coin, Jewellers"
+        />
+        <meta
+          name="description"
+          content="Navratna Jewellers in Ranchi is one of the leading businesses in the Gold, Silver and Diamond Jewellery Showrooms. Also known for Jewellery Showrooms, Gold Jewellery Showrooms, Diamond Jewellery Showrooms, Coin Dealers, Silver Jewellery Showrooms, Gold Coin Dealers, Silver Coin Dealers and much more. Find Address, Contact Number, Reviews & Ratings, Photos, Maps of Navratna Jewellers, Ranchi."
+        />
+
+        {/* Open Graph Meta Tags (For Social Media) */}
+        <meta property="og:title" content="Navratna Jewellers" />
+        <meta
+          property="og:description"
+          content="Navratna Jewellers in Ranchi is one of the leading businesses in the Gold, Silver and Diamond Jewellery Showrooms. Also known for Jewellery Showrooms, Gold Jewellery Showrooms, Diamond Jewellery Showrooms, Coin Dealers, Silver Jewellery Showrooms, Gold Coin Dealers, Silver Coin Dealers and much more."
+        />
+        <meta
+          property="og:image"
+          content="https://navratnajewellers.in/nav-jew-logo.jpg"
+        />
+        <meta property="og:url" content="https://navratnajewellers.in/" />
+
+        <meta
+          name="Jewellery"
+          content="Buy the Gold or SIlver Coins at best price"
+        />
+        <meta name="copyright" content="Navratna Jewellers" />
+        <meta name="language" content="ES" />
+        <meta name="robots" content="index,follow" />
+        <meta
+          name="author"
+          content="Navratna Jewellers, navratnajewellers0@gmail.com"
+        />
+
+        <meta name="og:latitude" content="23.3630270297507" />
+        <meta name="og:longitude" content="85.32573439587476" />
+        <meta
+          name="og:street-address"
+          content="677, Mahatma Gandhi Main Rd, beside Gurudwara, Lower Bazaar"
+        />
+        <meta name="og:locality" content="Ranchi" />
+        <meta name="og:region" content="JHARKHAND" />
+        <meta name="og:postal-code" content="834001" />
+        <meta name="og:country-name" content="INDIA" />
+      </Helmet>
       <div className="header-container">
         <Affix className="fixed-header padding-t10 ">
           <Header />

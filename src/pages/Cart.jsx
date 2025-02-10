@@ -23,6 +23,7 @@ import AddressModal from './cart/AddressModal';
 import { useServerLink } from '../context/server.context';
 import { useWebStatus } from '../context/status.context';
 import { logCustomEvent } from '../analytics';
+import { Helmet } from 'react-helmet-async';
 
 const Header = lazy(() => import('../components/Header'));
 
@@ -526,6 +527,9 @@ const Cart = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Cart</title>
+      </Helmet>
       <Affix className="fixed-header">
         <div className="header-container margin-t10">
           <Suspense fallback={<Loader center content="Loading..." vertical />}>
