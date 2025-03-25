@@ -10,7 +10,6 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HelmetProvider>
       <App />
-      <elevenlabs-convai agent-id="Uj9WnflRxUxeQpvo0Zc8"></elevenlabs-convai>
     </HelmetProvider>
   </StrictMode>
 );
