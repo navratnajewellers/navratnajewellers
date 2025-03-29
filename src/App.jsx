@@ -34,6 +34,7 @@ import { useEffect } from 'react';
 import { initializeAnalytics, logPageView } from './analytics.js';
 import { DeleteAndVersionProvider } from './context/deleteAndVersion.context.jsx';
 import { PriceProvider } from './context/price.context.jsx';
+import MmtcPampPage from './pages/MmtcPampPage.jsx';
 
 const TrackPageView = () => {
   const location = useLocation();
@@ -64,6 +65,10 @@ function App() {
                         <TrackPageView />
                         <Routes>
                           <Route path="/" element={<Home />} />
+                          <Route
+                            path="/mmtc-pamp/"
+                            element={<MmtcPampPage />}
+                          />
                           <Route path="/contact" element={<Contact />} />
                           <Route
                             path="/gold-coin/:gramQt"

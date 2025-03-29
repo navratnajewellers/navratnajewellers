@@ -1,17 +1,45 @@
-import { Affix, Carousel, Divider } from 'rsuite';
-import Header from '../components/Header';
+// now home page content moved to mmtc-pamp page
 import '../styles/Home.css';
-import { GiJewelCrown } from '@react-icons/all-files/gi/GiJewelCrown';
-import HomeProducts from '../components/home/HomeProducts';
-import HomeConnectUs from '../components/home/HomeConnectUs';
-import Footer from '../components/Footer';
+
+//new home page style
+import '../styles/newHome.css';
+
 import Contact from './Contact';
 import { useWebStatus } from '../context/status.context';
 import { Helmet } from 'react-helmet-async';
+import { Button, Carousel, Panel } from 'rsuite';
+import { FaMapMarkerAlt } from '@react-icons/all-files/fa/FaMapMarkerAlt';
+import { FaPhoneAlt } from '@react-icons/all-files/fa/FaPhoneAlt';
+import { FaEnvelope } from '@react-icons/all-files/fa/FaEnvelope';
+import { Link } from 'react-router-dom';
+import { useScroll, useMotionValueEvent } from 'motion/react';
+import { useState } from 'react';
+import AnimatedText from '../components/AnimatedText';
+import ProductCarousel from '../components/newHome/ProductCarousel';
+import Testimonials from '../components/newHome/Testimonials';
+import HomeBlog from '../components/newHome/HomeBlog';
+import AstroGem from '../components/newHome/AstroGem';
+
+// @react-icons/all-files/io/IoIosHeartEmpty
 
 const Home = () => {
   // move to top of window when user on different section of other page
-  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
+  const { scrollY } = useScroll(); // Framer Motion scroll tracking
+  const [direction, setDirection] = useState('Idle');
+  const [lastScroll, setLastScroll] = useState(0);
+
+  useMotionValueEvent(scrollY, 'change', latest => {
+    if (latest > lastScroll) {
+      setDirection('Down');
+    } else if (latest < lastScroll) {
+      setDirection('Up');
+    }
+    setLastScroll(latest);
+  });
+
+  console.log({ direction, lastScroll });
 
   const { isWebsiteOnUpdate } = useWebStatus();
 
@@ -67,94 +95,217 @@ const Home = () => {
         <meta name="og:postal-code" content="834001" />
         <meta name="og:country-name" content="INDIA" />
       </Helmet>
-      <div className="header-container">
-        <Affix className="fixed-header padding-t10 ">
-          <Header />
-        </Affix>
+      {/* <div>
+        <a href="/mmtc-pamp">MMTC PAMP</a>
+      </div> */}
+
+      <div
+        className={`h-sec1-header-container ${direction == 'Up' || direction == 'Idle' ? 'head-dir-up' : 'head-dir-down'}`}
+      >
+        <div className=" h-sec1-logo-container dis-flex ">
+          <Link to="/" className="dis-block">
+            <div className="imageWrapper">
+              <img
+                src="/nav-jew-logo.jpg"
+                loading="lazy"
+                alt="Navratna Jewellers Logo"
+              ></img>
+            </div>
+          </Link>
+        </div>
+        <div className="h-sec1-collection-container dis-flex ">
+          <a href="#" className="default-remove-a">
+            <AnimatedText text="Collections" />
+          </a>
+          <a href="mmtc-pamp" className="default-remove-a">
+            <AnimatedText text="Shop Now" />
+          </a>
+          <a href="#" className="default-remove-a">
+            <AnimatedText text="Blog" />
+          </a>
+          <a href="#" className="default-remove-a">
+            <AnimatedText text="About Us" />
+          </a>
+        </div>
+        <div className="h-sec1-contact-container dis-flex ">
+          <a href="#" className="default-remove-a">
+            Contact Us
+          </a>
+        </div>
       </div>
-      <div className="main-carousel">
-        <Carousel autoplay shape="bar" className="custom-slider">
-          <a href="" className="dis-block">
-            <img
-              loading="lazy"
-              className="height-width-100"
-              src="/images/banner-image1.jpg"
-              alt="Carosuel Image"
-              height="250"
-            />
-          </a>
-          <a href="" className="dis-block">
-            <img
-              loading="lazy"
-              className="height-width-100"
-              src="/images/banner-image2.jpg"
-              alt="Carosuel Image"
-              height="250"
-            />
-          </a>
-          <a href="" className="dis-block">
-            <img
-              loading="lazy"
-              className="height-width-100"
-              src="/images/banner-image1.jpg"
-              alt="Carosuel Image"
-              height="250"
-            />
-          </a>
-          <a href="" className="dis-block">
-            <img
-              loading="lazy"
-              className="height-width-100"
-              src="/images/banner-image2.jpg"
-              alt="Carosuel Image"
-              height="250"
-            />
-          </a>
-          <a href="" className="dis-block">
-            <img
-              loading="lazy"
-              className="height-width-100"
-              src="/images/banner-image1.jpg"
-              alt="Carosuel Image"
-              height="250"
-            />
-          </a>
+      <div className="home-section1-container">
+        <Carousel
+          autoplay
+          style={{
+            height: '100vh',
+          }}
+        >
+          <Link
+            style={{
+              // border: 'solid 2px red',
+              background: 'transparent',
+            }}
+            className=" h-sec1-carousel dis-flex"
+            to="#"
+          >
+            <div className="h-sec1-carousel-bg-img imageWrapper ">
+              <img
+                src="/images/home-page-assests/438264547_846103974202968_892064003090336676_n.jpg"
+                alt="Image 1"
+              />
+            </div>
+            <div className="h-sec1-carousel-content">
+              {/* <h4>Heading</h4>
+              <p>Paragraph</p> */}
+            </div>
+          </Link>
+          <Link
+            style={{
+              // border: 'solid 2px red',
+              background: 'transparent',
+            }}
+            className=" h-sec1-carousel dis-flex"
+            to="#"
+          >
+            <div className="h-sec1-carousel-bg-img imageWrapper ">
+              <img
+                src="/images/home-page-assests/450585018_893059906174041_8330071302460358246_n.jpg"
+                alt="Image 1"
+              />
+            </div>
+            <div className="h-sec1-carousel-content">
+              {/* <h4>Heading</h4>
+              <p>Paragraph</p> */}
+            </div>
+          </Link>
+          <Link
+            style={{
+              // border: 'solid 2px red',
+              background: 'transparent',
+            }}
+            className=" h-sec1-carousel dis-flex"
+            to="#"
+          >
+            <div className="h-sec1-carousel-bg-img imageWrapper ">
+              <img
+                src="/images/home-page-assests/470240447_1006331214846909_9027560875682736872_n.jpg"
+                alt="Image 1"
+              />
+            </div>
+            <div className="h-sec1-carousel-content">
+              {/* <h4>Heading</h4>
+              <p>Paragraph</p> */}
+            </div>
+          </Link>
+          <Link
+            style={{
+              // border: 'solid 2px red',
+              background: 'transparent',
+            }}
+            className=" h-sec1-carousel dis-flex"
+            to="#"
+          >
+            <div className="h-sec1-carousel-bg-img imageWrapper ">
+              <img
+                src="/images/home-page-assests/464080990_965911652222199_4277463662035696964_n.jpg"
+                alt="Image 1"
+              />
+            </div>
+            <div className="h-sec1-carousel-content">
+              {/* <h4>Heading</h4>
+              <p>Paragraph</p> */}
+            </div>
+          </Link>
+          <Link
+            style={{
+              // border: 'solid 2px red',
+              background: 'transparent',
+            }}
+            className=" h-sec1-carousel dis-flex"
+            to="#"
+          >
+            <div className="h-sec1-carousel-bg-img imageWrapper ">
+              <img
+                src="/images/home-page-assests/484290630_9495467980521313_2710749015271242633_n.jpg"
+                alt="Image 1"
+              />
+            </div>
+            <div className="h-sec1-carousel-content">
+              {/* <h4>Heading</h4>
+              <p>Paragraph</p> */}
+            </div>
+          </Link>
         </Carousel>
       </div>
-      <div className="shop-by-category">
-        <div className="shop-category-header">
-          <h2 className="textCenter fraunces-font main-color">
-            Shop By Category
-          </h2>
-          <p className="textCenter padding-lr5">
-            Browse through your favorite categories. We&apos;ve got them all!
-          </p>
+      <div className="home-container">
+        {/* Hero Section */}
+        <div className="hero-section">
+          <div className="hero-content">
+            <h1>Timeless Elegance, Crafted for You</h1>
+            <div className="hero-buttons">
+              <Button appearance="primary">Shop Now</Button>
+              <Button appearance="ghost">Explore Collections</Button>
+            </div>
+          </div>
         </div>
-        <Divider>
-          <GiJewelCrown />
-        </Divider>
-        <div className="margin-t50">
-          <HomeProducts />
-        </div>
-      </div>
-      <div className="home-connect-us margin-t50 margin-b60">
-        <div className="shop-category-header">
-          <h2 className="textCenter fraunces-font main-color">
-            Connect with Us
-          </h2>
-          <p className="textCenter padding-lr5 ">
-            We are always available to guide you at your convenience.
-          </p>
-        </div>
-        <Divider>
-          <GiJewelCrown />
-        </Divider>
-        <div className="margin-t50">
-          <HomeConnectUs />
-        </div>
-      </div>
-      <div>
-        <Footer />
+
+        {/* Featured Collections */}
+        <section className="collections">
+          <h2>Our Collections</h2>
+          <div className="collection-grid">
+            {['Gold', 'Silver', 'MMTC-PAMP'].map((category, index) => (
+              <Panel
+                key={index}
+                shaded
+                bordered
+                bodyFill
+                className="collection-card"
+              >
+                <img
+                  src={`/images/home-page-assests/collection/${category.toLowerCase()}.jpg`}
+                  alt={category}
+                  className="collection-image"
+                />
+                <h3>{category} Collection</h3>
+                <Button appearance="primary">View More</Button>
+              </Panel>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <div>
+            <ProductCarousel title="New Arrivals" />
+          </div>
+        </section>
+
+        {/* Astrological Gems Section */}
+        <AstroGem />
+
+        {/* Customer Testimonials */}
+        <Testimonials />
+
+        {/* Blog */}
+        <HomeBlog />
+
+        {/* Contact & Store Info */}
+        <footer className="footer">
+          <h2>Visit Us</h2>
+          <div className="contact-info">
+            <div>
+              <FaMapMarkerAlt />
+              <span>Beside Gurudwara, Main Road, Ranchi, India, Jharkhand</span>
+            </div>
+            <div>
+              <FaPhoneAlt />
+              <span>+91 98765 43210</span>
+            </div>
+            <div>
+              <FaEnvelope />
+              <span>contact@navratnajewellers.com</span>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );

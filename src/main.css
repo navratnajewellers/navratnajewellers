@@ -238,3 +238,12 @@ body {
 .rs-picker-popup {
   z-index: 9999 !important;
 }
+
+.default-remove-a:hover {
+  text-decoration: none !important;
+}
+
+/* ease transition */
+.custom-trans-all {
+  transition: all 0.3s ease;
+}
