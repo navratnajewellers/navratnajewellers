@@ -5,33 +5,44 @@ import { GiJewelCrown } from '@react-icons/all-files/gi/GiJewelCrown';
 const gemsData = [
   {
     id: 1,
-    name: 'Ruby',
+    name: 'Ruby (Manik)',
     image: '/images/home-page-assests/gems/red-ruby-stone.webp',
   },
   {
     id: 2,
-    name: 'Emerald',
-    image: '/images/home-page-assests/gems/emerald-loose.jpg',
-  },
-  {
-    id: 3,
-    name: 'Sapphire',
-    image: '/images/home-page-assests/gems/polished-sapphire.png',
-  },
-  {
-    id: 4,
-    name: 'Pearl',
+    name: 'Pearl (Moti)',
     image: '/images/home-page-assests/gems/Pearl-gems.jpg',
   },
   {
-    id: 5,
-    name: 'Topaz',
-    image: '/images/home-page-assests/gems/Topaz-gems.jpg',
+    id: 3,
+    name: 'Red Coral (Moonga)',
+    image: '/images/home-page-assests/gems/red-coral-2-500x500.jpg',
   },
   {
+    id: 4,
+    name: 'Emerald (Panna)',
+    image: '/images/home-page-assests/gems/emerald-loose.jpg',
+  },
+  {
+    id: 5,
+    name: 'Yellow Sapphire (Pokhraj)',
+    image: '/images/home-page-assests/gems/Yellow-Sapphire.jpeg',
+  },
+
+  {
     id: 6,
-    name: 'Opal',
-    image: '/images/home-page-assests/gems/opal-stone.webp',
+    name: 'Blue Sapphire (Neelam)',
+    image: '/images/home-page-assests/gems/polished-sapphire.png',
+  },
+  {
+    id: 7,
+    name: 'Hessonite Garnet (Gomed)',
+    image: '/images/home-page-assests/gems/Hessonite-Garnet-stone.jpg',
+  },
+  {
+    id: 8,
+    name: 'Cat’s Eye (Lehsunia)',
+    image: '/images/home-page-assests/gems/Cat-Eye.jpeg',
   },
 ];
 

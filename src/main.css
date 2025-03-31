@@ -247,3 +247,15 @@ body {
 .custom-trans-all {
   transition: all 0.3s ease;
 }
+
+/* special-text */
+.special-text {
+  position: relative;
+}
+
+.special-text::before {
+  content: '|';
+  position: absolute;
+  left: -15px;
+  top: -2px;
+}

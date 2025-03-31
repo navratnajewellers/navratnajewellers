@@ -15,6 +15,7 @@ const blog = [
     month: 'Jan',
     image:
       '/images/home-page-assests/blog/A luxurious jewelry scene featuring three distinct sections_ 1) A close-up of elegant gold jewelry, including necklaces, bangles, and rings, displayed.webp',
+    link: '#',
   },
   {
     id: 2,
@@ -25,6 +26,7 @@ const blog = [
     month: 'Jan',
     image:
       '/images/home-page-assests/blog/A luxurious display of diamond jewelry, featuring a sparkling diamond ring, a delicate pendant, and elegant earrings arranged on a black velvet surfac.webp',
+    link: '/blog/astrological-gems-unlocking-the-power-of-precious-stones',
   },
   {
     id: 3,
@@ -35,6 +37,7 @@ const blog = [
     month: 'Jan',
     image:
       '/images/home-page-assests/blog/A stylish display of silver jewelry, featuring an elegant arrangement of silver bracelets, earrings, and chains on a dark velvet background. The jewel.webp',
+    link: '#',
   },
   {
     id: 4,
@@ -46,6 +49,7 @@ const blog = [
     demoImage: '',
     image:
       '/images/home-page-assests/blog/A luxurious display of diamond jewelry, featuring a sparkling diamond ring, a delicate pendant, and elegant earrings arranged on a black velvet surfac.webp',
+    link: '#',
   },
 ];
 
@@ -80,7 +84,7 @@ const HomeBlog = () => {
                   <p className="text-center">{data.day}</p>
                   <p className="text-center">{data.month}</p>
                 </div>
-                <a href="#" className="imageWrapper default-remove-a ">
+                <a href={data.link} className="imageWrapper default-remove-a ">
                   <img
                     src={data.image}
                     alt={data.heading}
@@ -89,7 +93,10 @@ const HomeBlog = () => {
                 </a>
                 <h3 className="custom-trans-all">{data.heading}</h3>
                 <p className="custom-trans-all">{data.content}</p>
-                <a href="#" className="blog-read-more default-remove-a ">
+                <a
+                  href={data.link}
+                  className="blog-read-more default-remove-a "
+                >
                   Read More
                 </a>
               </section>

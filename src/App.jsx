@@ -35,6 +35,8 @@ import { initializeAnalytics, logPageView } from './analytics.js';
 import { DeleteAndVersionProvider } from './context/deleteAndVersion.context.jsx';
 import { PriceProvider } from './context/price.context.jsx';
 import MmtcPampPage from './pages/MmtcPampPage.jsx';
+import GemsBlog from './pages/blogPages/GemsBlog.jsx';
+import RubyGem from './pages/gems/RubyGem.jsx';
 
 const TrackPageView = () => {
   const location = useLocation();
@@ -137,6 +139,14 @@ function App() {
                               element={<WebsiteStatus />}
                             />
                           </Route>
+                          <Route
+                            path="/blog/astrological-gems-unlocking-the-power-of-precious-stones"
+                            element={<GemsBlog />}
+                          />
+                          <Route
+                            path="/astrological-gems/ruby-manik"
+                            element={<RubyGem />}
+                          />
                         </Routes>
                       </BrowserRouter>
                     </CartProvider>

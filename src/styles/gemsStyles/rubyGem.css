@@ -1,0 +1,132 @@
+.gem-main-container {
+  background-color: #f8f8f8;
+  /* padding: 25px; */
+}
+
+.gem-intro-container {
+  /* border: solid 1px red; */
+  padding: 25px;
+  padding-top: 55px;
+  padding-bottom: 85px;
+  text-align: center;
+}
+
+.gem-intro-container .r-g-image-container {
+  /* width: 250px; */
+  margin-bottom: 30px;
+}
+
+.gem-intro-container h2 {
+  color: #4d0020;
+  margin-bottom: 25px;
+}
+
+.gem-intro-container p {
+  padding: 0 45px;
+  font-size: 18px;
+  /* color: #797979; */
+  /* color: #ffea08; */
+}
+
+/* section 2 */
+.r-g-section2-container {
+  /* border: solid 1px blue; */
+  /* padding: 75px 25px; */
+  padding: 115px 50px;
+}
+
+.r-g-section2-container h3 {
+  color: #4d0020;
+  margin-bottom: 35px;
+  font-size: 32px;
+}
+
+.r-g-section2-container strong {
+  color: #4d0020;
+}
+
+.r-g-section2-container p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.r-g-section2-container ul {
+  font-size: 18px;
+  list-style-type: circle;
+  margin-bottom: 25px;
+}
+
+.r-g-section2-container li {
+  margin-bottom: 7px;
+}
+
+/* section 3 */
+
+.r-g-section3-container {
+  /* border: solid 1px greenyellow; */
+  /* padding: 75px 25px; */
+  padding: 115px 50px;
+}
+
+.r-g-section3-container h3 {
+  color: #4d0020;
+  font-size: 32px;
+  margin-bottom: 35px;
+}
+
+.r-g-section3-container p {
+  font-size: 18px;
+}
+
+.r-g-conclusion-container {
+  /* border: solid 1px brown; */
+  /* padding: 105px 45px; */
+  padding: 115px 70px;
+  text-align: center;
+}
+
+.r-g-conclusion-container h3 {
+  color: #4d0020;
+  margin-bottom: 25px;
+  font-size: 32px;
+}
+
+.r-g-conclusion-container p {
+  font-size: 18px;
+}
+
+.r-g-white-container {
+  background-color: #ffffff;
+}
+
+/* .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+} */
+
+.r-g-image-container {
+  width: 256px;
+  height: 256px;
+  transform-style: preserve-3d;
+  animation: rotate3D 5s linear infinite; /* Infinite rotation */
+}
+
+.r-g-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Keyframes for infinite 3D rotation */
+@keyframes rotate3D {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}

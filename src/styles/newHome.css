@@ -112,10 +112,13 @@
 }
 
 .gem-card h3 {
+  /* border: solid 1px red; */
   color: #4d0020;
   margin-top: 25px;
   margin-bottom: 15px;
-  font-size: 26px;
+  font-size: 22px;
+  width: 250px;
+  padding: 0 10px;
 }
 
 /* .gem-image {
