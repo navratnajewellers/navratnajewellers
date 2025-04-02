@@ -37,6 +37,13 @@ import { PriceProvider } from './context/price.context.jsx';
 import MmtcPampPage from './pages/MmtcPampPage.jsx';
 import GemsBlog from './pages/blogPages/GemsBlog.jsx';
 import RubyGem from './pages/gems/RubyGem.jsx';
+import PearlGem from './pages/gems/PearlGem.jsx';
+import RedCoralGem from './pages/gems/RedCoralGem.jsx';
+import EmeraldGem from './pages/gems/EmeraldGem.jsx';
+import YellowSapphireGem from './pages/gems/YellowSapphireGem.jsx';
+import BlueSapphireGem from './pages/gems/BlueSapphireGem.jsx';
+import HessoniteGarnetGem from './pages/gems/HessoniteGarnetGem.jsx';
+import CatEye from './pages/gems/CatEye.jsx';
 
 const TrackPageView = () => {
   const location = useLocation();
@@ -146,6 +153,69 @@ function App() {
                           <Route
                             path="/astrological-gems/ruby-manik"
                             element={<RubyGem />}
+                          />
+                          <Route
+                            path="/astrological-gems/pearl-moti"
+                            element={<PearlGem />}
+                          />
+
+                          <Route
+                            path="/astrological-gems/red-coral-moonga"
+                            element={<RedCoralGem />}
+                          />
+                          <Route
+                            path="/astrological-gems/emerald-panna"
+                            element={<EmeraldGem />}
+                          />
+                          <Route
+                            path="/astrological-gems/yellow-sapphire-pokhraj"
+                            element={<YellowSapphireGem />}
+                          />
+                          <Route
+                            path="/astrological-gems/blue-sapphire-neelam"
+                            element={<BlueSapphireGem />}
+                          />
+                          <Route
+                            path="/astrological-gems/hessonite-garnet-gomed"
+                            element={<HessoniteGarnetGem />}
+                          />
+                          <Route
+                            path="/astrological-gems/cat-eye-lehsunia"
+                            element={<CatEye />}
+                          />
+                          {/* Gems in Hindi Language */}
+                          <Route
+                            path="/hi/astrological-gems/ruby-manik"
+                            element={<RubyGem />}
+                          />
+                          <Route
+                            path="/hi/astrological-gems/pearl-moti"
+                            element={<PearlGem />}
+                          />
+
+                          <Route
+                            path="/hi/astrological-gems/red-coral-moonga"
+                            element={<RedCoralGem />}
+                          />
+                          <Route
+                            path="/hi/astrological-gems/emerald-panna"
+                            element={<EmeraldGem />}
+                          />
+                          <Route
+                            path="/hi/astrological-gems/yellow-sapphire-pokhraj"
+                            element={<YellowSapphireGem />}
+                          />
+                          <Route
+                            path="/hi/astrological-gems/blue-sapphire-neelam"
+                            element={<BlueSapphireGem />}
+                          />
+                          <Route
+                            path="/hi/astrological-gems/hessonite-garnet-gomed"
+                            element={<HessoniteGarnetGem />}
+                          />
+                          <Route
+                            path="/hi/astrological-gems/cat-eye-lehsunia"
+                            element={<CatEye />}
                           />
                         </Routes>
                       </BrowserRouter>

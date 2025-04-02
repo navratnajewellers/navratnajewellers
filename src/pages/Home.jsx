@@ -48,7 +48,7 @@ const Home = () => {
       <Contact />
     </div>
   ) : (
-    <div>
+    <div style={{ overflowX: 'hidden' }}>
       <Helmet>
         <title>Navratna Jewellers</title>
         <meta

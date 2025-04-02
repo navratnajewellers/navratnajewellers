@@ -7,42 +7,50 @@ const gemsData = [
     id: 1,
     name: 'Ruby (Manik)',
     image: '/images/home-page-assests/gems/red-ruby-stone.webp',
+    link: '/astrological-gems/ruby-manik',
   },
   {
     id: 2,
     name: 'Pearl (Moti)',
     image: '/images/home-page-assests/gems/Pearl-gems.jpg',
+    link: '/astrological-gems/pearl-moti',
   },
   {
     id: 3,
     name: 'Red Coral (Moonga)',
     image: '/images/home-page-assests/gems/red-coral-2-500x500.jpg',
+    link: '/astrological-gems/red-coral-moonga',
   },
   {
     id: 4,
     name: 'Emerald (Panna)',
     image: '/images/home-page-assests/gems/emerald-loose.jpg',
+    link: '/astrological-gems/emerald-panna',
   },
   {
     id: 5,
     name: 'Yellow Sapphire (Pokhraj)',
     image: '/images/home-page-assests/gems/Yellow-Sapphire.jpeg',
+    link: '/astrological-gems/yellow-sapphire-pokhraj',
   },
 
   {
     id: 6,
     name: 'Blue Sapphire (Neelam)',
     image: '/images/home-page-assests/gems/polished-sapphire.png',
+    link: '/astrological-gems/blue-sapphire-neelam',
   },
   {
     id: 7,
     name: 'Hessonite Garnet (Gomed)',
     image: '/images/home-page-assests/gems/Hessonite-Garnet-stone.jpg',
+    link: '/astrological-gems/hessonite-garnet-gomed',
   },
   {
     id: 8,
     name: 'Cat’s Eye (Lehsunia)',
     image: '/images/home-page-assests/gems/Cat-Eye.jpeg',
+    link: '/astrological-gems/cat-eye-lehsunia',
   },
 ];
 
@@ -81,7 +89,13 @@ const AstroGem = () => {
                   <img src={data.image} alt={data.name} className="gem-image" />
                 </div>
                 <h3>{data.name}</h3>
-                <Button appearance="ghost" color="yellow">
+                <Button
+                  appearance="ghost"
+                  color="yellow"
+                  onClick={() => {
+                    window.location.href = data.link;
+                  }}
+                >
                   Explore
                 </Button>
               </Panel>

@@ -4,7 +4,7 @@ import NewHeader from '../../components/NewHeader';
 import '../../styles/gemsStyles/rubyGem.css';
 import { motion } from 'motion/react';
 
-const RubyGem = () => {
+const HessoniteGarnetGem = () => {
   return (
     <div>
       <header>
@@ -25,8 +25,8 @@ const RubyGem = () => {
             >
               <div className="r-g-image-container">
                 <img
-                  src="/images/home-page-assests/gems/red-ruby-stone.webp"
-                  alt="Ruby (Manik)"
+                  src="/images/home-page-assests/gems/Hessonite-Garnet-stone.jpg"
+                  alt="Hessonite Garnet (Gomed)"
                   className="r-g-image"
                 />
               </div>
@@ -43,20 +43,20 @@ const RubyGem = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 1 }}
             >
-              Ruby Gem (Manik) - The Precious Red Stone
+              Hessonite Garnet (Gomed) - The Gem of Clarity and Protection
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              Ruby, also known as &quot;Manik&quot; in Hindi, is a precious
-              gemstone that belongs to the corundum family. It is renowned for
-              its deep red color and exceptional hardness, making it one of the
-              most sought-after gemstones in the world. The name
-              &quot;Ruby&quot; comes from the Latin word &quot;ruber,&quot;
-              meaning red. This gemstone holds great significance in astrology,
-              jewelry, and various cultural traditions.
+              Hessonite Garnet, known as &quot;Gomed&quot; in Hindi, is a
+              powerful gemstone belonging to the garnet family. It is revered
+              for its deep honey-brown to reddish-orange hue and is associated
+              with the shadow planet Rahu in Vedic astrology. Gomed is believed
+              to bring mental clarity, stability, and protection from negative
+              influences, making it an essential gemstone for those facing
+              challenges in life.
             </motion.p>
           </motion.div>
         </div>
@@ -77,8 +77,8 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            Rubies are found in several parts of the world, with the most famous
-            sources being:
+            Hessonite Garnet is mined in several parts of the world, with the
+            most prominent sources being:
           </motion.p>
           <ul>
             <motion.li
@@ -86,40 +86,40 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              <strong>Burma (Myanmar):</strong> Known for producing the finest
-              rubies with a deep, pigeon-blood red hue.
+              <strong>Sri Lanka:</strong> Produces some of the finest quality
+              Gomed stones with rich orange-brown hues and excellent clarity.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 1 }}
             >
-              <strong>Sri Lanka:</strong> Produces rubies in various shades,
-              from light pink to deep red.
+              <strong>India:</strong> Found in limited quantities, mostly used
+              for astrological purposes.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 1 }}
             >
-              <strong>Thailand:</strong> Home to darker rubies with a slight
-              brownish tint.
+              <strong>Africa (Tanzania, Kenya, and Madagascar):</strong> A
+              significant supplier of high-quality Hessonite Garnets.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              <strong>India:</strong> Known for producing high-quality rubies,
-              especially in Karnataka and Odisha.
+              <strong>Brazil:</strong> Known for its commercial-grade garnets
+              with varying shades.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.6, duration: 1 }}
             >
-              <strong>Madagascar, Mozambique, and Vietnam:</strong> Emerging as
-              new sources of fine rubies.
+              <strong>Russia:</strong> Produces deep reddish-brown varieties of
+              Hessonite Garnet.
             </motion.li>
           </ul>
         </div>
@@ -131,7 +131,7 @@ const RubyGem = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="special-text"
           >
-            Characteristics of Ruby
+            Characteristics of Hessonite Garnet
           </motion.h3>
           <ul>
             <motion.li
@@ -139,39 +139,39 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 1 }}
             >
-              <strong>Color:</strong> Ranges from pinkish-red to deep red, with
-              pigeon-blood red being the most valuable.
+              <strong>Color:</strong> Ranges from light yellowish-brown to deep
+              reddish-orange.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              <strong>Hardness:</strong> 9 on the Mohs scale, making it the
-              second hardest natural stone after diamonds.
+              <strong>Hardness:</strong> 6.5 - 7.5 on the Mohs scale, making it
+              moderately durable.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 1 }}
             >
-              <strong>Luster:</strong> Exhibits a vitreous to adamantine shine.
+              <strong>Luster:</strong> Exhibits a vitreous (glassy) shine.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 1 }}
             >
-              <strong>Transparency:</strong> Can range from transparent to
-              translucent.
+              <strong>Clarity::</strong>Often contains natural inclusions, which
+              do not diminish its astrological benefits.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              <strong>Cut and Shape:</strong> Commonly cut in oval, round,
-              cushion, and cabochon shapes to enhance its brilliance.
+              <strong>Cut and Shape:</strong> Commonly cut in oval, cushion, and
+              round shapes to maximize its brilliance.
             </motion.li>
           </ul>
         </div>
@@ -190,12 +190,12 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            In Vedic astrology, ruby (Manik) is associated with the Sun and is
-            believed to bring power, confidence, and good health to the wearer.
-            It is recommended for individuals with a weak Sun in their horoscope
-            and is said to enhance leadership qualities, authority, and
-            prosperity. It is often worn in gold rings or pendants to maximize
-            its benefits.
+            Hessonite Garnet (Gomed) is linked to Rahu, a shadow planet known
+            for its influence on illusions, confusion, and sudden changes.
+            Wearing a Gomed gemstone is believed to help individuals overcome
+            mental stress, financial instability, and negative energies. It is
+            particularly recommended for people undergoing Rahu Mahadasha or
+            facing obstacles in their professional and personal life.
           </motion.p>
         </div>
 
@@ -206,7 +206,7 @@ const RubyGem = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="special-text"
           >
-            Benefits of Wearing Ruby (Manik)
+            Benefits of Wearing Hessonite Garnet (Gomed)
           </motion.h3>
           <ul>
             <motion.li
@@ -214,35 +214,36 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 1 }}
             >
-              Enhances self-confidence and leadership skills.
+              Enhances mental clarity, focus, and decision-making skills.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              Improves focus, motivation, and determination.
+              Provides protection from evil energies, black magic, and hidden
+              enemies.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 1 }}
             >
-              Strengthens relationships and promotes emotional stability.
+              Improves financial stability and career growth.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 1 }}
             >
-              Protects against negativity and evil energies.
+              Helps overcome fears, stress, and psychological disorders.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              Promotes good health and vitality.
+              Strengthens intuition and spiritual awareness.
             </motion.li>
           </ul>
         </div>
@@ -254,7 +255,7 @@ const RubyGem = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="special-text"
           >
-            How to Wear Ruby (Manik)
+            How to Wear Hessonite Garnet (Gomed)
           </motion.h3>
           <ul>
             <motion.li
@@ -262,40 +263,41 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 1 }}
             >
-              <strong>Best Metal:</strong> Gold or copper is preferred for
-              setting the ruby stone.
+              <strong>Best Metal:</strong> Silver is the most recommended metal
+              for setting the Gomed gemstone.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              <strong>Finger:</strong> It is usually worn on the ring finger of
-              the right hand.
+              <strong>Finger:</strong> Worn on the middle finger of the right
+              hand.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 1 }}
             >
-              <strong>Day and Time:</strong> Should be worn on a Sunday morning
-              during the Shukla Paksha.
+              <strong>Day and Time:</strong> Should be worn on a Saturday
+              evening during the Shukla Paksha.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 1 }}
             >
-              <strong>Weight:</strong> A minimum of 3-5 carats is recommended
-              for best results.
+              <strong>Weight:</strong> A minimum of 5-7 carats is suggested for
+              astrological benefits.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              <strong>Energization:</strong> Before wearing, the ruby should be
-              purified and energized by chanting the Surya mantra.
+              <strong>Energization:</strong> Before wearing, the gemstone should
+              be purified in honey or Gangajal and energized by chanting the
+              Rahu mantra.
             </motion.li>
           </ul>
         </div>
@@ -314,11 +316,10 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            To ensure the authenticity of a ruby gemstone, it is important to
-            check for proper certification. Certified gemstones come with a
-            laboratory report that verifies their quality, origin, and any
-            treatments they may have undergone. Some well-known certification
-            authorities include:
+            Due to its high demand, synthetic and treated Hessonite Garnets are
+            common in the market. To ensure authenticity, always check for
+            proper certification from reputed gemological labs. Some well-known
+            certification authorities include:
           </motion.p>
           <ul>
             <motion.li
@@ -362,10 +363,8 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            Before purchasing a ruby, always verify its certification and ensure
-            it is from a reputed gem lab. The certificate should provide details
-            about the stone&apos;s weight, color, clarity, cut, and any
-            treatments applied.
+            Always verify the certification details before purchasing to confirm
+            the gemstone’s natural origin and quality.
           </motion.p>
         </div>
 
@@ -376,17 +375,17 @@ const RubyGem = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="special-text"
           >
-            Ruby in Jewelry
+            Hessonite Garnet in Jewelry
           </motion.h3>
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
           >
-            Apart from its astrological benefits, rubies are extensively used in
-            jewelry, including rings, necklaces, bracelets, and earrings. Their
-            rich color and durability make them a favorite among jewelers and
-            collectors worldwide.
+            Hessonite Garnet is widely used in rings, pendants, and bracelets,
+            particularly for its astrological benefits. Its warm, rich color
+            also makes it an attractive choice for unique jewelry designs. It is
+            often set in silver to enhance its vibrational energy.
           </motion.p>
         </div>
 
@@ -403,10 +402,12 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
           >
-            Ruby (Manik) is not just a beautiful gemstone; it holds immense
-            significance in astrology, culture, and fashion. Whether worn for
-            its metaphysical benefits or as an exquisite piece of jewelry, it
-            remains one of the most prized gemstones in the world.
+            Hessonite Garnet (Gomed) is a gemstone of wisdom, protection, and
+            success. Whether worn for its astrological significance or as a
+            stunning jewelry piece, it remains a powerful stone that helps
+            individuals overcome obstacles and achieve stability in life. Due to
+            its strong effects, consulting an expert before wearing Gomed is
+            highly recommended.
           </motion.p>
         </div>
       </div>
@@ -416,4 +417,4 @@ const RubyGem = () => {
   );
 };
 
-export default RubyGem;
+export default HessoniteGarnetGem;

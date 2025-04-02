@@ -4,7 +4,7 @@ import NewHeader from '../../components/NewHeader';
 import '../../styles/gemsStyles/rubyGem.css';
 import { motion } from 'motion/react';
 
-const RubyGem = () => {
+const RedCoralGem = () => {
   return (
     <div>
       <header>
@@ -25,8 +25,8 @@ const RubyGem = () => {
             >
               <div className="r-g-image-container">
                 <img
-                  src="/images/home-page-assests/gems/red-ruby-stone.webp"
-                  alt="Ruby (Manik)"
+                  src="/images/home-page-assests/gems/red-coral-2-500x500.jpg"
+                  alt="Red Coral (Moonga)"
                   className="r-g-image"
                 />
               </div>
@@ -43,20 +43,19 @@ const RubyGem = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 1 }}
             >
-              Ruby Gem (Manik) - The Precious Red Stone
+              Red Coral (Moonga) - The Stone of Strength and Vitality
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              Ruby, also known as &quot;Manik&quot; in Hindi, is a precious
-              gemstone that belongs to the corundum family. It is renowned for
-              its deep red color and exceptional hardness, making it one of the
-              most sought-after gemstones in the world. The name
-              &quot;Ruby&quot; comes from the Latin word &quot;ruber,&quot;
-              meaning red. This gemstone holds great significance in astrology,
-              jewelry, and various cultural traditions.
+              Red Coral, known as &quot;Moonga&quot; in Hindi, is an organic
+              gemstone formed from the skeletons of marine coral polyps. It is
+              renowned for its striking red to orange-red hues and is considered
+              a powerful gemstone in Vedic astrology. Associated with Mars
+              (Mangal), Red Coral is believed to provide strength, courage, and
+              protection from negative energies.
             </motion.p>
           </motion.div>
         </div>
@@ -77,8 +76,8 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            Rubies are found in several parts of the world, with the most famous
-            sources being:
+            Red Coral is primarily harvested from coral reefs in warm oceanic
+            regions. The major sources include:
           </motion.p>
           <ul>
             <motion.li
@@ -86,40 +85,39 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              <strong>Burma (Myanmar):</strong> Known for producing the finest
-              rubies with a deep, pigeon-blood red hue.
+              <strong>Italy (Mediterranean Sea):</strong> Known for high-quality
+              deep red corals.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 1 }}
             >
-              <strong>Sri Lanka:</strong> Produces rubies in various shades,
-              from light pink to deep red.
+              <strong>Japan:</strong> Produces precious red and pink corals.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 1 }}
             >
-              <strong>Thailand:</strong> Home to darker rubies with a slight
-              brownish tint.
+              <strong>Taiwan:</strong> Home to some of the finest coral
+              varieties.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              <strong>India:</strong> Known for producing high-quality rubies,
-              especially in Karnataka and Odisha.
+              <strong>Australia:</strong> Known for harvesting sustainable coral
+              gemstones.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.6, duration: 1 }}
             >
-              <strong>Madagascar, Mozambique, and Vietnam:</strong> Emerging as
-              new sources of fine rubies.
+              <strong>India (Coastal Regions):</strong> Harvesting is regulated
+              to preserve coral reefs.
             </motion.li>
           </ul>
         </div>
@@ -131,7 +129,7 @@ const RubyGem = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="special-text"
           >
-            Characteristics of Ruby
+            Characteristics of Red Coral
           </motion.h3>
           <ul>
             <motion.li
@@ -139,39 +137,39 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 1 }}
             >
-              <strong>Color:</strong> Ranges from pinkish-red to deep red, with
-              pigeon-blood red being the most valuable.
+              <strong>Color:</strong> Ranges from deep red to light orange-red,
+              with uniform color being the most valuable.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              <strong>Hardness:</strong> 9 on the Mohs scale, making it the
-              second hardest natural stone after diamonds.
+              <strong>Hardness:</strong> 3.5-4 on the Mohs scale, making it
+              softer than many gemstones.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 1 }}
             >
-              <strong>Luster:</strong> Exhibits a vitreous to adamantine shine.
+              <strong>Luster:</strong> Exhibits a waxy to vitreous sheen.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 1 }}
             >
-              <strong>Transparency:</strong> Can range from transparent to
-              translucent.
+              <strong>Shape:</strong> Commonly found in cabochon, oval, and
+              cylindrical cuts.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              <strong>Cut and Shape:</strong> Commonly cut in oval, round,
-              cushion, and cabochon shapes to enhance its brilliance.
+              <strong>Origin:</strong> Naturally occurring in warm saltwater
+              environments.
             </motion.li>
           </ul>
         </div>
@@ -190,12 +188,11 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            In Vedic astrology, ruby (Manik) is associated with the Sun and is
-            believed to bring power, confidence, and good health to the wearer.
-            It is recommended for individuals with a weak Sun in their horoscope
-            and is said to enhance leadership qualities, authority, and
-            prosperity. It is often worn in gold rings or pendants to maximize
-            its benefits.
+            In Vedic astrology, Red Coral is associated with the planet Mars,
+            which symbolizes energy, passion, and determination. It is
+            recommended for individuals with a weak or afflicted Mars in their
+            horoscope. Wearing Red Coral is believed to enhance vitality,
+            leadership, and protection from enemies and adversities.
           </motion.p>
         </div>
 
@@ -206,7 +203,7 @@ const RubyGem = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="special-text"
           >
-            Benefits of Wearing Ruby (Manik)
+            Benefits of Wearing Red Coral (Moonga)
           </motion.h3>
           <ul>
             <motion.li
@@ -214,35 +211,35 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 1 }}
             >
-              Enhances self-confidence and leadership skills.
+              Boosts confidence, courage, and determination.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              Improves focus, motivation, and determination.
+              Helps overcome fear, laziness, and procrastination.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 1 }}
             >
-              Strengthens relationships and promotes emotional stability.
+              Protects against negative energies, black magic, and evil spirits.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 1 }}
             >
-              Protects against negativity and evil energies.
+              Promotes physical strength, stamina, and vitality.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              Promotes good health and vitality.
+              Aids in blood circulation and improves overall health.
             </motion.li>
           </ul>
         </div>
@@ -254,7 +251,7 @@ const RubyGem = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="special-text"
           >
-            How to Wear Ruby (Manik)
+            How to Wear Red Coral (Moonga)
           </motion.h3>
           <ul>
             <motion.li
@@ -263,22 +260,22 @@ const RubyGem = () => {
               transition={{ delay: 0.7, duration: 1 }}
             >
               <strong>Best Metal:</strong> Gold or copper is preferred for
-              setting the ruby stone.
+              setting the Red Coral stone.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              <strong>Finger:</strong> It is usually worn on the ring finger of
-              the right hand.
+              <strong>Finger:</strong> Usually worn on the ring finger of the
+              right hand.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 1 }}
             >
-              <strong>Day and Time:</strong> Should be worn on a Sunday morning
+              <strong>Day and Time:</strong> Should be worn on a Tuesday morning
               during the Shukla Paksha.
             </motion.li>
             <motion.li
@@ -286,16 +283,17 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 1 }}
             >
-              <strong>Weight:</strong> A minimum of 3-5 carats is recommended
-              for best results.
+              <strong>Weight:</strong> A minimum of 5-7 carats is ideal for
+              astrological benefits.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              <strong>Energization:</strong> Before wearing, the ruby should be
-              purified and energized by chanting the Surya mantra.
+              <strong>Energization:</strong> Before wearing, the coral should be
+              purified in honey and Gangajal and energized by chanting the Mars
+              mantra.
             </motion.li>
           </ul>
         </div>
@@ -314,11 +312,10 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            To ensure the authenticity of a ruby gemstone, it is important to
-            check for proper certification. Certified gemstones come with a
-            laboratory report that verifies their quality, origin, and any
-            treatments they may have undergone. Some well-known certification
-            authorities include:
+            Due to the increasing demand for Red Coral, synthetic and dyed
+            versions are often sold in the market. To ensure authenticity,
+            always check for proper certification from reputed gemological labs.
+            Some well-known certification authorities include:
           </motion.p>
           <ul>
             <motion.li
@@ -362,10 +359,8 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            Before purchasing a ruby, always verify its certification and ensure
-            it is from a reputed gem lab. The certificate should provide details
-            about the stone&apos;s weight, color, clarity, cut, and any
-            treatments applied.
+            Always verify the certification details before purchasing to ensure
+            the coral&apos;s natural origin and quality.
           </motion.p>
         </div>
 
@@ -376,17 +371,17 @@ const RubyGem = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="special-text"
           >
-            Ruby in Jewelry
+            Red Coral in Jewelry
           </motion.h3>
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
           >
-            Apart from its astrological benefits, rubies are extensively used in
-            jewelry, including rings, necklaces, bracelets, and earrings. Their
-            rich color and durability make them a favorite among jewelers and
-            collectors worldwide.
+            Red Coral is widely used in rings, bracelets, necklaces, and
+            pendants. Due to its bold red color, it is often combined with gold
+            or silver settings. It is a favored gemstone for both astrological
+            purposes and fashion accessories, symbolizing energy and protection.
           </motion.p>
         </div>
 
@@ -403,10 +398,10 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
           >
-            Ruby (Manik) is not just a beautiful gemstone; it holds immense
-            significance in astrology, culture, and fashion. Whether worn for
-            its metaphysical benefits or as an exquisite piece of jewelry, it
-            remains one of the most prized gemstones in the world.
+            Red Coral (Moonga) is a powerful gemstone that provides courage,
+            protection, and vitality. Whether worn for its astrological benefits
+            or as an elegant piece of jewelry, it remains a treasured gemstone
+            with deep-rooted cultural and spiritual significance.
           </motion.p>
         </div>
       </div>
@@ -416,4 +411,4 @@ const RubyGem = () => {
   );
 };
 
-export default RubyGem;
+export default RedCoralGem;

@@ -4,7 +4,7 @@ import NewHeader from '../../components/NewHeader';
 import '../../styles/gemsStyles/rubyGem.css';
 import { motion } from 'motion/react';
 
-const RubyGem = () => {
+const PearlGem = () => {
   return (
     <div>
       <header>
@@ -25,8 +25,8 @@ const RubyGem = () => {
             >
               <div className="r-g-image-container">
                 <img
-                  src="/images/home-page-assests/gems/red-ruby-stone.webp"
-                  alt="Ruby (Manik)"
+                  src="/images/home-page-assests/gems/Pearl-gems.jpg"
+                  alt="Pearl (Moti)"
                   className="r-g-image"
                 />
               </div>
@@ -43,20 +43,19 @@ const RubyGem = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 1 }}
             >
-              Ruby Gem (Manik) - The Precious Red Stone
+              Pearl (Moti) - The Gem of Purity and Elegance
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              Ruby, also known as &quot;Manik&quot; in Hindi, is a precious
-              gemstone that belongs to the corundum family. It is renowned for
-              its deep red color and exceptional hardness, making it one of the
-              most sought-after gemstones in the world. The name
-              &quot;Ruby&quot; comes from the Latin word &quot;ruber,&quot;
-              meaning red. This gemstone holds great significance in astrology,
-              jewelry, and various cultural traditions.
+              Pearl, known as &quot;Moti&quot; in Hindi, is a unique gemstone
+              formed inside the shells of mollusks. Unlike other gemstones that
+              are mined from the Earth, pearls are organic in nature and are
+              prized for their lustrous beauty and elegance. They symbolize
+              purity, wisdom, and serenity and have been used in jewelry and
+              spiritual practices for centuries.
             </motion.p>
           </motion.div>
         </div>
@@ -77,8 +76,8 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            Rubies are found in several parts of the world, with the most famous
-            sources being:
+            Pearls are found in both freshwater and saltwater environments. The
+            major sources of pearls include:
           </motion.p>
           <ul>
             <motion.li
@@ -86,40 +85,40 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              <strong>Burma (Myanmar):</strong> Known for producing the finest
-              rubies with a deep, pigeon-blood red hue.
+              <strong>Japan:</strong> Famous for Akoya pearls, known for their
+              round shape and high luster.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 1 }}
             >
-              <strong>Sri Lanka:</strong> Produces rubies in various shades,
-              from light pink to deep red.
+              <strong>China:</strong> Leading producer of freshwater pearls with
+              a variety of colors and shapes.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 1 }}
             >
-              <strong>Thailand:</strong> Home to darker rubies with a slight
-              brownish tint.
+              <strong>Australia:</strong> Known for South Sea pearls, which are
+              larger and have a rich, satiny luster.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              <strong>India:</strong> Known for producing high-quality rubies,
-              especially in Karnataka and Odisha.
+              <strong>Tahiti:</strong> Produces rare black pearls, also called
+              Tahitian pearls.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.6, duration: 1 }}
             >
-              <strong>Madagascar, Mozambique, and Vietnam:</strong> Emerging as
-              new sources of fine rubies.
+              <strong>India and Sri Lanka:</strong> Have historical significance
+              in pearl harvesting, particularly in the Gulf of Mannar.
             </motion.li>
           </ul>
         </div>
@@ -131,7 +130,7 @@ const RubyGem = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="special-text"
           >
-            Characteristics of Ruby
+            Characteristics of Pearls
           </motion.h3>
           <ul>
             <motion.li
@@ -139,39 +138,40 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 1 }}
             >
-              <strong>Color:</strong> Ranges from pinkish-red to deep red, with
-              pigeon-blood red being the most valuable.
+              <strong>Color: </strong> Common colors include white, cream, pink,
+              silver, gold, and black.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              <strong>Hardness:</strong> 9 on the Mohs scale, making it the
-              second hardest natural stone after diamonds.
+              <strong>Luster:</strong> Exhibits a soft, glowing sheen that
+              enhances its beauty.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 1 }}
             >
-              <strong>Luster:</strong> Exhibits a vitreous to adamantine shine.
+              <strong>Shape:</strong> Pearls come in round, oval, baroque, and
+              teardrop shapes.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 1 }}
             >
-              <strong>Transparency:</strong> Can range from transparent to
-              translucent.
+              <strong>Hardness:</strong> 2.5-4.5 on the Mohs scale, making them
+              softer than most gemstones.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              <strong>Cut and Shape:</strong> Commonly cut in oval, round,
-              cushion, and cabochon shapes to enhance its brilliance.
+              <strong>Size:</strong> Varies from small seed pearls to large
+              South Sea pearls exceeding 15mm.
             </motion.li>
           </ul>
         </div>
@@ -190,12 +190,11 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            In Vedic astrology, ruby (Manik) is associated with the Sun and is
-            believed to bring power, confidence, and good health to the wearer.
-            It is recommended for individuals with a weak Sun in their horoscope
-            and is said to enhance leadership qualities, authority, and
-            prosperity. It is often worn in gold rings or pendants to maximize
-            its benefits.
+            In Vedic astrology, pearl (Moti) is associated with the Moon and is
+            believed to bring emotional balance, peace, and prosperity. It is
+            recommended for individuals who have a weak Moon in their horoscope
+            and is known to enhance mental clarity, calmness, and intuition. It
+            is often worn as a ring or pendant in silver for maximum benefits.
           </motion.p>
         </div>
 
@@ -206,7 +205,7 @@ const RubyGem = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="special-text"
           >
-            Benefits of Wearing Ruby (Manik)
+            Benefits of Wearing Pearl (Moti)
           </motion.h3>
           <ul>
             <motion.li
@@ -214,35 +213,35 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 1 }}
             >
-              Enhances self-confidence and leadership skills.
+              Promotes mental peace and emotional stability.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              Improves focus, motivation, and determination.
+              Enhances creativity, wisdom, and self-confidence.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 1 }}
             >
-              Strengthens relationships and promotes emotional stability.
+              Improves relationships by fostering love and harmony.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 1 }}
             >
-              Protects against negativity and evil energies.
+              Strengthens the immune system and aids in digestive health.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              Promotes good health and vitality.
+              Protects from negative energies and stress.
             </motion.li>
           </ul>
         </div>
@@ -254,7 +253,7 @@ const RubyGem = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="special-text"
           >
-            How to Wear Ruby (Manik)
+            How to Wear Pearl (Moti)
           </motion.h3>
           <ul>
             <motion.li
@@ -262,15 +261,15 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 1 }}
             >
-              <strong>Best Metal:</strong> Gold or copper is preferred for
-              setting the ruby stone.
+              <strong>Best Metal:</strong> Silver is the most recommended metal
+              for setting the pearl.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 1 }}
             >
-              <strong>Finger:</strong> It is usually worn on the ring finger of
+              <strong>Finger:</strong> Typically worn on the little finger of
               the right hand.
             </motion.li>
             <motion.li
@@ -278,7 +277,7 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 1 }}
             >
-              <strong>Day and Time:</strong> Should be worn on a Sunday morning
+              <strong>Day and Time:</strong> Should be worn on a Monday morning
               during the Shukla Paksha.
             </motion.li>
             <motion.li
@@ -286,16 +285,16 @@ const RubyGem = () => {
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 1 }}
             >
-              <strong>Weight:</strong> A minimum of 3-5 carats is recommended
-              for best results.
+              <strong>Weight:</strong> A minimum of 5-7 carats is ideal for
+              astrological benefits.
             </motion.li>
             <motion.li
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ delay: 1.5, duration: 1 }}
             >
-              <strong>Energization:</strong> Before wearing, the ruby should be
-              purified and energized by chanting the Surya mantra.
+              <strong>Energization:</strong> Before wearing, the pearl should be
+              purified in raw milk and energized by chanting the Moon mantra.
             </motion.li>
           </ul>
         </div>
@@ -314,11 +313,10 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            To ensure the authenticity of a ruby gemstone, it is important to
-            check for proper certification. Certified gemstones come with a
-            laboratory report that verifies their quality, origin, and any
-            treatments they may have undergone. Some well-known certification
-            authorities include:
+            To ensure the authenticity of a pearl, it is essential to check for
+            certification from reputed gemological labs. Natural pearls are rare
+            and often imitated using cultured or synthetic methods. Some
+            well-known certification authorities include
           </motion.p>
           <ul>
             <motion.li
@@ -362,10 +360,8 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 1 }}
           >
-            Before purchasing a ruby, always verify its certification and ensure
-            it is from a reputed gem lab. The certificate should provide details
-            about the stone&apos;s weight, color, clarity, cut, and any
-            treatments applied.
+            Always verify the certification of a pearl before purchasing to
+            ensure its quality, luster, and origin.
           </motion.p>
         </div>
 
@@ -376,17 +372,18 @@ const RubyGem = () => {
             transition={{ delay: 0.5, duration: 1 }}
             className="special-text"
           >
-            Ruby in Jewelry
+            Pearl in Jewelry
           </motion.h3>
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
           >
-            Apart from its astrological benefits, rubies are extensively used in
-            jewelry, including rings, necklaces, bracelets, and earrings. Their
-            rich color and durability make them a favorite among jewelers and
-            collectors worldwide.
+            Pearls are a timeless choice for jewelry, including necklaces,
+            earrings, rings, and bracelets. They are favored for their elegance
+            and sophistication, often used in wedding and royal jewelry. Pearl
+            strands and solitaire pearl rings are particularly popular for their
+            classic appeal.
           </motion.p>
         </div>
 
@@ -403,10 +400,10 @@ const RubyGem = () => {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 1 }}
           >
-            Ruby (Manik) is not just a beautiful gemstone; it holds immense
-            significance in astrology, culture, and fashion. Whether worn for
-            its metaphysical benefits or as an exquisite piece of jewelry, it
-            remains one of the most prized gemstones in the world.
+            Pearl (Moti) is a gemstone of grace and tranquility, offering both
+            aesthetic and astrological benefits. Whether worn for its calming
+            influence or as a statement piece in jewelry, pearls continue to be
+            a symbol of elegance and purity across cultures and traditions.
           </motion.p>
         </div>
       </div>
@@ -416,4 +413,4 @@ const RubyGem = () => {
   );
 };
 
-export default RubyGem;
+export default PearlGem;
